@@ -50,14 +50,14 @@ abstract public class Embedder {
 	}
 
 	public boolean embed(String text) {
-		text = SyntaxUtils.replaceCommonSyntax(text);
+		//text = SyntaxUtils.replaceCommonSyntax(text);
 		return embeddings.add(snapshot.create(text, getMimeType()));
 	}
 
 	public boolean embed(int start, int length) {
-		String text = snapshot.getText().subSequence(start, start+length).toString();
-		text = SyntaxUtils.replaceCommonSyntax(text);
-		return embeddings.add(snapshot.create(text, getMimeType()));
+		//String text = snapshot.getText().subSequence(start, start+length).toString();
+		//text = SyntaxUtils.replaceCommonSyntax(text);
+		return embeddings.add(snapshot.create(start, length, getMimeType()));
 	}
 
 	public List<Embedding> getEmbeddings() {
