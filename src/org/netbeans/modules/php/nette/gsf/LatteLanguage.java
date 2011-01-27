@@ -38,7 +38,7 @@ import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
 import org.openide.util.NbBundle;
 
 /**
- * Registers new language to mime-type text/x-latte-template for .phtml files
+ * Registers new language to mime-type text/x-latte-template for .latte files
  * @author Radek Ježdík
  */
 @LanguageRegistration(mimeType="text/x-latte-template")
@@ -57,7 +57,7 @@ public class LatteLanguage extends DefaultLanguageConfig {
 
     @Override
     public String getPreferredExtension() {
-        return "phtml"; // NOI18N
+        return "latte"; // NOI18N
     }
 
     @Override

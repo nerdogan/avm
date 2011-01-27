@@ -42,6 +42,8 @@ public class NetteOptions {
 
 	private static final String NETTE_PATH = "nette-path";
 
+	private static final String SANDBOX_PATH = "sandbox-path";
+
 	public static NetteOptions getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new NetteOptions();
@@ -58,6 +60,14 @@ public class NetteOptions {
 
 	public String getNettePath() {
 		return NbPreferences.forModule(NetteOptions.class).get(NETTE_PATH, "");
+	}
+
+	public void setSandboxPath(String nettePath) {
+		NbPreferences.forModule(NetteOptions.class).put(SANDBOX_PATH, nettePath);
+	}
+
+	public String getSandboxPath() {
+		return NbPreferences.forModule(NetteOptions.class).get(SANDBOX_PATH, "");
 	}
 
 	public String getOptionsPath() {

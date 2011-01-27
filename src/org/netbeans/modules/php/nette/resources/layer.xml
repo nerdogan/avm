@@ -70,7 +70,7 @@
     <folder name="OptionsDialog">
         <folder name="PreviewExamples">
             <folder name="text">
-				<file name="x-latte" url="LatteSample.phtml"/>
+				<file name="x-latte" url="LatteSample.latte"/>
             </folder>
         </folder>
         <folder name="Editor">
@@ -189,8 +189,8 @@
                 <attr name="templateWizardURL" urlvalue="nbresloc:/org/netbeans/modules/php/nette/resources/ControlDescription.html"/>
                 <attr name="javax.script.ScriptEngine" stringvalue="freemarker"/>
             </file>
-            <file name="LatteTemplate.phtml" url="LatteTemplate.phtml">
-                <attr name="displayName" bundlevalue="org.netbeans.modules.php.nette.resources.Bundle#Templates/Nette-Framework/LatteTemplate.phtml"/>
+            <file name="LatteTemplate.latte" url="LatteTemplate.latte">
+                <attr name="displayName" bundlevalue="org.netbeans.modules.php.nette.resources.Bundle#Templates/Nette-Framework/LatteTemplate.latte"/>
                 <attr name="iconBase" stringvalue="org/netbeans/modules/php/nette/resources/latte_icon.png"/>
                 <attr name="template" boolvalue="true"/>
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.php.nette.resources.Bundle"/>
