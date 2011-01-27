@@ -367,9 +367,9 @@ public final class EditorUtils {
         String[] fn = fo.getName().split("\\.");
 
         if (fn.length == 2) {
-            return fn[0];                         //Presenter.view.phtml
+            return fn[0];                         //Presenter.view.latte
         } else {
-            return fo.getParent().getName();        //Presenter/view.phtml
+            return fo.getParent().getName();        //Presenter/view.latte
         }
     }
 
@@ -511,7 +511,7 @@ public final class EditorUtils {
         List<FileObject> fos = getFilesRecursive(fp, new FilenameFilter() {
 			@Override
             public boolean accept(File dir, String name) {
-                return name.startsWith("@") && name.endsWith(".phtml");
+                return name.startsWith("@") && name.endsWith(".latte");
             }
         });
         for(FileObject f : fos) {

@@ -35,7 +35,7 @@ public final class NetteFramework {
 
 	public static final String NETTE_DOCUMENT_ROOT_DIR = "/document_root";
 
-	public static final String NETTE_LATTE_TEMPLATE_EXTENSION = ".phtml";
+	public static final String NETTE_LATTE_TEMPLATE_EXTENSION = ".latte";
 
 	public static final String NETTE_LIBS_DIR = "/libs/Nette";
 
