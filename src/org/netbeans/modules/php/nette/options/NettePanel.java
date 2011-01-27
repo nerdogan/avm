@@ -31,6 +31,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import org.netbeans.modules.php.nette.validators.NetteEmptyPathValidator;
 import org.netbeans.modules.php.nette.validators.NetteLoaderPathValidator;
+import org.netbeans.modules.php.nette.validators.SandboxPathValidator;
 import org.netbeans.modules.php.nette.validators.Validable;
 import org.openide.util.ImageUtilities;
 import org.openide.util.NbBundle;
@@ -56,15 +57,22 @@ final class NettePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        directoryChooser = new javax.swing.JFileChooser();
+        netteDirectoryChooser = new javax.swing.JFileChooser();
+        sandboxDirectoryChooser = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         nettePathTextField = new javax.swing.JTextField();
-        browseButton = new javax.swing.JButton();
+        netteBrowseButton = new javax.swing.JButton();
         errorLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        sandboxLabel = new javax.swing.JLabel();
+        sandboxPathTextField = new javax.swing.JTextField();
+        sandboxBrowseButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
-        directoryChooser.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+        netteDirectoryChooser.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+
+        sandboxDirectoryChooser.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(NettePanel.class, "NettePanel.jLabel1.text")); // NOI18N
 
@@ -75,10 +83,10 @@ final class NettePanel extends javax.swing.JPanel {
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(browseButton, org.openide.util.NbBundle.getMessage(NettePanel.class, "NettePanel.browseButton.text")); // NOI18N
-        browseButton.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(netteBrowseButton, org.openide.util.NbBundle.getMessage(NettePanel.class, "NettePanel.netteBrowseButton.text")); // NOI18N
+        netteBrowseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browseButtonActionPerformed(evt);
+                netteBrowseButtonActionPerformed(evt);
             }
         });
 
@@ -87,6 +95,24 @@ final class NettePanel extends javax.swing.JPanel {
         org.openide.awt.Mnemonics.setLocalizedText(errorLabel, org.openide.util.NbBundle.getMessage(NettePanel.class, "NettePanel.errorLabel.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(NettePanel.class, "NettePanel.jLabel2.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(sandboxLabel, org.openide.util.NbBundle.getMessage(NettePanel.class, "NettePanel.sandboxLabel.text")); // NOI18N
+
+        sandboxPathTextField.setText(org.openide.util.NbBundle.getMessage(NettePanel.class, "NettePanel.sandboxPathTextField.text")); // NOI18N
+        sandboxPathTextField.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                sandboxPathTextFieldCaretUpdate(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(sandboxBrowseButton, org.openide.util.NbBundle.getMessage(NettePanel.class, "NettePanel.sandboxBrowseButton.text")); // NOI18N
+        sandboxBrowseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sandboxBrowseButtonActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(NettePanel.class, "NettePanel.jLabel3.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -100,9 +126,16 @@ final class NettePanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nettePathTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(browseButton))
+                        .addComponent(netteBrowseButton))
                     .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(sandboxLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sandboxPathTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sandboxBrowseButton))
+                    .addComponent(jLabel3)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -113,78 +146,100 @@ final class NettePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(nettePathTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(browseButton))
+                    .addComponent(netteBrowseButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sandboxLabel)
+                    .addComponent(sandboxPathTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sandboxBrowseButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-	private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
-		int result = directoryChooser.showOpenDialog(this);
+	private void netteBrowseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_netteBrowseButtonActionPerformed
+		int result = netteDirectoryChooser.showOpenDialog(this);
 
         if (result == JFileChooser.APPROVE_OPTION) {
-            nettePathTextField.setText(directoryChooser.getSelectedFile().toString());
+            nettePathTextField.setText(netteDirectoryChooser.getSelectedFile().toString());
             controller.changed();
         }
-	}//GEN-LAST:event_browseButtonActionPerformed
+	}//GEN-LAST:event_netteBrowseButtonActionPerformed
 
 	private void nettePathTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_nettePathTextFieldCaretUpdate
 		controller.changed();
 	}//GEN-LAST:event_nettePathTextFieldCaretUpdate
 
-	void load() {
-		// TODO read settings and initialize GUI
-		// Example:
-		// someCheckBox.setSelected(Preferences.userNodeForPackage(NettePanel.class).getBoolean("someFlag", false));
-		// or for org.openide.util with API spec. version >= 7.4:
-		// someCheckBox.setSelected(NbPreferences.forModule(NettePanel.class).getBoolean("someFlag", false));
-		// or:
-		// someTextField.setText(SomeSystemOption.getDefault().getSomeStringProperty());
+	private void sandboxPathTextFieldCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_sandboxPathTextFieldCaretUpdate
+		controller.changed();
+	}//GEN-LAST:event_sandboxPathTextFieldCaretUpdate
 
+	private void sandboxBrowseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sandboxBrowseButtonActionPerformed
+		int result = sandboxDirectoryChooser.showOpenDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            sandboxPathTextField.setText(sandboxDirectoryChooser.getSelectedFile().toString());
+            controller.changed();
+        }
+	}//GEN-LAST:event_sandboxBrowseButtonActionPerformed
+
+	void load() {
 		nettePathTextField.setText(NetteOptions.getInstance().getNettePath());
+		sandboxPathTextField.setText(NetteOptions.getInstance().getSandboxPath());
 	}
 
 	void store() {
-		// TODO store modified settings
-		// Example:
-		// Preferences.userNodeForPackage(NettePanel.class).putBoolean("someFlag", someCheckBox.isSelected());
-		// or for org.openide.util with API spec. version >= 7.4:
-		// NbPreferences.forModule(NettePanel.class).putBoolean("someFlag", someCheckBox.isSelected());
-		// or:
-		// SomeSystemOption.getDefault().setSomeStringProperty(someTextField.getText());
-
 		NetteOptions.getInstance().setNettePath(nettePathTextField.getText());
+		NetteOptions.getInstance().setSandboxPath(sandboxPathTextField.getText());
 	}
 
 	boolean valid() {
-		// TODO check whether form is consistent and complete
-		Validable loaderPathValidator = new NetteLoaderPathValidator();
-		Validable emptyPathValidator = new NetteEmptyPathValidator();
+		Validable sandboxPathValidator = new SandboxPathValidator();
 
-		if (loaderPathValidator.validate(nettePathTextField.getText()) || emptyPathValidator.validate(nettePathTextField.getText())) {
+		if (!isNettePathValid()) {
+			errorLabel.setIcon(errorIcon);
+			errorLabel.setText(NbBundle.getMessage(NettePanel.class, "ERR_invalid_nette_folder"));
+
+			return false;
+		} else if (!sandboxPathValidator.validate(sandboxPathTextField.getText())) {
+			errorLabel.setIcon(errorIcon);
+			errorLabel.setText(NbBundle.getMessage(NettePanel.class, "ERR_invalid_sandbox_folder"));
+
+			return false;
+		} else {
 			errorLabel.setIcon(null);
 			errorLabel.setText("");
 
 			return true;
 		}
-
-		errorLabel.setIcon(errorIcon);
-		errorLabel.setText(NbBundle.getMessage(NettePanel.class, "ERR_invalid_nette_folder"));
-
-		return false;
 	}
+
+	private boolean isNettePathValid() {
+		Validable loaderPathValidator = new NetteLoaderPathValidator();
+		Validable emptyPathValidator = new NetteEmptyPathValidator();
+
+		return loaderPathValidator.validate(nettePathTextField.getText()) || emptyPathValidator.validate(nettePathTextField.getText());
+	}
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton browseButton;
-    private javax.swing.JFileChooser directoryChooser;
     private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton netteBrowseButton;
+    private javax.swing.JFileChooser netteDirectoryChooser;
     private javax.swing.JTextField nettePathTextField;
+    private javax.swing.JButton sandboxBrowseButton;
+    private javax.swing.JFileChooser sandboxDirectoryChooser;
+    private javax.swing.JLabel sandboxLabel;
+    private javax.swing.JTextField sandboxPathTextField;
     // End of variables declaration//GEN-END:variables
 }
