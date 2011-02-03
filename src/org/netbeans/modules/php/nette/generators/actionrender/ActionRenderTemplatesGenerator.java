@@ -72,7 +72,7 @@ public class ActionRenderTemplatesGenerator {
             DataFolder templatesDf = DataFolder.findFolder(foTemplatesDir);
 
 			try {
-				FileObject latteTemplate = FileUtil.getConfigFile("Templates/Nette Framework/LatteTemplate.phtml");
+				FileObject latteTemplate = FileUtil.getConfigFile("Templates/Nette Framework/LatteTemplate.latte");
 				DataObject latteDTemplate = DataObject.find(latteTemplate);
 
 				ActionRenderTemplateChecker artc = new ActionRenderTemplateChecker(presenterName, templatesDirectory);

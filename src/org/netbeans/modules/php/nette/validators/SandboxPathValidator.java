@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  * 
- *  Copyright (c) 2010 Radek Ježdík <redhead@email.cz>, Ondřej Brejla <ondrej@brejla.cz>
+ *  Copyright (c) 2011 Radek Ježdík <redhead@email.cz>, Ondřej Brejla <ondrej@brejla.cz>
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -21,35 +21,28 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.netbeans.modules.php.nette;
 
+package org.netbeans.modules.php.nette.validators;
+
+import java.io.File;
 
 /**
- * NetteFramework static constants.
  *
  * @author Ondřej Brejla <ondrej@brejla.cz>
  */
-public final class NetteFramework {
+public class SandboxPathValidator implements Validable {
 
-	public static final String NETTE_APP_DIR = "/app";
+	@Override
+	public boolean validate(Object object) {
+		String path = (String) object;
 
-	public static final String NETTE_DOCUMENT_ROOT_DIR = "/document_root";
+		File f = new File(path);
 
-	public static final String NETTE_LATTE_TEMPLATE_EXTENSION = ".latte";
+		if (f.isDirectory() || path.trim().isEmpty()) {
+			return true;
+		}
 
-	public static final String NETTE_LIBS_DIR = "/libs/Nette";
-
-	public static final String NETTE_LOG_DIR = "/log";
-
-	public static final String NETTE_PRESENTER_EXTENSION = ".php";
-	
-	public static final String NETTE_TEMP_DIR = "/temp";
-
-	public static final String NETTE_ACTION_METHOD_PREFIX = "action";
-
-	public static final String NETTE_RENDER_METHOD_PREFIX = "render";
-
-	private NetteFramework() {
+		return false;
 	}
 
 }
