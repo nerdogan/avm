@@ -46,6 +46,7 @@ public enum LatteTokenId implements TokenId {
     WHITESPACE(null, "whitespace"),
     LD("{", "delimiter"),
     RD("}", "delimiter"),
+	END_SLASH("/", "endslash"),
     COLON(":", "colon"),
     SEMICOLON(";", "text"),
     ASSIGN("=>", "assign"),

@@ -180,6 +180,9 @@ class LatteLexer implements Lexer<LatteTokenId> {
 							state = State.AFTER_MACRO;
 							return LatteTokenId.MACRO;
 						}
+						if(ch == '/') {
+							return LatteTokenId.END_SLASH;
+						}
 					case AFTER_MACRO:
 						if(ch == '$') {								// possible variable
 							int c = input.read();
@@ -215,8 +218,8 @@ class LatteLexer implements Lexer<LatteTokenId> {
 										return LatteTokenId.STRING;
 									}
 								}
-							//inside macro php comment /* */
 							case '/':
+								//inside macro php comment /* */
 								if(input.read() == '*') {
 									while(true) {
 										int c = input.read();
@@ -227,7 +230,7 @@ class LatteLexer implements Lexer<LatteTokenId> {
 											input.backup(1);
 										}
 									}
-								} else {
+								} else {	// slash as operator
 									input.backup(1);
 									return LatteTokenId.SLASH;
 								}

@@ -16,4 +16,5 @@
     <fontcolor name="delimiter" default="operator" foreColor="red">
         <font style="bold"/>
     </fontcolor>
+    <fontcolor name="endslash" default="macro" foreColor="black" />
 </fontscolors>
