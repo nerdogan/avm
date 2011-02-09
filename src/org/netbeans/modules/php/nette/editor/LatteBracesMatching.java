@@ -28,6 +28,7 @@
 package org.netbeans.modules.php.nette.editor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.text.BadLocationException;
 import org.netbeans.api.lexer.Token;
@@ -78,12 +79,19 @@ public class LatteBracesMatching implements BracesMatcher {
             }
             Token<LatteTopTokenId> t = ts.token();
             if(t.id() == LatteTopTokenId.LATTE) {							// process only latte
+				List<Integer> matches = new ArrayList<Integer>();
+				
+                TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(t.text(), LatteTokenId.language());
+                TokenSequence<LatteTokenId> ts2 = th2.tokenSequence(LatteTokenId.language());
+
+				/*ts2.move(searchOffset-ts.offset());
+				matches.addAll(findBrackets(ts2));*/
+
                 if(t.text().charAt(0) != '{') {								// process only macros
                     return null;
                 }
-                TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(t.text(), LatteTokenId.language());
-                TokenSequence<LatteTokenId> ts2 = th2.tokenSequence(LatteTokenId.language());
-                ts2.moveStart();
+				
+				ts2.moveStart();
                 int i = 0;												// used to check end macro slash position
                 while(ts2.moveNext() && i < 3) {
                     Token<LatteTokenId> t2 = ts2.token();
@@ -92,13 +100,15 @@ public class LatteBracesMatching implements BracesMatcher {
                         macroName = t2.toString();
                         mStart = ts.offset();
                         mLength = t.length();
-                        return new int[] {
+
+                        /*Collections.addAll(matches,*/ return new int[] {
                             ts.offset(), ts.offset() + t.length(),                  //whole area
                             ts.offset(), ts.offset() + ts2.offset() + t2.length(),  //left delimiter + macro
                             ts.offset() + t.length() - 1, ts.offset() + t.length()  //right delimiter
-                        };
+                        }/*)*/;
+						//return matches.toArray();
                     }
-                    if(t2.id() == LatteTokenId.SLASH && i == 1) {					// it is end macro
+                    if(t2.id() == LatteTokenId.END_SLASH && i == 1) {					// it is end macro
                         isEndMacro = true;											// set bool to true!
                     }
                     i++;
@@ -225,7 +235,7 @@ public class LatteBracesMatching implements BracesMatcher {
                                 }
                             }
                         }
-                        if(t2.id() == LatteTokenId.SLASH && i == 1) {			// end macro slash
+                        if(t2.id() == LatteTokenId.END_SLASH && i == 1) {			// end macro slash
                             isEndMacro2 = true;									// => it is end macro
                         }
                         i++;
