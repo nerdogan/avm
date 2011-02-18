@@ -126,7 +126,7 @@ public class NettePhpFrameworkProvider extends PhpFrameworkProvider {
 
     @Override
     public PhpModuleActionsExtender getActionsExtender(PhpModule pm) {
-        return null;
+        return new NettePhpModuleActionsExtender();
     }
 
 	@Override
