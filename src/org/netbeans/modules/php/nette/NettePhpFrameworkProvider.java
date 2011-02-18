@@ -35,7 +35,6 @@ import java.util.Set;
 import org.netbeans.modules.php.api.phpmodule.BadgeIcon;
 import org.netbeans.modules.php.api.phpmodule.PhpModule;
 import org.netbeans.modules.php.api.phpmodule.PhpModuleProperties;
-import org.netbeans.modules.php.nette.utils.EditorUtils;
 import org.netbeans.modules.php.nette.utils.FileUtils;
 import org.netbeans.modules.php.spi.commands.FrameworkCommandSupport;
 import org.netbeans.modules.php.spi.editor.EditorExtender;
@@ -162,7 +161,7 @@ public class NettePhpFrameworkProvider extends PhpFrameworkProvider {
 
     @Override
     public EditorExtender getEditorExtender(PhpModule pm) {
-        return new NetteEditorExtender();
+        return null;
     }
     
 }
