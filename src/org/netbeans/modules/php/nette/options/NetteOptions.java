@@ -36,11 +36,11 @@ import org.openide.util.NbPreferences;
  */
 public class NetteOptions {
 
+	public static final String NETTE_OPTIONS_PATH = "Nette";
+
 	private static NetteOptions INSTANCE;
 
-	private static final String NETTE_OPTIONS_PATH = "Nette";
-
-	private static final String NETTE_PATH = "nette-path";
+	private static final String NETTE_LOADER_PATH = "nette-loader-path";
 
 	private static final String SANDBOX_PATH = "sandbox-path";
 
@@ -54,12 +54,12 @@ public class NetteOptions {
 
 	private NetteOptions() {}
 
-	public void setNettePath(String nettePath) {
-		NbPreferences.forModule(NetteOptions.class).put(NETTE_PATH, nettePath);
+	public void setNetteFile(String nettePath) {
+		NbPreferences.forModule(NetteOptions.class).put(NETTE_LOADER_PATH, nettePath);
 	}
 
-	public String getNettePath() {
-		return NbPreferences.forModule(NetteOptions.class).get(NETTE_PATH, "");
+	public String getNetteFile() {
+		return NbPreferences.forModule(NetteOptions.class).get(NETTE_LOADER_PATH, "");
 	}
 
 	public void setSandboxPath(String nettePath) {
