@@ -86,7 +86,7 @@ public class LatteCompletionProvider implements CompletionProvider {
 				preprocessUnclosedMacros(sequence);
 
 				sequence.move(caretOffset);
-				if(sequence.moveNext() || sequence.movePrevious()) {
+				if(sequence.movePrevious() || sequence.moveNext()) {
 					Token<LatteTopTokenId> token = sequence.token();
 					
 					if(token.id() == LatteTopTokenId.LATTE) {
