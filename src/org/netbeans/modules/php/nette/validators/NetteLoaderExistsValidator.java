@@ -33,13 +33,13 @@ import java.io.File;
  *
  * @author Ondřej Brejla
  */
-public class NetteLoaderPathValidator implements Validable {
+public class NetteLoaderExistsValidator implements Validable {
 
 	@Override
 	public boolean validate(Object object) {
-		String path = (String) object;
+		String filePath = (String) object;
 
-		File f = new File(path + "/loader.php");
+		File f = new File(filePath);
 
 		if (f.exists()) {
 			return true;
