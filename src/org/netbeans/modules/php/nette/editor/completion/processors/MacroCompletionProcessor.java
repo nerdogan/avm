@@ -62,8 +62,10 @@ public class MacroCompletionProcessor {
 		
 		// when only {} is written
 		if (token2.id() != LatteTokenId.RD) {
-			written = token2.text().toString().replace("}", "");
-			written = written.substring(0, caretOffset - sequence2.offset() - sequence.offset());
+			try {
+				written = token2.text().toString().replace("}", "");
+				written = written.substring(0, caretOffset - sequence2.offset() - sequence.offset());
+			} catch(Exception e) {}
 		}
 		
 		for (LatteMacro macro : MacroDefinitions.macros) {
