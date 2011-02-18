@@ -57,7 +57,7 @@ public class SpecialMacroProcessor extends  MacroProcessor {
 			Token<LatteTokenId> t2 = sequence2.token();
 			
 			if(whiteSpace < 2) {												// first param ( {mac param ...})
-				if(t2.id() == LatteTokenId.VARIABLE || t2.id() == LatteTokenId.STRING) {
+				if(t2.id() == LatteTokenId.STRING) {
 					toString = false;											// do not encapsulate with quotes
 				}
 				if(t2.id() == LatteTokenId.WHITESPACE							// delimits parameters
