@@ -158,7 +158,7 @@ public class LatteCompletionProvider implements CompletionProvider {
 					Token<LatteTokenId> token2 = sequence2.token();
 
 					// is end macro?
-					if(token2.id() == LatteTokenId.SLASH && sequence2.offset() <= 2) {
+					if(token2.id() == LatteTokenId.END_SLASH && sequence2.offset() <= 2) {
 						isEndMacro = true;
 					}
 

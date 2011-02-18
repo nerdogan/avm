@@ -32,7 +32,6 @@ import java.util.Collections;
 import java.util.List;
 import org.netbeans.modules.parsing.api.Embedding;
 import org.netbeans.modules.parsing.api.Snapshot;
-import org.netbeans.modules.php.nette.utils.SyntaxUtils;
 
 /**
  *
@@ -50,13 +49,10 @@ abstract public class Embedder {
 	}
 
 	public boolean embed(String text) {
-		//text = SyntaxUtils.replaceCommonSyntax(text);
 		return embeddings.add(snapshot.create(text, getMimeType()));
 	}
 
 	public boolean embed(int start, int length) {
-		//String text = snapshot.getText().subSequence(start, start+length).toString();
-		//text = SyntaxUtils.replaceCommonSyntax(text);
 		return embeddings.add(snapshot.create(start, length, getMimeType()));
 	}
 
@@ -71,6 +67,10 @@ abstract public class Embedder {
 		} else {
 			return Collections.emptyList();		// no embedding
 		}
+	}
+
+	public void addAll(List<Embedding> embeddings) {
+		embeddings.add(Embedding.create(embeddings));
 	}
 
 	public Snapshot getSnapshot() {

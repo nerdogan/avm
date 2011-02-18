@@ -99,7 +99,7 @@ public class LatteResolver extends TemplateResolver {
 	}
 
 	private boolean isEndMacro(Token<LatteTokenId> t2, TokenSequence<LatteTokenId> sequence2) {
-		return (t2.id() == LatteTokenId.SLASH && sequence2.offset() <= 2);
+		return (t2.id() == LatteTokenId.END_SLASH && sequence2.offset() <= 2);
 	}
 
 	private void parseLatteDoc(String comment) {
