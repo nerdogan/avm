@@ -72,7 +72,11 @@ public final class EditorUtils {
 
 	private static final String FILE_VIEW_RELATIVE_CLASSIC = "../templates/%s/%s" + NetteFramework.NETTE_LATTE_TEMPLATE_EXTENSION; // NOI18N
 
-	private static final String FILE_VIEW_RELATIVE_DOTTED = "../templates//%s.%s" + NetteFramework.NETTE_LATTE_TEMPLATE_EXTENSION; // NOI18N
+	private static final String FILE_VIEW_RELATIVE_DOTTED = "../templates/%s.%s" + NetteFramework.NETTE_LATTE_TEMPLATE_EXTENSION; // NOI18N
+    
+    private static final String FILE_PRESENTER_RELATIVE_CLASSIC = "../../presenters/%s" + NetteFramework.NETTE_PRESENTER_SUFFIX + NetteFramework.NETTE_PRESENTER_EXTENSION;
+    
+    private static final String FILE_PRESENTER_RELATIVE_DOTTED = "../presenters/%s" + NetteFramework.NETTE_PRESENTER_SUFFIX + NetteFramework.NETTE_PRESENTER_EXTENSION;
 
 	/**
 	 * @author Ondřej Brejla <ondrej@brejla.cz>
@@ -670,6 +674,64 @@ public final class EditorUtils {
         }
 
         return null;
+    }
+    
+    public static boolean isViewWithAction(FileObject fo) {
+        return isView(fo) && getAction(fo) != null;
+    }
+    
+    public static boolean isView(FileObject fo) {
+        return NetteFramework.NETTE_LATTE_TEMPLATE_EXTENSION.endsWith(fo.getExt());
+    }
+    
+    public static FileObject getAction(FileObject fo) {
+        File parent = FileUtil.toFile(fo).getParentFile();
+        
+        File action = PropertyUtils.resolveFile(parent, String.format(resolveActionRelativePath(fo), parent.getName()));
+        
+        if (action.isFile()) {
+            return FileUtil.toFileObject(action);
+        }
+        
+        return null;
+    }
+    
+    private static String resolveActionRelativePath(FileObject fo) {
+        if (isDottedView(fo)) {
+            return FILE_PRESENTER_RELATIVE_DOTTED;
+        }
+        
+        return FILE_PRESENTER_RELATIVE_CLASSIC;
+    }
+    
+    private static boolean isDottedView(FileObject fo) {
+        return firstLetterCapital(fo.getName()).equals(fo.getName());
+    }
+
+    public static boolean isAction(FileObject fo) {
+        return fo.isData() && fo.getName().endsWith(NetteFramework.NETTE_PRESENTER_SUFFIX);
+    }
+    
+    public static String getActionName(FileObject view) {
+        return getActionRenderName(view, NetteFramework.NETTE_ACTION_METHOD_PREFIX);
+    }
+    
+    public static String getRenderName(FileObject view) {
+        return getActionRenderName(view, NetteFramework.NETTE_RENDER_METHOD_PREFIX);
+    }
+    
+    private static String getActionRenderName(FileObject view, String methodPrefix) {
+        String[] parts;
+        
+        if (isDottedView(view)) {
+            parts = view.getNameExt().split("\\.", 3);
+            
+            return methodPrefix + firstLetterCapital(parts[1]);
+        }
+
+        parts = view.getNameExt().split("\\.");
+        
+        return methodPrefix + firstLetterCapital(parts[0]);
     }
 
 }
