@@ -46,7 +46,7 @@ public class CommonMacroProcessor extends MacroProcessor {
 
 		do {
 			Token<LatteTokenId> t2 = sequence2.token();
-			if (t2.id() == LatteTokenId.VARIABLE || t2.id() == LatteTokenId.STRING) {
+			if (t2.id() == LatteTokenId.STRING) {
 				toString = false;	//if there is variable or string literal do not "convert" to string
 			}
 			if (t2.id() == LatteTokenId.RD) {
