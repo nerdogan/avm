@@ -48,18 +48,18 @@ public class NetteGoToViewAction extends GoToViewAction {
 	}
 
 	@Override
-	public void actionPerformedInternal() {
+	public boolean goToView() {
 		EditorSupport editorSupport = Lookup.getDefault().lookup(EditorSupport.class);
         PhpBaseElement phpElement = editorSupport.getElement(fo, offset);
 		if (phpElement == null) {
-            //return false;
+            return false;
         }
         FileObject view = EditorUtils.getView(fo, phpElement);
         if (view != null) {
             UiUtils.open(view, DEFAULT_OFFSET);
-            //return true;
+            return true;
         }
-        //return false;
+        return false;
 	}
 
 }
