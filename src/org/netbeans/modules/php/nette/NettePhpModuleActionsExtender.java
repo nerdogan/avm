@@ -27,7 +27,13 @@ package org.netbeans.modules.php.nette;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.Action;
+import org.netbeans.modules.php.nette.actions.NetteGoToActionAction;
+import org.netbeans.modules.php.nette.actions.NetteGoToViewAction;
+import org.netbeans.modules.php.nette.utils.EditorUtils;
+import org.netbeans.modules.php.spi.actions.GoToActionAction;
+import org.netbeans.modules.php.spi.actions.GoToViewAction;
 import org.netbeans.modules.php.spi.phpmodule.PhpModuleActionsExtender;
+import org.openide.filesystems.FileObject;
 import org.openide.util.NbBundle;
 
 /**
@@ -43,7 +49,27 @@ public class NettePhpModuleActionsExtender extends PhpModuleActionsExtender {
 
 	@Override
 	public List<? extends Action> getActions() {
-		return Collections.EMPTY_LIST;
+		return Collections.<Action>emptyList();
 	}
+
+    @Override
+    public boolean isViewWithAction(FileObject fo) {
+        return EditorUtils.isViewWithAction(fo);
+    }
+
+    @Override
+    public boolean isActionWithView(FileObject fo) {
+        return EditorUtils.isAction(fo);
+    }
+
+    @Override
+    public GoToActionAction getGoToActionAction(FileObject fo, int offset) {
+        return new NetteGoToActionAction(fo);
+    }
+
+    @Override
+    public GoToViewAction getGoToViewAction(FileObject fo, int offset) {
+        return new NetteGoToViewAction(fo, offset);
+    }
 
 }
