@@ -40,6 +40,8 @@ public final class NetteFramework {
 	public static final String NETTE_LIBS_DIR = "/libs/Nette";
 
 	public static final String NETTE_LOG_DIR = "/log";
+    
+    public static final String NETTE_PRESENTER_SUFFIX = "Presenter";
 
 	public static final String NETTE_PRESENTER_EXTENSION = ".php";
 	
