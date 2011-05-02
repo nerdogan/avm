@@ -131,9 +131,11 @@ public final class FileUtils {
                     }
                 }
                 File[] files = f.listFiles(filter);
-                for(File file : files) {
-                    list.add(FileUtil.toFileObject(file));
-                }
+				if (files != null) {
+					for(File file : files) {
+						list.add(FileUtil.toFileObject(file));
+					}
+				}
             } else {
                 if(filter.accept(f.getParentFile(), f.getName()))
                     list.add(FileUtil.toFileObject(f));
