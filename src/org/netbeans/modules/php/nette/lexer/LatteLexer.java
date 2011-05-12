@@ -111,13 +111,16 @@ class LatteLexer implements Lexer<LatteTokenId> {
         IN_INDEX,			// between [] for array index/key
         IN_HELPER,			// after helper delimiter |
         IN_HELPER_PARAM,	// after |helper:
-        IN_PARAMS			// macro parameters (except the first one)
+        IN_PARAMS,			// macro parameters (except the first one)
+        AFTER_INNER_LD,
+        BEFORE_INNER_BRACKETS
     }
 
 	private class LatteColoringLexer {
 
         private State state;
         private final LexerInput input;
+        private int closingQuote;
 
         public LatteColoringLexer(LexerRestartInfo<LatteTokenId> info, State state) {
             this.input = info.input();
@@ -147,6 +150,56 @@ class LatteLexer implements Lexer<LatteTokenId> {
 							state = State.AFTER_MACRO;				// so start with after macro state
 							continue;
 						}
+                    case BEFORE_INNER_BRACKETS:
+                        if (ch == '{') {
+                            state = State.AFTER_INNER_LD;
+                            return LatteTokenId.LD;
+                        }
+                    case AFTER_INNER_LD:
+                        while (true) {
+                            if(ch == '$') {								// possible variable
+                                int c = input.read();
+                                if(Character.isLetter(c) || c == '_') {	// deals with valid names of php var
+                                    while(true) {
+                                        c = input.read();
+                                        if((!Character.isLetterOrDigit(c) && c != '_') || ch == EOF) {
+                                            input.backup(1);			// found char which is not valid char for php var
+                                            return LatteTokenId.VARIABLE;
+                                        }
+                                    }
+                                } else {
+                                    return LatteTokenId.ERROR;	// else variable error
+                                }
+                            }
+                            switch(ch) {
+                                case '\'':								// string literal
+                                case '"':
+                                    int q = ch;							// saves type of a quote (double x single)
+                                    boolean escape = false;				// is quote char escaped?
+                                    while(true) {
+                                        int c = input.read();
+                                        if(c == q && escape == false) {	// if char is the closing quote and is not escaped
+                                            return LatteTokenId.STRING;
+                                        }
+                                        escape = false;
+                                        if(c == '\\')					// next char is escaped
+                                            escape = true;
+                                        if(c == EOF) {
+                                            return LatteTokenId.STRING;
+                                        }
+                                    }
+                            }
+                            LatteTokenId returnedToken = checkCommonCharacter(ch);
+                            if (returnedToken != null) {
+                                return returnedToken;
+                            }
+                            if (ch == '}') {
+                                state = State.AFTER_MACRO;
+                                return LatteTokenId.RD;
+                            }
+                            
+                            ch = input.read();
+                        }
 					case AFTER_LD:
 						if(ch == '*') {								// comment
 							while(true) {
@@ -184,6 +237,22 @@ class LatteLexer implements Lexer<LatteTokenId> {
 							return LatteTokenId.END_SLASH;
 						}
 					case AFTER_MACRO:
+                        if (closingQuote != 0) { // after inner brackets {macro "string{innerBrackets} string"}
+                            boolean escape = false;
+                            while(true) {
+                                if(ch == closingQuote && escape == false) {
+                                    closingQuote = 0;
+                                    return LatteTokenId.STRING;
+                                }
+                                escape = false;
+                                if(ch == '\\')					// next char is escaped
+                                    escape = true;
+                                if(ch == EOF) {
+                                    return LatteTokenId.STRING;
+                                }
+                                ch = input.read();
+                            }
+                        }
 						if(ch == '$') {								// possible variable
 							int c = input.read();
 							if(Character.isLetter(c) || c == '_') {	// deals with valid names of php var
@@ -191,7 +260,6 @@ class LatteLexer implements Lexer<LatteTokenId> {
 									c = input.read();
 									if((!Character.isLetterOrDigit(c) && c != '_') || ch == EOF) {
 										input.backup(1);			// found char which is not valid char for php var
-										state = State.AFTER_MACRO;
 										return LatteTokenId.VARIABLE;
 									}
 								}
@@ -202,80 +270,31 @@ class LatteLexer implements Lexer<LatteTokenId> {
 						switch(ch) {
 							case '\'':								// string literal
 							case '"':
-								int q = ch;							// saves type of a quote (double x single)
+								closingQuote = ch;							// saves type of a quote (double x single)
 								boolean escape = false;				// is quote char escaped?
 								while(true) {
 									int c = input.read();
-									if(c == q && escape == false) {	// if char is the closing quote and is not escaped
-										state = State.AFTER_MACRO;
+                                    if (c == '{') {
+                                        input.backup(1);
+                                        state = State.BEFORE_INNER_BRACKETS;
+										return LatteTokenId.STRING;
+                                    }
+									if(c == closingQuote && escape == false) {	// if char is the closing quote and is not escaped
+                                        closingQuote = 0;
 										return LatteTokenId.STRING;
 									}
 									escape = false;
 									if(c == '\\')					// next char is escaped
 										escape = true;
 									if(c == EOF) {
-										state = State.AFTER_MACRO;
 										return LatteTokenId.STRING;
 									}
 								}
-							case '/':
-								//inside macro php comment /* */
-								if(input.read() == '*') {
-									while(true) {
-										int c = input.read();
-										if((c == '*' && input.read() == '/') || c == EOF) {
-											return LatteTokenId.COMMENT;
-										}
-										if(c == '*') {
-											input.backup(1);
-										}
-									}
-								} else {	// slash as operator
-									input.backup(1);
-									return LatteTokenId.SLASH;
-								}
-							// number literal
-							case '0': case '1': case '2': case '3': case '4':
-							case '5': case '6': case '7': case '8': case '9':
-							case '.':
-								return finishIntOrFloatLiteral(ch);
-
-							// equals sign or php array assign =>
-							case '=':
-								if(input.read() == '>')
-									return LatteTokenId.ASSIGN;
-								input.backup(1);
-								return LatteTokenId.EQUALS;
-
-							case ':':
-								return LatteTokenId.COLON;
-
-							case '+': return LatteTokenId.PLUS;
-
-							// minus sign or object access (accessing field or method..)
-							case '-':
-								if(input.read() == '>')
-									return LatteTokenId.ACCESS;
-								input.backup(1);
-								return LatteTokenId.MINUS;
-
-							// all other characters
-							case '*': return LatteTokenId.STAR;
-							case '|': return LatteTokenId.PIPE;
-							case ',': return LatteTokenId.COMA;
-							case '(': return LatteTokenId.LNB;
-							case ')': return LatteTokenId.RNB;
-							case '[': return LatteTokenId.LB;
-							case ']': return LatteTokenId.RB;
-							case '!': return LatteTokenId.NEGATION;
-							case '<': return LatteTokenId.LT;
-							case '>': return LatteTokenId.GT;
-							case ';': return LatteTokenId.SEMICOLON;
-							case '&': return LatteTokenId.AND;
-							case '@': return LatteTokenId.AT;
-							case '#': return LatteTokenId.HASH;
-							case '?': return LatteTokenId.QUESTION;
 						}
+                        LatteTokenId returnedToken = checkCommonCharacter(ch);
+                        if (returnedToken != null) {
+                            return returnedToken;
+                        }
 					// if nothing of above did not matched
 					default:
 						if(ch == '}') {								// closing delimiter
@@ -315,6 +334,71 @@ class LatteLexer implements Lexer<LatteTokenId> {
 				}
 			}
 		}
+        
+        private LatteTokenId checkCommonCharacter(int ch) {
+            switch (ch) {
+                case '/':
+                    //inside macro php comment /* */
+                    if(input.read() == '*') {
+                        while(true) {
+                            int c = input.read();
+                            if((c == '*' && input.read() == '/') || c == EOF) {
+                                return LatteTokenId.COMMENT;
+                            }
+                            if(c == '*') {
+                                input.backup(1);
+                            }
+                        }
+                    } else {	// slash as operator
+                        input.backup(1);
+                        return LatteTokenId.SLASH;
+                    }
+                // number literal
+                case '0': case '1': case '2': case '3': case '4':
+                case '5': case '6': case '7': case '8': case '9':
+                case '.':
+                    return finishIntOrFloatLiteral(ch);
+
+                // equals sign or php array assign =>
+                case '=':
+                    if(input.read() == '>')
+                        return LatteTokenId.ASSIGN;
+                    input.backup(1);
+                    return LatteTokenId.EQUALS;
+
+                case ':':
+                    return LatteTokenId.COLON;
+
+                case '+': return LatteTokenId.PLUS;
+
+                // minus sign or object access (accessing field or method..)
+                case '-':
+                    if(input.read() == '>')
+                        return LatteTokenId.ACCESS;
+                    input.backup(1);
+                    return LatteTokenId.MINUS;
+
+                // all other characters
+                case '*': return LatteTokenId.STAR;
+                case '|': return LatteTokenId.PIPE;
+                case ',': return LatteTokenId.COMA;
+                case '(': return LatteTokenId.LNB;
+                case ')': return LatteTokenId.RNB;
+                case '[': return LatteTokenId.LB;
+                case ']': return LatteTokenId.RB;
+                case '!': return LatteTokenId.NEGATION;
+                case '<': return LatteTokenId.LT;
+                case '>': return LatteTokenId.GT;
+                case ';': return LatteTokenId.SEMICOLON;
+                case '&': return LatteTokenId.AND;
+                case '@': return LatteTokenId.AT;
+                case '#': return LatteTokenId.HASH;
+                case '?': return LatteTokenId.QUESTION;
+                default:
+                    return null;
+            }
+        }
+        
 	}
 
     /**

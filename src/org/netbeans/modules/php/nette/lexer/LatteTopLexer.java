@@ -173,19 +173,24 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 						}
 					}
                     state = State.AFTER_LD;								// it is macro - change to after
+                    int innerDelimiters = 0;                            // {macro foo, {$arr[0]['bar']}, whatever}
                     while(true) {
                         cc = (char)c;
-                        if(c == '{') {									// another { char - possibly not a macro
-                            input.backup(1);
-                            return LatteTopTokenId.HTML;
-                        }
-                        if(c == '}') {									// end macro delim
-                            state = substate;
-                            return LatteTopTokenId.LATTE;
-                        }
-                        if(c == EOF) {									// EOF - just HTML
-                            state = substate;
-                            return LatteTopTokenId.HTML;
+                        if (c == '{') {									// another { char - possibly not a macro
+                            innerDelimiters++;
+                        } else {
+                            if(c == '}') {									// end macro delim
+                                if (innerDelimiters == 0) {
+                                    state = substate;
+                                    return LatteTopTokenId.LATTE;
+                                } else {
+                                    innerDelimiters--;
+                                }
+                            }
+                            if(c == EOF) {									// EOF - just HTML
+                                state = substate;
+                                return LatteTopTokenId.HTML;
+                            }
                         }
                         c = input.read();
                     }
