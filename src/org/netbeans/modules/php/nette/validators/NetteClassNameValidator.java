@@ -33,11 +33,13 @@ package org.netbeans.modules.php.nette.validators;
  */
 public class NetteClassNameValidator implements Validable {
 
+    private static final String CLASS_NAME_REGEXP = "^(\\\\?[a-zA-Z0-9_]+)*[a-zA-Z0-9_]+$"; // NOI18N
+    
 	@Override
 	public boolean validate(Object object) {
 		String name = (String) object;
 
-		return !name.trim().isEmpty() && name.matches("^[a-zA-Z0-9_]+$");
+		return !name.trim().isEmpty() && name.matches(CLASS_NAME_REGEXP);
 	}
 
 }
