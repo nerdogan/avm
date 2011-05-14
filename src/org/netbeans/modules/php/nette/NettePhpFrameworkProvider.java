@@ -84,11 +84,11 @@ public class NettePhpFrameworkProvider extends PhpFrameworkProvider {
 		};
 		
 		List<FileObject> files = FileUtils.getFilesRecursive(pm.getSourceDirectory(), ff);
-		
-		for(FileObject fo : files) {
-			if(new File(fo.getPath() + "/loader.php").exists())
-				return true;
-		}
+        // Just existing Nette folder implies true. 
+        // loader.php doesn't have to exist...can be located in global include path.
+		if (files.size() > 0) {
+            return true;
+        }
 		return false;
     }
 
