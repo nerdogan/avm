@@ -39,6 +39,8 @@ import javax.swing.event.ChangeListener;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.SourceGroup;
 import org.netbeans.api.project.Sources;
+import org.netbeans.modules.php.api.phpmodule.PhpModule;
+import org.netbeans.modules.php.nette.preferences.NettePreferences;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.WizardDescriptor;
 import org.openide.filesystems.FileObject;
@@ -105,7 +107,9 @@ public final class WizardIterator implements WizardDescriptor.InstantiatingItera
 
         String parentPresenter = (String) wizard.getProperty("parentPresenter");
         hashMap.put("parentPresenter", parentPresenter);
-
+        
+        NettePreferences.setParentPresenter(PhpModule.inferPhpModule(), parentPresenter);
+        
         FileObject template = Templates.getTemplate(wizard);
         DataObject dTemplate = DataObject.find(template);
         DataObject dobj = dTemplate.createFromTemplate(df, targetName, hashMap);
