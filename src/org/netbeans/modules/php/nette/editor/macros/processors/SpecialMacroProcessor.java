@@ -48,6 +48,7 @@ public class SpecialMacroProcessor extends  MacroProcessor {
 		int firstEnd = 0;
 		int whiteSpace = 0;
 		boolean toString = true;
+        boolean innerBrackets = false;
 
 		if(macro.equals("widget")) {
 			createDepracatedHint(embedder, sequence.offset() + 1, "widget".length());
@@ -57,9 +58,16 @@ public class SpecialMacroProcessor extends  MacroProcessor {
 			Token<LatteTokenId> t2 = sequence2.token();
 			
 			if(whiteSpace < 2) {												// first param ( {mac param ...})
-				if(t2.id() == LatteTokenId.VARIABLE || t2.id() == LatteTokenId.STRING) {
+				if(t2.id() == LatteTokenId.STRING) {
 					toString = false;											// do not encapsulate with quotes
 				}
+                if (t2.id() == LatteTokenId.LD) {
+                    innerBrackets = true;
+                }
+                if (t2.id() == LatteTokenId.RD && innerBrackets) {
+                    innerBrackets = false;
+                    continue;
+                }
 				if(t2.id() == LatteTokenId.WHITESPACE							// delimits parameters
 						|| (whiteSpace == 1 && t2.id() == LatteTokenId.COMA)	// or delimited by coma!
 						|| t2.id() == LatteTokenId.RD)
@@ -80,9 +88,15 @@ public class SpecialMacroProcessor extends  MacroProcessor {
 				}
 				start = sequence.offset() + sequence2.offset();
 			}
-			
+			if (t2.id() == LatteTokenId.LD) {
+                innerBrackets = true;
+            }
 			if(t2.id() == LatteTokenId.RD) {
-				break;
+                if (innerBrackets) {
+                    innerBrackets = false;
+                } else {
+                    break;
+                }
 			}
 
 			length += t2.length();

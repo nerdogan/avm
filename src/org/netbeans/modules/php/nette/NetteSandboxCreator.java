@@ -50,7 +50,8 @@ public class NetteSandboxCreator {
 	}
 
 	public void copyFrameworkFiles() {
-		FileUtils.copyDirectory(new File(NetteOptions.getInstance().getNettePath()), new File(projectDirectory + NetteFramework.NETTE_LIBS_DIR));
+		FileUtils.copyDirectory(new File(NetteOptions.getInstance().getNetteFile()).getParentFile(),
+				new File(projectDirectory + NetteFramework.NETTE_LIBS_DIR));
 	}
 
 	public void create() throws IOException {
@@ -85,9 +86,11 @@ public class NetteSandboxCreator {
         set.add(FileUtil.createFolder(new File(doc_root.getPath() + "/js")));
         set.add(FileUtil.createFolder(new File(doc_root.getPath() + "/images")));
 
-        FileUtils.copyFile(getClass().getResourceAsStream("/org/netbeans/modules/php/nette/resources/index.php"), new File(projectDirectory + NetteFramework.NETTE_DOCUMENT_ROOT_DIR + "/index.php"));
+        FileUtils.copyFile(getClass().getResourceAsStream("/org/netbeans/modules/php/nette/resources/index.php"),
+				new File(projectDirectory + NetteFramework.NETTE_DOCUMENT_ROOT_DIR + "/index.php"));
 
-        FileUtils.copyFile(getClass().getResourceAsStream("/org/netbeans/modules/php/nette/resources/.htaccess-DOCUMENT_ROOT"), new File(projectDirectory + NetteFramework.NETTE_DOCUMENT_ROOT_DIR + "/.htaccess"));
+        FileUtils.copyFile(getClass().getResourceAsStream("/org/netbeans/modules/php/nette/resources/.htaccess-DOCUMENT_ROOT"),
+				new File(projectDirectory + NetteFramework.NETTE_DOCUMENT_ROOT_DIR + "/.htaccess"));
     }
 
     private void createApp() throws IOException {
@@ -98,11 +101,14 @@ public class NetteSandboxCreator {
         set.add(FileUtil.createFolder(new File(app.getPath() + "/presenters")));
         set.add(FileUtil.createFolder(new File(app.getPath() + "/templates")));
 
-        FileUtils.copyFile(getClass().getResourceAsStream("/org/netbeans/modules/php/nette/resources/bootstrap.php"), new File(projectDirectory + NetteFramework.NETTE_APP_DIR + "/bootstrap.php"));
+        FileUtils.copyFile(getClass().getResourceAsStream("/org/netbeans/modules/php/nette/resources/bootstrap.php"),
+				new File(projectDirectory + NetteFramework.NETTE_APP_DIR + "/bootstrap.php"));
 
-        FileUtils.copyFile(getClass().getResourceAsStream("/org/netbeans/modules/php/nette/resources/.htaccess-APP"), new File(projectDirectory + NetteFramework.NETTE_APP_DIR + "/.htaccess"));
+        FileUtils.copyFile(getClass().getResourceAsStream("/org/netbeans/modules/php/nette/resources/.htaccess-APP"),
+				new File(projectDirectory + NetteFramework.NETTE_APP_DIR + "/.htaccess"));
 
-        FileUtils.copyFile(getClass().getResourceAsStream("/org/netbeans/modules/php/nette/resources/config.ini"), new File(projectDirectory + NetteFramework.NETTE_APP_DIR + "/config.ini"));
+        FileUtils.copyFile(getClass().getResourceAsStream("/org/netbeans/modules/php/nette/resources/config.ini"),
+				new File(projectDirectory + NetteFramework.NETTE_APP_DIR + "/config.ini"));
     }
 
     private void createLibs() throws IOException {

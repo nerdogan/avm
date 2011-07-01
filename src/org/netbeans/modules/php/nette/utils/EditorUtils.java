@@ -29,7 +29,6 @@ package org.netbeans.modules.php.nette.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -49,7 +48,10 @@ import org.netbeans.api.lexer.TokenHierarchy;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.parsing.api.Snapshot;
 import org.netbeans.modules.parsing.api.Source;
+import org.netbeans.modules.php.api.editor.PhpBaseElement;
+import org.netbeans.modules.php.api.editor.PhpClass;
 import org.netbeans.modules.php.api.phpmodule.PhpModule;
+import org.netbeans.spi.project.support.ant.PropertyUtils;
 import org.netbeans.modules.php.nette.NetteFramework;
 import org.netbeans.modules.php.nette.editor.completion.items.ControlCompletionItem;
 import org.netbeans.modules.php.nette.editor.LatteParseData;
@@ -67,6 +69,14 @@ import org.openide.filesystems.FileUtil;
  * @author Radek Ježdík, Ondřej Brejla
  */
 public final class EditorUtils {
+
+	private static final String FILE_VIEW_RELATIVE_CLASSIC = "../templates/%s/%s" + NetteFramework.NETTE_LATTE_TEMPLATE_EXTENSION; // NOI18N
+
+	private static final String FILE_VIEW_RELATIVE_DOTTED = "../templates/%s.%s" + NetteFramework.NETTE_LATTE_TEMPLATE_EXTENSION; // NOI18N
+    
+    private static final String FILE_PRESENTER_RELATIVE_CLASSIC = "../../presenters/%s" + NetteFramework.NETTE_PRESENTER_SUFFIX + NetteFramework.NETTE_PRESENTER_EXTENSION;
+    
+    private static final String FILE_PRESENTER_RELATIVE_DOTTED = "../presenters/%s" + NetteFramework.NETTE_PRESENTER_SUFFIX + NetteFramework.NETTE_PRESENTER_EXTENSION;
 
 	/**
 	 * @author Ondřej Brejla <ondrej@brejla.cz>
@@ -116,7 +126,7 @@ public final class EditorUtils {
             } catch (BadLocationException ex) {
                 throw (BadLocationException) new BadLocationException(
                         "calling getText(" + start + ", " + (start + 1)
-                        + ") on doc of length: " + doc.getLength(), start).initCause(ex);
+                        + ") on doc of length: " + doc.getLength(), start).initCause(ex); // NOI18N
             }
             start++;
         }
@@ -136,10 +146,10 @@ public final class EditorUtils {
 
         List<CompletionItem> list = new ArrayList<CompletionItem>();
         
-        if (link.contains(":")) {
-            String[] parts = link.split(":");
+        if (link.contains(":")) { // NOI18N
+            String[] parts = link.split(":"); // NOI18N
             for(String s : getAllPresenters(fo)) {
-                String[] pPath = s.split(":");
+                String[] pPath = s.split(":"); // NOI18N
                 boolean ok = false;
                 if(pPath.length >= parts.length) {
                     for(int i = 0; i < parts.length; i++) {
@@ -182,21 +192,21 @@ public final class EditorUtils {
 
             String presenter = getPresenter(fo);
 
-            Pattern pattern = Pattern.compile("createComponent([A-Za-z_][A-Za-z_]*)\\(");
+            Pattern pattern = Pattern.compile("createComponent([A-Za-z_][A-Za-z_]*)\\("); // NOI18N
 
-            presenter += "Presenter.php";
+            presenter += "Presenter.php"; // NOI18N
             byte ps = 0;
             while (true) {
                 fo = fo.getParent();
                 for (FileObject f : fo.getChildren()) {
-                    if (f.isFolder() && f.getName().equals("presenters")) {
+                    if (f.isFolder() && f.getName().equals("presenters")) { // NOI18N
                         File p = new File(f.getPath(), presenter);
                         if (p.exists()) {
                             try {
                                 BufferedReader bis = new BufferedReader(new FileReader(p));
                                 String line;
                                 while ((line = bis.readLine()) != null) {
-                                    if (line.contains("createComponent")) {
+                                    if (line.contains("createComponent")) { // NOI18N
                                         Matcher m = pattern.matcher(line);
                                         String control = null;
                                         if (m.find()) {
@@ -316,16 +326,16 @@ public final class EditorUtils {
 
             String presenter = getPresenter(fo);
 
-            presenter += "Presenter.php";
+            presenter += "Presenter.php"; // NOI18N
             byte level = 0;
             while (true) {
                 level++;
                 fo = fo.getParent();
-                if(fo.getName().equals("sessions")
-                        || fo.getName().equals("temp") || fo.getName().equals("logs"))
+                if(fo.getName().equals("sessions") // NOI18N
+                        || fo.getName().equals("temp") || fo.getName().equals("logs")) // NOI18N
                     continue;
                 for (FileObject f : fo.getChildren()) {
-                    if (f.isFolder() && f.getName().equals("presenters")) {
+                    if (f.isFolder() && f.getName().equals("presenters")) { // NOI18N
                         File p = new File(f.getPath(), presenter);
                         if (p.exists()) {
                             try {
@@ -344,7 +354,7 @@ public final class EditorUtils {
                         break;
                     }
                 }
-                if(fo.getName().equals("app")) {
+                if(fo.getName().equals("app")) { // NOI18N
                     break;
                 }
                 if(level > 6) {   // just 5 levels up
@@ -364,7 +374,7 @@ public final class EditorUtils {
      * @return String presenter name
      */
     public static String getPresenter(FileObject fo) {
-        String[] fn = fo.getName().split("\\.");
+        String[] fn = fo.getName().split("\\."); // NOI18N
 
         if (fn.length == 2) {
             return fn[0];                         //Presenter.view.latte
@@ -379,7 +389,7 @@ public final class EditorUtils {
      * @return String presenter name
      */
     public static FileObject getPresenterFile(FileObject fo) {
-		String presenter = getPresenter(fo) + "Presenter.php";
+		String presenter = getPresenter(fo) + "Presenter.php"; // NOI18N
 
         byte level = 0;
         while (true) {
@@ -390,11 +400,11 @@ public final class EditorUtils {
 				return null;
 			}
 			
-            if(fo.getName().equals("sessions")
-                    || fo.getName().equals("temp") || fo.getName().equals("logs"))
+            if(fo.getName().equals("sessions") // NOI18N
+                    || fo.getName().equals("temp") || fo.getName().equals("logs")) // NOI18N
                 continue;
             for (FileObject f : fo.getChildren()) {
-                if (f.isFolder() && f.getName().equals("presenters")) {
+                if (f.isFolder() && f.getName().equals("presenters")) { // NOI18N
                     File p = new File(f.getPath(), presenter);
                     if (p.exists()) {
                         return FileUtil.toFileObject(p);
@@ -402,7 +412,7 @@ public final class EditorUtils {
                     break;
                 }
             }
-            if(fo.getName().equals("app")) {
+            if(fo.getName().equals("app")) { // NOI18N
                 break;
             }
             if(level > 6) {   // just 5 levels up
@@ -419,22 +429,22 @@ public final class EditorUtils {
      * @return List of all presenter paths
      */
     public static List<String> getAllPresenters(FileObject fo) {
-        File appDir = new File(PhpModule.forFileObject(fo).getSourceDirectory().getPath() + "/app");
+        File appDir = new File(PhpModule.forFileObject(fo).getSourceDirectory().getPath() + NetteFramework.NETTE_APP_DIR);
         
         Enumeration<? extends FileObject> files = FileUtil.toFileObject(appDir).getChildren(true);
 
-        Pattern p = Pattern.compile("class +([A-Za-z_][A-Za-z0-9_]*)Presenter");
+        Pattern p = Pattern.compile("class +([A-Za-z_][A-Za-z0-9_]*)Presenter"); // NOI18N
         
         List<String> list = new ArrayList<String>();
         while (files.hasMoreElements()) {
             FileObject pfo = files.nextElement();
             File file = FileUtil.toFile(pfo);
-            if (pfo.getNameExt().endsWith("Presenter.php") && file.exists()) {
+            if (pfo.getNameExt().endsWith("Presenter.php") && file.exists()) { // NOI18N
                 try {
                     BufferedReader bis = new BufferedReader(new FileReader(file));
                     String line;
                     while ((line = bis.readLine()) != null) {
-                        if(line.contains("class ") && !line.contains("abstract")) {
+                        if(line.contains("class ") && !line.contains("abstract")) { // NOI18N
                             Matcher m = p.matcher(line);
                             String presenterPath = "";
                             if(m.find()) {
@@ -442,7 +452,7 @@ public final class EditorUtils {
                             }
                             if(presenterPath.contains("_")) {
                                 //creates path with modules
-                                presenterPath = ":"+presenterPath.replaceAll("_", ":");
+                                presenterPath = ":"+presenterPath.replaceAll("_", ":"); // NOI18N
                             }
                             presenterPath += ":";
                             list.add(presenterPath);
@@ -458,7 +468,7 @@ public final class EditorUtils {
     }
 
     //FIXME: takes $template->methods() as variables too
-    private static Pattern varPattern = Pattern.compile("template->([A-Za-z_][A-Za-z0-9_]*\\(?)");
+    private static Pattern varPattern = Pattern.compile("template->([A-Za-z_][A-Za-z0-9_]*\\(?)"); // NOI18N
 
     /**
      * Get variable name if the line contains variable sent into template
@@ -467,11 +477,11 @@ public final class EditorUtils {
      */
     public static String parseLineForVar(String line) {
         try {
-            if (line.contains("template")) {
+            if (line.contains("template")) { // NOI18N
                 Matcher m = varPattern.matcher(line);
                 String var = null;
-                if (m.find() && !m.group(1).endsWith("(")) {
-                    var = "$" + m.group(1);
+                if (m.find() && !m.group(1).endsWith("(")) { // NOI18N
+                    var = "$" + m.group(1); // NOI18N
                 }
                 return var;
             }
@@ -487,10 +497,10 @@ public final class EditorUtils {
      */
     private static ArrayList<String> getGeneralVariables() {
         ArrayList<String> generalVars = new ArrayList<String>();
-        generalVars.add("$baseUri");
-        generalVars.add("$basePath");
-        generalVars.add("$control");
-        generalVars.add("$presenter");
+        generalVars.add("$baseUri"); // NOI18N
+        generalVars.add("$basePath"); // NOI18N
+        generalVars.add("$control"); // NOI18N
+        generalVars.add("$presenter"); // NOI18N
         return generalVars;
     }
 
@@ -508,10 +518,10 @@ public final class EditorUtils {
             if(fp.isFolder() && fp.getName().equals("app"))
                 break;
         }
-        List<FileObject> fos = getFilesRecursive(fp, new FilenameFilter() {
+        List<FileObject> fos = FileUtils.getFilesRecursive(fp, new FilenameFilter() {
 			@Override
             public boolean accept(File dir, String name) {
-                return name.startsWith("@") && name.endsWith(".latte");
+                return name.startsWith("@") && name.endsWith(NetteFramework.NETTE_LATTE_TEMPLATE_EXTENSION);  // NOI18N
             }
         });
         for(FileObject f : fos) {
@@ -558,44 +568,6 @@ public final class EditorUtils {
             // when relativizing two same files -> returning null
         }
         return relPath.equals("") ? null : relPath;
-    }
-
-    /**
-     * Searches for all files recursively (children folders including)
-     * @param fp folder which to start search from
-     * @param filter filter denoting what files should be returned
-     * @return list of files found
-     */
-    private static List<FileObject> getFilesRecursive(FileObject fp, FilenameFilter filter) {
-        List<FileObject> list = new ArrayList<FileObject>();
-        
-        for(FileObject child : fp.getChildren()) {
-            if(child.getName().equals("temp") || child.getName().equals("sessions") ||
-                    child.getName().equals("logs"))
-                continue;
-            File f = FileUtil.toFile(child);
-            if(f.isDirectory()) {
-                File[] folders = f.listFiles(new FileFilter() {
-					@Override
-                    public boolean accept(File file) {
-                        return file.isDirectory();
-                    }
-                });
-                if(folders != null && folders.length > 0) {
-                    for(File folder : folders) {
-                        list.addAll(getFilesRecursive(FileUtil.toFileObject(folder), filter));
-                    }
-                }
-                File[] files = f.listFiles(filter);
-                for(File file : files) {
-                    list.add(FileUtil.toFileObject(file));
-                }
-            } else {
-                if(filter.accept(f.getParentFile(), f.getName()))
-                    list.add(FileUtil.toFileObject(f));
-            }
-        }
-        return list;
     }
 
     public static TokenHierarchy<CharSequence> createTmplTokenHierarchy(CharSequence inputText, Snapshot tmplSnapshot) {
@@ -656,9 +628,110 @@ public final class EditorUtils {
 	 * @return
 	 */
 	public static String extractPresenterName(String presenterFileName) {
-		String modulePrefixPattern = "^(.*)_";
+		String modulePrefixPattern = "^(.*)_"; // NOI18N
 		
-		return firstLetterCapital(presenterFileName.replaceAll(NetteFramework.NETTE_PRESENTER_EXTENSION, "").replaceAll("Presenter", "").replaceFirst(modulePrefixPattern, ""));
+		return firstLetterCapital(presenterFileName.replaceAll(NetteFramework.NETTE_PRESENTER_EXTENSION, "").replaceAll("Presenter", "").replaceFirst(modulePrefixPattern, "")); // NOI18N
 	}
+
+	public static FileObject getView(FileObject fo, PhpBaseElement phpElement) {
+        FileObject view = null;
+        if (phpElement instanceof PhpClass.Method) {
+            view = getView(fo, getViewName(phpElement.getName()));
+        }
+        return view;
+    }
+
+	private static String getViewName(String actionName) {
+		if (actionName.startsWith(NetteFramework.NETTE_ACTION_METHOD_PREFIX) || actionName.startsWith(NetteFramework.NETTE_RENDER_METHOD_PREFIX)) {
+			return extractActionName(actionName);
+		}
+
+		return null;
+    }
+
+	private static String extractActionName(String actionName) {
+		String name = null;
+
+		if (actionName.startsWith(NetteFramework.NETTE_ACTION_METHOD_PREFIX)) {
+			name = actionName.replace(NetteFramework.NETTE_ACTION_METHOD_PREFIX, ""); // NOI18N
+		} else {
+			name = actionName.replace(NetteFramework.NETTE_RENDER_METHOD_PREFIX, ""); // NOI18N
+		}
+
+		return firstLetterSmall(name);
+	}
+
+    private static FileObject getView(FileObject fo, String viewName) {
+        File parent = FileUtil.toFile(fo).getParentFile();
+        File classicView = PropertyUtils.resolveFile(parent, String.format(FILE_VIEW_RELATIVE_CLASSIC, extractPresenterName(fo.getName()), viewName));
+        if (classicView.isFile()) {
+            return FileUtil.toFileObject(classicView);
+        }
+
+		File dottedView = PropertyUtils.resolveFile(parent, String.format(FILE_VIEW_RELATIVE_DOTTED, extractPresenterName(fo.getName()), viewName));
+        if (dottedView.isFile()) {
+            return FileUtil.toFileObject(dottedView);
+        }
+
+        return null;
+    }
+    
+    public static boolean isViewWithAction(FileObject fo) {
+        return isView(fo) && getAction(fo) != null;
+    }
+    
+    public static boolean isView(FileObject fo) {
+        return NetteFramework.NETTE_LATTE_TEMPLATE_EXTENSION.endsWith(fo.getExt());
+    }
+    
+    public static FileObject getAction(FileObject fo) {
+        File parent = FileUtil.toFile(fo).getParentFile();
+        
+        File action = PropertyUtils.resolveFile(parent, String.format(resolveActionRelativePath(fo), parent.getName()));
+        
+        if (action.isFile()) {
+            return FileUtil.toFileObject(action);
+        }
+        
+        return null;
+    }
+    
+    private static String resolveActionRelativePath(FileObject fo) {
+        if (isDottedView(fo)) {
+            return FILE_PRESENTER_RELATIVE_DOTTED;
+        }
+        
+        return FILE_PRESENTER_RELATIVE_CLASSIC;
+    }
+    
+    private static boolean isDottedView(FileObject fo) {
+        return firstLetterCapital(fo.getName()).equals(fo.getName());
+    }
+
+    public static boolean isAction(FileObject fo) {
+        return fo.isData() && fo.getName().endsWith(NetteFramework.NETTE_PRESENTER_SUFFIX);
+    }
+    
+    public static String getActionName(FileObject view) {
+        return getActionRenderName(view, NetteFramework.NETTE_ACTION_METHOD_PREFIX);
+    }
+    
+    public static String getRenderName(FileObject view) {
+        return getActionRenderName(view, NetteFramework.NETTE_RENDER_METHOD_PREFIX);
+    }
+    
+    private static String getActionRenderName(FileObject view, String methodPrefix) {
+        String[] parts;
+        
+        if (isDottedView(view)) {
+            parts = view.getNameExt().split("\\.", 3);
+            
+            return methodPrefix + firstLetterCapital(parts[1]);
+        }
+
+        parts = view.getNameExt().split("\\.");
+        
+        return methodPrefix + firstLetterCapital(parts[0]);
+    }
 
 }

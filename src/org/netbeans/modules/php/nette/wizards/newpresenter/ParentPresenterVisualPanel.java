@@ -31,6 +31,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import org.netbeans.modules.php.api.phpmodule.PhpModule;
+import org.netbeans.modules.php.nette.preferences.NettePreferences;
+import org.netbeans.modules.php.nette.validators.NetteClassNameValidator;
 import org.openide.util.ImageUtilities;
 import org.openide.util.NbBundle;
 
@@ -46,6 +49,10 @@ public final class ParentPresenterVisualPanel extends JPanel implements Document
         this.panel = panel;
         errorLabel.setText("");
         parentPresenterTextField.getDocument().addDocumentListener(this);
+        String parentPresenter = NettePreferences.getParentPresenter(PhpModule.inferPhpModule());
+        if (parentPresenter != null) {
+            parentPresenterTextField.setText(parentPresenter);
+        }
     }
 
     @Override
@@ -109,7 +116,8 @@ public final class ParentPresenterVisualPanel extends JPanel implements Document
     }//GEN-LAST:event_parentPresenterTextFieldCaretUpdate
 
     public boolean validateParentPresenter() {
-        return parentPresenterTextField.getText().trim().matches("^[a-zA-Z0-9][a-zA-Z0-9_]*$")
+        NetteClassNameValidator validator = new NetteClassNameValidator();
+        return validator.validate(parentPresenterTextField.getText())
                 || parentPresenterTextField.getText().trim().isEmpty();
     }
 

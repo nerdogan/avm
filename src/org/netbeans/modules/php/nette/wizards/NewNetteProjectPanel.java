@@ -37,7 +37,7 @@ import javax.swing.event.ChangeListener;
 import org.netbeans.api.options.OptionsDisplayer;
 import org.netbeans.modules.php.nette.options.NetteOptions;
 import org.netbeans.modules.php.nette.validators.NetteEmptyPathValidator;
-import org.netbeans.modules.php.nette.validators.NetteLoaderPathValidator;
+import org.netbeans.modules.php.nette.validators.NetteLoaderExistsValidator;
 import org.netbeans.modules.php.nette.validators.Validable;
 import org.openide.util.ChangeSupport;
 import org.openide.util.NbBundle;
@@ -131,14 +131,14 @@ public class NewNetteProjectPanel extends javax.swing.JPanel {
 		if (copyNetteCheckbox.isSelected()) {
 			Validable emptyPathValidator = new NetteEmptyPathValidator();
 
-			if (emptyPathValidator.validate(NetteOptions.getInstance().getNettePath())) {
-				return NbBundle.getMessage(NewNetteProjectPanel.class, "ERR_no_nette_directory");
+			if (emptyPathValidator.validate(NetteOptions.getInstance().getNetteFile())) {
+				return NbBundle.getMessage(NewNetteProjectPanel.class, "ERR_no_nette_file");
 			}
 
-			Validable loaderPathValidator = new NetteLoaderPathValidator();
+			Validable loaderPathValidator = new NetteLoaderExistsValidator();
 
-			if (!loaderPathValidator.validate(NetteOptions.getInstance().getNettePath())) {
-				return NbBundle.getMessage(NewNetteProjectPanel.class, "ERR_no_nette_files");
+			if (!loaderPathValidator.validate(NetteOptions.getInstance().getNetteFile())) {
+				return NbBundle.getMessage(NewNetteProjectPanel.class, "ERR_nette_file_not_exists");
 			}
 		}
 

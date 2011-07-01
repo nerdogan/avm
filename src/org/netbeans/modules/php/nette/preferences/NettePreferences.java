@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  * 
- *  Copyright (c) 2010 Radek Ježdík <redhead@email.cz>, Ondřej Brejla <ondrej@brejla.cz>
+ *  Copyright (c) 2011 Radek Ježdík <redhead@email.cz>, Ondřej Brejla <ondrej@brejla.cz>
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -21,37 +21,29 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.netbeans.modules.php.nette;
+package org.netbeans.modules.php.nette.preferences;
 
+import java.util.prefs.Preferences;
+import org.netbeans.modules.php.api.phpmodule.PhpModule;
 
 /**
- * NetteFramework static constants.
  *
  * @author Ondřej Brejla <ondrej@brejla.cz>
  */
-public final class NetteFramework {
-
-	public static final String NETTE_APP_DIR = "/app";
-
-	public static final String NETTE_DOCUMENT_ROOT_DIR = "/document_root";
-
-	public static final String NETTE_LATTE_TEMPLATE_EXTENSION = ".latte";
-
-	public static final String NETTE_LIBS_DIR = "/libs/Nette";
-
-	public static final String NETTE_LOG_DIR = "/log";
+public class NettePreferences {
     
-    public static final String NETTE_PRESENTER_SUFFIX = "Presenter";
-
-	public static final String NETTE_PRESENTER_EXTENSION = ".php";
-	
-	public static final String NETTE_TEMP_DIR = "/temp";
-
-	public static final String NETTE_ACTION_METHOD_PREFIX = "action";
-
-	public static final String NETTE_RENDER_METHOD_PREFIX = "render";
-
-	private NetteFramework() {
+    private static final String NETTE_PARENT_PRESENTER = "nette.parent.presenter"; // NOI18N
+    
+    public static void setParentPresenter(PhpModule phpModule, String parentPresenter) {
+        getPreferences(phpModule).put(NETTE_PARENT_PRESENTER, parentPresenter);
+    }
+    
+    public static String getParentPresenter(PhpModule phpModule) {
+        return getPreferences(phpModule).get(NETTE_PARENT_PRESENTER, null);
+    }
+    
+    private static Preferences getPreferences(PhpModule phpModule) {
+		return phpModule.getPreferences(NettePreferences.class, false);
 	}
-
+    
 }

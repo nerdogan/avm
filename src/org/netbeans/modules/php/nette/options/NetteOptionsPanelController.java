@@ -30,14 +30,16 @@ package org.netbeans.modules.php.nette.options;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import javax.swing.JComponent;
+import org.netbeans.modules.php.api.util.UiUtils;
 import org.netbeans.spi.options.OptionsPanelController;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 
-@OptionsPanelController.SubRegistration(location = "org-netbeans-modules-php-project-ui-options-PHPOptionsCategory",
+@OptionsPanelController.SubRegistration(location = UiUtils.OPTIONS_PATH,
+id = NetteOptions.NETTE_OPTIONS_PATH,
 displayName = "#AdvancedOption_DisplayName_Nette",
 keywords = "#AdvancedOption_Keywords_Nette",
-keywordsCategory = "org-netbeans-modules-php-project-ui-options-PHPOptionsCategory/Nette")
+keywordsCategory = UiUtils.OPTIONS_PATH + "/" + NetteOptions.NETTE_OPTIONS_PATH)
 public final class NetteOptionsPanelController extends OptionsPanelController {
 
 	private NettePanel panel;

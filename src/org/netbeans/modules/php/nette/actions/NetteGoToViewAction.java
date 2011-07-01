@@ -1,7 +1,7 @@
 /*
  *  The MIT License
  * 
- *  Copyright (c) 2010 Radek Ježdík <redhead@email.cz>, Ondřej Brejla <ondrej@brejla.cz>
+ *  Copyright (c) 2011 Radek Ježdík <redhead@email.cz>, Ondřej Brejla <ondrej@brejla.cz>
  * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
@@ -21,37 +21,45 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.netbeans.modules.php.nette;
 
+package org.netbeans.modules.php.nette.actions;
+
+import org.netbeans.modules.csl.api.UiUtils;
+import org.netbeans.modules.php.api.editor.EditorSupport;
+import org.netbeans.modules.php.api.editor.PhpBaseElement;
+import org.netbeans.modules.php.nette.utils.EditorUtils;
+import org.netbeans.modules.php.spi.actions.GoToViewAction;
+import org.openide.filesystems.FileObject;
+import org.openide.util.Lookup;
 
 /**
- * NetteFramework static constants.
  *
  * @author Ondřej Brejla <ondrej@brejla.cz>
  */
-public final class NetteFramework {
+public class NetteGoToViewAction extends GoToViewAction {
 
-	public static final String NETTE_APP_DIR = "/app";
+	private FileObject fo;
 
-	public static final String NETTE_DOCUMENT_ROOT_DIR = "/document_root";
+	private int offset;
 
-	public static final String NETTE_LATTE_TEMPLATE_EXTENSION = ".latte";
+	public NetteGoToViewAction(FileObject fo, int offset) {
+		this.fo = fo;
+        this.offset = offset;
+	}
 
-	public static final String NETTE_LIBS_DIR = "/libs/Nette";
-
-	public static final String NETTE_LOG_DIR = "/log";
-    
-    public static final String NETTE_PRESENTER_SUFFIX = "Presenter";
-
-	public static final String NETTE_PRESENTER_EXTENSION = ".php";
-	
-	public static final String NETTE_TEMP_DIR = "/temp";
-
-	public static final String NETTE_ACTION_METHOD_PREFIX = "action";
-
-	public static final String NETTE_RENDER_METHOD_PREFIX = "render";
-
-	private NetteFramework() {
+	@Override
+	public boolean goToView() {
+		EditorSupport editorSupport = Lookup.getDefault().lookup(EditorSupport.class);
+        PhpBaseElement phpElement = editorSupport.getElement(fo, offset);
+		if (phpElement == null) {
+            return false;
+        }
+        FileObject view = EditorUtils.getView(fo, phpElement);
+        if (view != null) {
+            UiUtils.open(view, DEFAULT_OFFSET);
+            return true;
+        }
+        return false;
 	}
 
 }
