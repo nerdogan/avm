@@ -260,6 +260,7 @@ class LatteLexer implements Lexer<LatteTokenId> {
 									c = input.read();
 									if((!Character.isLetterOrDigit(c) && c != '_') || ch == EOF) {
 										input.backup(1);			// found char which is not valid char for php var
+										state = State.AFTER_MACRO;
 										return LatteTokenId.VARIABLE;
 									}
 								}
