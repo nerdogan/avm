@@ -78,10 +78,6 @@ public class TemplateEmbedder extends Embedder {
 				htmlPhpResolver.solve(t, sequence);
 			}
 		}
-
-		if (isAllowedBlockOpened()) {
-			embed("<?php } ?>");
-		}
 		
 		return super.getEmbeddings();
 	}

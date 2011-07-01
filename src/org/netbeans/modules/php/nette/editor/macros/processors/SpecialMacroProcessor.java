@@ -28,7 +28,6 @@
 package org.netbeans.modules.php.nette.editor.macros.processors;
 
 import javax.swing.text.Document;
-import org.netbeans.api.lexer.Token;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.php.nette.editor.Embedder;
 import org.netbeans.modules.php.nette.editor.hints.HintFactory;
@@ -43,90 +42,10 @@ public class SpecialMacroProcessor extends  MacroProcessor {
 
 	@Override
 	public void process(TokenSequence<LatteTopTokenId> sequence, TokenSequence<LatteTokenId> sequence2, int start, String macro, boolean endMacro, Embedder embedder) {
-		// include, widget, control, (p)link, extends, ...
-		int firstStart = start;
-		int firstEnd = 0;
-		int whiteSpace = 0;
-		boolean toString = true;
-        boolean innerBrackets = false;
-
 		if(macro.equals("widget")) {
-			createDepracatedHint(embedder, sequence.offset() + 1, "widget".length());
+			Document doc = embedder.getSnapshot().getSource().getDocument(false);
+			HintFactory.add(doc, HintFactory.WIDGET_MACRO_DEPRECATED, sequence.offset() + 1, "widget".length());
 		}
-
-		do {
-			Token<LatteTokenId> t2 = sequence2.token();
-			
-			if(whiteSpace < 2) {												// first param ( {mac param ...})
-				if(t2.id() == LatteTokenId.STRING) {
-					toString = false;											// do not encapsulate with quotes
-				}
-                if (t2.id() == LatteTokenId.LD) {
-                    innerBrackets = true;
-                }
-                if (t2.id() == LatteTokenId.RD && innerBrackets) {
-                    innerBrackets = false;
-                    continue;
-                }
-				if(t2.id() == LatteTokenId.WHITESPACE							// delimits parameters
-						|| (whiteSpace == 1 && t2.id() == LatteTokenId.COMA)	// or delimited by coma!
-						|| t2.id() == LatteTokenId.RD)
-				{
-					whiteSpace++;
-					firstEnd = sequence.offset() + sequence2.offset();			// end of first param
-					if(t2.id() == LatteTokenId.COMA) {
-						start = sequence.offset() + sequence2.offset() + t2.length();			// start of other params
-					}
-				}
-
-				continue;
-			}
-			if(firstEnd > 0 && start < firstEnd) {
-				if(t2.id() == LatteTokenId.COMA) {
-					start = sequence.offset() + sequence2.offset() + t2.length();			// start of other params
-					continue;
-				}
-				start = sequence.offset() + sequence2.offset();
-			}
-			if (t2.id() == LatteTokenId.LD) {
-                innerBrackets = true;
-            }
-			if(t2.id() == LatteTokenId.RD) {
-                if (innerBrackets) {
-                    innerBrackets = false;
-                } else {
-                    break;
-                }
-			}
-
-			length += t2.length();
-		} while(sequence2.moveNext());
-
-		if(!toString) {
-			// if variable or string literal was found in first param, do not encapsulte with quotes
-			embedder.embed("<?php ");
-			embedder.embed(firstStart, firstEnd - firstStart);
-		} else {
-			// otherwise process as php string
-			embedder.embed("<?php \"");
-			embedder.embed(firstStart, firstEnd - firstStart);
-			embedder.embed("\"");
-		}
-
-		// for other params create array
-		embedder.embed("; array( ");
-
-		// encapsulates simple text key with quotes, because of php keywords (class, ...)
-		String params = embedder.getSnapshot().getText().subSequence(start, start+length).toString();
-		params = params.replaceAll("([ ,(\\[])([a-zA-Z]+) *=>", "$1 \"$2\" =>");
-		embedder.embed(params);
-		
-		embedder.embed(")?>");
-	}
-
-	private void createDepracatedHint(Embedder embedder, int start, int length) {
-		Document doc = embedder.getSnapshot().getSource().getDocument(false);
-		HintFactory.add(doc, HintFactory.WIDGET_MACRO_DEPRECATED, start, length);
 	}
 
 }

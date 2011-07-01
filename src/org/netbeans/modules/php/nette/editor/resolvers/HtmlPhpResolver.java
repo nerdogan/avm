@@ -53,20 +53,10 @@ public class HtmlPhpResolver extends TemplateResolver {
 				}
 
 				getTags().add(0);										// counts nesting
-			} else if (isClosingTag(tag)) {
-				if (getTags().size() > 0) {									
-					int c = removeLastTag();							// Opening
-					if (c > 0) {										// if there are some code blocks
-						closeAllCodeBlocks(c);
-					}
-				}
-				setMacroName(null);
-			} else if (tag.equals(">") && t.id() == LatteTopTokenId.LATTE_TAG) {
+			} else {
 				setMacroName(null);										// do nothing here
 			}
 		}
-		// deals as html/php (will color all HTML tags appropriately)
-		embedder.embed(sequence.offset(), t.length());
 	}
 
 	private boolean isOpeningTag(String tag) {
@@ -79,14 +69,6 @@ public class HtmlPhpResolver extends TemplateResolver {
 
 	private int removeLastTag() {
 		return getTags().remove(getTags().size() - 1);
-	}
-
-	private void closeAllCodeBlocks(int c) {
-		embedder.embed("<?php ");
-		for (int i = 0; i < c; i++) {
-			embedder.embed("}");
-		}
-		embedder.embed(" ?>");
 	}
 
 }

@@ -85,17 +85,8 @@ abstract public class MacroProcessorFactory {
 		} else if (specialMacros.contains(macro)) {
 			// {link default var => $val} -> "default"; array(var => $val);
 			return new SpecialMacroProcessor();
-		} else if (signMacros.contains(macro)) {
-			// _, =, !=, ...
-			return new SignMacroProcessor();
-		} else if (blockMacros.contains(macro)) {
-			// {if} {/if} -> if() { }
-			return new BlockMacroProcessor();
-		} else if (macro.equals("attr")) {
-			// {attr class() something()} -> $v->class()->something()
-			return new AttrMacroProcessor();
 		} else {
-			return new CommonMacroProcessor();
+			return new NullMacroProcessor();
 		}
 	}
 

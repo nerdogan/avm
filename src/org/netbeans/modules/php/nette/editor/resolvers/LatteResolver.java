@@ -27,15 +27,12 @@
 
 package org.netbeans.modules.php.nette.editor.resolvers;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.netbeans.api.lexer.Token;
 import org.netbeans.api.lexer.TokenHierarchy;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.php.nette.editor.Embedder;
 import org.netbeans.modules.php.nette.editor.macros.processors.MacroProcessorFactory;
 import org.netbeans.modules.php.nette.editor.macros.processors.MacroProcessor;
-import org.netbeans.modules.php.nette.editor.macros.processors.NoMacroProcessor;
 import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
 
@@ -72,11 +69,6 @@ public class LatteResolver extends TemplateResolver {
 			if (isEndMacro(t2, sequence2)) {		// is end macro {/
 				endMacro = true;
 			}
-
-			if(t2.id() == LatteTokenId.COMMENT) {
-				String comment = t2.text().toString();
-				parseLatteDoc(comment);
-			}
 			
 			if (t2.id() == LatteTokenId.MACRO) {									// store macro name
 				macro = t2.text().toString();
@@ -91,42 +83,11 @@ public class LatteResolver extends TemplateResolver {
 
 				break;
 			}
-			// no macro only variable ( {$variable} )
-			// if variable or error starting with $ (as user will write the rest after :) )
-			NoMacroProcessor noMacroProcessor = new NoMacroProcessor();
-			noMacroProcessor.process(sequence, sequence2, start, macro, endMacro, embedder);
 		}
 	}
 
 	private boolean isEndMacro(Token<LatteTokenId> t2, TokenSequence<LatteTokenId> sequence2) {
 		return (t2.id() == LatteTokenId.END_SLASH && sequence2.offset() <= 2);
-	}
-
-	private void parseLatteDoc(String comment) {
-		String[] lines = comment.split("\n");
-		Pattern pattern = Pattern.compile("[\\s\\*]*@(param)\\s+([A-Za-z0-9]+)\\s+(\\$[A-Za-z0-9]+)[\\s\\*]*");
-		for(String l : lines) {
-			Matcher m = pattern.matcher(l);
-			if(m.find()) {
-				String annotation = m.group(1);
-				String type = m.group(2);
-				String variable = m.group(3);
-				if(annotation.equals("param")) {
-					if(type.equals("int") || type.equals("long") || type.equals("float") || type.equals("double")) {
-						type = "(" + type + ") 1";
-					} else if(type.equals("bool")) {
-						type = "true";
-					} else if(type.equals("array")) {
-						type = "array()";
-					} else if(type.equals("string")) {
-						type = "\"\"";
-					} else {
-						type = "new "+type;
-					}
-					embedder.embed("<?php " + variable + "=" + type + " ?>");
-				}
-			}
-		}
 	}
 
 }

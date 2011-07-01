@@ -108,21 +108,6 @@ public class ArrayMacroProcessor extends MacroProcessor {
 				var += t2.text();											// add variable value
 			}
 		} while (sequence2.moveNext());
-
-		embedder.embed("<?php ");
-		for (int i = 0; i < starts.size(); i += 2) {
-			if (starts.get(i) < 0) {										// if position negative prepend with $
-				embedder.embed("$");
-				embedder.embed(-starts.get(i), lengths.get(i));	// variable
-			} else {
-				embedder.embed(starts.get(i), lengths.get(i));	// variable
-			}
-
-			embedder.embed("=");		// assignment char
-			embedder.embed(starts.get(i + 1), lengths.get(i + 1)); // var value
-			embedder.embed(";");
-		}
-		embedder.embed("?>");
 	}
 
 	private boolean isVariable(byte state) {
