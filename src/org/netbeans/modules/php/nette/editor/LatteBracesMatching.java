@@ -79,8 +79,6 @@ public class LatteBracesMatching implements BracesMatcher {
             }
             Token<LatteTopTokenId> t = ts.token();
             if(t.id() == LatteTopTokenId.LATTE) {							// process only latte
-				List<Integer> matches = new ArrayList<Integer>();
-				
                 TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(t.text(), LatteTokenId.language());
                 TokenSequence<LatteTokenId> ts2 = th2.tokenSequence(LatteTokenId.language());
 
@@ -246,6 +244,7 @@ public class LatteBracesMatching implements BracesMatcher {
             if(macroName != null && macroName.equals("block") && !isEndMacro) {	// last {/block} can be ommited
                 return new int[] { searchOffset, searchOffset };				// in that case hi-light nothing
             }
+			return new int[] { searchOffset, searchOffset };
         } catch(Exception e) {
             Exceptions.printStackTrace(e);
         }
