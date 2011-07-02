@@ -27,6 +27,7 @@
 
 package org.netbeans.modules.php.nette.gsf;
 
+import org.netbeans.modules.csl.api.InstantRenamer;
 import org.netbeans.modules.csl.api.KeystrokeHandler;
 import org.netbeans.api.lexer.Language;
 import org.netbeans.modules.csl.api.StructureScanner;
@@ -34,6 +35,7 @@ import org.netbeans.modules.csl.spi.DefaultLanguageConfig;
 import org.netbeans.modules.csl.spi.LanguageRegistration;
 import org.netbeans.modules.parsing.spi.Parser;
 import org.netbeans.modules.php.nette.editor.LatteBracketCompleter;
+import org.netbeans.modules.php.nette.editor.LatteInstantRenamer;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
 import org.openide.util.NbBundle;
 
@@ -90,6 +92,8 @@ public class LatteLanguage extends DefaultLanguageConfig {
 	public KeystrokeHandler getKeystrokeHandler() {
 		return new LatteBracketCompleter();
 	}
+	
+	
 
 	/*@Override
 	public boolean hasFormatter() {
@@ -100,5 +104,10 @@ public class LatteLanguage extends DefaultLanguageConfig {
 	public Formatter getFormatter() {
 		return new LatteFormatter();
 	}*/
+
+	@Override
+	public InstantRenamer getInstantRenamer() {
+		return new LatteInstantRenamer();
+	}
 
 }
