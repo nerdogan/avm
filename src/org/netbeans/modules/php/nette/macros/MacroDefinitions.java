@@ -62,6 +62,8 @@ public class MacroDefinitions {
         new LatteParamMacro("snippet", true),
         new LatteParamMacro("attr", false),
         new LatteParamMacro("block", true),
+        new LatteParamMacro("define", true),
+        new LatteParamMacro("includeblock", false),
         new LatteParamMacro("contentType", false),
         new LatteParamMacro("status", false),
         new LatteParamMacro("capture", true),
@@ -70,17 +72,24 @@ public class MacroDefinitions {
         new LatteParamMacro("var", false),
         new LatteParamMacro("dump", false),
         new LatteParamMacro("syntax", true),
+        new LatteParamMacro("use", false),
+        new LatteParamMacro("form", true),
+        new LatteParamMacro("label", true),
+        new LatteParamMacro("input", true),
         new LatteMacro("debugbreak", false),
         new LatteMacro("l", false),
         new LatteMacro("r", false),
         new LatteMacro("first", true),
         new LatteMacro("last", true),
         new LatteMacro("sep", true),
+        new LatteMacro("_", true),
     };
 
 	public static LatteMacro[] nAttrs = {
         new LatteParamMacro("href", true),
         new LatteParamMacro("class", true),
+        new LatteParamMacro("input", true),
+        new LatteParamMacro("attr", true),
     };
 
 	/**
@@ -137,9 +146,10 @@ public class MacroDefinitions {
 	 * List of helpers (TODO: dynamically)
 	 */
     public static String[] helpers = {
-        "escapeHtml", "escapeHtmlComment", "escapeXML", "escapeCss", "escapeHtmlCss", "escapeJs",
-        "escapeHtmlJs", "strip", "indent", "indentCb", "date", "bytes", "length",
-        "replace", "nl2br", "stripTags", "translate", "number",
+        "truncate", "substr", "trim", "striptags", "strip", "webalize", "toAscii", "indent",
+		"padLeft", "padRight", "repeat", "implode", "lower", "upper", "firstUpper", "capitalize",
+        "replace", "replaceRE", "nl2br", "stripTags", "number", "date", "bytes", "url", "length", "dataStream",
+		"null"
     };
 
 
