@@ -81,7 +81,7 @@ public class LatteInstantRenamer implements InstantRenamer {
 				TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(ts.token().text(), LatteTokenId.language());
 				TokenSequence<LatteTokenId> ts2 = th2.tokenSequence(LatteTokenId.language());
 
-				ts2.move(caretOffset - ts.offset());
+				ts2.moveStart();
 				while(ts2.moveNext()) {
 					Token token2 = ts2.token();
 					if(token2.id() == LatteTokenId.VARIABLE && token2.toString().equals(ident)) {
