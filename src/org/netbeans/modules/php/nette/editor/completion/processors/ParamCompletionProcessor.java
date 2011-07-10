@@ -26,15 +26,26 @@
  */
 package org.netbeans.modules.php.nette.editor.completion.processors;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.text.Document;
 import org.netbeans.api.lexer.Token;
 import org.netbeans.api.lexer.TokenSequence;
+import org.netbeans.modules.parsing.api.Source;
+import org.netbeans.modules.php.nette.editor.completion.items.BaseCompletionItem;
+import org.netbeans.modules.php.nette.editor.completion.items.ControlCompletionItem;
+import org.netbeans.modules.php.nette.editor.completion.items.PresenterCompletionItem;
 import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
 import org.netbeans.modules.php.nette.utils.EditorUtils;
 import org.netbeans.spi.editor.completion.CompletionItem;
+import org.openide.filesystems.FileObject;
 
 /**
  *
@@ -104,19 +115,169 @@ public class ParamCompletionProcessor {
 						}
 					}
 					if(ok && (macroName.equals("plink") || macroName.equals("link"))) {
-						list.addAll(EditorUtils.parseLink(document, written, whiteOffset + whiteLength, whole.length()));
+						list.addAll(parseLink(document, written, whiteOffset + whiteLength, whole.length()));
 					}
 					if(ok && (macroName.equals("widget") || macroName.equals("control"))) {
-						list.addAll(EditorUtils.parseControl(document, written, whiteOffset + whiteLength, whole.length()));
+						list.addAll(parseControl(document, written, whiteOffset + whiteLength, whole.length()));
 					}
 					if(ok && (macroName.equals("extends") || macroName.equals("include"))) {
-						list.addAll(EditorUtils.parseLayout(document, written, whiteOffset + whiteLength, whole.length()));
+						list.addAll(parseLayout(document, written, whiteOffset + whiteLength, whole.length()));
 					}
 					if(ok && macroName.equals("syntax")) {
-						list.addAll(EditorUtils.getSyntaxCompletions(written.trim(), whiteOffset + whiteLength, whole.length()));
+						list.addAll(getSyntaxCompletions(written.trim(), whiteOffset + whiteLength, whole.length()));
 					}
 				}
 				break;
+			}
+		}
+		return list;
+	}
+	
+	/**
+     * Parses out links from modules/presenters which are in the current application
+     * @param doc Latte Template document
+     * @param written user-written text (until caret)
+     * @param startOffset document text offset where to start completion
+     * @param length of text to overwrite
+     * @return List<CompletionItem> ready completion set to add to CompletionResultSet
+     */
+    private static List<CompletionItem> parseLink(Document doc, String link, int startOffset, int length) {
+        FileObject fo = Source.create(doc).getFileObject();
+
+        List<CompletionItem> list = new ArrayList<CompletionItem>();
+        
+        if (link.contains(":")) { // NOI18N
+            String[] parts = link.split(":"); // NOI18N
+            for(String s : EditorUtils.getAllPresenters(fo)) {
+                String[] pPath = s.split(":"); // NOI18N
+                boolean ok = false;
+                if(pPath.length >= parts.length) {
+                    for(int i = 0; i < parts.length; i++) {
+                        if(( i != parts.length - 1 && pPath[i].equals(parts[i]) )
+                                || pPath[i].startsWith(parts[i])) {
+                            ok = true;
+                        }
+                        else {
+                            ok = false;
+                            break;
+                        }
+                    }
+                }
+                if(ok || (parts.length == 0 && s.startsWith(":")) ) {
+                    list.add(new PresenterCompletionItem(s, startOffset, startOffset + length));
+                }
+            }
+        } else {
+            for(String s : EditorUtils.getAllPresenters(fo)) {
+                if(s.startsWith(link)) {
+                    list.add(new PresenterCompletionItem(s, startOffset, startOffset + length));
+                }
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Parses components/controls from presenter php file which this template belongs to
+     * @param doc Latte Template document
+     * @param written user-written text (until caret)
+     * @param startOffset document text offset where to start completion
+     * @param length of text to overwrite
+     * @return List<CompletionItem> ready completion set to add to CompletionResultSet
+     */
+    private static List<CompletionItem> parseControl(Document doc, String written, int startOffset, int length) {
+        List<CompletionItem> list = new ArrayList<CompletionItem>();
+        try {
+            FileObject fo = Source.create(doc).getFileObject();
+
+            String presenter = EditorUtils.getPresenter(fo);
+
+            Pattern pattern = Pattern.compile("createComponent([A-Za-z_][A-Za-z_]*) *\\("); // NOI18N
+
+            presenter += "Presenter.php"; // NOI18N
+            byte ps = 0;
+            while (true) {
+                fo = fo.getParent();
+                for (FileObject f : fo.getChildren()) {
+                    if (f.isFolder() && f.getName().equals("presenters")) { // NOI18N
+                        File p = new File(f.getPath(), presenter);
+                        if (p.exists()) {
+                            try {
+                                BufferedReader bis = new BufferedReader(new FileReader(p));
+                                String line;
+                                while ((line = bis.readLine()) != null) {
+                                    if (line.contains("createComponent")) { // NOI18N
+                                        Matcher m = pattern.matcher(line);
+                                        String control = null;
+                                        if (m.find()) {
+                                            control = m.group(1);
+                                            EditorUtils.firstLetterSmall(control);
+                                        }
+                                        if(control != null)
+                                            if(control.startsWith(written)) {
+                                                list.add(new ControlCompletionItem(control, startOffset, startOffset + length));
+                                            }
+                                    }
+                                }
+                            } catch (IOException ioe) {
+                                //Logger.getLogger("TmplCompletionQuery").warning("scanning of unnexisting file " + p.getAbsolutePath());
+                            }
+                        }
+                        break;
+                    }
+                }
+                // just 5 levels up
+                if (ps > 5) {
+                    break;
+                }
+                ps++;
+            }
+        } catch (Exception e) {
+            // intentionaly
+        }
+
+        return list;
+    }
+
+    /**
+     *
+     * @param doc Latte Template document
+     * @param written user-written text (until caret)
+     * @param startOffset document text offset where to start completion
+     * @param length of text to overwrite
+     * @return List<CompletionItem> ready completion set to add to CompletionResultSet
+     */
+    private static List<CompletionItem> parseLayout(Document doc, String written, int startOffset, int length) {
+        List<CompletionItem> list = new ArrayList<CompletionItem>();
+
+        FileObject fo = Source.create(doc).getFileObject();
+        List<String> layouts = EditorUtils.getLayouts(fo);
+
+        for(String path : layouts) {
+            if(path.startsWith(written)) {
+                list.add(new PresenterCompletionItem(path, startOffset, startOffset + length));
+            }
+        }
+
+        return list;
+    }
+
+	/**
+	 * Returns syntax macro param completion (double)
+	 * @return
+	 */
+	private static List<CompletionItem> getSyntaxCompletions(String written, int startOffset, int length) {
+		List<CompletionItem> list = new ArrayList<CompletionItem>();
+		String[] types = { 
+			"latte",
+			"double",
+			"asp",
+			"python",
+			"off"
+		};
+		for(String t : types) {
+			if(t.startsWith(written)) {
+				list.add(new BaseCompletionItem(t, startOffset, startOffset+length));
 			}
 		}
 		return list;

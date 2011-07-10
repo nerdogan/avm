@@ -29,7 +29,7 @@ package org.netbeans.modules.php.nette;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.netbeans.modules.php.api.phpmodule.BadgeIcon;
@@ -132,26 +132,17 @@ public class NettePhpFrameworkProvider extends PhpFrameworkProvider {
 	public BadgeIcon getBadgeIcon() {
 		return badge;
 	}
-
-    /**
-     * Determines what files or directories should be hidden in Projects window (but they exist)
-     * @param pm
-     * @return
-     */
+	
     @Override
     public PhpModuleIgnoredFilesExtender getIgnoredFilesExtender(final PhpModule pm) {
         return new PhpModuleIgnoredFilesExtender() {
 
-            @Override
-            public Set<File> getIgnoredFiles() {
-                HashSet<File> set = new HashSet<File>();
-                //set.add(new File(pm.getSourceDirectory().getPath()+"/app/temp"));
-                //set.add(new File(pm.getSourceDirectory().getPath()+"/app/sessions"));
-                //set.add(new File(pm.getSourceDirectory().getPath()+"/app/logs"));
-                //set.add(new File(pm.getSourceDirectory().getPath()+"/app/.htaccess"));
-                return set;
-            }
-        };
+			@Override
+			public Set<File> getIgnoredFiles() {
+				return Collections.EMPTY_SET;
+			}
+			
+		};
     }
 
     @Override

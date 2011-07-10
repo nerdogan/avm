@@ -38,7 +38,6 @@ import org.netbeans.modules.parsing.spi.EmbeddingProvider;
 import org.netbeans.modules.parsing.spi.SchedulerTask;
 import org.netbeans.modules.parsing.spi.TaskFactory;
 import org.netbeans.modules.php.nette.editor.hints.HintsCollector;
-import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 
 /**
  * Provides embedded languages for HTML or LATTE tokens (language is denoted by mime-type)
@@ -52,9 +51,6 @@ public class LatteEmbeddingProvider extends EmbeddingProvider {
 		// may be not necessary
 		Document doc = snapshot.getSource().getDocument(true);
 		InputAttributes inputAttributes = new InputAttributes();
-		LatteParseData tmplParseData = new LatteParseData(doc);
-		inputAttributes.setValue(LatteTokenId.language(), LatteParseData.class, tmplParseData, false);
-		//inputAttributes.setValue(LatteTokenId.language(), "document", doc, false);
 		doc.putProperty(InputAttributes.class, inputAttributes);
 
 		TemplateEmbedder embedder = new TemplateEmbedder(snapshot);

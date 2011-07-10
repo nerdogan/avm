@@ -29,7 +29,6 @@ package org.netbeans.modules.php.nette.editor;
 
 import java.util.ArrayList;
 import javax.swing.text.Document;
-import org.netbeans.modules.php.nette.utils.EditorUtils;
 
 /**
  * Class for storing variables sent from presenters into templates.
@@ -48,15 +47,6 @@ public class LatteParseData {
      * @param doc document which should be scanned
      */
     public LatteParseData(Document doc) {
-        variables = EditorUtils.getKeywordsForView(doc);
-    }
-
-    /**
-     * Get stored variables.
-     * @return list of variables
-     */
-    public ArrayList<String> getVariables() {
-        return variables;
     }
 
 }
