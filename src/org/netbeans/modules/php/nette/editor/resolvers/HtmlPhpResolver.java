@@ -57,18 +57,11 @@ public class HtmlPhpResolver extends TemplateResolver {
 				setMacroName(null);										// do nothing here
 			}
 		}
+		embedder.embed(sequence.offset(), t.length());
 	}
 
 	private boolean isOpeningTag(String tag) {
 		return tag.startsWith("<") && tag.charAt(1) != '/';
-	}
-
-	private boolean isClosingTag(String tag) {
-		return tag.equals("/>") || tag.startsWith("</");
-	}
-
-	private int removeLastTag() {
-		return getTags().remove(getTags().size() - 1);
 	}
 
 }
