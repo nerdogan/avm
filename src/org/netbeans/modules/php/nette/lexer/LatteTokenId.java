@@ -44,8 +44,11 @@ import org.netbeans.spi.lexer.LexerRestartInfo;
 public enum LatteTokenId implements TokenId {
 
     WHITESPACE(null, "whitespace"),
-    LD("{", "delimiter"),
-    RD("}", "delimiter"),
+    LD(null, "delimiter"),
+    RD(null, "delimiter"),
+    ACCESS_LD(null, "accessMacro_delimiter"),
+    ACCESS_RD(null, "accessMacro_delimiter"),
+    ACCESS_DOT(".", "operator"),
 	END_SLASH("/", "endslash"),
     COLON(":", "colon"),
     SEMICOLON(";", "text"),
@@ -65,6 +68,7 @@ public enum LatteTokenId implements TokenId {
     EQUALS("=", "operator"),
     LT("<", "operator"),
     GT(">", "operator"),
+    PERCENT("%", "operator"), // TODO find in lexer
     AND("&", "text"),
     HASH("#", "text"),
     AT("@", "text"),
@@ -75,6 +79,7 @@ public enum LatteTokenId implements TokenId {
     STRING(null, "string"),
     VARIABLE(null, "variable"),
     NUMBER(null, "number"),
+    HELPER(null, "helper"),
     COMMENT(null, "comment"),
     ERROR(null, "error");
 
@@ -111,6 +116,7 @@ public enum LatteTokenId implements TokenId {
 
         @Override
         protected Lexer<LatteTokenId> createLexer(LexerRestartInfo<LatteTokenId> info) {
+			// TODO 
             return new LatteLexer(info);
         }
 		

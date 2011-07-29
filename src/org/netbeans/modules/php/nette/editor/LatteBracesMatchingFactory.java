@@ -57,14 +57,14 @@ public class LatteBracesMatchingFactory implements BracesMatcherFactory {
                     return;
                 }
 
-                List<TokenSequence<?>> ets = hierarchy.embeddedTokenSequences(context.getSearchOffset(), context.isSearchingBackward());
-                for(TokenSequence ts : ets) {
-                    Language language = ts.language();
-                    if(language == LatteTopTokenId.language()) {
-                        ret[0] = new LatteBracesMatching(context);
-                        return;
-                    }
-                }
+//                List<TokenSequence<?>> ets = hierarchy.embeddedTokenSequences(context.getSearchOffset(), context.isSearchingBackward());
+//                for(TokenSequence ts : ets) {
+//                    Language language = ts.language();
+//                    if(language == LatteTopTokenId.language()) {
+//                        ret[0] = new LatteBracesMatching(context);
+//                        return;
+//                    }
+//                }
             }
         });
         return ret[0];

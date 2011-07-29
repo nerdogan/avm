@@ -27,7 +27,6 @@ package org.netbeans.modules.php.nette.utils;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.swing.text.Document;
 import org.netbeans.api.lexer.Token;
-import org.netbeans.api.lexer.TokenHierarchy;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.php.nette.editor.hints.HintFactory;
 import org.netbeans.modules.php.nette.lexer.LatteTokenId;
@@ -48,8 +47,7 @@ public class SyntaxUtils {
 		Token<LatteTopTokenId> token = sequence.token();
 
 		// inside macro completion
-		TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(token.text(), LatteTokenId.language());
-		TokenSequence<LatteTokenId> sequence2 = th2.tokenSequence(LatteTokenId.language());
+		TokenSequence<LatteTokenId> sequence2 = LexUtils.getSequence(token);
 
 		sequence2.moveStart();
 		int nested = 0;

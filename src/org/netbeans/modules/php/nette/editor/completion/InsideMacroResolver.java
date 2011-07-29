@@ -29,13 +29,13 @@ package org.netbeans.modules.php.nette.editor.completion;
 
 import javax.swing.text.Document;
 import org.netbeans.api.lexer.Token;
-import org.netbeans.api.lexer.TokenHierarchy;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.php.nette.editor.completion.processors.HelperCompletionProcessor;
 import org.netbeans.modules.php.nette.editor.completion.processors.MacroCompletionProcessor;
 import org.netbeans.modules.php.nette.editor.completion.processors.ParamCompletionProcessor;
 import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
+import org.netbeans.modules.php.nette.utils.LexUtils;
 import org.netbeans.spi.editor.completion.CompletionResultSet;
 
 /**
@@ -49,8 +49,7 @@ public class InsideMacroResolver {
 		Token<LatteTopTokenId> token = sequence.token();
 		
 		// inside macro completion
-		TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(token.text(), LatteTokenId.language());
-		TokenSequence<LatteTokenId> sequence2 = th2.tokenSequence(LatteTokenId.language());
+		TokenSequence<LatteTokenId> sequence2 = LexUtils.getSequence(token);
 
 		// determining if caret is positioned in specially treated macros:
 		// (p)link, widget/control, extends, include

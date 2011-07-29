@@ -28,13 +28,13 @@
 package org.netbeans.modules.php.nette.editor.resolvers;
 
 import org.netbeans.api.lexer.Token;
-import org.netbeans.api.lexer.TokenHierarchy;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.php.nette.editor.Embedder;
 import org.netbeans.modules.php.nette.editor.macros.processors.MacroProcessorFactory;
 import org.netbeans.modules.php.nette.editor.macros.processors.MacroProcessor;
 import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
+import org.netbeans.modules.php.nette.utils.LexUtils;
 
 /**
  *
@@ -55,9 +55,8 @@ public class LatteResolver extends TemplateResolver {
 		} else if (t.text().charAt(0) == '{') {
 			setMacroName(null);									// else it is a macro starting with {
 		}
-
-		TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(t.text(), LatteTokenId.language());
-		TokenSequence<LatteTokenId> sequence2 = th2.tokenSequence(LatteTokenId.language());
+		
+		TokenSequence<LatteTokenId> sequence2 = LexUtils.getSequence(t);
 
 		boolean endMacro = false;
 		String macro = (getMacroName() != null ? getMacroName() : "");					// macro name used internally

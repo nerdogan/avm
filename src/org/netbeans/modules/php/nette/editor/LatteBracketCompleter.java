@@ -39,6 +39,7 @@ import org.netbeans.modules.csl.api.OffsetRange;
 import org.netbeans.modules.csl.spi.ParserResult;
 import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
+import org.netbeans.modules.php.nette.utils.LexUtils;
 
 /**
  * TODO: when text selected encapsulate it with " ' etc
@@ -158,8 +159,7 @@ public class LatteBracketCompleter implements KeystrokeHandler {
 		}
 
 		if(ts.token().id() == LatteTopTokenId.LATTE) {
-			TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(ts.token().text(), LatteTokenId.language());
-			TokenSequence<LatteTokenId> ts2 = th2.tokenSequence(LatteTokenId.language());
+			TokenSequence<LatteTokenId> ts2 = LexUtils.getSequence(ts.token());
 
 			ts2.move(pos - ts.offset());
 

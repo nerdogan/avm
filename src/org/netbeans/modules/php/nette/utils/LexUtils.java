@@ -29,8 +29,12 @@ package org.netbeans.modules.php.nette.utils;
 
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
+import org.netbeans.api.lexer.InputAttributes;
+import org.netbeans.api.lexer.LanguagePath;
+import org.netbeans.api.lexer.Token;
 import org.netbeans.api.lexer.TokenHierarchy;
 import org.netbeans.api.lexer.TokenSequence;
+import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
 import org.openide.util.Exceptions;
 
@@ -58,6 +62,15 @@ public final class LexUtils {
 	public static TokenSequence<LatteTopTokenId> getTopSequence(String text) {
 		TokenHierarchy<String> th = TokenHierarchy.create(text, LatteTopTokenId.language());
 		return th.tokenSequence(LatteTopTokenId.language());
+	}
+	
+	public static TokenSequence<LatteTokenId> getSequence(Token<LatteTopTokenId> t) {
+		InputAttributes attrs = new InputAttributes();
+		attrs.setValue(LanguagePath.get(LatteTokenId.language()), "syntax", t.getProperty("syntax"), false);
+		attrs.setValue(LanguagePath.get(LatteTokenId.language()), "isComment", t.getProperty("isComment"), false);
+		
+		TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(t.text(), true, LatteTokenId.language(), null, attrs);
+		return th2.tokenSequence(LatteTokenId.language());
 	}
 
 }

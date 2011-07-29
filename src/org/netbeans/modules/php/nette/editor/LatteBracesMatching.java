@@ -38,6 +38,7 @@ import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
 import org.netbeans.modules.php.nette.macros.LatteMacro;
 import org.netbeans.modules.php.nette.macros.MacroDefinitions;
+import org.netbeans.modules.php.nette.utils.LexUtils;
 import org.netbeans.spi.editor.bracesmatching.BracesMatcher;
 import org.netbeans.spi.editor.bracesmatching.MatcherContext;
 import org.openide.util.Exceptions;
@@ -79,8 +80,7 @@ public class LatteBracesMatching implements BracesMatcher {
             }
             Token<LatteTopTokenId> t = ts.token();
             if(t.id() == LatteTopTokenId.LATTE) {							// process only latte
-                TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(t.text(), LatteTokenId.language());
-                TokenSequence<LatteTokenId> ts2 = th2.tokenSequence(LatteTokenId.language());
+				TokenSequence<LatteTokenId> ts2 = LexUtils.getSequence(t);
 
 				/*ts2.move(searchOffset-ts.offset());
 				matches.addAll(findBrackets(ts2));*/
@@ -204,8 +204,7 @@ public class LatteBracesMatching implements BracesMatcher {
                         continue;
                     }
 					// go through inside macro tokens
-                    TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(t.text(), LatteTokenId.language());
-                    TokenSequence<LatteTokenId> ts2 = th2.tokenSequence(LatteTokenId.language());
+                    TokenSequence<LatteTokenId> ts2 = LexUtils.getSequence(t);
                     ts2.moveStart();
 					
                     boolean isEndMacro2 = false;					// is parsed macro end macro?
