@@ -39,7 +39,8 @@ import org.openide.util.Lookup;
 id = NetteOptions.NETTE_OPTIONS_PATH,
 displayName = "#AdvancedOption_DisplayName_Nette",
 keywords = "#AdvancedOption_Keywords_Nette",
-keywordsCategory = UiUtils.OPTIONS_PATH + "/" + NetteOptions.NETTE_OPTIONS_PATH)
+keywordsCategory = UiUtils.OPTIONS_PATH + "/" + NetteOptions.NETTE_OPTIONS_PATH,
+position=399)
 public final class NetteOptionsPanelController extends OptionsPanelController {
 
 	private NettePanel panel;
