@@ -43,8 +43,12 @@ public class SpecialMacroProcessor extends  MacroProcessor {
 	@Override
 	public void process(TokenSequence<LatteTopTokenId> sequence, TokenSequence<LatteTokenId> sequence2, int start, String macro, boolean endMacro, Embedder embedder) {
 		if(macro.equals("widget")) {
+			sequence2.moveStart();
+			sequence2.moveNext();
+			int LDlen = sequence2.token().length();
+			
 			Document doc = embedder.getSnapshot().getSource().getDocument(false);
-			HintFactory.add(doc, HintFactory.WIDGET_MACRO_DEPRECATED, sequence.offset() + 1, "widget".length());
+			HintFactory.add(doc, HintFactory.WIDGET_MACRO_DEPRECATED, sequence.offset() + LDlen, "widget".length());
 		}
 	}
 
