@@ -66,7 +66,7 @@ public class SyntaxUtils {
 				nested--;
 				if(nested == 0) {
 					array = false;
-					HintFactory.add(doc, HintFactory.PHP_ARRAY_SYNTAX, start, sequence2.offset() + t.length() - start);
+					HintFactory.add(doc, HintFactory.PHP_ARRAY_SYNTAX, start, sequence2.offset() + sequence.offset() - start);
 				}
 			}
 		}
