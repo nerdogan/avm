@@ -27,7 +27,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import org.netbeans.api.lexer.Token;
-import org.netbeans.api.lexer.TokenHierarchy;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.csl.api.InstantRenamer;
 import org.netbeans.modules.csl.api.OffsetRange;
@@ -53,8 +52,7 @@ public class LatteInstantRenamer implements InstantRenamer {
 			if(ts.token().id() != LatteTopTokenId.LATTE) {
 				return false;
 			}
-			TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(ts.token().text(), LatteTokenId.language());
-			TokenSequence<LatteTokenId> ts2 = th2.tokenSequence(LatteTokenId.language());
+			TokenSequence<LatteTokenId> ts2 = LexUtils.getSequence(ts.token());
 
 			ts2.move(caretOffset - ts.offset());
 			if(ts2.moveNext() || ts2.movePrevious()) {
@@ -78,8 +76,7 @@ public class LatteInstantRenamer implements InstantRenamer {
 		ts.moveStart();
 		while(ts.moveNext()) {
 			if(ts.token().id() == LatteTopTokenId.LATTE) {
-				TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(ts.token().text(), LatteTokenId.language());
-				TokenSequence<LatteTokenId> ts2 = th2.tokenSequence(LatteTokenId.language());
+				TokenSequence<LatteTokenId> ts2 = LexUtils.getSequence(ts.token());
 
 				ts2.moveStart();
 				while(ts2.moveNext()) {
