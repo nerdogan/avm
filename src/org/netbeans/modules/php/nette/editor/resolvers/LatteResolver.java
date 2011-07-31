@@ -83,6 +83,7 @@ public class LatteResolver extends TemplateResolver {
 				break;
 			}
 		}
+		embedder.embed("@@@");
 	}
 
 	private boolean isEndMacro(Token<LatteTokenId> t2, TokenSequence<LatteTokenId> sequence2) {
