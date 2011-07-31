@@ -28,7 +28,6 @@
 package org.netbeans.modules.php.nette.editor;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javax.swing.text.BadLocationException;
 import org.netbeans.api.lexer.Token;
@@ -36,6 +35,7 @@ import org.netbeans.api.lexer.TokenHierarchy;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
+import org.netbeans.modules.php.nette.lexer.syntax.Syntax;
 import org.netbeans.modules.php.nette.macros.LatteMacro;
 import org.netbeans.modules.php.nette.macros.MacroDefinitions;
 import org.netbeans.modules.php.nette.utils.LexUtils;
@@ -80,20 +80,26 @@ public class LatteBracesMatching implements BracesMatcher {
             }
             Token<LatteTopTokenId> t = ts.token();
             if(t.id() == LatteTopTokenId.LATTE) {							// process only latte
+				Syntax syntax = (Syntax) t.getProperty("syntax");
+				
 				TokenSequence<LatteTokenId> ts2 = LexUtils.getSequence(t);
 
 				/*ts2.move(searchOffset-ts.offset());
 				matches.addAll(findBrackets(ts2));*/
 
-                if(t.text().charAt(0) != '{') {								// process only macros
+                if(!t.text().toString().startsWith(syntax.opening())) {		// process only macros
                     return null;
                 }
 				
+				int LDlength = 1;
 				ts2.moveStart();
                 int i = 0;												// used to check end macro slash position
                 while(ts2.moveNext() && i < 3) {
                     Token<LatteTokenId> t2 = ts2.token();
                     // macro has name
+					if(t2.id() == LatteTokenId.LD) {
+						LDlength = t2.toString().trim().length();
+					}
                     if(t2.id() == LatteTokenId.MACRO) {								// it has macro name
                         macroName = t2.toString();
                         mStart = ts.offset();
@@ -102,7 +108,7 @@ public class LatteBracesMatching implements BracesMatcher {
                         /*Collections.addAll(matches,*/ return new int[] {
                             ts.offset(), ts.offset() + t.length(),                  //whole area
                             ts.offset(), ts.offset() + ts2.offset() + t2.length(),  //left delimiter + macro
-                            ts.offset() + t.length() - 1, ts.offset() + t.length()  //right delimiter
+                            ts.offset() + t.length() - syntax.closingLength(), ts.offset() + t.length()  //right delimiter
                         }/*)*/;
 						//return matches.toArray();
                     }
@@ -114,8 +120,8 @@ public class LatteBracesMatching implements BracesMatcher {
                 // macro doesn't have name, hi-light just delimiters
                 return new int[] {
                     ts.offset(), ts.offset() + t.length(),                          //whole area
-                    ts.offset(), ts.offset() + 1,                                   //left delimiter
-                    ts.offset() + t.length() - 1, ts.offset() + t.length()          //right delimiter
+                    ts.offset(), ts.offset() + LDlength, //left delimiter
+                    ts.offset() + t.length() - syntax.closingLength(), ts.offset() + t.length()          //right delimiter
                 };
             }
         }
@@ -200,7 +206,9 @@ public class LatteBracesMatching implements BracesMatcher {
             while(isEndMacro ? ts.movePrevious() : ts.moveNext()) {
                 Token<LatteTopTokenId> t = ts.token();
                 if(t.id() == LatteTopTokenId.LATTE) {		// process only latte
-                    if(t.text().charAt(0) != '{') {			// process only macros (no n:tag, n:attr)
+					Syntax syntax = (Syntax) t.getProperty("syntax");
+                    
+					if(!t.text().toString().startsWith(syntax.opening())) {		// process only macros
                         continue;
                     }
 					// go through inside macro tokens
@@ -218,7 +226,7 @@ public class LatteBracesMatching implements BracesMatcher {
                                         || friends.contains(macroName2)) {			// it is start/friend/end macro
                                     return new int[] {
 											ts.offset(), ts.offset() + ts2.offset() + t2.length(), // hi-light {macro
-											ts.offset() + t.length() - 1, ts.offset() + t.length() // hi-light }
+											ts.offset() + t.length() - syntax.closingLength(), ts.offset() + t.length() // hi-light }
 										};
                                 }
                             }
