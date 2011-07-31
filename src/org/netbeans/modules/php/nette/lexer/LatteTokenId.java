@@ -24,7 +24,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package org.netbeans.modules.php.nette.lexer;
 
 import java.util.Collection;
@@ -33,6 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.netbeans.api.lexer.Language;
 import org.netbeans.api.lexer.TokenId;
+import org.netbeans.modules.php.nette.lexer.syntax.Syntax;
 import org.netbeans.spi.lexer.LanguageHierarchy;
 import org.netbeans.spi.lexer.Lexer;
 import org.netbeans.spi.lexer.LexerRestartInfo;
@@ -43,92 +43,86 @@ import org.netbeans.spi.lexer.LexerRestartInfo;
  */
 public enum LatteTokenId implements TokenId {
 
-    WHITESPACE(null, "whitespace"),
-    LD(null, "delimiter"),
-    RD(null, "delimiter"),
-    ACCESS_LD(null, "accessMacro_delimiter"),
-    ACCESS_RD(null, "accessMacro_delimiter"),
-    ACCESS_DOT(".", "operator"),
+	WHITESPACE(null, "whitespace"),
+	LD(null, "delimiter"),
+	RD(null, "delimiter"),
+	ACCESS_LD(null, "accessMacro_delimiter"),
+	ACCESS_RD(null, "accessMacro_delimiter"),
+	ACCESS_DOT(".", "operator"),
 	END_SLASH("/", "endslash"),
-    COLON(":", "colon"),
-    SEMICOLON(";", "text"),
-    ASSIGN("=>", "assign"),
-    ACCESS("->", "operator"),
-    PLUS("+", "operator"),
-    MINUS("-", "operator"),
-    STAR("*", "operator"),
-    SLASH("/", "operator"),
-    PIPE("|", "operator"),
-    COMA(",", "operator"),
-    LNB("(", "operator"),
-    RNB(")", "operator"),
-    LB("[", "operator"),
-    RB("]", "operator"),
-    NEGATION("!", "operator"),
-    EQUALS("=", "operator"),
-    LT("<", "operator"),
-    GT(">", "operator"),
-    PERCENT("%", "operator"), // TODO find in lexer
-    AND("&", "text"),
-    HASH("#", "text"),
-    AT("@", "text"),
+	COLON(":", "colon"),
+	SEMICOLON(";", "text"),
+	ASSIGN("=>", "assign"),
+	ACCESS("->", "operator"),
+	PLUS("+", "operator"),
+	MINUS("-", "operator"),
+	STAR("*", "operator"),
+	SLASH("/", "operator"),
+	PIPE("|", "operator"),
+	COMA(",", "operator"),
+	LNB("(", "operator"),
+	RNB(")", "operator"),
+	LB("[", "operator"),
+	RB("]", "operator"),
+	NEGATION("!", "operator"),
+	EQUALS("=", "operator"),
+	LT("<", "operator"),
+	GT(">", "operator"),
+	PERCENT("%", "operator"), // TODO find in lexer
+	AND("&", "text"),
+	HASH("#", "text"),
+	AT("@", "text"),
 	QUESTION("?", "text"),
-    MACRO(null, "macro"),
-    KEYWORD(null, "keyword"),
-    TEXT(null, "text"),
-    STRING(null, "string"),
-    VARIABLE(null, "variable"),
-    NUMBER(null, "number"),
-    HELPER(null, "helper"),
-    COMMENT(null, "comment"),
-    ERROR(null, "error");
+	MACRO(null, "macro"),
+	KEYWORD(null, "keyword"),
+	TEXT(null, "text"),
+	STRING(null, "string"),
+	VARIABLE(null, "variable"),
+	NUMBER(null, "number"),
+	HELPER(null, "helper"),
+	COMMENT(null, "comment"),
+	ERROR(null, "error");
+	private final String fixedText;
+	private final String primaryCategory;
 
-    private final String fixedText;
+	private LatteTokenId(String fixedText, String primaryCategory) {
+		this.fixedText = fixedText;
+		this.primaryCategory = primaryCategory;
+	}
 
-    private final String primaryCategory;
-
-    private LatteTokenId(String fixedText, String primaryCategory) {
-        this.fixedText = fixedText;
-        this.primaryCategory = primaryCategory;
-    }
-    
-    public String fixedText() {
-        return fixedText;
-    }
+	public String fixedText() {
+		return fixedText;
+	}
 
 	@Override
-    public String primaryCategory() {
-        return primaryCategory;
-    }
+	public String primaryCategory() {
+		return primaryCategory;
+	}
 
-    private static final Language<LatteTokenId> language = new LanguageHierarchy<LatteTokenId>() {
+	public static Language<LatteTokenId> language(final Syntax syntax) {
+		return new LanguageHierarchy<LatteTokenId>() {
 
-        @Override
-        protected Collection<LatteTokenId> createTokenIds() {
-            return EnumSet.allOf(LatteTokenId.class);
-        }
+			@Override
+			protected Collection<LatteTokenId> createTokenIds() {
+				return EnumSet.allOf(LatteTokenId.class);
+			}
 
-        @Override
-        protected Map<String, Collection<LatteTokenId>> createTokenCategories() {
-            Map<String,Collection<LatteTokenId>> cats = new HashMap<String,Collection<LatteTokenId>>();
-            return cats;
-        }
+			@Override
+			protected Map<String, Collection<LatteTokenId>> createTokenCategories() {
+				Map<String, Collection<LatteTokenId>> cats = new HashMap<String, Collection<LatteTokenId>>();
+				return cats;
+			}
 
-        @Override
-        protected Lexer<LatteTokenId> createLexer(LexerRestartInfo<LatteTokenId> info) {
-			// TODO 
-            return new LatteLexer(info);
-        }
-		
-        @Override
-        protected String mimeType() {
-            return "text/x-latte";
-        }
-        
-    }.language();
+			@Override
+			protected Lexer<LatteTokenId> createLexer(LexerRestartInfo<LatteTokenId> info) {
+				info.inputAttributes().setValue(info.languagePath(), "syntax", syntax, false);
+				return new LatteLexer(info);
+			}
 
-    public static Language<LatteTokenId> language() {
-        return language;
-    }
-
+			@Override
+			protected String mimeType() {
+				return "text/x-latte";
+			}
+		}.language();
+	}
 }

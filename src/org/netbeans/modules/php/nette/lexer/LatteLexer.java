@@ -30,6 +30,8 @@ package org.netbeans.modules.php.nette.lexer;
 import java.util.ArrayList;
 import java.util.List;
 import org.netbeans.api.lexer.Token;
+import org.netbeans.modules.php.nette.lexer.syntax.LatteSyntax;
+import org.netbeans.modules.php.nette.lexer.syntax.Syntax;
 import org.netbeans.spi.lexer.Lexer;
 import org.netbeans.spi.lexer.LexerInput;
 import org.netbeans.spi.lexer.LexerRestartInfo;
@@ -46,6 +48,8 @@ class LatteLexer implements Lexer<LatteTokenId> {
     private final LatteColoringLexer scanner;
 
     private LexerInput input;
+	
+	private Syntax syntax = LatteSyntax.getInstance();
 
     private TokenFactory<LatteTokenId> tokenFactory;
 
@@ -53,17 +57,11 @@ class LatteLexer implements Lexer<LatteTokenId> {
 
     LatteLexer(LexerRestartInfo<LatteTokenId> info) {
         state = info.state() == null ? State.OUTER : (State) info.state();
-        /*String macro = null;
-        if(info.inputAttributes() != null)
-            macro = (String) info.inputAttributes().getValue(info.languagePath(), "macro");
-        if(state == State.OUTER && macro != null) {
-            if(!macro.equals("}"))
-                state = State.AFTER_MACRO;
-            else {
-                state = State.OUTER;
-                info.inputAttributes().setValue(info.languagePath(), "macro", null, false);
-            }
-        }*/
+        if(info.inputAttributes() != null) {
+            Syntax s = (Syntax) info.inputAttributes().getValue(info.languagePath(), "syntax");
+			if(s != null)
+				syntax = s;
+		}
         this.input = info.input();
         this.tokenFactory = info.tokenFactory();
         this.scanner = new LatteColoringLexer(info, state);
@@ -142,7 +140,7 @@ class LatteLexer implements Lexer<LatteTokenId> {
 					return null;									//end of file
 				switch(state) {
 					case OUTER:
-						if(ch == '{') {								// start of the macro
+						if(syntax.isOpening(input)) {				// start of the macro
 							state = State.AFTER_LD;					// new state after left delimiter
 							return LatteTokenId.LD;
 						} else {
@@ -298,7 +296,7 @@ class LatteLexer implements Lexer<LatteTokenId> {
                         }
 					// if nothing of above did not matched
 					default:
-						if(ch == '}') {								// closing delimiter
+						if(syntax.isClosing(input)) {				// closing delimiter
 							state = State.OUTER;
 							return LatteTokenId.RD;
 						}

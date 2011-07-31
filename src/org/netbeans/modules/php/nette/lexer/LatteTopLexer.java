@@ -27,7 +27,11 @@
 
 package org.netbeans.modules.php.nette.lexer;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.netbeans.api.lexer.Token;
+import org.netbeans.modules.php.nette.lexer.syntax.LatteSyntax;
+import org.netbeans.modules.php.nette.lexer.syntax.Syntax;
 import org.netbeans.spi.lexer.Lexer;
 import org.netbeans.spi.lexer.LexerInput;
 import org.netbeans.spi.lexer.LexerRestartInfo;
@@ -45,15 +49,23 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
     private final LatteTopColoringLexer scanner;
 
     private LexerInput input;
+	
+	private Syntax syntax = LatteSyntax.getInstance();
 
     private TokenFactory<LatteTopTokenId> tokenFactory;
 
 	/** stores macro name for n:attr (it is passed in the token as token property) */
-    private String property = null;
+    private String macroName = null;
 
     LatteTopLexer(LexerRestartInfo<LatteTopTokenId> info) {
-        State state = info.state() == null ? State.OUTER : ((LexerState)info.state()).getState();
-        State substate = info.state() == null ? State.OUTER : ((LexerState)info.state()).getSubstate();
+		State state = State.OUTER;
+		State substate = State.OUTER;
+		if(info.state() != null) {
+			LexerState lstate = (LexerState) info.state();
+			state = lstate.getState();
+			substate = lstate.getSubstate();
+			syntax = lstate.getSyntax();
+		}
         this.input = info.input();
         this.tokenFactory = info.tokenFactory();
         this.scanner = new LatteTopColoringLexer(info, state, substate);
@@ -70,18 +82,36 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 	@Override
     public Token<LatteTopTokenId> nextToken() {
         LatteTopTokenId tokenId = scanner.nextToken();
-        Token<LatteTopTokenId> token = null;
+        
+		Token<LatteTopTokenId> token = null;
         if (tokenId != null) {
-            if(property != null && tokenId != LatteTopTokenId.HTML) {
+            if(tokenId != LatteTopTokenId.HTML && tokenId != LatteTopTokenId.HTML_TAG) {
                 token = tokenFactory.createPropertyToken(tokenId, input.readLength(),
-                        new LattePropertyProvider(property));
-                property = null;
+                        new LattePropertyProvider(macroName, syntax));
+				checkSyntax();
+                macroName = null;
             } else {
                 token = tokenFactory.createToken(tokenId);
             }
         }
         return token;
     }
+	
+	private void checkSyntax() {
+		String token = input.readText().toString();
+		if(macroName != null && macroName.equals("syntax")) {
+ 			syntax = Syntax.getSyntax(token);
+		} else if(token.contains("/syntax")) {
+			syntax = LatteSyntax.getInstance();
+		} else {
+			Pattern p = Pattern.compile("syntax +([a-z]+)");
+			Matcher m = p.matcher(token);
+			if(m.find()) {
+				String newSyntax = m.group(1);
+				syntax = Syntax.getSyntax(newSyntax);
+			}
+		}
+	}
 
 	@Override
     public Object state() {
@@ -99,6 +129,8 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
     private enum State {
         OUTER,					// outer html code
         AFTER_LD,				// after left delimiter
+		AFTER_LD_COMMENT,		// after left delimiter of comment macro
+		BEFORE_RD,				// before right delimiter
         IN_LATTE,				// in latte general
         IN_LATTE_TAG,			// in <n:tag
         IN_HTML_TAG,			// in <tag
@@ -133,33 +165,31 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
                 return null;										// end of file
             }
             if(state != State.IN_LATTE_ATTR)						// if not in n:attr remove property
-                property = null;
+                macroName = null;
+			
+			boolean opening = false;
             while (c != EOF) {
                 char cc = (char) c;
                 text = input.readText();							// whole text read
                 textLength = text.length();							// length of the whole text
-
-                if (cc == '{') {									// possible start of a macro
-                    substate = state;								// store a top state (to return to after)
-                    if(textLength > 1) {							// if it is part of a longer text
-                        input.backup(1);							// exlude left delimiter
-                        return LatteTopTokenId.HTML;				// end return the rest as HTMl
-                    }
-                        
-                    c = input.read();								// next character
-                    if(!Character.isJavaIdentifierPart(c) && c != '!' && c != '?'
-                            && c != '=' && c != '/' && c != '*') {	// it is not a macro
-                        return LatteTopTokenId.HTML;
-                    }
+				
+				if(syntax.isOpening(input)) {						// possible start of a macro
+					opening = true;
+					substate = state;								// store a top state (to return to after)
+					if(textLength != 1) {							// if it is part of a longer text
+						input.backup(input.readLength() - textLength + 1);	// exlude left delimiter
+						return LatteTopTokenId.HTML;				// end return the rest as HTMl
+					}
+					
+					c = input.read();
 					if(c == '*') {                                  // if comment starts
-						c = input.read();
-						cc = (char)c;
 						while(true) {
-							if(c == '*')
-							{
+							c = input.read();
+							cc = (char)c;
+							if(c == '*') {
 								c = input.read();
 								cc = (char)c;
-								if(c == '}' || c == EOF) {          // if closing comment found or EOF
+								if(syntax.isClosing(input) || c == EOF) {          // if closing comment found or EOF
 									state = substate;
 									return LatteTopTokenId.LATTE;	// it is comment macro
 								}
@@ -168,33 +198,39 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 							if(c == EOF) {
 								return LatteTopTokenId.HTML;		// else it is HTML
 							}
-							c = input.read();
-							cc = (char)c;
 						}
 					}
-                    state = State.AFTER_LD;								// it is macro - change to after
-                    int innerDelimiters = 0;                            // {macro foo, {$arr[0]['bar']}, whatever}
-                    while(true) {
-                        cc = (char)c;
-                        if (c == '{') {									// another { char - possibly not a macro
-                            innerDelimiters++;
-                        } else {
-                            if(c == '}') {									// end macro delim
-                                if (innerDelimiters == 0) {
-                                    state = substate;
-                                    return LatteTopTokenId.LATTE;
-                                } else {
-                                    innerDelimiters--;
-                                }
-                            }
-                            if(c == EOF) {									// EOF - just HTML
-                                state = substate;
-                                return LatteTopTokenId.HTML;
-                            }
-                        }
-                        c = input.read();
-                    }
+					state = State.AFTER_LD;								// it is macro - change to after
                 }
+				if(state == State.AFTER_LD) {
+					int strLiteral = -1;
+					boolean escape = false;
+					while(true) {
+						cc = (char) c;
+						if(!escape) {
+							if(c == '\'' || c == '"') {
+								if(strLiteral == -1) {
+									strLiteral = c;
+								} else if(strLiteral == c) {
+									strLiteral = -1;
+								}
+							}
+						}
+						escape = false;
+						if(c == '\\' && strLiteral != -1) {
+							escape = true;
+						}
+						if(syntax.isClosing(input) && strLiteral == -1) {
+							state = substate;
+							return LatteTopTokenId.LATTE;
+						}
+						if(c == EOF) {                  // EOF - just HTML
+							state = substate;
+							return LatteTopTokenId.HTML;
+						}
+						c = input.read();
+					}
+				}
                 //parsing <tag n:attr>
                 if(state == State.OUTER && c == '<') {					// tag opening char found
                     if(input.readLength() > 1) {						// if it is part of longer text
@@ -213,7 +249,7 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
                                 }
                                 if(input.readText().toString().startsWith(("<n:"))) {		// <n:tag !
                                     state = State.IN_LATTE_TAG;
-                                    property = input.readText().toString().substring(3);	// gets macro name
+                                    macroName = input.readText().toString().substring(3);	// gets macro name
                                     return LatteTopTokenId.LATTE_TAG;
                                 } else {										// normal HTMl tag
                                     state = State.IN_HTML_TAG;
@@ -284,13 +320,13 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
                     if(c == 'n') {										// possible start of nette namespace (n:)
                         c = input.read();
                         if(c == ':') {									// found nette namespace
-                            property = "";								// clear macro name
+                            macroName = "";								// clear macro name
                             while(c != EOF) {
                                 c = input.read();
                                 if(Character.isLetter(c))				// attribute name (macro name)
-                                    property += (char)c;				// add next char of macro name
+                                    macroName += (char)c;				// add next char of macro name
                                 else if(c == '-')						// for tag- and inner- prefixes
-                                    property = "";						// do not want prefixes in macro name
+                                    macroName = "";						// do not want prefixes in macro name
 								else if(c == '"') {							// starting attr value
                                     substate = state;					// stores top state
                                     state = State.IN_LATTE_ATTR;		// in latte attr
@@ -299,7 +335,7 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 									return LatteTopTokenId.HTML;
 								}
                             }
-                            property = null;
+                            macroName = null;
                         }
                     }
                 }
@@ -339,7 +375,7 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
         }
 
         Object getState() {
-            return new LexerState(state, substate);
+            return new LexerState(state, substate, syntax);
         }
     }
 
@@ -350,10 +386,12 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 
         State state;
         State substate;
+		Syntax syntax;
 
-        public LexerState(State state, State substate) {
+        public LexerState(State state, State substate, Syntax syntax) {
             this.state = state;
             this.substate = substate;
+			this.syntax = syntax;
         }
 
         public State getState() {
@@ -363,6 +401,10 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
         public State getSubstate() {
             return substate;
         }
+
+		private Syntax getSyntax() {
+			return syntax;
+		}
     }
 
 	/**
@@ -371,16 +413,21 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 	 */
     class LattePropertyProvider<LatteTopTokenId> implements TokenPropertyProvider {
 
-        private final String property;
+        private final String macroName;
+		
+		private final Syntax syntax;
 
-        public LattePropertyProvider(String prop) {
-            property = prop;
+        public LattePropertyProvider(String macroName, Syntax syntax) {
+            this.macroName = macroName;
+			this.syntax = syntax;
         }
 
 		@Override
         public Object getValue(Token token, Object key) {
             if("macro".equals(key))
-                return property;
+                return macroName;
+			if("syntax".equals(key))
+				return syntax;
             return null;
         }
 

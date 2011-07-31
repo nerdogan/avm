@@ -37,6 +37,7 @@ import org.netbeans.api.lexer.Language;
 import org.netbeans.api.lexer.LanguagePath;
 import org.netbeans.api.lexer.Token;
 import org.netbeans.api.lexer.TokenId;
+import org.netbeans.modules.php.nette.lexer.syntax.Syntax;
 import org.netbeans.spi.lexer.LanguageEmbedding;
 import org.netbeans.spi.lexer.LanguageHierarchy;
 import org.netbeans.spi.lexer.Lexer;
@@ -94,7 +95,8 @@ public enum LatteTopTokenId implements TokenId {
         {
             LatteTopTokenId id = token.id();
             if (id == LatteTopTokenId.LATTE) {
-                return LanguageEmbedding.create(LatteTokenId.language(), 0, 0, false);	// if anything latte, process as latte
+				Syntax syntax = (Syntax) token.getProperty("syntax");
+                return LanguageEmbedding.create(LatteTokenId.language(syntax), 0, 0, false);	// if anything latte, process as latte
             } else {
                 return LanguageEmbedding.create(HTMLTokenId.language(), 0, 0, true);	// anything else is HTML
             }
