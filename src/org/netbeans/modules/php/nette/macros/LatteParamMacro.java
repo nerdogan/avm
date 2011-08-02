@@ -24,7 +24,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package org.netbeans.modules.php.nette.macros;
 
 import java.util.logging.Level;
@@ -39,40 +38,31 @@ import javax.swing.text.StyledDocument;
  */
 public class LatteParamMacro extends LatteMacro {
 
-    public LatteParamMacro(String macro, boolean isPair) {
-        this(macro, isPair, macro);
-    }
-    
-    public LatteParamMacro(String macro, boolean isPair, String endMacro) {
-        super(macro, isPair, endMacro);
-    }
+	public LatteParamMacro(String macro, boolean isPair) {
+		this(macro, isPair, macro);
+	}
 
-	
-    @Override
-    public void process(JTextComponent jtc, int dotOffset) {
-        StyledDocument doc = (StyledDocument) jtc.getDocument();
-        try {
-            doc.insertString(dotOffset, "{"+macro+" }", null);			// adds space for macro params
-            if(isPair) {
-				// FIXME get rid of this
-				// used when text selected (useless since completion appears only after { char)
-                doc.insertString(jtc.getSelectionEnd(), "{/"+endMacro+"}", null);
-            } else if(jtc.getSelectedText() != null) {
-                doc.remove(jtc.getSelectionStart(), jtc.getSelectionEnd()-jtc.getSelectionStart());
-            }
-            jtc.setCaretPosition(dotOffset + macro.length() + 2);		// moves caret to param position for user
-        }
-        catch(Exception ex) {
-            Logger.getLogger(LatteCommentMacro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+	public LatteParamMacro(String macro, boolean isPair, String endMacro) {
+		super(macro, isPair, endMacro);
+	}
 
-    @Override
-    public String getText() {				// adds space for macro params
-        String text = '{'+macro+" }";
-        if(isPair)
-            text += "{/"+endMacro+'}';
-        return text;
-    }
+	@Override
+	public void process(JTextComponent jtc, int dotOffset) {
+		StyledDocument doc = (StyledDocument) jtc.getDocument();
+		try {
+			doc.insertString(dotOffset, getText(), null);			// adds space for macro params
+			jtc.setCaretPosition(dotOffset + macro.length() + syntax.opening().length() + 1);		// moves caret to param position for user
+		} catch(Exception ex) {
+			Logger.getLogger(LatteCommentMacro.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 
+	@Override
+	public String getText() {				// adds space for macro params
+		String text = syntax.opening() + macro + " " + syntax.closing();
+		if(isPair) {
+			text += syntax.opening() + "/" + endMacro + syntax.closing();
+		}
+		return text;
+	}
 }

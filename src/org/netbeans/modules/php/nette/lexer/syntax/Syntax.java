@@ -31,6 +31,8 @@ import org.netbeans.spi.lexer.LexerInput;
  */
 public abstract class Syntax {
 
+	public static String CHARS = "{%<";
+
 	public static Syntax getSyntax(String name) {
 		if(name.equals("double")) {
 			return DoubleSyntax.getInstance();
@@ -46,9 +48,51 @@ public abstract class Syntax {
 
 	abstract public boolean isOpening(LexerInput input);
 
+	abstract public boolean isOpening(String string);
+
 	abstract public boolean isClosing(LexerInput input);
 
-	abstract public int closingLength();
+	abstract public boolean whitespaceAllowed();
+
+	abstract public boolean startsWith(String string);
 
 	abstract public String opening();
+
+	abstract public String closing();
+
+	class Reader {
+
+		private String str;
+		private LexerInput input;
+		private int idx = 0;
+
+		public Reader(String s) {
+			this.str = s == null ? "" : s;
+		}
+
+		public Reader(LexerInput input) {
+			this.input = input;
+		}
+
+		public int read() {
+			if(input != null) {
+				return input.read();
+			} else {
+				idx++;
+				if(idx >= str.length()) {
+					idx--;
+					return -1;
+				}
+				return str.charAt(idx);
+			}
+		}
+
+		public void backup(int i) {
+			if(input == null) {
+				idx -= i;
+			} else {
+				input.backup(i);
+			}
+		}
+	}
 }

@@ -24,7 +24,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package org.netbeans.modules.php.nette.editor.completion;
 
 import java.util.ArrayList;
@@ -33,10 +32,13 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.text.StyledDocument;
+import org.netbeans.api.lexer.Token;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.php.nette.editor.completion.items.LatteCompletionItem;
 import org.netbeans.modules.php.nette.editor.completion.items.MacroCompletionItem;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
+import org.netbeans.modules.php.nette.lexer.syntax.LatteSyntax;
+import org.netbeans.modules.php.nette.lexer.syntax.Syntax;
 import org.netbeans.modules.php.nette.macros.LatteMacro;
 import org.netbeans.modules.php.nette.macros.LatteParamMacro;
 import org.netbeans.modules.php.nette.macros.MacroDefinitions;
@@ -52,19 +54,21 @@ public class OutsideMacroResolver {
 	public static void resolve(CompletionResultSet completionResultSet, TokenSequence<LatteTopTokenId> sequence,
 			Document document, int caretOffset, List<LatteMacro> endMacros) {
 
-		String filter = getFilter(document, caretOffset);
+		Syntax syntax = getSyntax(sequence);
+
+		String filter = getFilter(document, caretOffset, syntax);
 		int startOffset = caretOffset - filter.length();
 
 		if(filter.equals("")) {
 			return;
 		}
-		
+
 		// end macro and friend macro completion
-		completionResultSet.addAllItems(getFriendMacroCompletion(endMacros, startOffset, caretOffset, filter));
+		completionResultSet.addAllItems(getFriendMacroCompletion(endMacros, startOffset, caretOffset, filter, syntax));
 
 		// macro completion
-		completionResultSet.addAllItems(getMacroCompletion(startOffset, caretOffset, filter));
-		
+		completionResultSet.addAllItems(getMacroCompletion(startOffset, caretOffset, filter, syntax));
+
 		// n:attribute completion
 		completionResultSet.addAllItems(getNAttributeCompletion(startOffset, caretOffset, filter));
 
@@ -73,13 +77,15 @@ public class OutsideMacroResolver {
 	}
 
 	private static List<CompletionItem> getFriendMacroCompletion(List<LatteMacro> endMacros,
-			int startOffset, int caretOffset, String filter) {
+			int startOffset, int caretOffset, String filter, Syntax syntax) {
 
 		List<CompletionItem> list = new ArrayList<CompletionItem>();
 		for(LatteMacro macro : endMacros) {
+			macro.setSyntax(syntax);
 			String m = macro.isPair() ? macro.getEndMacro() : macro.getMacro();
 			if(macro.isPair()) {
 				macro = new LatteMacro("/" + macro.getEndMacroName());
+				macro.setSyntax(syntax);
 			}
 			if(m.startsWith(filter)) {
 				list.add(new LatteCompletionItem(macro, startOffset, caretOffset));
@@ -88,9 +94,10 @@ public class OutsideMacroResolver {
 		return list;
 	}
 
-	private static List<CompletionItem> getMacroCompletion(int startOffset, int caretOffset, String filter) {
+	private static List<CompletionItem> getMacroCompletion(int startOffset, int caretOffset, String filter, Syntax syntax) {
 		List<CompletionItem> list = new ArrayList<CompletionItem>();
 		for(LatteMacro macro : MacroDefinitions.macros) {
+			macro.setSyntax(syntax);
 			if(macro.getMacro().startsWith(filter)) {
 				list.add(new LatteCompletionItem(macro, startOffset, caretOffset));
 			}
@@ -104,7 +111,7 @@ public class OutsideMacroResolver {
 		if(!filter.startsWith("n:")) {
 			return list;
 		}
-		
+
 		for(LatteMacro macro : MacroDefinitions.macros) {
 			if(!(macro instanceof LatteParamMacro) || !macro.isPair()) {
 				continue;
@@ -130,7 +137,7 @@ public class OutsideMacroResolver {
 				list.add(new MacroCompletionItem(tag, startOffset, caretOffset, true));
 			}
 		}
-		
+
 		return list;
 	}
 
@@ -162,9 +169,9 @@ public class OutsideMacroResolver {
 		return list;
 	}
 
-	private static String getFilter(Document document, int caretOffset) {
+	private static String getFilter(Document document, int caretOffset, Syntax syntax) {
 		String filter = "";
-		
+
 		// determining what was written:
 		try {
 			final StyledDocument bDoc = (StyledDocument) document;
@@ -175,11 +182,11 @@ public class OutsideMacroResolver {
 			String filterX = "";
 			while(start >= lineElement.getStartOffset()) {
 				char c = bDoc.getText(start - 1, 1).charAt(0);
-				if(c == '{') {
+				if(!filterX.isEmpty() && syntax.startsWith(filterX)) {
 					macroStart = start - 1;
 					break;
 				}
-				if(Character.isWhitespace(c) || c == '}' || c == '<') {
+				if(Character.isWhitespace(c)) {
 					if(filterX.startsWith("n:")) {
 						if(c == '<') {
 							macroStart = start - 1;
@@ -195,8 +202,20 @@ public class OutsideMacroResolver {
 			filter = bDoc.getText(macroStart, caretOffset - macroStart).trim();
 		} catch(BadLocationException e) {
 		}
-		
+
 		return filter;
 	}
 
+	private static Syntax getSyntax(TokenSequence<LatteTopTokenId> sequence) {
+		Syntax syntax = LatteSyntax.getInstance();
+
+		Token<LatteTopTokenId> token = sequence.token();
+		if(token != null) {
+			Syntax s = (Syntax) token.getProperty("syntax");
+			if(s != null) {
+				syntax = s;
+			}
+		}
+		return syntax;
+	}
 }

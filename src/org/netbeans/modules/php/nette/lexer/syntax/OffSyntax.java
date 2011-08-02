@@ -46,17 +46,32 @@ public class OffSyntax extends Syntax {
 	}
 
 	@Override
+	public boolean isOpening(String string) {
+		return false;
+	}
+
+	@Override
 	public boolean isClosing(LexerInput input) {
 		return false;
 	}
 
 	@Override
-	public int closingLength() {
-		return 0;
+	public boolean whitespaceAllowed() {
+		return false;
+	}
+
+	@Override
+	public boolean startsWith(String string) {
+		return false;
 	}
 
 	@Override
 	public String opening() {
+		return "";
+	}
+
+	@Override
+	public String closing() {
 		return "";
 	}
 }

@@ -24,7 +24,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package org.netbeans.modules.php.nette.editor.completion;
 
 import java.util.ArrayList;
@@ -38,6 +37,8 @@ import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.php.api.util.Pair;
 import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
+import org.netbeans.modules.php.nette.lexer.syntax.LatteSyntax;
+import org.netbeans.modules.php.nette.lexer.syntax.Syntax;
 import org.netbeans.modules.php.nette.macros.LatteMacro;
 import org.netbeans.modules.php.nette.macros.MacroDefinitions;
 import org.netbeans.modules.php.nette.utils.LexUtils;
@@ -60,7 +61,6 @@ public class LatteCompletionProvider implements CompletionProvider {
 	 * (used for finding unmatched macros for completion of their end/friend macros)
 	 */
 	MacroCounterMap paired;
-
 	/**
 	 * Stores text written by user for auto-showing completion box (see getAutoQueryTypes method)
 	 */
@@ -87,7 +87,7 @@ public class LatteCompletionProvider implements CompletionProvider {
 				sequence.move(caretOffset);
 				if(sequence.moveNext() || sequence.movePrevious()) {
 					Token<LatteTopTokenId> token = sequence.token();
-					
+
 					if(token.id() == LatteTopTokenId.LATTE) {
 						//inside macro completion
 						InsideMacroResolver.resolve(completionResultSet, sequence, document, caretOffset);
@@ -116,15 +116,30 @@ public class LatteCompletionProvider implements CompletionProvider {
 	public int getAutoQueryTypes(JTextComponent jtc, String string) {
 		if(string.equals(":") && autoShowText != null) {
 			autoShowText += string;
-		} else {
-			autoShowText = null;
-		}
-		if(string.equals("n")) {
-			autoShowText = string;
 		}
 
-		return (string.startsWith("{") || string.startsWith("n:")
-				|| (autoShowText != null && autoShowText.equals("n:"))) ? COMPLETION_QUERY_TYPE : 0;
+		if(string.equals("n")) {
+			autoShowText = string;
+		} else {
+			Syntax syntax = getSyntax(jtc);
+			if(string.length() == 1 && Syntax.CHARS.indexOf(string) != -1) {
+				autoShowText = (autoShowText == null ? "" : autoShowText);
+
+				if(syntax.startsWith(autoShowText + string)) {
+					if(syntax.isOpening(autoShowText + string)) {
+						return COMPLETION_QUERY_TYPE;
+					} else {
+						autoShowText += string;
+					}
+				} else {
+					autoShowText = null;
+				}
+			} else if(Syntax.CHARS.indexOf(string) == -1) {
+				autoShowText = null;
+			}
+		}
+		return (string.startsWith("n:")
+				|| ("n:".equals(autoShowText))) ? COMPLETION_QUERY_TYPE : 0;
 	}
 
 	/**
@@ -134,7 +149,7 @@ public class LatteCompletionProvider implements CompletionProvider {
 	 */
 	private MacroCounterMap preprocessUnclosedMacros(TokenSequence<LatteTopTokenId> sequence) {
 		paired = new MacroCounterMap();
-		
+
 		// find all pair macros
 		for(LatteMacro macro : MacroDefinitions.macros) {
 			if(macro.isPair()) {
@@ -196,6 +211,26 @@ public class LatteCompletionProvider implements CompletionProvider {
 			}
 		}
 		return endMacros;
+	}
+
+	private Syntax getSyntax(JTextComponent jtc) {
+		TokenSequence<LatteTopTokenId> sequence = LexUtils.getTopSequence(jtc.getDocument());
+		sequence.move(jtc.getCaretPosition());
+
+		Syntax syntax = LatteSyntax.getInstance();
+
+		if(sequence.moveNext() || sequence.movePrevious()) {
+			Token<LatteTopTokenId> token = sequence.token();
+			if(token != null) {
+				Syntax s = (Syntax) token.getProperty("syntax");
+				if(s != null) {
+					syntax = s;
+				}
+			}
+
+		}
+
+		return syntax;
 	}
 
 	private class MacroCounterMap extends HashMap<String, Pair<LatteMacro, Integer>> {

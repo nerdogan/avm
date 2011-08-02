@@ -32,16 +32,25 @@ import org.netbeans.spi.lexer.LexerInput;
 public class DoubleSyntax extends Syntax {
 
 	private static DoubleSyntax instance = new DoubleSyntax();
-	
+
 	private DoubleSyntax() {
 	}
-	
+
 	public static DoubleSyntax getInstance() {
 		return instance;
 	}
 
 	@Override
-	public boolean isOpening(LexerInput input) {
+	public boolean isOpening(LexerInput linput) {
+		return process(new Reader(linput));
+	}
+
+	@Override
+	public boolean isOpening(String string) {
+		return process(new Reader(string));
+	}
+
+	private boolean process(Reader input) {
 		input.backup(1);
 		if(input.read() == '{') {
 			if(input.read() == '{') {
@@ -69,12 +78,22 @@ public class DoubleSyntax extends Syntax {
 	}
 
 	@Override
-	public int closingLength() {
-		return 2;
+	public boolean whitespaceAllowed() {
+		return false;
+	}
+
+	@Override
+	public boolean startsWith(String string) {
+		return string.startsWith("{{");
 	}
 
 	@Override
 	public String opening() {
 		return "{{";
+	}
+
+	@Override
+	public String closing() {
+		return "}}";
 	}
 }

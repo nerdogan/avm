@@ -42,13 +42,34 @@ public class LatteSyntax extends Syntax {
 
 	@Override
 	public boolean isOpening(LexerInput input) {
+//		input.backup(1);
+//		if(input.read() == '{') {
+//			int c = input.read();
+//			input.backup(1);
+//			if(c != ' ' && c != '\r' && c != '\n' && c != '\'' && c != '"' && c != '{' && c != '}') {
+//				return true;
+//			}
+//		}
+//		return false;
 		input.backup(1);
-		if(input.read() == '{') {
-			int c = input.read();
-			input.backup(1);
-			if(c != ' ' && c != '\r' && c != '\n' && c != '\'' && c != '"' && c != '{' && c != '}') {
-				return true;
-			}
+		String del = "";
+		del += (char) input.read();
+		del += (char) input.read();
+		input.backup(1);
+		return isOpening(del);
+	}
+
+	@Override
+	public boolean isOpening(String string) {
+		boolean res = string.startsWith("{");
+
+		if(string.length() != 2) {
+			return res;
+		}
+
+		char c = string.charAt(1);
+		if(c != ' ' && c != '\r' && c != '\n' && c != '\'' && c != '"' && c != '{' && c != '}') {
+			return res;
 		}
 		return false;
 	}
@@ -63,12 +84,22 @@ public class LatteSyntax extends Syntax {
 	}
 
 	@Override
-	public int closingLength() {
-		return 1;
+	public boolean whitespaceAllowed() {
+		return false;
+	}
+
+	@Override
+	public boolean startsWith(String string) {
+		return string.startsWith("{");
 	}
 
 	@Override
 	public String opening() {
 		return "{";
+	}
+
+	@Override
+	public String closing() {
+		return "}";
 	}
 }

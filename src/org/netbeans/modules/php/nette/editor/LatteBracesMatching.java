@@ -87,7 +87,7 @@ public class LatteBracesMatching implements BracesMatcher {
 				/*ts2.move(searchOffset-ts.offset());
 				matches.addAll(findBrackets(ts2));*/
 
-                if(!t.text().toString().startsWith(syntax.opening())) {		// process only macros
+                if(!syntax.isOpening(t.text().toString())) {				// process only macros
                     return null;
                 }
 				
@@ -108,7 +108,7 @@ public class LatteBracesMatching implements BracesMatcher {
                         /*Collections.addAll(matches,*/ return new int[] {
                             ts.offset(), ts.offset() + t.length(),                  //whole area
                             ts.offset(), ts.offset() + ts2.offset() + t2.length(),  //left delimiter + macro
-                            ts.offset() + t.length() - syntax.closingLength(), ts.offset() + t.length()  //right delimiter
+                            ts.offset() + t.length() - syntax.closing().length(), ts.offset() + t.length()  //right delimiter
                         }/*)*/;
 						//return matches.toArray();
                     }
@@ -121,7 +121,7 @@ public class LatteBracesMatching implements BracesMatcher {
                 return new int[] {
                     ts.offset(), ts.offset() + t.length(),                          //whole area
                     ts.offset(), ts.offset() + LDlength, //left delimiter
-                    ts.offset() + t.length() - syntax.closingLength(), ts.offset() + t.length()          //right delimiter
+                    ts.offset() + t.length() - syntax.closing().length(), ts.offset() + t.length()          //right delimiter
                 };
             }
         }
@@ -208,7 +208,7 @@ public class LatteBracesMatching implements BracesMatcher {
                 if(t.id() == LatteTopTokenId.LATTE) {		// process only latte
 					Syntax syntax = (Syntax) t.getProperty("syntax");
                     
-					if(!t.text().toString().startsWith(syntax.opening())) {		// process only macros
+					if(!syntax.isOpening(t.text().toString())) {		// process only macros
                         continue;
                     }
 					// go through inside macro tokens
@@ -226,7 +226,7 @@ public class LatteBracesMatching implements BracesMatcher {
                                         || friends.contains(macroName2)) {			// it is start/friend/end macro
                                     return new int[] {
 											ts.offset(), ts.offset() + ts2.offset() + t2.length(), // hi-light {macro
-											ts.offset() + t.length() - syntax.closingLength(), ts.offset() + t.length() // hi-light }
+											ts.offset() + t.length() - syntax.closing().length(), ts.offset() + t.length() // hi-light }
 										};
                                 }
                             }

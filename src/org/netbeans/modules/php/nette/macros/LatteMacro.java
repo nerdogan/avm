@@ -24,13 +24,14 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package org.netbeans.modules.php.nette.macros;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.StyledDocument;
+import org.netbeans.modules.php.nette.lexer.syntax.LatteSyntax;
+import org.netbeans.modules.php.nette.lexer.syntax.Syntax;
 
 /**
  * Base Macro class
@@ -39,96 +40,100 @@ import javax.swing.text.StyledDocument;
  */
 public class LatteMacro {
 
-    protected String macro;
-    protected boolean isPair;
-    protected String endMacro;
-    
-    public LatteMacro(String macro) {
-        this(macro, false, macro);
-    }
+	protected String macro;
+	protected boolean isPair;
+	protected String endMacro;
+	protected Syntax syntax = LatteSyntax.getInstance();
 
-    public LatteMacro(String macro, boolean isPair) {
-        this(macro, isPair, macro);
-    }
+	public LatteMacro(String macro) {
+		this(macro, false, macro);
+	}
 
-    public LatteMacro(String macro, boolean isPair, String endMacro) {
-        this.macro = macro;
-        this.isPair = isPair;
-        this.endMacro = endMacro;
-    }
+	public LatteMacro(String macro, boolean isPair) {
+		this(macro, isPair, macro);
+	}
+
+	public LatteMacro(String macro, boolean isPair, String endMacro) {
+		this.macro = macro;
+		this.isPair = isPair;
+		this.endMacro = endMacro;
+	}
 
 	/**
 	 * Completes the macro in the document
 	 * @param jtc
 	 * @param dotOffset
 	 */
-    public void process(JTextComponent jtc, int dotOffset) {
-        StyledDocument doc = (StyledDocument) jtc.getDocument();
-        try {
-            doc.insertString(dotOffset, "{"+macro+"}", null);
-            if(isPair) {
+	public void process(JTextComponent jtc, int dotOffset) {
+		StyledDocument doc = (StyledDocument) jtc.getDocument();
+		try {
+			doc.insertString(dotOffset, getMacro(), null);
+			if(isPair) {
 				// FIXME get rid of this
 				// used when text selected (useless since completion appears only after { char)
-                doc.insertString(jtc.getSelectionEnd(), "{/"+endMacro+"}", null);
-            } else {
-                doc.remove(jtc.getSelectionStart(), jtc.getSelectionEnd()-jtc.getSelectionStart());
-            }
-            jtc.setCaretPosition(dotOffset + macro.length() + 2);		// moves caret after (start)
-        }
-        catch(Exception ex) {
-            Logger.getLogger(LatteCommentMacro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+				doc.insertString(jtc.getSelectionEnd(), getEndMacro(), null);
+			} else {
+				doc.remove(jtc.getSelectionStart(), jtc.getSelectionEnd() - jtc.getSelectionStart());
+			}
+			jtc.setCaretPosition(dotOffset + macro.length() + syntax.opening().length() + syntax.closing().length());		// moves caret after (start)
+		} catch(Exception ex) {
+			Logger.getLogger(LatteCommentMacro.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 
 	/**
 	 * Returns text to be used (shown) in completion box
 	 * @return
 	 */
-    public String getText() {
-        String text = getMacro();
-        if(isPair)
-            text += getEndMacro();
-        return text;
-    }
+	public String getText() {
+		String text = getMacro();
+		if(isPair) {
+			text += getEndMacro();
+		}
+		return text;
+	}
 
 	/**
 	 * Return start macro itself (with delimiters)
 	 * @return
 	 */
-    public String getMacro() {
-        return '{'+macro+'}';
-    }
+	public String getMacro() {
+		return syntax.opening() + macro + syntax.closing();
+	}
 
 	/**
 	 * Return row macro name
 	 * @return
 	 */
-    public String getMacroName() {
-        return macro;
-    }
+	public String getMacroName() {
+		return macro;
+	}
 
 	/**
 	 * Returns end macro itself (with delimiters)
 	 * @return
 	 */
-    public String getEndMacro() {
-        return "{/"+endMacro+"}";
-    }
+	public String getEndMacro() {
+		return syntax.opening() + "/" + endMacro + syntax.closing();
+	}
 
 	/**
 	 * Returns end macro name (can differ from start macro name!)
 	 * @return
 	 */
-    public String getEndMacroName() {
-        return endMacro;
-    }
+	public String getEndMacroName() {
+		return endMacro;
+	}
 
 	/**
 	 * Is macro a pair macro?
 	 * @return
 	 */
-    public boolean isPair() {
-        return isPair;
-    }
+	public boolean isPair() {
+		return isPair;
+	}
 
+	public void setSyntax(Syntax syntax) {
+		this.syntax = syntax;
+	}
 }

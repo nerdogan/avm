@@ -79,14 +79,20 @@ public class LatteCompletionItem implements CompletionItem {
 
 	@Override
     public int getPreferredWidth(Graphics grphcs, Font font) {
-        return CompletionUtilities.getPreferredWidth(macro.getText(), null, grphcs, font);
+        return CompletionUtilities.getPreferredWidth(format(macro.getText()), null, grphcs, font);
     }
 
 	@Override
     public void render(Graphics grphcs, Font font, Color color, Color color1, int width, int height, boolean selected) {
-        CompletionUtilities.renderHtml(null, macro.getText(), null, grphcs, font,
+        CompletionUtilities.renderHtml(null, format(macro.getText()), null, grphcs, font,
             (selected ? Color.white : fieldColor), width, height, selected);
     }
+	
+	private String format(String text) {
+		text = text.replace("<", "&lt;");
+		text = text.replace(">", "&gt;");
+		return text;
+	}
 
 	@Override
     public CompletionTask createDocumentationTask() {

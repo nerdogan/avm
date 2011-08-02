@@ -41,7 +41,16 @@ public class AspSyntax extends Syntax {
 	}
 
 	@Override
-	public boolean isOpening(LexerInput input) {
+	public boolean isOpening(LexerInput linput) {
+		return process(new Reader(linput));
+	}
+
+	@Override
+	public boolean isOpening(String string) {
+		return process(new Reader(string));
+	}
+	
+	private boolean process(Reader input) {
 		input.backup(1);
 		if(input.read() == '<') {
 			if(input.read() == '%') {
@@ -70,12 +79,22 @@ public class AspSyntax extends Syntax {
 	}
 
 	@Override
-	public int closingLength() {
-		return 2;
+	public boolean whitespaceAllowed() {
+		return true;
+	}
+
+	@Override
+	public boolean startsWith(String string) {
+		return string.startsWith("<%");
 	}
 
 	@Override
 	public String opening() {
 		return "<%";
+	}
+
+	@Override
+	public String closing() {
+		return "%>";
 	}
 }

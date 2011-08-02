@@ -39,11 +39,19 @@ public class PythonSyntax extends Syntax {
 	public static PythonSyntax getInstance() {
 		return instance;
 	}
-	
 	private int character = '{';
 
 	@Override
-	public boolean isOpening(LexerInput input) {
+	public boolean isOpening(LexerInput linput) {
+		return process(new Reader(linput));
+	}
+
+	@Override
+	public boolean isOpening(String string) {
+		return process(new Reader(string));
+	}
+
+	private boolean process(Reader input) {
 		input.backup(1);
 		if(input.read() == '{') {
 			int c = input.read();
@@ -75,12 +83,22 @@ public class PythonSyntax extends Syntax {
 	}
 
 	@Override
-	public int closingLength() {
-		return 2;
+	public boolean whitespaceAllowed() {
+		return true;
+	}
+
+	@Override
+	public boolean startsWith(String string) {
+		return string.startsWith("{{") || string.startsWith("{%");
 	}
 
 	@Override
 	public String opening() {
-		return "{";
+		return "{" + (character == '}' ? '{' : character);
+	}
+
+	@Override
+	public String closing() {
+		return character + "}";
 	}
 }

@@ -42,6 +42,6 @@ public class LatteSingleMacro extends LatteMacro {
     @Override
     public void process(JTextComponent jtc, int dotOffset) {
         super.process(jtc, dotOffset);
-        jtc.setCaretPosition(jtc.getCaretPosition() - 1);	// moves caret back (after macro)
+        jtc.setCaretPosition(jtc.getCaretPosition() - syntax.closing().length());	// moves caret back (after macro)
     }
 }
