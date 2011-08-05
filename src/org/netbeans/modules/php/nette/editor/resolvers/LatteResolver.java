@@ -34,6 +34,8 @@ import org.netbeans.modules.php.nette.editor.macros.processors.MacroProcessorFac
 import org.netbeans.modules.php.nette.editor.macros.processors.MacroProcessor;
 import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
+import org.netbeans.modules.php.nette.macros.LatteMacro;
+import org.netbeans.modules.php.nette.macros.MacroDefinitions;
 import org.netbeans.modules.php.nette.utils.LexUtils;
 
 /**
@@ -74,16 +76,23 @@ public class LatteResolver extends TemplateResolver {
 				setMacroName(null);
 				continue;
 			}
+			
+			if (t2.id() == LatteTokenId.VARIABLE && macro.equals("")) {
+				embedder.embed("@@@");
+				return;
+			}
 
 			int start = sequence2.offset() + sequence.offset();
 			if (!macro.equals("")) {
 				MacroProcessor macroProcessor = MacroProcessorFactory.getMacroProcessor(macro);
 				macroProcessor.process(sequence, sequence2, start, macro, endMacro, embedder);
-
+				LatteMacro m = MacroDefinitions.getMacro(macro);
+				if(m != null && !m.isControl()) {
+					embedder.embed("@@@");
+				}
 				break;
 			}
 		}
-		embedder.embed("@@@");
 	}
 
 	private boolean isEndMacro(Token<LatteTokenId> t2, TokenSequence<LatteTokenId> sequence2) {

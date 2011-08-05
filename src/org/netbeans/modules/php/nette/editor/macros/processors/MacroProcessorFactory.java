@@ -54,36 +54,10 @@ abstract public class MacroProcessorFactory {
 		specialMacros.add("cache");
 	};
 
-	private static final List<String> blockMacros = new ArrayList<String>();
-	static {
-		blockMacros.add("foreach");
-		blockMacros.add("for");
-		blockMacros.add("while");
-		blockMacros.add("if");
-		blockMacros.add("ifset");
-		blockMacros.add("ifCurrent");
-		blockMacros.add("block");
-		blockMacros.add("snippet");
-		blockMacros.add("capture");
-		blockMacros.add("syntax");
-	};
-
-	private static final List<String> signMacros = new ArrayList<String>();
-	static {
-		signMacros.add("=");
-		signMacros.add("_");
-		signMacros.add("!");
-		signMacros.add("!=");
-		signMacros.add("!_");
-		signMacros.add("?");
-	};
-
 	public static MacroProcessor getMacroProcessor(String macro) {
 		if (arrayMacros.contains(macro)) {
-			// {var var => ""} ->  $var = "";
 			return new ArrayMacroProcessor();
 		} else if (specialMacros.contains(macro)) {
-			// {link default var => $val} -> "default"; array(var => $val);
 			return new SpecialMacroProcessor();
 		} else {
 			return new NullMacroProcessor();

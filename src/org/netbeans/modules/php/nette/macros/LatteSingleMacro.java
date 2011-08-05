@@ -39,6 +39,10 @@ public class LatteSingleMacro extends LatteMacro {
         super(macro, false);
     }
 
+	public LatteSingleMacro(String macro, boolean isPair, boolean control) {
+		super(macro, isPair, control);
+	}
+
     @Override
     public void process(JTextComponent jtc, int dotOffset) {
         super.process(jtc, dotOffset);

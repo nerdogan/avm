@@ -42,46 +42,46 @@ public class MacroDefinitions {
         new LatteSingleMacro("!$"),
         new LatteSingleMacro("="),
         new LatteSingleMacro("!="),
-        new LatteSingleMacro("?"),
+        new LatteSingleMacro("?", false, true),
         new LatteSingleMacro("_"),
         new LatteSingleMacro("!_"),
         new LatteParamMacro("link", false),
         new LatteParamMacro("plink", false),
-        new LatteParamMacro("if", true),
-        new LatteParamMacro("ifset", true/*, "if"*/),
-        new LatteParamMacro("ifCurrent", true/*, "if"*/),
-        new LatteParamMacro("for", true),
-        new LatteParamMacro("foreach", true),
-        new LatteParamMacro("while", true),
+        new LatteParamMacro("if", true, true),
+        new LatteParamMacro("ifset", true, true),
+        new LatteParamMacro("ifCurrent", true, true),
+        new LatteParamMacro("for", true, true),
+        new LatteParamMacro("foreach", true, true),
+        new LatteParamMacro("while", true, true),
         new LatteParamMacro("include", false),
-        new LatteParamMacro("extends", false),
-        new LatteParamMacro("layout", false),
+        new LatteParamMacro("extends", false, true),
+        new LatteParamMacro("layout", false, true),
         new LatteParamMacro("widget", false),
         new LatteParamMacro("control", false),
-        new LatteParamMacro("cache", true),
-        new LatteParamMacro("snippet", true),
+        new LatteParamMacro("cache", true, true),
+        new LatteParamMacro("snippet", true, true),
         new LatteParamMacro("attr", false),
         new LatteParamMacro("block", true),
-        new LatteParamMacro("define", true),
-        new LatteParamMacro("includeblock", false),
+        new LatteParamMacro("define", true, true),
+        new LatteParamMacro("includeblock", false, true),
         new LatteParamMacro("contentType", false),
-        new LatteParamMacro("status", false),
-        new LatteParamMacro("capture", true),
-        new LatteParamMacro("assign", false),
-        new LatteParamMacro("default", false),
-        new LatteParamMacro("var", false),
-        new LatteParamMacro("dump", false),
-        new LatteParamMacro("syntax", true),
-        new LatteParamMacro("use", false),
+        new LatteParamMacro("status", false, true),
+        new LatteParamMacro("capture", true, true),
+        new LatteParamMacro("assign", false, true),
+        new LatteParamMacro("default", false, true),
+        new LatteParamMacro("var", false, true),
+        new LatteParamMacro("dump", false, true),
+        new LatteParamMacro("syntax", true, true),
+        new LatteParamMacro("use", false, true),
         new LatteParamMacro("form", true),
         new LatteParamMacro("label", true),
         new LatteParamMacro("input", true),
-        new LatteMacro("debugbreak", false),
+        new LatteMacro("debugbreak", false, true),
         new LatteMacro("l", false),
         new LatteMacro("r", false),
-        new LatteMacro("first", true),
-        new LatteMacro("last", true),
-        new LatteMacro("sep", true),
+        new LatteMacro("first", true, true),
+        new LatteMacro("last", true, true),
+        new LatteMacro("sep", true, true),
         new LatteMacro("_", true),
     };
 
@@ -98,29 +98,29 @@ public class MacroDefinitions {
     public final static HashMap<String, LatteMacro[]> friendMacros = new HashMap<String, LatteMacro[]>();
     static {
         friendMacros.put("if", new LatteMacro[] {
-            new LatteMacro("else"),
-            new LatteParamMacro("elseif", false)
+            new LatteMacro("else", false, true),
+            new LatteParamMacro("elseif", false, true)
         });
         friendMacros.put("ifset", new LatteMacro[] {
-            new LatteMacro("else"),
-            new LatteParamMacro("elseif", false),
-            new LatteParamMacro("elseifset", false)
+            new LatteMacro("else", false, true),
+            new LatteParamMacro("elseif", false, true),
+            new LatteParamMacro("elseifset", false, true)
         });
         friendMacros.put("ifCurrent", new LatteMacro[] {
-            new LatteMacro("else"),
-            new LatteParamMacro("elseif", false)
+            new LatteMacro("else", false, true),
+            new LatteParamMacro("elseif", false, true)
         });
         friendMacros.put("while", new LatteMacro[] {
-            new LatteParamMacro("continueIf", false),
-            new LatteParamMacro("breakIf", false)
+            new LatteParamMacro("continueIf", false, true),
+            new LatteParamMacro("breakIf", false, true)
         });
         friendMacros.put("foreach", new LatteMacro[] {
-            new LatteParamMacro("continueIf", false),
-            new LatteParamMacro("breakIf", false)
+            new LatteParamMacro("continueIf", false, true),
+            new LatteParamMacro("breakIf", false, true)
         });
         friendMacros.put("for", new LatteMacro[] {
-            new LatteParamMacro("continueIf", false),
-            new LatteParamMacro("breakIf", false)
+            new LatteParamMacro("continueIf", false, true),
+            new LatteParamMacro("breakIf", false, true)
         });
         /*friendMacros.put("foreach", new LatteMacro[] {
             new LatteMacro("first", true),
@@ -159,6 +159,9 @@ public class MacroDefinitions {
 	 * @return
 	 */
     public static LatteMacro getMacro(String name) {
+		if(name.equals("!")) {
+			name = name + "$";
+		}
         for(LatteMacro m : macros) {
             if(m.getMacroName().equals(name)) {
                 return m;

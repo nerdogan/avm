@@ -42,21 +42,21 @@ public class LatteMacro {
 
 	protected String macro;
 	protected boolean isPair;
-	protected String endMacro;
+	protected boolean control;
 	protected Syntax syntax = LatteSyntax.getInstance();
 
 	public LatteMacro(String macro) {
-		this(macro, false, macro);
+		this(macro, false, false);
 	}
 
 	public LatteMacro(String macro, boolean isPair) {
-		this(macro, isPair, macro);
+		this(macro, isPair, false);
 	}
 
-	public LatteMacro(String macro, boolean isPair, String endMacro) {
+	public LatteMacro(String macro, boolean isPair, boolean control) {
 		this.macro = macro;
 		this.isPair = isPair;
-		this.endMacro = endMacro;
+		this.control = control;
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class LatteMacro {
 	 * @return
 	 */
 	public String getEndMacro() {
-		return syntax.opening() + "/" + endMacro + syntax.closing();
+		return syntax.opening() + "/" + macro + syntax.closing();
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class LatteMacro {
 	 * @return
 	 */
 	public String getEndMacroName() {
-		return endMacro;
+		return macro;
 	}
 
 	/**
@@ -135,5 +135,9 @@ public class LatteMacro {
 
 	public void setSyntax(Syntax syntax) {
 		this.syntax = syntax;
+	}
+
+	public boolean isControl() {
+		return control;
 	}
 }

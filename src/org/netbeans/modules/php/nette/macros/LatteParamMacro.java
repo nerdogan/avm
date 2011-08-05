@@ -39,11 +39,11 @@ import javax.swing.text.StyledDocument;
 public class LatteParamMacro extends LatteMacro {
 
 	public LatteParamMacro(String macro, boolean isPair) {
-		this(macro, isPair, macro);
+		super(macro, isPair, false);
 	}
 
-	public LatteParamMacro(String macro, boolean isPair, String endMacro) {
-		super(macro, isPair, endMacro);
+	public LatteParamMacro(String macro, boolean isPair, boolean control) {
+		super(macro, isPair, control);
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class LatteParamMacro extends LatteMacro {
 	public String getText() {				// adds space for macro params
 		String text = syntax.opening() + macro + " " + syntax.closing();
 		if(isPair) {
-			text += syntax.opening() + "/" + endMacro + syntax.closing();
+			text += syntax.opening() + "/" + macro + syntax.closing();
 		}
 		return text;
 	}
