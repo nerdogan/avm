@@ -26,9 +26,6 @@
  */
 package org.netbeans.modules.php.nette.lexer;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.netbeans.api.lexer.Token;
@@ -39,7 +36,6 @@ import org.netbeans.spi.lexer.LexerInput;
 import org.netbeans.spi.lexer.LexerRestartInfo;
 import org.netbeans.spi.lexer.TokenFactory;
 import org.netbeans.spi.lexer.TokenPropertyProvider;
-import org.openide.util.Exceptions;
 
 /**
  * Top Lexer for text/x-latte-template mime-type
@@ -55,8 +51,6 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 	private TokenFactory<LatteTopTokenId> tokenFactory;
 	/** stores macro name for n:attr (it is passed in the token as token property) */
 	private String macroName = null;
-	PrintWriter pw;
-	static int count;
 
 	LatteTopLexer(LexerRestartInfo<LatteTopTokenId> info) {
 		State state = State.OUTER;
@@ -68,12 +62,6 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 			syntax = lstate.getSyntax();
 			tagResolver = lstate.getResolver();
 			macroName = lstate.getMacro();
-		}
-		try {
-			pw = new PrintWriter(new File("C:/abc" + count++));
-			new Exception().printStackTrace(pw);
-		} catch(FileNotFoundException ex) {
-			Exceptions.printStackTrace(ex);
 		}
 		this.input = info.input();
 		this.tokenFactory = info.tokenFactory();
@@ -87,8 +75,7 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 	@Override
 	public Token<LatteTopTokenId> nextToken() {
 		LatteTopTokenId tokenId = scanner.nextToken();
-		pw.append(":" + input.readText() + ":" + tokenId + "\n");
-		pw.flush();
+		
 		Token<LatteTopTokenId> token = null;
 		if(tokenId != null) {
 			token = tokenFactory.createPropertyToken(tokenId, input.readLength(),
