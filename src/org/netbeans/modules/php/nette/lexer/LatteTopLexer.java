@@ -26,6 +26,9 @@
  */
 package org.netbeans.modules.php.nette.lexer;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.netbeans.api.lexer.Token;
@@ -36,6 +39,7 @@ import org.netbeans.spi.lexer.LexerInput;
 import org.netbeans.spi.lexer.LexerRestartInfo;
 import org.netbeans.spi.lexer.TokenFactory;
 import org.netbeans.spi.lexer.TokenPropertyProvider;
+import org.openide.util.Exceptions;
 
 /**
  * Top Lexer for text/x-latte-template mime-type
@@ -44,19 +48,15 @@ import org.netbeans.spi.lexer.TokenPropertyProvider;
 class LatteTopLexer implements Lexer<LatteTopTokenId> {
 
 	private static final int EOF = LexerInput.EOF;
-	
 	private final LatteTopColoringLexer scanner;
-	
 	private LexerInput input;
-	
-	private Syntax syntax = LatteSyntax.getInstance();
-	
-	private TagResolver tagResolver;
-	
+	Syntax syntax = LatteSyntax.getInstance();
+	TagResolver tagResolver;
 	private TokenFactory<LatteTopTokenId> tokenFactory;
-	
 	/** stores macro name for n:attr (it is passed in the token as token property) */
 	private String macroName = null;
+	PrintWriter pw;
+	static int count;
 
 	LatteTopLexer(LexerRestartInfo<LatteTopTokenId> info) {
 		State state = State.OUTER;
@@ -67,6 +67,13 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 			substate = lstate.getSubstate();
 			syntax = lstate.getSyntax();
 			tagResolver = lstate.getResolver();
+			macroName = lstate.getMacro();
+		}
+		try {
+			pw = new PrintWriter(new File("C:/abc" + count++));
+			new Exception().printStackTrace(pw);
+		} catch(FileNotFoundException ex) {
+			Exceptions.printStackTrace(ex);
 		}
 		this.input = info.input();
 		this.tokenFactory = info.tokenFactory();
@@ -80,7 +87,8 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 	@Override
 	public Token<LatteTopTokenId> nextToken() {
 		LatteTopTokenId tokenId = scanner.nextToken();
-		
+		pw.append(":" + input.readText() + ":" + tokenId + "\n");
+		pw.flush();
 		Token<LatteTopTokenId> token = null;
 		if(tokenId != null) {
 			token = tokenFactory.createPropertyToken(tokenId, input.readLength(),
@@ -123,14 +131,14 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 	 */
 	private enum State {
 
-		OUTER,					// outer html code
-		AFTER_LD,				// after left delimiter
-		BEFORE_RD,				// before right delimiter
-		IN_LATTE,				// in latte general
-		IN_LATTE_TAG,			// in <n:tag
-		IN_HTML_TAG,			// in <tag
-		IN_HTML_ATTR,			// in attribute <tag attr=""
-		IN_LATTE_ATTR,			// in attribute <tag n:attr=""
+		OUTER, // outer html code
+		AFTER_LD, // after left delimiter
+		BEFORE_RD, // before right delimiter
+		IN_LATTE, // in latte general
+		IN_LATTE_TAG, // in <n:tag
+		IN_HTML_TAG, // in <tag
+		IN_HTML_ATTR, // in attribute <tag attr=""
+		IN_LATTE_ATTR, // in attribute <tag n:attr=""
 		IN_LATTE_ATTR_CLOSE		// in n:attr closing quote
 	}
 
@@ -251,7 +259,7 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 										tagResolver = new TagResolver(input.readText());
 									}
 									if(input.readText().toString().startsWith(("</"))) {
-										tagResolver.unnest();
+										tagResolver.unnest(LatteTopLexer.this);
 									}
 									state = State.IN_HTML_TAG;
 									return LatteTopTokenId.HTML_TAG;
@@ -287,7 +295,7 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 							break;
 						}
 						if(tagResolver != null && tagResolver.hasSyntax()) {
-							tagResolver.nest();
+							tagResolver.nest(LatteTopLexer.this);
 						}
 						if(state == State.IN_LATTE_TAG) {
 							state = State.OUTER;
@@ -336,7 +344,7 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 									macroName = "";						// do not want prefixes in macro name
 								} else if(c == '"') {							// starting attr value
 									if(macroName.equals("syntax")) {
-										tagResolver.setSyntax();
+										tagResolver.setSyntax(LatteTopLexer.this);
 									}
 									substate = state;					// stores top state
 									state = State.IN_LATTE_ATTR;		// in latte attr
@@ -385,7 +393,7 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 		}
 
 		Object getState() {
-			return new LexerState(state, substate, syntax, tagResolver);
+			return new LexerState(state, substate, syntax, tagResolver, macroName);
 		}
 	}
 
@@ -398,12 +406,14 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 		State substate;
 		Syntax syntax;
 		TagResolver resolver;
+		String macroName;
 
-		public LexerState(State state, State substate, Syntax syntax, TagResolver res) {
+		public LexerState(State state, State substate, Syntax syntax, TagResolver res, String macroName) {
 			this.state = state;
 			this.substate = substate;
 			this.syntax = syntax;
 			this.resolver = res;
+			this.macroName = macroName;
 		}
 
 		public State getState() {
@@ -421,8 +431,10 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 		public TagResolver getResolver() {
 			return resolver;
 		}
-		
-		
+
+		private String getMacro() {
+			return macroName;
+		}
 	}
 
 	/**
@@ -448,50 +460,6 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 				return syntax;
 			}
 			return null;
-		}
-	}
-	
-	private class TagResolver {
-
-		private String tag;
-		private int nested = 0;
-		private boolean syntaxe = false;
-
-		private TagResolver(CharSequence readText) {
-			this(readText.toString());
-		}
-
-		private TagResolver(String tag) {
-			if(tag.startsWith("<")) {
-				tag = tag.substring(1);
-			}
-			this.tag = tag;
-		}
-		
-		public void nest() {
-			if(syntaxe)
-				nested++;
-		}
-		
-		public void unnest() {
-			if(syntaxe)
-				nested--;
-			
-			if(nested == 0) {
-				syntax = LatteSyntax.getInstance();
-			}
-		}
-
-		private int nesting() {
-			return nested;
-		}
-
-		private void setSyntax() {
-			syntaxe = true;
-		}
-		
-		private boolean hasSyntax() {
-			return syntaxe;
 		}
 	}
 }
