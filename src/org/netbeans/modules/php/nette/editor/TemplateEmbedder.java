@@ -31,13 +31,13 @@ import org.netbeans.modules.php.nette.editor.resolvers.HtmlPhpResolver;
 import org.netbeans.modules.php.nette.editor.resolvers.LatteResolver;
 import java.util.List;
 import org.netbeans.api.lexer.Token;
-import org.netbeans.api.lexer.TokenHierarchy;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.parsing.api.Embedding;
 import org.netbeans.modules.parsing.api.Snapshot;
 import org.netbeans.modules.php.api.util.FileUtils;
 import org.netbeans.modules.php.nette.editor.resolvers.TemplateResolver;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
+import org.netbeans.modules.php.nette.utils.LexUtils;
 import org.netbeans.modules.php.nette.utils.SyntaxUtils;
 
 /**
@@ -61,8 +61,7 @@ public class TemplateEmbedder extends Embedder {
 		TemplateResolver.init();
 		// TODO: neprochazet celou sekvenci (ale par radku pred a po caret)
 		// jestli je to vubec mozny...
-		TokenHierarchy<CharSequence> th = TokenHierarchy.create(getSnapshot().getText(), LatteTopTokenId.language());
-		TokenSequence<LatteTopTokenId> sequence = th.tokenSequence(LatteTopTokenId.language());
+		TokenSequence<LatteTopTokenId> sequence = LexUtils.getTopSequence(getSnapshot().getText().toString());
 
 		sequence.moveStart();
 
@@ -80,10 +79,6 @@ public class TemplateEmbedder extends Embedder {
 		}
 		
 		return super.getEmbeddings();
-	}
-
-	private boolean isAllowedBlockOpened() {
-		return TemplateResolver.getNumberOfBlocks() == 1;
 	}
 
 }

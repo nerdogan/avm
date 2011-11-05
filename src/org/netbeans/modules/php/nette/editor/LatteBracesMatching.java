@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.text.BadLocationException;
 import org.netbeans.api.lexer.Token;
-import org.netbeans.api.lexer.TokenHierarchy;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
@@ -69,8 +68,7 @@ public class LatteBracesMatching implements BracesMatcher {
         if(MatcherContext.isTaskCanceled())
             return null;													// abort
 
-        TokenHierarchy<String> th = TokenHierarchy.create(context.getDocument().getText(0, context.getDocument().getLength()), LatteTopTokenId.language());
-        TokenSequence<LatteTopTokenId> ts = th.tokenSequence(LatteTopTokenId.language());
+        TokenSequence<LatteTopTokenId> ts = LexUtils.getTopSequence(context.getDocument());
 
         ts.move(searchOffset);
         if(ts.moveNext()) {													// moves to token next to caret
@@ -139,8 +137,7 @@ public class LatteBracesMatching implements BracesMatcher {
                 return new int[] { searchOffset, searchOffset };	// abort -> no hi-light
             }
             
-            TokenHierarchy<String> th = TokenHierarchy.create(context.getDocument().getText(0, context.getDocument().getLength()), LatteTopTokenId.language());
-            TokenSequence<LatteTopTokenId> ts = th.tokenSequence(LatteTopTokenId.language());
+            TokenSequence<LatteTopTokenId> ts = LexUtils.getTopSequence(context.getDocument());
 
             List<String> friends = new ArrayList<String>();			// stores macro friends (else, elseif)
             List<String> pairMacroNames = new ArrayList<String>();		// stores macro ends

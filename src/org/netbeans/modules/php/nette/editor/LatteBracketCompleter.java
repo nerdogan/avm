@@ -149,8 +149,7 @@ public class LatteBracketCompleter implements KeystrokeHandler {
 
 	private TokenSequence<LatteTokenId> getLatteSequence(Document doc, int pos)
 			throws BadLocationException {
-        TokenHierarchy<String> th = TokenHierarchy.create(doc.getText(0, doc.getLength()), LatteTopTokenId.language());
-        TokenSequence<LatteTopTokenId> ts = th.tokenSequence(LatteTopTokenId.language());
+        TokenSequence<LatteTopTokenId> ts = LexUtils.getTopSequence(doc);
 
 		ts.move(pos);
 

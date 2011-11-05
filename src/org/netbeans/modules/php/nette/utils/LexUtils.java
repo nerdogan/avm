@@ -24,7 +24,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package org.netbeans.modules.php.nette.utils;
 
 import javax.swing.text.BadLocationException;
@@ -39,17 +38,24 @@ import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
 import org.netbeans.modules.php.nette.lexer.syntax.Syntax;
 import org.openide.util.Exceptions;
 
+
 /**
  *
  * @author Radek Ježdík
  */
 public final class LexUtils {
 
+	private final static TopSequenceCache topCache = new TopSequenceCache();
+
+	private final static SequenceCache tokenCache = new SequenceCache();
+
+
 	/**
 	 * @author Ondřej Brejla <ondrej@brejla.cz>
 	 */
 	private LexUtils() {
 	}
+
 
 	public static TokenSequence<LatteTopTokenId> getTopSequence(Document document) {
 		try {
@@ -60,20 +66,53 @@ public final class LexUtils {
 		return null;
 	}
 
+
 	public static TokenSequence<LatteTopTokenId> getTopSequence(String text) {
+		if(topCache.has(text)) {
+			return topCache.get(text);
+		}
 		TokenHierarchy<String> th = TokenHierarchy.create(text, LatteTopTokenId.language());
-		return th.tokenSequence(LatteTopTokenId.language());
+		TokenSequence<LatteTopTokenId> sequence = th.tokenSequence(LatteTopTokenId.language());
+
+		topCache.save(text, sequence);
+		return sequence;
 	}
-	
+
+
 	public static TokenSequence<LatteTokenId> getSequence(Token<LatteTopTokenId> t) {
+		if(tokenCache.has(t)) {
+			return tokenCache.get(t);
+		}
+
 		InputAttributes attrs = new InputAttributes();
-		
+
 		Syntax syntax = (Syntax) t.getProperty("syntax");
-		
+
 		Language<LatteTokenId> language = LatteTokenId.language(syntax);
-		
+
 		TokenHierarchy<CharSequence> th2 = TokenHierarchy.create(t.text(), true, language, null, attrs);
-		return th2.tokenSequence(language);
+		TokenSequence<LatteTokenId> sequence = th2.tokenSequence(language);
+
+		tokenCache.save(t, sequence);
+		return sequence;
+	}
+
+
+	private static class TopSequenceCache extends Cache<String, TokenSequence<LatteTopTokenId>> {
+
+		public TopSequenceCache() {
+			super(20);
+		}
+
+	}
+
+
+	private static class SequenceCache extends Cache<Token, TokenSequence<LatteTokenId>> {
+
+		public SequenceCache() {
+			super(200);
+		}
+
 	}
 
 }
