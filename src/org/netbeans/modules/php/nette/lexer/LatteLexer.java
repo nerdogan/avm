@@ -55,12 +55,10 @@ class LatteLexer implements Lexer<LatteTokenId> {
 
     State state;
 
-    LatteLexer(LexerRestartInfo<LatteTokenId> info) {
+    LatteLexer(LexerRestartInfo<LatteTokenId> info, Syntax syn) {
         state = info.state() == null ? State.OUTER : (State) info.state();
-        if(info.inputAttributes() != null) {
-            Syntax s = (Syntax) info.inputAttributes().getValue(info.languagePath(), "syntax");
-			if(s != null)
-				syntax = s;
+        if(syn != null) {
+            syntax = syn;
 		}
         this.input = info.input();
         this.tokenFactory = info.tokenFactory();

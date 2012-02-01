@@ -115,8 +115,7 @@ public enum LatteTokenId implements TokenId {
 
 			@Override
 			protected Lexer<LatteTokenId> createLexer(LexerRestartInfo<LatteTokenId> info) {
-				info.inputAttributes().setValue(info.languagePath(), "syntax", syntax, false);
-				return new LatteLexer(info);
+				return new LatteLexer(info, syntax);
 			}
 
 			@Override
