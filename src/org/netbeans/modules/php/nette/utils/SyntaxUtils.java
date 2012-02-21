@@ -45,7 +45,8 @@ public class SyntaxUtils {
 	 */
 	public static void findArrayForHint(Document doc, TokenSequence<LatteTopTokenId> sequence) {
 		Token<LatteTopTokenId> token = sequence.token();
-
+		if(token == null) return;
+		
 		// inside macro completion
 		TokenSequence<LatteTokenId> sequence2 = LexUtils.getSequence(token);
 
