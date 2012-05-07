@@ -48,23 +48,28 @@ import org.netbeans.spi.editor.completion.CompletionTask;
 import org.netbeans.spi.editor.completion.support.AsyncCompletionQuery;
 import org.netbeans.spi.editor.completion.support.AsyncCompletionTask;
 
+
 /**
- * Provides completion window
- * Is context-dependent (in-macro completion, out-side macro completion)
- * by token where caret is positioned at (LatteTopTokenId and LatteTokenId)
+ * Provides completion window Is context-dependent (in-macro completion,
+ * out-side macro completion) by token where caret is positioned at
+ * (LatteTopTokenId and LatteTokenId)
  * @author Radek Ježdík
  */
 public class LatteCompletionProvider implements CompletionProvider {
 
 	/**
 	 * Stores hash map of <String, Pair<LatteMacro, Integer>> of pair macros
-	 * (used for finding unmatched macros for completion of their end/friend macros)
+	 * (used for finding unmatched macros for completion of their end/friend
+	 * macros)
 	 */
 	MacroCounterMap paired;
+
 	/**
-	 * Stores text written by user for auto-showing completion box (see getAutoQueryTypes method)
+	 * Stores text written by user for auto-showing completion box (see
+	 * getAutoQueryTypes method)
 	 */
 	private String autoShowText;
+
 
 	@Override
 	public CompletionTask createTask(int type, JTextComponent jtc) {
@@ -91,6 +96,16 @@ public class LatteCompletionProvider implements CompletionProvider {
 					if(token.id() == LatteTopTokenId.LATTE) {
 						//inside macro completion
 						InsideMacroResolver.resolve(completionResultSet, sequence, document, caretOffset);
+						
+						TokenSequence<LatteTokenId> sequence2 = LexUtils.getSequence(token);
+						sequence2.move(caretOffset - sequence.offset());
+						if(sequence2.movePrevious()) {
+							LatteTokenId id = sequence2.token().id();
+							if(id == LatteTokenId.MACRO
+									|| id == LatteTokenId.END_SLASH) {
+								OutsideMacroResolver.resolve(completionResultSet, sequence, document, caretOffset, getFriendMacros());
+							}
+						}
 					} else {
 						// fills up list with possible endMacros and their friend macros
 						List<LatteMacro> endMacros = getFriendMacros();
@@ -101,12 +116,14 @@ public class LatteCompletionProvider implements CompletionProvider {
 				// must be called before return;
 				completionResultSet.finish();
 			}
+
 		}, jtc);
 	}
 
+
 	/**
-	 * Shows completion box automaticaly,
-	 * if text written starts with opening Latte delimiter or with n: chars
+	 * Shows completion box automaticaly, if text written starts with opening
+	 * Latte delimiter or with n: chars
 	 *
 	 * @param JTextComponent
 	 * @param written text
@@ -141,6 +158,7 @@ public class LatteCompletionProvider implements CompletionProvider {
 		return (string.startsWith("n:")
 				|| ("n:".equals(autoShowText))) ? COMPLETION_QUERY_TYPE : 0;
 	}
+
 
 	/**
 	 * Returns map of macros which are not closed (int > 0) until caret position
@@ -199,6 +217,7 @@ public class LatteCompletionProvider implements CompletionProvider {
 		return paired;
 	}
 
+
 	private ArrayList<LatteMacro> getFriendMacros() {
 		ArrayList<LatteMacro> endMacros = new ArrayList<LatteMacro>();
 		for(String key : paired.keySet()) {
@@ -212,6 +231,7 @@ public class LatteCompletionProvider implements CompletionProvider {
 		}
 		return endMacros;
 	}
+
 
 	private Syntax getSyntax(JTextComponent jtc) {
 		TokenSequence<LatteTopTokenId> sequence = LexUtils.getTopSequence(jtc.getDocument());
@@ -233,6 +253,8 @@ public class LatteCompletionProvider implements CompletionProvider {
 		return syntax;
 	}
 
+
 	private class MacroCounterMap extends HashMap<String, Pair<LatteMacro, Integer>> {
 	}
+
 }
