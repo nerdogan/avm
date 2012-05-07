@@ -24,7 +24,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package org.netbeans.modules.php.nette.editor.resolvers;
 
 import java.util.ArrayList;
@@ -33,6 +32,7 @@ import org.netbeans.api.lexer.Token;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.php.nette.editor.Embedder;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
+
 
 /**
  *
@@ -47,41 +47,32 @@ abstract public class TemplateResolver {
 
 	private static String macroName = null;
 
-	private static int numberOfBlocks = 0;
 
 	public static String getMacroName() {
 		return macroName;
 	}
 
+
 	public static void setMacroName(String newMacroName) {
 		macroName = newMacroName;
 	}
+
 
 	public static List<Integer> getTags() {
 		return tags;
 	}
 
-	public static void incNumberOfBlocks() {
-		numberOfBlocks++;
-	}
-
-	public static void decNumberOfBlocks() {
-		numberOfBlocks--;
-	}
-
-	public static int getNumberOfBlocks() {
-		return numberOfBlocks;
-	}
 
 	public static void init() {
 		tags = new ArrayList<Integer>();
 		macroName = null;
-		numberOfBlocks = 0;
 	}
+
 
 	public TemplateResolver(Embedder embedder) {
 		this.embedder = embedder;
 	}
+
 
 	abstract public void solve(Token t, TokenSequence<LatteTopTokenId> sequence);
 
