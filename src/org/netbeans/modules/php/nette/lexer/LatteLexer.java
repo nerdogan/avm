@@ -226,7 +226,7 @@ class LatteLexer implements Lexer<LatteTokenId> {
 							}
 							return LatteTokenId.ERROR;
 						}
-						if(ch == '?' || ch == '=' || ch == '_') {	// for all other macros see default: at the end
+						if(ch == '?' || ch == '=' || ch == '_' || ch == '#') {	// for all other macros see default: at the end
 							state = State.AFTER_MACRO;
 							return LatteTokenId.MACRO;
 						}

@@ -245,7 +245,7 @@ public class LatteBracesMatching implements BracesMatcher {
                 }
             }
 
-            if(macroName != null && macroName.equals("block") && !isEndMacro) {	// last {/block} can be ommited
+            if(macroName != null && (macroName.equals("block") || macroName.equals("#")) && !isEndMacro) {	// last {/block} can be ommited
                 return new int[] { searchOffset, searchOffset };				// in that case hi-light nothing
             }
 			return new int[] { searchOffset, searchOffset };

@@ -45,6 +45,7 @@ public class MacroDefinitions {
         new LatteSingleMacro("?", false, true),
         new LatteSingleMacro("_"),
         new LatteSingleMacro("!_"),
+        new LatteMacro("#", true),
         new LatteParamMacro("link", false),
         new LatteParamMacro("plink", false),
         new LatteParamMacro("if", true, true),
