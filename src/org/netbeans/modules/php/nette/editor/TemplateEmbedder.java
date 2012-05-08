@@ -34,9 +34,9 @@ import org.netbeans.api.lexer.Token;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.parsing.api.Embedding;
 import org.netbeans.modules.parsing.api.Snapshot;
-import org.netbeans.modules.php.api.util.FileUtils;
 import org.netbeans.modules.php.nette.editor.resolvers.TemplateResolver;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
+import org.netbeans.modules.php.nette.utils.FileUtils;
 import org.netbeans.modules.php.nette.utils.LexUtils;
 import org.netbeans.modules.php.nette.utils.SyntaxUtils;
 
@@ -52,7 +52,7 @@ public class TemplateEmbedder extends Embedder {
 
 	@Override
 	protected String getMimeType() {
-		return FileUtils.PHP_MIME_TYPE;
+		return FileUtils.MIME_TYPE;
 	}
 
 	@Override

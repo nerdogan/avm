@@ -41,7 +41,7 @@ abstract public class Embedder {
 
 	private Snapshot snapshot;
 
-	/* Stores all embeddings with text/x-php mime */
+	/* Stores all embeddings */
 	private List<Embedding> embeddings = new ArrayList<Embedding>();
 
 	public Embedder(Snapshot snapshot) {

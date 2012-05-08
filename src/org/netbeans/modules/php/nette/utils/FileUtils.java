@@ -49,6 +49,8 @@ import org.openide.util.Exceptions;
  */
 public final class FileUtils {
 
+	public final static String MIME_TYPE = "text/html";
+	
 	private FileUtils() {
 	}
 
