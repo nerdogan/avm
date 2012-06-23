@@ -230,7 +230,7 @@ class LatteTopLexer implements Lexer<LatteTopTokenId> {
 					c = input.read();									// next char after <
 					int i = 0;
 					while(true) {
-						if(!Character.isLetter(c) || c == EOF) {
+						if((!Character.isLetter(c) && c != '!') || c == EOF) {
 							if((c != '/' || i != 0) && c != ':' && c != '-') {
 								input.backup(1);
 								if(input.readLength() == 1) {					// nothing found - HTML
