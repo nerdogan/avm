@@ -53,6 +53,7 @@ public final class ParentPresenterVisualPanel extends JPanel implements Document
         if (parentPresenter != null) {
             parentPresenterTextField.setText(parentPresenter);
         }
+		generateStartupCheckbox.setSelected(NettePreferences.getGenerateStartup(PhpModule.inferPhpModule()));
     }
 
     @Override
@@ -71,6 +72,7 @@ public final class ParentPresenterVisualPanel extends JPanel implements Document
         jLabel1 = new javax.swing.JLabel();
         parentPresenterTextField = new javax.swing.JTextField();
         errorLabel = new javax.swing.JLabel();
+        generateStartupCheckbox = new javax.swing.JCheckBox();
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(ParentPresenterVisualPanel.class, "ParentPresenterVisualPanel.jLabel1.text")); // NOI18N
 
@@ -84,6 +86,9 @@ public final class ParentPresenterVisualPanel extends JPanel implements Document
         errorLabel.setForeground(javax.swing.UIManager.getDefaults().getColor("nb.errorForeground"));
         org.openide.awt.Mnemonics.setLocalizedText(errorLabel, org.openide.util.NbBundle.getMessage(ParentPresenterVisualPanel.class, "ParentPresenterVisualPanel.errorLabel.text")); // NOI18N
 
+        generateStartupCheckbox.setSelected(true);
+        org.openide.awt.Mnemonics.setLocalizedText(generateStartupCheckbox, org.openide.util.NbBundle.getMessage(ParentPresenterVisualPanel.class, "ParentPresenterVisualPanel.generateStartupCheckbox.text")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,6 +100,9 @@ public final class ParentPresenterVisualPanel extends JPanel implements Document
             .addGroup(layout.createSequentialGroup()
                 .addComponent(errorLabel)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(generateStartupCheckbox)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,7 +110,9 @@ public final class ParentPresenterVisualPanel extends JPanel implements Document
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(parentPresenterTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(generateStartupCheckbox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(errorLabel))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -124,6 +134,10 @@ public final class ParentPresenterVisualPanel extends JPanel implements Document
     public String getParentPresenter() {
         return parentPresenterTextField.getText().trim();
     }
+	
+	public boolean getGenerateStartup() {
+		return generateStartupCheckbox.isSelected();
+	}
 
     private void showError(String error) {
         errorLabel.setIcon(errorIcon);
@@ -137,6 +151,7 @@ public final class ParentPresenterVisualPanel extends JPanel implements Document
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel errorLabel;
+    private javax.swing.JCheckBox generateStartupCheckbox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField parentPresenterTextField;
     // End of variables declaration//GEN-END:variables

@@ -33,6 +33,7 @@ import org.netbeans.modules.php.api.phpmodule.PhpModule;
 public class NettePreferences {
     
     private static final String NETTE_PARENT_PRESENTER = "nette.parent.presenter"; // NOI18N
+    private static final String NETTE_GENERATE_STARTUP = "nette.generate.startup"; // NOI18N
     
     public static void setParentPresenter(PhpModule phpModule, String parentPresenter) {
         getPreferences(phpModule).put(NETTE_PARENT_PRESENTER, parentPresenter);
@@ -40,6 +41,14 @@ public class NettePreferences {
     
     public static String getParentPresenter(PhpModule phpModule) {
         return getPreferences(phpModule).get(NETTE_PARENT_PRESENTER, null);
+    }
+
+	public static void setGenerateStartup(PhpModule phpModule, Boolean generateStartup) {
+        getPreferences(phpModule).putBoolean(NETTE_GENERATE_STARTUP, generateStartup);
+	}
+    
+    public static boolean getGenerateStartup(PhpModule phpModule) {
+        return getPreferences(phpModule).getBoolean(NETTE_GENERATE_STARTUP, true);
     }
     
     private static Preferences getPreferences(PhpModule phpModule) {

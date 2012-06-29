@@ -6,6 +6,7 @@
  * @author ${user}
  */
 class ${name} <#if parentPresenter != "">extends ${parentPresenter} </#if>{
+<#if generateStartup>
 
 	/**
 	 * (non-phpDoc)
@@ -14,7 +15,7 @@ class ${name} <#if parentPresenter != "">extends ${parentPresenter} </#if>{
 	 */
 	protected function startup() {
 		parent::startup();
-	}
+	}</#if>
     <#list actions as action>
     <#if action.action>
 

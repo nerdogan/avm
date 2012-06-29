@@ -106,9 +106,13 @@ public final class WizardIterator implements WizardDescriptor.InstantiatingItera
         hashMap.put("actions", actions);
 
         String parentPresenter = (String) wizard.getProperty("parentPresenter");
+        Boolean generateStartup = (Boolean) wizard.getProperty("generateStartup");
+		
         hashMap.put("parentPresenter", parentPresenter);
+        hashMap.put("generateStartup", generateStartup);
         
         NettePreferences.setParentPresenter(PhpModule.inferPhpModule(), parentPresenter);
+        NettePreferences.setGenerateStartup(PhpModule.inferPhpModule(), generateStartup);
         
         FileObject template = Templates.getTemplate(wizard);
         DataObject dTemplate = DataObject.find(template);
