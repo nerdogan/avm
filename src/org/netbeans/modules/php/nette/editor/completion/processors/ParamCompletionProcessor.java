@@ -210,8 +210,8 @@ public class ParamCompletionProcessor {
                                         Matcher m = pattern.matcher(line);
                                         String control = null;
                                         if (m.find()) {
-                                            control = m.group(1);
-                                            EditorUtils.firstLetterSmall(control);
+                                            String parsedName = m.group(1);
+                                            control = EditorUtils.firstLetterSmall(parsedName);
                                         }
                                         if(control != null)
                                             if(control.startsWith(written)) {
