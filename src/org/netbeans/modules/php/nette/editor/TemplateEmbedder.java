@@ -27,13 +27,13 @@
 
 package org.netbeans.modules.php.nette.editor;
 
-import org.netbeans.modules.php.nette.editor.resolvers.HtmlPhpResolver;
-import org.netbeans.modules.php.nette.editor.resolvers.LatteResolver;
 import java.util.List;
 import org.netbeans.api.lexer.Token;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.parsing.api.Embedding;
 import org.netbeans.modules.parsing.api.Snapshot;
+import org.netbeans.modules.php.nette.editor.resolvers.HtmlPhpResolver;
+import org.netbeans.modules.php.nette.editor.resolvers.LatteResolver;
 import org.netbeans.modules.php.nette.editor.resolvers.TemplateResolver;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
 import org.netbeans.modules.php.nette.utils.FileUtils;
@@ -67,7 +67,7 @@ public class TemplateEmbedder extends Embedder {
 
 		LatteResolver latteResolver = new LatteResolver(this);
 		HtmlPhpResolver htmlPhpResolver = new HtmlPhpResolver(this);
-		
+
 		while(sequence.moveNext()) {
 			Token t = sequence.token();
 			if(t.id() == LatteTopTokenId.LATTE) {
@@ -77,7 +77,7 @@ public class TemplateEmbedder extends Embedder {
 				htmlPhpResolver.solve(t, sequence);
 			}
 		}
-		
+
 		return super.getEmbeddings();
 	}
 
