@@ -36,28 +36,28 @@ import java.util.List;
  */
 abstract public class MacroProcessorFactory {
 
-	private static final List<String> arrayMacros = new ArrayList<String>();
+	private static final List<String> ARRAY_MACROS = new ArrayList<String>();
 	static {
-		arrayMacros.add("var");
-		arrayMacros.add("default");
-		arrayMacros.add("assign");
+		ARRAY_MACROS.add("var");
+		ARRAY_MACROS.add("default");
+		ARRAY_MACROS.add("assign");
 	};
 
-	private static final List<String> specialMacros = new ArrayList<String>();
+	private static final List<String> SPECIAL_MACROS = new ArrayList<String>();
 	static {
-		specialMacros.add("plink");
-		specialMacros.add("link");
-		specialMacros.add("widget");
-		specialMacros.add("control");
-		specialMacros.add("include");
-		specialMacros.add("extends");
-		specialMacros.add("cache");
+		SPECIAL_MACROS.add("plink");
+		SPECIAL_MACROS.add("link");
+		SPECIAL_MACROS.add("widget");
+		SPECIAL_MACROS.add("control");
+		SPECIAL_MACROS.add("include");
+		SPECIAL_MACROS.add("extends");
+		SPECIAL_MACROS.add("cache");
 	};
 
 	public static MacroProcessor getMacroProcessor(String macro) {
-		if (arrayMacros.contains(macro)) {
+		if (ARRAY_MACROS.contains(macro)) {
 			return new ArrayMacroProcessor();
-		} else if (specialMacros.contains(macro)) {
+		} else if (SPECIAL_MACROS.contains(macro)) {
 			return new SpecialMacroProcessor();
 		} else {
 			return new NullMacroProcessor();
