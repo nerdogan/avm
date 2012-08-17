@@ -45,7 +45,6 @@ public class ArrayMacroProcessor extends MacroProcessor {
 	public void process(TokenSequence<LatteTopTokenId> sequence, TokenSequence<LatteTokenId> sequence2, int start, String macro, boolean endMacro, Embedder embedder) {
 		byte state = -1;									// -1,0 - variable; 1,2 - value
 		int numOfBrackets = 0;								// counts nested brackets
-		String var = "";									// stores var name and var value
 
 		if(macro.equals("assign")) {
 			int temp = sequence2.offset();
@@ -62,29 +61,20 @@ public class ArrayMacroProcessor extends MacroProcessor {
 				if (state == -1 && t2.id() != LatteTokenId.WHITESPACE) {
 					start = sequence2.offset() + sequence.offset();			// start of var name
 					state = 0;												// don't search for var name start
-					length = 0;
-					var = "";
 				}
 				if (t2.id() == LatteTokenId.ASSIGN || t2.id() == LatteTokenId.EQUALS) { // assign|equal found (equal added in nette 1.0)
 					if(t2.id() == LatteTokenId.ASSIGN) {
 						createSyntaxHint(embedder, sequence.offset(), sequence.token().length());
 					}
-					length = 0;
 					state = 1;												// search for value
 					continue;
-				}
-				if (t2.id() != LatteTokenId.WHITESPACE) {					// no whitespace = variable name
-					length += t2.length();									// add text length
-					var += t2.text();										// add text to var name
 				}
 			}
 
 			if (isValue(state)) {
 				if (state == 1) {
 					start = sequence2.offset() + sequence.offset();			// start of value
-					length = 0;
 					state = 2;
-					var = "";												// where value will be stored
 				}
 				// left bracket or brace found (count it)
 				if (t2.id() == LatteTokenId.LNB || t2.id() == LatteTokenId.LB) {
@@ -100,8 +90,6 @@ public class ArrayMacroProcessor extends MacroProcessor {
 					continue;
 				}
 
-				length += t2.length();										// add up value length
-				var += t2.text();											// add variable value
 			}
 		} while (sequence2.moveNext());
 	}
