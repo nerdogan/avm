@@ -38,6 +38,13 @@ import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
  */
 public interface MacroProcessor {
 
+	public static final MacroProcessor NONE = new MacroProcessor() {
+
+		@Override
+		public void process(TokenSequence<LatteTopTokenId> sequence, TokenSequence<LatteTokenId> sequence2, int start, String macro, boolean endMacro, Embedder embedder) {
+		}
+	};
+
 	abstract public void process(TokenSequence<LatteTopTokenId> sequence, TokenSequence<LatteTokenId> sequence2, int start, String macro, boolean endMacro, Embedder embedder);
 
 }

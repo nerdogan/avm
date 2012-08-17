@@ -60,7 +60,7 @@ abstract public class MacroProcessorFactory {
 		} else if (SPECIAL_MACROS.contains(macro)) {
 			return new SpecialMacroProcessor();
 		} else {
-			return new NullMacroProcessor();
+			return MacroProcessor.NONE;
 		}
 	}
 
