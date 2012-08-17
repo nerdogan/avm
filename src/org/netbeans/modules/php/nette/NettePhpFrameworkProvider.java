@@ -52,22 +52,22 @@ import org.openide.util.NbBundle;
  * @author Radek Ježdík
  */
 public class NettePhpFrameworkProvider extends PhpFrameworkProvider {
-	
+
     private static final NettePhpFrameworkProvider INSTANCE = new NettePhpFrameworkProvider();
-	
+
 	private static final String ICON_PATH = "org/netbeans/modules/php/nette/resources/badge_icon.png";
-    
+
 	BadgeIcon badge;
 
     public NettePhpFrameworkProvider() {
-		super(NbBundle.getMessage(NettePhpFrameworkProvider.class, "OpenIDE-Module-Name"), 
+		super(NbBundle.getMessage(NettePhpFrameworkProvider.class, "OpenIDE-Module-Name"),
 				NbBundle.getMessage(NettePhpFrameworkProvider.class, "OpenIDE-Module-Short-Description"));
-		
+
 		badge = new BadgeIcon(
 			ImageUtilities.loadImage(ICON_PATH),
 			NettePhpFrameworkProvider.class.getResource("/" + ICON_PATH)); // NOI18N
     }
-    
+
     public static NettePhpFrameworkProvider getInstance() {
         return INSTANCE;
     }
@@ -80,11 +80,11 @@ public class NettePhpFrameworkProvider extends PhpFrameworkProvider {
 			public boolean accept(File dir, String name) {
 				return dir.isDirectory() && name.equals("Nette");
 			}
-			
+
 		};
-		
+
 		List<FileObject> files = FileUtils.getFilesRecursive(pm.getSourceDirectory(), ff);
-        // Just existing Nette folder implies true. 
+        // Just existing Nette folder implies true.
         // loader.php doesn't have to exist...can be located in global include path.
 		if (files.size() > 0) {
             return true;
@@ -99,13 +99,13 @@ public class NettePhpFrameworkProvider extends PhpFrameworkProvider {
 			@Override
 			public boolean accept(File dir, String name) {
 				return name.equals("bootstrap.php") || name.endsWith(".ini")
-						|| name.endsWith(".neon") || name.equals("index.php");
+						|| name.endsWith(".neon") || (name.equals("index.php") && !dir.getPath().contains("adminer"));
 			}
-			
+
 		};
-		
+
 		List<FileObject> files = FileUtils.getFilesRecursive(pm.getSourceDirectory(), ff);
-		
+
 		File[] confs = new File[files.size()];
 		for(int i = 0; i < files.size(); i++) {
 			confs[i] = FileUtil.toFile(files.get(i));
@@ -132,7 +132,7 @@ public class NettePhpFrameworkProvider extends PhpFrameworkProvider {
 	public BadgeIcon getBadgeIcon() {
 		return badge;
 	}
-	
+
     @Override
     public PhpModuleIgnoredFilesExtender getIgnoredFilesExtender(final PhpModule pm) {
         return new PhpModuleIgnoredFilesExtender() {
@@ -141,7 +141,7 @@ public class NettePhpFrameworkProvider extends PhpFrameworkProvider {
 			public Set<File> getIgnoredFiles() {
 				return Collections.EMPTY_SET;
 			}
-			
+
 		};
     }
 
@@ -154,5 +154,5 @@ public class NettePhpFrameworkProvider extends PhpFrameworkProvider {
     public EditorExtender getEditorExtender(PhpModule pm) {
         return null;
     }
-    
+
 }
