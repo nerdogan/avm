@@ -39,7 +39,7 @@ import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
  *
  * @author Ondřej Brejla
  */
-public class ArrayMacroProcessor extends MacroProcessor {
+public class ArrayMacroProcessor implements MacroProcessor {
 
 	@Override
 	public void process(TokenSequence<LatteTopTokenId> sequence, TokenSequence<LatteTokenId> sequence2, int start, String macro, boolean endMacro, Embedder embedder) {
