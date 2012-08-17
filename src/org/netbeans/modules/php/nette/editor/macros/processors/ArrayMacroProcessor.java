@@ -27,8 +27,6 @@
 
 package org.netbeans.modules.php.nette.editor.macros.processors;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.text.Document;
 import org.netbeans.api.lexer.Token;
 import org.netbeans.api.lexer.TokenSequence;
@@ -45,9 +43,6 @@ public class ArrayMacroProcessor extends MacroProcessor {
 
 	@Override
 	public void process(TokenSequence<LatteTopTokenId> sequence, TokenSequence<LatteTokenId> sequence2, int start, String macro, boolean endMacro, Embedder embedder) {
-		List<Integer> starts = new ArrayList<Integer>();	// array of starts of var assignments
-		List<Integer> lengths = new ArrayList<Integer>();	// array of lengths of var assignments
-
 		byte state = -1;									// -1,0 - variable; 1,2 - value
 		int numOfBrackets = 0;								// counts nested brackets
 		String var = "";									// stores var name and var value
@@ -74,8 +69,6 @@ public class ArrayMacroProcessor extends MacroProcessor {
 					if(t2.id() == LatteTokenId.ASSIGN) {
 						createSyntaxHint(embedder, sequence.offset(), sequence.token().length());
 					}
-					starts.add(var.trim().startsWith("$") ? start : -start);// not $ = negative position (see below)
-					lengths.add(length);
 					length = 0;
 					state = 1;												// search for value
 					continue;
@@ -103,12 +96,10 @@ public class ArrayMacroProcessor extends MacroProcessor {
 				}
 				if (t2.id() == LatteTokenId.RD								// right delim } found
 						|| (t2.id() == LatteTokenId.COMA && numOfBrackets == 0)) {	// or comma found (out of brackets)
-					starts.add(start);										// add value start
-					lengths.add(length);									// add value length
 					state = -1;												// search for next variable name
 					continue;
 				}
-				
+
 				length += t2.length();										// add up value length
 				var += t2.text();											// add variable value
 			}

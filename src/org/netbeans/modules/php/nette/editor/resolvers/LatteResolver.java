@@ -30,8 +30,8 @@ package org.netbeans.modules.php.nette.editor.resolvers;
 import org.netbeans.api.lexer.Token;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.php.nette.editor.Embedder;
-import org.netbeans.modules.php.nette.editor.macros.processors.MacroProcessorFactory;
 import org.netbeans.modules.php.nette.editor.macros.processors.MacroProcessor;
+import org.netbeans.modules.php.nette.editor.macros.processors.MacroProcessorFactory;
 import org.netbeans.modules.php.nette.lexer.LatteTokenId;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
 import org.netbeans.modules.php.nette.macros.LatteMacro;
@@ -57,7 +57,7 @@ public class LatteResolver extends TemplateResolver {
 		} else if (t.text().charAt(0) == '{') {
 			setMacroName(null);									// else it is a macro starting with {
 		}
-		
+
 		TokenSequence<LatteTokenId> sequence2 = LexUtils.getSequence(t);
 
 		boolean endMacro = false;
@@ -66,17 +66,17 @@ public class LatteResolver extends TemplateResolver {
 		sequence2.moveStart();
 		while(sequence2.moveNext()) {
 			Token<LatteTokenId> t2 = sequence2.token();
-			
+
 			if (isEndMacro(t2, sequence2)) {		// is end macro {/
 				endMacro = true;
 			}
-			
+
 			if (t2.id() == LatteTokenId.MACRO) {									// store macro name
 				macro = t2.text().toString();
 				setMacroName(null);
 				continue;
 			}
-			
+
 			if (t2.id() == LatteTokenId.VARIABLE && macro.equals("")) {
 				embedder.embed("@@@");
 				return;

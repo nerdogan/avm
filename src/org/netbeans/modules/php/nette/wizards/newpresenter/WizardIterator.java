@@ -27,7 +27,6 @@
 
 package org.netbeans.modules.php.nette.wizards.newpresenter;
 
-import org.netbeans.modules.php.nette.generators.actionrender.ActionRenderTemplatesGenerator;
 import java.awt.Component;
 import java.io.IOException;
 import java.util.Collections;
@@ -37,9 +36,11 @@ import java.util.Set;
 import javax.swing.JComponent;
 import javax.swing.event.ChangeListener;
 import org.netbeans.api.project.Project;
+import org.netbeans.api.project.ProjectUtils;
 import org.netbeans.api.project.SourceGroup;
 import org.netbeans.api.project.Sources;
 import org.netbeans.modules.php.api.phpmodule.PhpModule;
+import org.netbeans.modules.php.nette.generators.actionrender.ActionRenderTemplatesGenerator;
 import org.netbeans.modules.php.nette.preferences.NettePreferences;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.WizardDescriptor;
@@ -59,7 +60,7 @@ public final class WizardIterator implements WizardDescriptor.InstantiatingItera
      */
     private WizardDescriptor.Panel[] getPanels() {
         Project project = Templates.getProject(wizard);
-        Sources sources = project.getLookup().lookup(Sources.class);
+        Sources sources = ProjectUtils.getSources(project);
         SourceGroup[] groups = sources.getSourceGroups(Sources.TYPE_GENERIC);
 
         if (panels == null) {
@@ -107,13 +108,13 @@ public final class WizardIterator implements WizardDescriptor.InstantiatingItera
 
         String parentPresenter = (String) wizard.getProperty("parentPresenter");
         Boolean generateStartup = (Boolean) wizard.getProperty("generateStartup");
-		
+
         hashMap.put("parentPresenter", parentPresenter);
         hashMap.put("generateStartup", generateStartup);
-        
+
         NettePreferences.setParentPresenter(PhpModule.inferPhpModule(), parentPresenter);
         NettePreferences.setGenerateStartup(PhpModule.inferPhpModule(), generateStartup);
-        
+
         FileObject template = Templates.getTemplate(wizard);
         DataObject dTemplate = DataObject.find(template);
         DataObject dobj = dTemplate.createFromTemplate(df, targetName, hashMap);

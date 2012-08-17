@@ -27,11 +27,8 @@
 
 package org.netbeans.modules.php.nette.editor;
 
-import java.util.List;
 import javax.swing.text.Document;
-import org.netbeans.api.lexer.Language;
 import org.netbeans.api.lexer.TokenHierarchy;
-import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.php.nette.lexer.LatteTopTokenId;
 import org.netbeans.spi.editor.bracesmatching.BracesMatcher;
 import org.netbeans.spi.editor.bracesmatching.BracesMatcherFactory;
@@ -54,7 +51,6 @@ public class LatteBracesMatchingFactory implements BracesMatcherFactory {
 
                 if(hierarchy.tokenSequence().language() == LatteTopTokenId.language()) {
                     ret[0] = new LatteBracesMatching(context);
-                    return;
                 }
 
 //                List<TokenSequence<?>> ets = hierarchy.embeddedTokenSequences(context.getSearchOffset(), context.isSearchingBackward());

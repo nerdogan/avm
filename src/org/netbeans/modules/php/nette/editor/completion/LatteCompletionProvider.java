@@ -96,7 +96,7 @@ public class LatteCompletionProvider implements CompletionProvider {
 					if(token.id() == LatteTopTokenId.LATTE) {
 						//inside macro completion
 						InsideMacroResolver.resolve(completionResultSet, sequence, document, caretOffset);
-						
+
 						TokenSequence<LatteTokenId> sequence2 = LexUtils.getSequence(token);
 						sequence2.move(caretOffset - sequence.offset());
 						if(sequence2.movePrevious()) {
@@ -197,9 +197,8 @@ public class LatteCompletionProvider implements CompletionProvider {
 					//for comletion of end macros (preparation)
 					if(token2.id() == LatteTokenId.MACRO && paired.containsKey(text)) {
 						Pair<LatteMacro, Integer> p = paired.get(text);
-						Pair newP = null;
+						Pair newP;
 						Integer i;
-
 						if(!isEndMacro) {
 							// increment with open pair macro
 							i = (p.second == null ? 1 : p.second + 1);

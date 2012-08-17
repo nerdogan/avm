@@ -35,11 +35,11 @@ import org.netbeans.lib.editor.codetemplates.api.CodeTemplateManager;
 import org.netbeans.modules.php.nette.utils.EditorUtils;
 import org.netbeans.spi.editor.codegen.CodeGenerator;
 import org.netbeans.spi.editor.codegen.CodeGeneratorContextProvider;
-import org.openide.util.Exceptions;
-import org.openide.util.Lookup;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
+import org.openide.util.Exceptions;
+import org.openide.util.Lookup;
 
 /**
  *
@@ -54,7 +54,7 @@ public class CreateComponentGenerator implements CodeGenerator {
     private String smallComponentName;
 
     private String capitalizedComponentName;
-    
+
     private String componentClass;
 
 	/**
@@ -66,6 +66,7 @@ public class CreateComponentGenerator implements CodeGenerator {
 	}
 
 	public static class Factory implements CodeGenerator.Factory {
+		@Override
 		public List<? extends CodeGenerator> create(Lookup context) {
 			return Collections.singletonList(new CreateComponentGenerator(context));
 		}
@@ -74,21 +75,23 @@ public class CreateComponentGenerator implements CodeGenerator {
 	/**
 	 * The name which will be inserted inside Insert Code dialog
 	 */
+	@Override
 	public String getDisplayName() {
 		return "Create component...";
 	}
-	
+
 	/**
 	 * This will be invoked when user chooses this Generator from Insert Code
 	 * dialog
 	 */
+	@Override
 	public void invoke() {
 		if (processDialog()) {
 			try {
-				String componentFactoryCode = panel.isFormTabSelected() ? 
+				String componentFactoryCode = panel.isFormTabSelected() ?
 						generateComponentFactoryCode(panel.getFormName(), panel.getFormClass()) :
 						generateComponentFactoryCode(panel.getComponentName(), panel.getComponentClass());
-				
+
 				CodeTemplateManager manager = CodeTemplateManager.get(textComp.getDocument());
 				CodeTemplate template = manager.createTemporary(componentFactoryCode);
 				template.insert(textComp);
@@ -159,7 +162,7 @@ public class CreateComponentGenerator implements CodeGenerator {
 		panel = new CreateComponentGeneratorPanel();
 
 		DialogDescriptor dd = new DialogDescriptor(panel, "Create component...", true, DialogDescriptor.OK_CANCEL_OPTION, DialogDescriptor.OK_OPTION, null);
-		
+
 		panel.setDialogDescriptor(dd);
 
 		Object result = DialogDisplayer.getDefault().notify(dd);

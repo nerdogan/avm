@@ -41,8 +41,8 @@ import java.util.regex.Pattern;
 import org.netbeans.modules.php.api.editor.PhpBaseElement;
 import org.netbeans.modules.php.api.editor.PhpClass;
 import org.netbeans.modules.php.api.phpmodule.PhpModule;
-import org.netbeans.spi.project.support.ant.PropertyUtils;
 import org.netbeans.modules.php.nette.NetteFramework;
+import org.netbeans.spi.project.support.ant.PropertyUtils;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 
@@ -55,9 +55,9 @@ public final class EditorUtils {
 	private static final String FILE_VIEW_RELATIVE_CLASSIC = "../templates/%s/%s" + NetteFramework.NETTE_LATTE_TEMPLATE_EXTENSION; // NOI18N
 
 	private static final String FILE_VIEW_RELATIVE_DOTTED = "../templates/%s.%s" + NetteFramework.NETTE_LATTE_TEMPLATE_EXTENSION; // NOI18N
-    
+
     private static final String FILE_PRESENTER_RELATIVE_CLASSIC = "../../presenters/%s" + NetteFramework.NETTE_PRESENTER_SUFFIX + NetteFramework.NETTE_PRESENTER_EXTENSION;
-    
+
     private static final String FILE_PRESENTER_RELATIVE_DOTTED = "../presenters/%s" + NetteFramework.NETTE_PRESENTER_SUFFIX + NetteFramework.NETTE_PRESENTER_EXTENSION;
 
 	/**
@@ -97,10 +97,11 @@ public final class EditorUtils {
 			if (fo == null) {
 				return null;
 			}
-			
+
             if(fo.getName().equals("sessions") // NOI18N
-                    || fo.getName().equals("temp") || fo.getName().equals("logs")) // NOI18N
-                continue;
+                    || fo.getName().equals("temp") || fo.getName().equals("logs")) {
+				continue;
+			}
             for (FileObject f : fo.getChildren()) {
                 if (f.isFolder() && f.getName().equals("presenters")) { // NOI18N
                     File p = new File(f.getPath(), presenter);
@@ -128,11 +129,11 @@ public final class EditorUtils {
      */
     public static List<String> getAllPresenters(FileObject fo) {
         File appDir = new File(PhpModule.forFileObject(fo).getSourceDirectory().getPath() + NetteFramework.NETTE_APP_DIR);
-        
+
         Enumeration<? extends FileObject> files = FileUtil.toFileObject(appDir).getChildren(true);
 
         Pattern p = Pattern.compile("class +([A-Za-z_][A-Za-z0-9_]*)Presenter"); // NOI18N
-        
+
         List<String> list = new ArrayList<String>();
         while (files.hasMoreElements()) {
             FileObject pfo = files.nextElement();
@@ -158,7 +159,7 @@ public final class EditorUtils {
                         }
                     }
                 } catch (IOException ioe) {
-                    
+
                 }
             }
         }
@@ -176,8 +177,9 @@ public final class EditorUtils {
         FileObject fp = fo;
         while(true) {
             fp = fp.getParent();
-            if(fp.isFolder() && fp.getName().equals("app"))
-                break;
+            if(fp.isFolder() && fp.getName().equals("app")) {
+				break;
+			}
         }
         List<FileObject> fos = FileUtils.getFilesRecursive(fp, new FilenameFilter() {
 			@Override
@@ -187,8 +189,9 @@ public final class EditorUtils {
         });
         for(FileObject f : fos) {
             String rel = getRelativePath(fo, f);
-            if(rel != null)
-                layouts.add(rel);
+            if(rel != null) {
+				layouts.add(rel);
+			}
         }
 
         return layouts;
@@ -211,8 +214,9 @@ public final class EditorUtils {
                     fPath.remove(0);
                     tPath.remove(0);
                 }
-                else
-                    break;
+                else {
+					break;
+				}
             }
             if(fPath.size() > 1) {
                 for(int i = 0; i < fPath.size()-1; i++) {
@@ -221,8 +225,9 @@ public final class EditorUtils {
             }
             for(int i = 0; i < tPath.size(); i++) {
                 relPath += tPath.get(i);
-                if(i != tPath.size()-1)
-                    relPath += "/";
+                if(i != tPath.size()-1) {
+					relPath += "/";
+				}
             }
         } catch (Exception e) {
             // intentionally
@@ -267,7 +272,7 @@ public final class EditorUtils {
 	 */
 	public static String extractPresenterName(String presenterFileName) {
 		String modulePrefixPattern = "^(.*)_"; // NOI18N
-		
+
 		return firstLetterCapital(presenterFileName.replaceAll(NetteFramework.NETTE_PRESENTER_EXTENSION, "").replaceAll("Presenter", "").replaceFirst(modulePrefixPattern, "")); // NOI18N
 	}
 
@@ -288,7 +293,7 @@ public final class EditorUtils {
     }
 
 	private static String extractActionName(String actionName) {
-		String name = null;
+		String name;
 
 		if (actionName.startsWith(NetteFramework.NETTE_ACTION_METHOD_PREFIX)) {
 			name = actionName.replace(NetteFramework.NETTE_ACTION_METHOD_PREFIX, ""); // NOI18N
@@ -313,35 +318,35 @@ public final class EditorUtils {
 
         return null;
     }
-    
+
     public static boolean isViewWithAction(FileObject fo) {
         return isView(fo) && getAction(fo) != null;
     }
-    
+
     public static boolean isView(FileObject fo) {
         return NetteFramework.NETTE_LATTE_TEMPLATE_EXTENSION.endsWith(fo.getExt());
     }
-    
+
     public static FileObject getAction(FileObject fo) {
         File parent = FileUtil.toFile(fo).getParentFile();
-        
+
         File action = PropertyUtils.resolveFile(parent, String.format(resolveActionRelativePath(fo), parent.getName()));
-        
+
         if (action.isFile()) {
             return FileUtil.toFileObject(action);
         }
-        
+
         return null;
     }
-    
+
     private static String resolveActionRelativePath(FileObject fo) {
         if (isDottedView(fo)) {
             return FILE_PRESENTER_RELATIVE_DOTTED;
         }
-        
+
         return FILE_PRESENTER_RELATIVE_CLASSIC;
     }
-    
+
     private static boolean isDottedView(FileObject fo) {
         return firstLetterCapital(fo.getName()).equals(fo.getName());
     }
@@ -349,26 +354,26 @@ public final class EditorUtils {
     public static boolean isAction(FileObject fo) {
         return fo.isData() && fo.getName().endsWith(NetteFramework.NETTE_PRESENTER_SUFFIX);
     }
-    
+
     public static String getActionName(FileObject view) {
         return getActionRenderName(view, NetteFramework.NETTE_ACTION_METHOD_PREFIX);
     }
-    
+
     public static String getRenderName(FileObject view) {
         return getActionRenderName(view, NetteFramework.NETTE_RENDER_METHOD_PREFIX);
     }
-    
+
     private static String getActionRenderName(FileObject view, String methodPrefix) {
         String[] parts;
-        
+
         if (isDottedView(view)) {
             parts = view.getNameExt().split("\\.", 3);
-            
+
             return methodPrefix + firstLetterCapital(parts[1]);
         }
 
         parts = view.getNameExt().split("\\.");
-        
+
         return methodPrefix + firstLetterCapital(parts[0]);
     }
 

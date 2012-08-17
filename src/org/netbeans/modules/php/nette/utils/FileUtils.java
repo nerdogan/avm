@@ -50,7 +50,7 @@ import org.openide.util.Exceptions;
 public final class FileUtils {
 
 	public final static String MIME_TYPE = "text/html";
-	
+
 	private FileUtils() {
 	}
 
@@ -114,11 +114,12 @@ public final class FileUtils {
      */
     public static List<FileObject> getFilesRecursive(FileObject fp, FilenameFilter filter) {
         List<FileObject> list = new ArrayList<FileObject>();
-        
+
         for(FileObject child : fp.getChildren()) {
             if(child.getName().equals("temp") || child.getName().equals("sessions") ||
-                    child.getName().equals("logs"))
-                continue;
+                    child.getName().equals("logs")) {
+				continue;
+			}
             File f = FileUtil.toFile(child);
             if(f.isDirectory()) {
                 File[] folders = f.listFiles(new FileFilter() {
@@ -139,11 +140,12 @@ public final class FileUtils {
 					}
 				}
             } else {
-                if(filter.accept(f.getParentFile(), f.getName()))
-                    list.add(FileUtil.toFileObject(f));
+                if(filter.accept(f.getParentFile(), f.getName())) {
+					list.add(FileUtil.toFileObject(f));
+				}
             }
         }
         return list;
     }
-	
+
 }

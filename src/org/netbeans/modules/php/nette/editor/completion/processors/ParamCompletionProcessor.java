@@ -132,7 +132,7 @@ public class ParamCompletionProcessor {
 		}
 		return list;
 	}
-	
+
 	/**
      * Parses out links from modules/presenters which are in the current application
      * @param doc Latte Template document
@@ -145,7 +145,7 @@ public class ParamCompletionProcessor {
         FileObject fo = Source.create(doc).getFileObject();
 
         List<CompletionItem> list = new ArrayList<CompletionItem>();
-        
+
         if (link.contains(":")) { // NOI18N
             String[] parts = link.split(":"); // NOI18N
             for(String s : EditorUtils.getAllPresenters(fo)) {
@@ -213,10 +213,9 @@ public class ParamCompletionProcessor {
                                             String parsedName = m.group(1);
                                             control = EditorUtils.firstLetterSmall(parsedName);
                                         }
-                                        if(control != null)
-                                            if(control.startsWith(written)) {
-                                                list.add(new ControlCompletionItem(control, startOffset, startOffset + length));
-                                            }
+                                        if(control != null && control.startsWith(written)) {
+                                            list.add(new ControlCompletionItem(control, startOffset, startOffset + length));
+                                        }
                                     }
                                 }
                             } catch (IOException ioe) {
@@ -268,7 +267,7 @@ public class ParamCompletionProcessor {
 	 */
 	private static List<CompletionItem> getSyntaxCompletions(String written, int startOffset, int length) {
 		List<CompletionItem> list = new ArrayList<CompletionItem>();
-		String[] types = { 
+		String[] types = {
 			"latte",
 			"double",
 			"asp",

@@ -65,8 +65,9 @@ public class LatteBracesMatching implements BracesMatcher {
 		// hac
         int searchOffset = context.isSearchingBackward() ? context.getSearchOffset() : context.getSearchOffset() + 1;
 
-        if(MatcherContext.isTaskCanceled())
-            return null;													// abort
+        if(MatcherContext.isTaskCanceled()) {
+			return null;
+		}													// abort
 
         TokenSequence<LatteTopTokenId> ts = LexUtils.getTopSequence(context.getDocument());
 
@@ -79,7 +80,7 @@ public class LatteBracesMatching implements BracesMatcher {
             Token<LatteTopTokenId> t = ts.token();
             if(t.id() == LatteTopTokenId.LATTE) {							// process only latte
 				Syntax syntax = (Syntax) t.getProperty("syntax");
-				
+
 				TokenSequence<LatteTokenId> ts2 = LexUtils.getSequence(t);
 
 				/*ts2.move(searchOffset-ts.offset());
@@ -88,7 +89,7 @@ public class LatteBracesMatching implements BracesMatcher {
                 if(!syntax.isOpening(t.text().toString())) {				// process only macros
                     return null;
                 }
-				
+
 				int LDlength = 1;
 				ts2.moveStart();
                 int i = 0;												// used to check end macro slash position
@@ -123,7 +124,7 @@ public class LatteBracesMatching implements BracesMatcher {
                 };
             }
         }
-        
+
         return null;
     }
 
@@ -136,7 +137,7 @@ public class LatteBracesMatching implements BracesMatcher {
             if(MatcherContext.isTaskCanceled()) {
                 return new int[] { searchOffset, searchOffset };	// abort -> no hi-light
             }
-            
+
             TokenSequence<LatteTopTokenId> ts = LexUtils.getTopSequence(context.getDocument());
 
             List<String> friends = new ArrayList<String>();			// stores macro friends (else, elseif)
@@ -204,14 +205,14 @@ public class LatteBracesMatching implements BracesMatcher {
                 Token<LatteTopTokenId> t = ts.token();
                 if(t.id() == LatteTopTokenId.LATTE) {		// process only latte
 					Syntax syntax = (Syntax) t.getProperty("syntax");
-                    
+
 					if(!syntax.isOpening(t.text().toString())) {		// process only macros
                         continue;
                     }
 					// go through inside macro tokens
                     TokenSequence<LatteTokenId> ts2 = LexUtils.getSequence(t);
                     ts2.moveStart();
-					
+
                     boolean isEndMacro2 = false;					// is parsed macro end macro?
                     int i = 0;										// used for checking end macro slash position
                     while(ts2.moveNext() && i < 3) {

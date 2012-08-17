@@ -32,7 +32,6 @@ import java.util.List;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
-import org.netbeans.api.lexer.TokenHierarchy;
 import org.netbeans.api.lexer.TokenSequence;
 import org.netbeans.modules.csl.api.KeystrokeHandler;
 import org.netbeans.modules.csl.api.OffsetRange;
@@ -50,8 +49,9 @@ public class LatteBracketCompleter implements KeystrokeHandler {
 	@Override
 	public boolean beforeCharInserted(Document doc, int i, JTextComponent jtc, char ch)
 			throws BadLocationException {
-		if(!isCompletable(ch))
+		if(!isCompletable(ch)) {
 			return false;
+		}
 
 		TokenSequence<LatteTokenId> ts = getLatteSequence(doc, i);
 
@@ -71,8 +71,9 @@ public class LatteBracketCompleter implements KeystrokeHandler {
 	@Override
 	public boolean charBackspaced(Document doc, int i, JTextComponent jtc, char ch)
 			throws BadLocationException {
-		if(!isCompletable(ch))
+		if(!isCompletable(ch)) {
 			return false;
+		}
 
 		TokenSequence<LatteTokenId> ts = getLatteSequence(doc, i);
 
@@ -141,7 +142,7 @@ public class LatteBracketCompleter implements KeystrokeHandler {
 			case '[': return ']';
 			case '"': return '"';
 			case '\'': return '\'';
-			
+
 			default:
 				return ch;
 		}
@@ -165,7 +166,7 @@ public class LatteBracketCompleter implements KeystrokeHandler {
 			if(!ts2.moveNext() && !ts2.movePrevious()) {
 				return null;
 			}
-			
+
 			return ts2;
 		}
 

@@ -44,11 +44,11 @@ import org.netbeans.spi.lexer.TokenFactory;
 class LatteLexer implements Lexer<LatteTokenId> {
 
     private static final int EOF = LexerInput.EOF;
-	
+
     private final LatteColoringLexer scanner;
 
     private LexerInput input;
-	
+
 	private Syntax syntax = LatteSyntax.getInstance();
 
     private TokenFactory<LatteTokenId> tokenFactory;
@@ -73,8 +73,9 @@ class LatteLexer implements Lexer<LatteTokenId> {
     public Token<LatteTokenId> nextToken() {
         LatteTokenId tokenId = scanner.nextToken();
 
-		if(tokenId == null)
+		if(tokenId == null) {
 			return null;
+		}
 
         return (tokenId.fixedText() != null)
             ? tokenFactory.getFlyweightToken(tokenId, tokenId.fixedText())
@@ -97,7 +98,7 @@ class LatteLexer implements Lexer<LatteTokenId> {
         keywords.add("instanceof");
         keywords.add("expand");
     };
-    
+
     /** State of the lexer - where in tokenizing the macro the lexer ended */
     enum State {
         OUTER,				// out of macro
@@ -123,7 +124,7 @@ class LatteLexer implements Lexer<LatteTokenId> {
             this.input = info.input();
             this.state = state;
         }
-		
+
 		/**
 		 * Tokenizes the input. In this lexer the input must be a latte macro (latte mime-type).
 		 * For each character (or sequence) returns its LattteTokenId representative
@@ -135,8 +136,9 @@ class LatteLexer implements Lexer<LatteTokenId> {
 				int ch = input.read();								// next character from the input
 				char chr = (char)ch;								// actual character (for debugging purpouse)
 				CharSequence s = input.readText();					// whole text read (for debugging purpouse)
-				if(ch == EOF)
-					return null;									//end of file
+				if(ch == EOF) {
+					return null;
+				}									//end of file
 				switch(state) {
 					case OUTER:
 						if(syntax.isOpening(input)) {				// start of the macro
@@ -179,8 +181,9 @@ class LatteLexer implements Lexer<LatteTokenId> {
                                             return LatteTokenId.STRING;
                                         }
                                         escape = false;
-                                        if(c == '\\')					// next char is escaped
-                                            escape = true;
+                                        if(c == '\\') { // next char is escaped
+											escape = true;
+										}
                                         if(c == EOF) {
                                             return LatteTokenId.STRING;
                                         }
@@ -194,7 +197,7 @@ class LatteLexer implements Lexer<LatteTokenId> {
                                 state = State.AFTER_MACRO;
                                 return LatteTokenId.RD;
                             }
-                            
+
                             ch = input.read();
                         }
 					case AFTER_LD:
@@ -219,8 +222,9 @@ class LatteLexer implements Lexer<LatteTokenId> {
 						if(ch == '!') {								// no escaping
 							ch = input.read();
 							if(ch == '=' || ch == '_' || ch == '$') {	// macros which support ! char
-								if(ch == '$')
-									input.backup(1);				// except $ char (will be used for variable)
+								if(ch == '$') { // except $ char (will be used for variable)
+									input.backup(1);
+								}
 								state = State.AFTER_MACRO;
 								return LatteTokenId.MACRO;
 							}
@@ -242,8 +246,9 @@ class LatteLexer implements Lexer<LatteTokenId> {
                                     return LatteTokenId.STRING;
                                 }
                                 escape = false;
-                                if(ch == '\\')					// next char is escaped
-                                    escape = true;
+                                if(ch == '\\') { // next char is escaped
+									escape = true;
+								}
                                 if(ch == EOF) {
                                     return LatteTokenId.STRING;
                                 }
@@ -282,8 +287,9 @@ class LatteLexer implements Lexer<LatteTokenId> {
 										return LatteTokenId.STRING;
 									}
 									escape = false;
-									if(c == '\\')					// next char is escaped
+									if(c == '\\') { // next char is escaped
 										escape = true;
+									}
 									if(c == EOF) {
 										return LatteTokenId.STRING;
 									}
@@ -319,8 +325,9 @@ class LatteLexer implements Lexer<LatteTokenId> {
 									state = State.AFTER_MACRO;		// all else is after macro
 
 									// if read text is one of php keywords, return KEYWORD token
-									if(keywords.contains(input.readText().toString().toLowerCase()))
+									if(keywords.contains(input.readText().toString().toLowerCase())) {
 										return LatteTokenId.KEYWORD;
+									}
 
 									// all else is just text (action name in plink, template name in include, ...)
 									return LatteTokenId.TEXT;
@@ -332,7 +339,7 @@ class LatteLexer implements Lexer<LatteTokenId> {
 				}
 			}
 		}
-        
+
         private LatteTokenId checkCommonCharacter(int ch) {
             switch (ch) {
                 case '/':
@@ -359,8 +366,9 @@ class LatteLexer implements Lexer<LatteTokenId> {
 
                 // equals sign or php array assign =>
                 case '=':
-                    if(input.read() == '>')
-                        return LatteTokenId.ASSIGN;
+                    if(input.read() == '>') {
+						return LatteTokenId.ASSIGN;
+					}
                     input.backup(1);
                     return LatteTokenId.EQUALS;
 
@@ -371,8 +379,9 @@ class LatteLexer implements Lexer<LatteTokenId> {
 
                 // minus sign or object access (accessing field or method..)
                 case '-':
-                    if(input.read() == '>')
-                        return LatteTokenId.ACCESS;
+                    if(input.read() == '>') {
+						return LatteTokenId.ACCESS;
+					}
                     input.backup(1);
                     return LatteTokenId.MINUS;
 
@@ -396,7 +405,7 @@ class LatteLexer implements Lexer<LatteTokenId> {
                     return null;
             }
         }
-        
+
 	}
 
     /**
