@@ -154,15 +154,15 @@ public class LatteBracesMatching implements BracesMatcher {
 						isPair = mcr.isPair();
 						pairMacroNames.add(mcr.getEndMacroName());
 					}
-					for(String m : MacroDefinitions.friendMacros.keySet()) {			// checking for friend macro
-						for(LatteMacro f : MacroDefinitions.friendMacros.get(m)) {
+					for(String m : MacroDefinitions.FRIEND_MACROS.keySet()) {			// checking for friend macro
+						for(LatteMacro f : MacroDefinitions.FRIEND_MACROS.get(m)) {
 							if(f.getMacroName().equals(macroName) || m.equals(macroName)) {
 								if(!m.equals(macroName)) {
 									if(!friends.contains(m)) {
 										friends.add(m);
 									}
 								}
-								for(LatteMacro macro : MacroDefinitions.friendMacros.get(m)) {
+								for(LatteMacro macro : MacroDefinitions.FRIEND_MACROS.get(m)) {
 									if(!friends.contains(macro.getMacroName())) {
 										friends.add(macro.getMacroName());
 									}

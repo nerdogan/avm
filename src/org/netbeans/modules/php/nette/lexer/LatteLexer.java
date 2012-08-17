@@ -83,20 +83,20 @@ class LatteLexer implements Lexer<LatteTokenId> {
     }
 
     /** keywords which will be highlited differently (like in PHP) */
-    private final static List<String> keywords = new ArrayList<String>();
+    private final static List<String> KEYWORDS = new ArrayList<String>();
     static {
-        keywords.add("true");
-        keywords.add("false");
-        keywords.add("array");
-        keywords.add("null");
-        keywords.add("new");
-        keywords.add("as");
-        keywords.add("or");
-        keywords.add("and");
-        keywords.add("xor");
-        keywords.add("isset");
-        keywords.add("instanceof");
-        keywords.add("expand");
+        KEYWORDS.add("true");
+        KEYWORDS.add("false");
+        KEYWORDS.add("array");
+        KEYWORDS.add("null");
+        KEYWORDS.add("new");
+        KEYWORDS.add("as");
+        KEYWORDS.add("or");
+        KEYWORDS.add("and");
+        KEYWORDS.add("xor");
+        KEYWORDS.add("isset");
+        KEYWORDS.add("instanceof");
+        KEYWORDS.add("expand");
     };
 
     /** State of the lexer - where in tokenizing the macro the lexer ended */
@@ -325,7 +325,7 @@ class LatteLexer implements Lexer<LatteTokenId> {
 									state = State.AFTER_MACRO;		// all else is after macro
 
 									// if read text is one of php keywords, return KEYWORD token
-									if(keywords.contains(input.readText().toString().toLowerCase())) {
+									if(KEYWORDS.contains(input.readText().toString().toLowerCase())) {
 										return LatteTokenId.KEYWORD;
 									}
 

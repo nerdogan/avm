@@ -223,8 +223,8 @@ public class LatteCompletionProvider implements CompletionProvider {
 			Pair<LatteMacro, Integer> p = paired.get(key);
 			if(p.second != null && p.second > 0) {
 				endMacros.add(p.first);
-				if(MacroDefinitions.friendMacros.containsKey(key)) {
-					endMacros.addAll(Arrays.asList(MacroDefinitions.friendMacros.get(key)));
+				if(MacroDefinitions.FRIEND_MACROS.containsKey(key)) {
+					endMacros.addAll(Arrays.asList(MacroDefinitions.FRIEND_MACROS.get(key)));
 				}
 			}
 		}

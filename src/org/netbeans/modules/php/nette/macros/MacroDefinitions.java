@@ -96,30 +96,30 @@ public class MacroDefinitions {
 	/**
 	 * Defines friend macros of some block macros
 	 */
-    public final static HashMap<String, LatteMacro[]> friendMacros = new HashMap<String, LatteMacro[]>();
+    public final static HashMap<String, LatteMacro[]> FRIEND_MACROS = new HashMap<String, LatteMacro[]>();
     static {
-        friendMacros.put("if", new LatteMacro[] {
+        FRIEND_MACROS.put("if", new LatteMacro[] {
             new LatteMacro("else", false, true),
             new LatteParamMacro("elseif", false, true)
         });
-        friendMacros.put("ifset", new LatteMacro[] {
+        FRIEND_MACROS.put("ifset", new LatteMacro[] {
             new LatteMacro("else", false, true),
             new LatteParamMacro("elseif", false, true),
             new LatteParamMacro("elseifset", false, true)
         });
-        friendMacros.put("ifCurrent", new LatteMacro[] {
+        FRIEND_MACROS.put("ifCurrent", new LatteMacro[] {
             new LatteMacro("else", false, true),
             new LatteParamMacro("elseif", false, true)
         });
-        friendMacros.put("while", new LatteMacro[] {
+        FRIEND_MACROS.put("while", new LatteMacro[] {
             new LatteParamMacro("continueIf", false, true),
             new LatteParamMacro("breakIf", false, true)
         });
-        friendMacros.put("foreach", new LatteMacro[] {
+        FRIEND_MACROS.put("foreach", new LatteMacro[] {
             new LatteParamMacro("continueIf", false, true),
             new LatteParamMacro("breakIf", false, true)
         });
-        friendMacros.put("for", new LatteMacro[] {
+        FRIEND_MACROS.put("for", new LatteMacro[] {
             new LatteParamMacro("continueIf", false, true),
             new LatteParamMacro("breakIf", false, true)
         });
