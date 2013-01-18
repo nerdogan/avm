@@ -6,7 +6,7 @@
 <ul class="nav">
 <li><a href="home.php"> <img src="assets/img/batmanpark.png"></a> </li>
 <?php if( protectThis(1) ) : ?>
-<li><a href="magaza.php?do=ekle"><?php _e('Yeni Kayıt'); ?></a></li>
+  <li><a href="magaza.php?do=ekle"><?php _e('Yeni Kayıt'); ?></a></li>
 <li><a href="magaza.php?do=duzenle"><?php _e('Düzenle'); ?></a></li>
 <li><a href="#"><?php _e('Sil'); ?></a></li>
 <li><a href="#"><?php _e('Tam Liste'); ?></a></li>
