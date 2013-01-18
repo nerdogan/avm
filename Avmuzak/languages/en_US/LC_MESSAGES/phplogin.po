@@ -1,0 +1,1901 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PHP Login & User Management\n"
+"Report-Msgid-Bugs-To: Jigowatt <info@jigowatt.co.uk>\n"
+"POT-Creation-Date: 2012-06-27 08:01-0400\n"
+"PO-Revision-Date: 2012-07-28 12:32-0500\n"
+"Last-Translator: Matt Gates <info@mgates.me>\n"
+"Language-Team: Jigowatt <info@jigowatt.co.uk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: \wp-content\plugins\jigoshop\activate.php:49
+msgid "Your activation link is incorrect."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:50
+#: \wp-content\plugins\jigoshop\activate.php:67
+#: \wp-content\plugins\jigoshop\activate.php:116
+#: \wp-content\plugins\jigoshop\activate.php:130
+#: \wp-content\plugins\jigoshop\activate.php:134
+#: \wp-content\plugins\jigoshop\classes\generic.class.php:395
+#: \wp-content\plugins\jigoshop\install\index.php:314
+msgid "What to do now?"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:51
+#: \wp-content\plugins\jigoshop\activate.php:68
+#: \wp-content\plugins\jigoshop\activate.php:131
+#, php-format
+msgid "Go to the <a href=\"%s\"> homepage</a>"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:65
+msgid "Your account has been activated!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:65
+msgid "You can now see the default access granted to new users."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:66
+msgid "If you require more access please contact the site admin at"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:98
+msgid "You do not have an activation key!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:99
+msgid "Please contact an admin: "
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:115
+msgid "Activation link resent to email."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:117
+msgid "Click the link in your email to activate your account."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:118
+#: \wp-content\plugins\jigoshop\admin\classes\add_user.class.php:163
+#: \wp-content\plugins\jigoshop\admin\classes\edit_user.class.php:219
+#: \wp-content\plugins\jigoshop\admin\classes\send_email.class.php:71
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:204
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:209
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:254
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:352
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:387
+msgid "ERROR. Mail not sent"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:129
+msgid "Your account has already been activated."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:133
+msgid "You have not activated your account yet."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:135
+msgid "Please follow the link in your email to activate your account."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\activate.php:136
+#, php-format
+msgid "Would you like us to <a href=\"%s\">resend</a> the link?"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:31
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:158
+msgid "You must enter your name."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:33
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:35
+msgid "You have enter an invalid e-mail address, try again."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:39
+msgid "Please enter a subject."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:41
+msgid "Please enter your message."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:43
+msgid "Please enter the verification code."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:45
+msgid "The verification code you entered is incorrect."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:62
+msgid "You've been contacted by"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:69
+msgid "You have been contacted by $name with regards to $subject, their additional message is as follows."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:72
+#, php-format
+msgid "You can contact %s via email, %s"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:80
+msgid "Email Sent Successfully"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:81
+msgid "Thank you"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:81
+msgid "your message has been submitted to us."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:91
+msgid "Oops, Access Denied"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:92
+msgid "Sorry, your username or user group has been disabled!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:93
+msgid "We have detected that your username or user group has been disabled; so you cannot view internal pages."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:94
+msgid "Fill out this form if you feel this is in error"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:102
+#: \wp-content\plugins\jigoshop\profile.php:49
+#: \wp-content\plugins\jigoshop\admin\levels.php:17
+#: \wp-content\plugins\jigoshop\admin\users.php:33
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:89
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:140
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:184
+#: \wp-content\plugins\jigoshop\admin\page\level-create.php:8
+#: \wp-content\plugins\jigoshop\admin\page\user-add.php:8
+msgid "Name"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:109
+#: \wp-content\plugins\jigoshop\profile.php:55
+#: \wp-content\plugins\jigoshop\sign_up.php:33
+#: \wp-content\plugins\jigoshop\sign_up.php:35
+#: \wp-content\plugins\jigoshop\admin\users.php:51
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:90
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:141
+#: \wp-content\plugins\jigoshop\admin\page\user-add.php:22
+msgid "Email"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:116
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:10
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:28
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:9
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:27
+#: \wp-content\plugins\jigoshop\admin\page\emails-add-user.php:9
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:9
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:27
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:9
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:28
+#: \wp-content\plugins\jigoshop\admin\page\send-email.php:17
+msgid "Subject"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:119
+msgid "Disabled Message"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:120
+msgid "Report a bug"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:126
+msgid "Your comments"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:133
+msgid "What colour is the sky?"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\disabled.php:139
+#: \wp-content\plugins\jigoshop\login.php:22
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:16
+msgid "Submit"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\header.php:43
+#: \wp-content\plugins\jigoshop\install\header.php:40
+msgid "Jigowatt"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\header.php:46
+#: \wp-content\plugins\jigoshop\admin\header.php:55
+#: \wp-content\plugins\jigoshop\install\header.php:43
+msgid "Home"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\header.php:47
+#: \wp-content\plugins\jigoshop\admin\header.php:56
+#: \wp-content\plugins\jigoshop\install\header.php:44
+msgid "Secure page"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\header.php:48
+#: \wp-content\plugins\jigoshop\admin\header.php:57
+#: \wp-content\plugins\jigoshop\install\header.php:45
+msgid "Admin panel"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\header.php:60
+#: \wp-content\plugins\jigoshop\admin\header.php:65
+msgid "Control Panel"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\header.php:61
+#: \wp-content\plugins\jigoshop\admin\header.php:66
+#: \wp-content\plugins\jigoshop\admin\index.php:18
+msgid "Settings"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\header.php:62
+#: \wp-content\plugins\jigoshop\admin\header.php:67
+msgid "My Account"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\header.php:63
+#: \wp-content\plugins\jigoshop\admin\header.php:68
+msgid "Help"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\header.php:65
+#: \wp-content\plugins\jigoshop\admin\header.php:70
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:86
+msgid "Sign out"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\header.php:71
+#: \wp-content\plugins\jigoshop\admin\header.php:76
+#: \wp-content\plugins\jigoshop\install\header.php:48
+msgid "Have an account?"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\header.php:71
+#: \wp-content\plugins\jigoshop\admin\header.php:76
+#: \wp-content\plugins\jigoshop\install\header.php:48
+msgid "Sign in!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:4
+msgid "Let's talk about the future."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:5
+msgid "Easy user management and a comprehensive admin panel. All, for you :3"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:7
+msgid "Purchase this script"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:8
+msgid "Subscribe to updates"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:11
+msgid "Documentation"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:12
+msgid "Support"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:20
+msgid "Stupendously exciting login and user management."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:21
+msgid "Just the right amount of tools to get your job done."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:23
+msgid "Installation"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:25
+msgid "Complete"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:27
+msgid "Not complete"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:30
+msgid "Get setup in minutes! Enjoy the super easy installation wizard to walk you through the setup process."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:32
+msgid "Start your installation by clicking the button below!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:33
+#: \wp-content\plugins\jigoshop\classes\connect.class.php:40
+msgid "Begin Install"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:38
+#: \wp-content\plugins\jigoshop\admin\index.php:16
+msgid "Reports"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:39
+msgid "Keep track of how your site is doing with dynamic graphs to aid you."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:45
+msgid "Security"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:46
+msgid "Our script has a couple default secure pages to get you started."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:50
+msgid "Admin tools"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:51
+msgid "Enjoy the luxury of having control over every aspect of your website."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:60
+msgid "Demo credentials."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:61
+msgid "Whatcha waiting for? Login and check out the site!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:64
+msgid "Administrator"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:65
+msgid "Username: admin"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:66
+msgid "Password: admin"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:70
+msgid "Special user"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:71
+msgid "Username: special"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:72
+msgid "Password: special"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:76
+msgid "Default privileges"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:77
+msgid "Username: user"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\home.php:78
+msgid "Password: user"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\login.php:7
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:118
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:134
+msgid "Account Recovery"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\login.php:13
+msgid "Username or Email Address"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\login.php:22
+msgid "Done"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\login.php:23
+msgid "It'll be easy, I promise."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\login.php:31
+msgid "Sign in to Jigowatt"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\login.php:33
+#: \wp-content\plugins\jigoshop\sign_up.php:15
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:88
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:139
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:62
+#: \wp-content\plugins\jigoshop\admin\page\user-add.php:15
+#: \wp-content\plugins\jigoshop\install\index.php:346
+#: \wp-content\plugins\jigoshop\install\index.php:380
+msgid "Username"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\login.php:36
+msgid "Trouble signing in"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\login.php:41
+#: \wp-content\plugins\jigoshop\sign_up.php:21
+#: \wp-content\plugins\jigoshop\admin\users.php:39
+#: \wp-content\plugins\jigoshop\install\index.php:352
+#: \wp-content\plugins\jigoshop\install\index.php:386
+msgid "Password"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\login.php:49
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:97
+msgid "Sign in"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\login.php:52
+msgid "Stay signed in"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\login.php:55
+msgid "New to Jigowatt? <strong>Join today!</strong>"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:6
+msgid "Change your avatar at Gravatar.com"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:21
+#: \wp-content\plugins\jigoshop\profile.php:41
+#: \wp-content\plugins\jigoshop\admin\settings.php:18
+#: \wp-content\plugins\jigoshop\admin\users.php:20
+#: \wp-content\plugins\jigoshop\admin\users.php:31
+msgid "General"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:26
+#: \wp-content\plugins\jigoshop\admin\users.php:23
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:16
+msgid "Access logs"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:30
+#: \wp-content\plugins\jigoshop\profile.php:100
+#: \wp-content\plugins\jigoshop\admin\settings.php:31
+msgid "Integration"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:43
+msgid "Current password"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:61
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:136
+msgid "New password"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:63
+msgid "Leave blank for no change"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:67
+msgid "New password again"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:75
+msgid "Your public link"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:91
+#: \wp-content\plugins\jigoshop\admin\users.php:96
+msgid "Access Logs"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:102
+msgid "Use your preferred social method to login the next time you visit our site."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:112
+msgid "Link"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:113
+msgid "Unlink"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\profile.php:126
+#: \wp-content\plugins\jigoshop\admin\settings.php:115
+msgid "Save changes"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\protected.php:8
+msgid "Admin only text <small>User level: 1</small>"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\protected.php:9
+msgid "You will only be able to see this content if you have an <span class=\"label label-important\">administrator</span> user level. "
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\protected.php:12
+msgid "Only admins can view this content."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\protected.php:18
+msgid "Why hello, special user! <small>User level: 2</small>"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\protected.php:19
+msgid "You will only be able to see this content if you have a <span class=\"label label-info\">special</span> user level. "
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\protected.php:21
+msgid "Only admins or special users can view this content."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\protected.php:31
+msgid "All registered users <small>User level: * </small>"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\protected.php:32
+msgid "Any user level in the entire world can see this! All that matters is that you're logged in."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\protected.php:35
+msgid "Only signed in users can view what's hidden here!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\protected.php:40
+msgid "Public content. <small>No sign in required.</small>"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\protected.php:41
+msgid "When visiting this page, anyone that is not signed in will be able to view your markup. "
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\sign_up.php:9
+#: \wp-content\plugins\jigoshop\sign_up.php:11
+msgid "Full name"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\sign_up.php:17
+msgid "Choose your username"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\sign_up.php:23
+msgid "Create a password"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\sign_up.php:27
+#: \wp-content\plugins\jigoshop\admin\users.php:45
+msgid "Password again"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\sign_up.php:29
+msgid "Confirm your password"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\sign_up.php:49
+msgid "Create my account"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\sign_up.php:53
+msgid "Create a new account"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\sign_up.php:54
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris cursus rhoncus tristique. Mauris ornare ipsum a leo molestie id porttitor justo bibendum. Pellentesque magna augue, sollicitudin ut ornare pretium, mattis imperdiet augue. Morbi semper sapien sit amet velit interdum eu commodo erat fringilla. Nulla et ipsum orci, ac varius nulla. Nam vehicula, mi quis euismod consectetur, magna dui porttitor sem, vel venenatis felis nunc eu diam. Integer vitae est at nunc varius viverra sit amet at magna. Vestibulum mi diam, pharetra id malesuada ac, venenatis nec turpis. Vestibulum metus nisl, pharetra non laoreet eu, laoreet a eros. Suspendisse ut arcu in mauris dapibus sodales. Vestibulum commodo congue elit at mollis. Fusce semper auctor odio, ut pharetra justo faucibus blandit. Fusce in pellentesque elit. Nunc adipiscing neque eu odio tincidunt ac mollis erat porta."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\sign_up.php:55
+msgid "Features"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\sign_up.php:56
+msgid "Cras placerat scelerisque vehicula. Fusce eu ipsum vel mi convallis dapibus. Cras ut nibh metus, quis malesuada augue. Aenean a nisi nec sem accumsan gravida in in turpis. Nulla euismod lorem non sem imperdiet vestibulum. Donec blandit aliquet turpis sed dapibus. Duis fermentum facilisis diam, sit amet ultrices neque dictum eget."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\index.php:14
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:217
+msgid "Users"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\index.php:15
+msgid "Levels"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\index.php:17
+#: \wp-content\plugins\jigoshop\admin\page\send-email.php:5
+msgid "Send email"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:15
+msgid "level control"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:24
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:185
+#: \wp-content\plugins\jigoshop\admin\page\level-create.php:14
+msgid "Level"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:31
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:187
+#: \wp-content\plugins\jigoshop\admin\page\level-create.php:20
+msgid "Redirect"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:31
+#: \wp-content\plugins\jigoshop\admin\page\level-create.php:20
+msgid "When logging in, this user will be redirected to the URL you specify. Leave blank to redirect to the referring page."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:38
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:3
+msgid "Welcome email"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:38
+msgid "When a user is manually added to this level, that user will receive the standard welcome email automatically."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:42
+msgid "Send welcome email when users join this level"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:48
+msgid "Disable"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:52
+msgid "Prevent this level from accessing any secure content"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:58
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:37
+msgid "Delete"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:62
+msgid "Remove this level from the database"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:70
+#: \wp-content\plugins\jigoshop\admin\settings.php:32
+#: \wp-content\plugins\jigoshop\admin\page\update.php:4
+msgid "Update"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\levels.php:80
+msgid "existing users"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\settings.php:19
+#: \wp-content\plugins\jigoshop\admin\page\denied.php:8
+msgid "Denied"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\settings.php:21
+msgid "Emails"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\settings.php:23
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:5
+msgid "Welcome"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\settings.php:24
+msgid "Activate"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\settings.php:25
+msgid "Forgot"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\settings.php:26
+#: \wp-content\plugins\jigoshop\admin\page\emails-add-user.php:3
+#: \wp-content\plugins\jigoshop\admin\page\emails-add-user.php:5
+#: \wp-content\plugins\jigoshop\admin\page\user-add.php:30
+msgid "Add user"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\settings.php:27
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:3
+msgid "'My Account' changes"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\settings.php:30
+msgid "Profiles"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\settings.php:32
+msgid "new"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\settings.php:115
+msgid "saving..."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\settings.php:115
+msgid "Changes saved"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\users.php:57
+msgid "User levels"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\users.php:65
+msgid "Profile link"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\users.php:76
+msgid "Restrict user?"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\users.php:84
+msgid "Delete user? (Can not be undone)"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\users.php:103
+msgid "Update user"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_level.class.php:72
+#: \wp-content\plugins\jigoshop\admin\classes\add_user.class.php:80
+msgid "No suggestions"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_level.class.php:73
+msgid "Try searching by name, level, or redirect url."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_level.class.php:77
+#: \wp-content\plugins\jigoshop\admin\classes\add_user.class.php:85
+msgid "Suggestions"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_level.class.php:96
+#: \wp-content\plugins\jigoshop\admin\classes\edit_level.class.php:103
+msgid "You must enter a level name."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_level.class.php:101
+msgid "Auth level has to be a number."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_level.class.php:115
+msgid "Auth level"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_level.class.php:115
+msgid "already exists"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_level.class.php:127
+#, php-format
+msgid "Successfully added level <b>%s</b> to the database."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_user.class.php:81
+msgid "Try searching by username, name, or user id."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_user.class.php:104
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:133
+msgid "You must enter a name."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_user.class.php:109
+#: \wp-content\plugins\jigoshop\classes\login.class.php:135
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:148
+msgid "You must enter a username."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_user.class.php:114
+#: \wp-content\plugins\jigoshop\admin\classes\edit_user.class.php:124
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:53
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:136
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:167
+msgid "You have entered an invalid e-mail address, try again."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_user.class.php:122
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:164
+msgid "That email address has already been taken."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_user.class.php:130
+msgid "Sorry, username already taken."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\add_user.class.php:165
+#, php-format
+msgid "Successfully added user <b>%s</b> to the database. Credentials sent to user."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_level.class.php:73
+msgid "Level doesn't exist!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_level.class.php:108
+msgid "You must enter an auth level."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_level.class.php:116
+#, php-format
+msgid "Auth level %s already exists"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_level.class.php:137
+msgid "This level still has users in it!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_level.class.php:143
+#, php-format
+msgid "Level <b>%s</b> removed from database."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_level.class.php:157
+#, php-format
+msgid "Information updated for level <b>%s</b>."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_user.class.php:28
+msgid "No user selected!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_user.class.php:57
+msgid "No such user!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_user.class.php:122
+msgid "You must enter name."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_user.class.php:126
+msgid "No user level has been selected."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_user.class.php:132
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:141
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:170
+msgid "Your passwords did not match."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_user.class.php:134
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:58
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:144
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:173
+msgid "Your password must be at least 5 characters."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_user.class.php:149
+#, php-format
+msgid "User removed from the database:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_user.class.php:165
+#, php-format
+msgid "User information (and password) updated for"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\edit_user.class.php:179
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:221
+#, php-format
+msgid "User information updated for"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:37
+#: \wp-content\plugins\jigoshop\install\index.php:382
+#: \wp-content\plugins\jigoshop\install\index.php:388
+msgid "admin"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:42
+msgid "restricted"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:47
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:54
+#: \wp-content\plugins\jigoshop\classes\generic.class.php:370
+msgid "at"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:91
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:142
+msgid "Registered Date"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:92
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:143
+#: \wp-content\plugins\jigoshop\classes\generic.class.php:362
+msgid "Last Login"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:106
+msgid "Sorry, there are no recently registered users."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:130
+msgid "No users found!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:186
+msgid "Active Users"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:210
+msgid "Disabled"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:282
+msgid "Previous"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\functions.php:336
+msgid "Next"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\send_email.class.php:46
+msgid "Please select a user group"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\send_email.class.php:73
+msgid "Email sent!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\send_email.class.php:82
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:264
+msgid "Select your levels"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:50
+msgid "You must enter a default session (numeric value only)."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:56
+msgid "Please enter your site address."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:151
+msgid "Settings updated."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:158
+msgid "Text Input"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:159
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:58
+msgid "Textarea"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:160
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:59
+msgid "Checkbox"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:164
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:63
+msgid "Hide"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:165
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:64
+msgid "Require"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:166
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:65
+msgid "Optional"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:178
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:55
+msgid "Section name"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:187
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:61
+msgid "Field name"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\classes\settings.class.php:203
+msgid "Add field"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\denied.php:10
+msgid "Registered users"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\denied.php:10
+msgid "This controls the message a <strong>signed in</strong> user sees when accessing a protected page."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\denied.php:14
+#: \wp-content\plugins\jigoshop\admin\page\denied.php:28
+msgid "Display message"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\denied.php:24
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:70
+msgid "Guests"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\denied.php:24
+msgid "Show this error after a user is redirected to the login page (user is <strong>logged out</strong>)."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:4
+msgid "<b>Note:</b> Only sent when a user changes his or her Email / Password."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:6
+msgid "Verify change"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:6
+msgid "The email a user receives when updating an email or password."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:14
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:32
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:13
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:31
+#: \wp-content\plugins\jigoshop\admin\page\emails-add-user.php:13
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:13
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:31
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:13
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:32
+msgid "Message body"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:15
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:33
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:14
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:32
+#: \wp-content\plugins\jigoshop\admin\page\emails-add-user.php:14
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:14
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:32
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:14
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:33
+msgid "Shortcodes:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:16
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:34
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:15
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:33
+#: \wp-content\plugins\jigoshop\admin\page\emails-add-user.php:15
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:15
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:33
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:15
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:34
+msgid "Site address:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:17
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:35
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:16
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:34
+#: \wp-content\plugins\jigoshop\admin\page\emails-add-user.php:16
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:16
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:34
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:16
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:35
+msgid "Full name:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:18
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:36
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:17
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:35
+#: \wp-content\plugins\jigoshop\admin\page\emails-add-user.php:17
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:17
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:35
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:17
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:36
+msgid "Username:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:19
+msgid "Confirmation link:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:24
+msgid "Updated"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-acct-update.php:24
+msgid "The email a user receives after confirming the account change."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:3
+msgid "Activation emails"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:5
+msgid "Resend link"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:5
+msgid "The email a user receives when requesting an activation link."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:18
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:19
+msgid "Activation link:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:23
+msgid "Activated"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-activate.php:23
+msgid "The email a user receives after activating their account."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-add-user.php:5
+msgid "When the admin creates a new user through the admin panel, the user will receive this email."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-add-user.php:18
+msgid "Password:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-add-user.php:20
+msgid "Note:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-add-user.php:20
+msgid "The password is randomly generated and should be included in the email"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:3
+msgid "Account recovery emails"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:5
+msgid "Recover request"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:5
+msgid "The email a user receives when requesting their username / password."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:18
+msgid "Reset link:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:23
+msgid "Recovered"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-forgot.php:23
+msgid "The email a user receives after successfully resetting their password."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:5
+msgid "The email a user receives after registering for your site."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:18
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:37
+msgid "Email:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:24
+msgid "Notification"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\emails-welcome.php:24
+msgid "A user group can receive notifications on new registrations if enabled in Settings > General."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:3
+msgid "General Options"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:5
+#: \wp-content\plugins\jigoshop\install\index.php:369
+msgid "Admin email"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:5
+msgid "This email will be used to send all emails."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:11
+#: \wp-content\plugins\jigoshop\install\index.php:362
+msgid "Site address"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:11
+msgid "This path should be set to where activate.php is located."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:17
+msgid "Default session"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:17
+msgid "Default time in minutes a user can be logged in. Enter 0 to log the user out when they close their browser."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:23
+msgid "Default level"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:23
+msgid "The default level a new user will have when signing up, or by being created through the admin panel."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:29
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:78
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:100
+msgid "New users"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:33
+msgid "Disable registrations"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:37
+msgid "Require email activation for new users"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:41
+msgid "Notify on new registrations"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:51
+msgid "Password encryption"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:55
+msgid "Force user to update password if not using selected encryption method"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:67
+msgid "Redirect Options"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:70
+msgid "Where to redirect guests when attempting to access a secured page."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:73
+msgid "Default: <code>login.php?e=1</code>"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:78
+msgid "After a new user registers, where should the user be redirected to? By default the user is sent to the My Account page."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:81
+msgid "Default: <code>profile.php</code>"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:86
+msgid "When the user logs out of your site through logout.php."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:90
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:101
+msgid "Redirect to referring page"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:97
+msgid "The default page to load when a user logs in."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\general-options.php:107
+msgid "<b>Note:</b> Level specific redirects can be set on their respective level edit page and will override the options configured above."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:3
+msgid "Social login"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:5
+msgid "Enable any of these methods to permit your users logging in with them."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:8
+msgid "Twitter"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:13
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:41
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:106
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:134
+msgid "Enable"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:20
+msgid "Consumer key"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:25
+msgid "Consumer secret"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:28
+#, php-format
+msgid "You must first <a href=\"%s\">setup a Twitter App</a>."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:29
+#, php-format
+msgid "When setting up your app, for <i>Callback URL</i>, use <code>%s</code>"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:36
+msgid "Facebook"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:48
+msgid "App ID"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:53
+msgid "App Secret"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:56
+#, php-format
+msgid "You must first <a href=\"%s\">setup a Facebook App</a>."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:64
+msgid "OpenID Networks"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:69
+msgid "Google"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:74
+msgid "Yahoo"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:83
+msgid "Captcha signup"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:86
+msgid "Require human verification on the registration form."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:89
+msgid "Disable captcha"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:101
+msgid "reCAPTCHA"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:113
+msgid "Public key"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:118
+msgid "Private key"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:121
+#, php-format
+msgid "You must first <a href=\"%s\">create a reCAPTCHA key</a>."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:129
+msgid "PlayThru"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:141
+msgid "Publisher key"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:146
+msgid "Scoring key"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\integration.php:149
+#, php-format
+msgid "You must first <a href=\"%s\">signup to get a site key</a>."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\level-control.php:4
+msgid "Modify levels"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\level-control.php:10
+msgid "Create new level"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\level-control.php:11
+#: \wp-content\plugins\jigoshop\admin\page\user-control.php:11
+msgid "Show"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\level-control.php:13
+msgid "Search by Name, Level, ID, or Redirect URL."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\level-control.php:15
+msgid "Level search"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\level-create.php:26
+msgid "Create level"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:9
+msgid "Registered Users"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:14
+msgid "From:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:15
+msgid "To:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:16
+msgid "submitting..."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:23
+msgid "Total"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:24
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:32
+msgid "Registered"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:31
+msgid "Range"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:41
+msgid "<strong>Tip:</strong> Hover over the points on the graph!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:54
+msgid "Most Frequent Users"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:58
+msgid "Top 10"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\reports.php:63
+msgid "Logins"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\send-email.php:10
+msgid "To"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\send-email.php:10
+msgid "Select the user groups that will receive your email. (This will send as BCC)"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\send-email.php:24
+msgid "Message"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\send-email.php:33
+msgid "Send now!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:7
+msgid "Updates disabled"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:8
+msgid "Two thing may have happened:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:10
+msgid "Update checking is disabled"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:11
+msgid "Could not connect to server to fetch latest update details. Please make sure the PHP setting `allow_url_fopen` is enabled."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:15
+msgid "Update available!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:16
+msgid "There's a new update available! Please visit your CodeCanyon profile to download the new version."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:18
+msgid "You're up to date!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:19
+msgid "There are no new updates available. When a new update is released this message will change accordingly."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:24
+msgid "Check for updates"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:24
+msgid "Disabling this may improve speed on the Settings page"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:28
+msgid "Enable to automatically check for updates each time you load this page"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:33
+msgid "Current version"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:39
+msgid "Latest version"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\update.php:45
+msgid "Latest changelog"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-add.php:27
+msgid "<b>Note</b>: A random password will be generated and emailed to the user."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-control.php:5
+msgid "Control users"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-control.php:10
+msgid "Add new user"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-control.php:13
+msgid "Search by Username, Name, or ID!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-control.php:15
+msgid "User search"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:3
+msgid "User profiles"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:6
+msgid "Profile Control"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:10
+msgid "Make all profiles public"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:16
+msgid "Log a timestamp + IP address for when a user signs in."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:20
+msgid "Enable logging"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:24
+msgid "Viewable to admin only"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:32
+msgid "Section"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:32
+msgid "Group your fields by assinging sections to them."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:33
+msgid "Input type"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:34
+msgid "Input label"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:35
+msgid "Sign Up"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:36
+msgid "Public"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:36
+msgid "Show this field on a user's public profile."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\admin\page\user-profiles.php:57
+msgid "Text input"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\connect.class.php:37
+msgid "Installation has not yet been ran!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\connect.class.php:38
+msgid "Woops!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\connect.class.php:39
+msgid "You're missing a config.php file preventing a database connection from being made."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\connect.class.php:40
+msgid "Please click"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\connect.class.php:40
+msgid "on the home page to create a config file."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\connect.class.php:62
+#: \wp-content\plugins\jigoshop\install\index.php:86
+msgid "Database error: "
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:56
+msgid "Your passwords did not match, try again."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:77
+msgid "Verification failed."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:117
+msgid "Successfully reset your password"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:119
+msgid "If you need any further assistance please contact the website administrator:"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:142
+msgid "Confirm password"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:149
+msgid "Reset Password"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:165
+msgid "Please enter your username or email address."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:206
+msgid "We've emailed you password reset instructions. Check your email."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\forgot.class.php:208
+msgid "Hank, I searched for you high and low but couldn't find you :("
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\generic.class.php:363
+msgid "Location"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\generic.class.php:376
+msgid "Has not logged in yet"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\generic.class.php:394
+msgid "You're already logged in."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\generic.class.php:396
+#, php-format
+msgid "Go <a href=\"%s\">back</a> to the page you were viewing before this."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\integration.class.php:122
+#, php-format
+msgid "Your account is already linked with %s!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\integration.class.php:168
+msgid "Successfully linked with "
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\integration.class.php:178
+#, php-format
+msgid "You are not yet linked with %s"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\integration.class.php:188
+#, php-format
+msgid "Successfully unlinked from %s"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\login.class.php:119
+msgid "Invalid login attempt"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\login.class.php:140
+msgid "You forgot your password, silly."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\login.class.php:150
+msgid "Incorrect username or password."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:38
+msgid "<strong>Alert</strong>: The administrator has requested all users to update their passwords."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:41
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:82
+msgid "Guest"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:95
+msgid "Sorry, that user does not exist."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:118
+msgid "You must enter the current password to make changes."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:128
+msgid "You entered the wrong current password."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\profile.class.php:256
+msgid "Check your email to confirm this change."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:36
+msgid "<h4 class=\"alert-heading\">Registrations disabled.</h4><p>Already have an account? <a href=\"login.php\">Sign in here</a>!</p>"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:58
+msgid "We don't see you as a registered user. Perhaps you'd like to sign up :)"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:132
+msgid "Invalid signup attempt"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:155
+msgid "Your username must be under 11 characters"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:176
+msgid "Please enter the correct captcha!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\signup.class.php:197
+msgid "Attention!"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\classes\upgrade.class.php:51
+msgid "Database update required"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:62
+msgid "Password must be at least 5 characters."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:67
+msgid "Fill out all the details please"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:283
+msgid "Could not create <code>/classes/config.php</code>, please confirm you have permission to create the file."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:310
+msgid "Hooray ! Installation is all done :)"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:311
+msgid "Important"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:311
+msgid "Please delete or rename the install folder to prevent intrustion"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:315
+msgid "Check out your"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:315
+msgid "home"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:315
+msgid "page."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:321
+msgid "Installation is not complete."
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:332
+msgid "Database Info"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:334
+msgid "Host"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:340
+msgid "Database name"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:342
+msgid "database_name"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:348
+msgid "db username"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:354
+msgid "db password"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:360
+msgid "Site Settings"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:365
+msgid "This path should be set to where activate.php is located"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:372
+msgid "This email address will be visible to your users"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:378
+msgid "Admin Account"
+msgstr ""
+
+#: \wp-content\plugins\jigoshop\install\index.php:394
+msgid "Install"
+msgstr ""
+

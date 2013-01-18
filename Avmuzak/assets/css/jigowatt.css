@@ -1,0 +1,313 @@
+/**
+ * Batman AVM
+ *
+ * Copyright 2013 Online Arge, LTD
+ */
+body {
+    position: relative;
+    padding-top: 52px;
+    padding-bottom: 0px;
+}
+table{
+    
+    
+    text-indent: 5px;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+}
+footer
+{
+    
+    margin-left: 10px;
+    position: static;
+    bottom: 10px;
+}
+ul#menu, ul#menu ul { 
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+}
+ul.form-section {
+    list-style: none;
+} 
+
+li .form-line {
+    
+    
+    color: #003333;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 10px;
+}
+li{
+    
+    margin-right: 3px;
+    margin-left: 3px;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    padding-right: 3px;
+    padding-left: 3px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+.languageSelect { float:right; }
+.sidebar-nav { padding: 9px 0 }
+.avail {
+    border-color: #57a957;
+    color: #468847;
+}
+.exists {
+    border-color: #ee5f5b;
+    color: #b94a48;
+}
+a.signup-link em {
+    font-style: normal;
+    font-size: 10px;
+    color: #bababa;
+    margin-right: 6px;
+}
+.signin {
+    max-width: 500px;
+    width: 350px;
+}
+#pbtns a.btn { margin: 6px }
+#sidebar {
+	float: left;
+	width: 200px;
+           
+    
+    position: fixed;
+    top: 50px;
+    left: 5px;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-variant: small-caps;
+    color: #333333;
+}
+ 
+.odd 
+{
+    background-color: #ccffff;
+}
+.even
+{
+    background-color: #ccffcc;
+}
+#content {
+	margin-left: 200px;
+	padding: 0px;
+    
+}
+#header_1{
+    
+    
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-variant: small-caps;
+    margin-bottom: 22px;
+}
+.modal-btn {
+    margin-top: 45px;
+    float: right;
+}
+form.normal-label label {
+    font-weight: normal;
+    font-size: 11px;
+    color: #999;
+}
+.forgotcenter {
+    margin: auto;
+    width: 50%;
+}
+div.login {
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+.a-tooltip { display:inline-block; }
+.btn.login-submit { margin-right: 70px }
+input[type="checkbox"]#remember,
+.remember { display: inline }
+.login-label { margin-right: 170px }
+span.forgot {
+    font-weight: normal;
+    font-size: 11px;
+    color: #999;
+    position: fixed;
+    padding-left: 20px;
+}
+input[type="checkbox"] { margin-right: 5px }
+p.signup { margin: 2em }
+.loader { padding: 0 10px }
+#userDrop { cursor: pointer }
+.login h4 { padding-bottom: 1% }
+.info-links a {
+    font-size: 13px!important;
+    margin-left: 10px;
+}
+.features h1 {
+	margin: 36px 0 27px;
+	font-size: 40px;
+	font-weight: 300;
+	text-align: center;
+}
+.features p.intro {
+	text-align: center;
+	font-size: 18px;
+	color: #777;
+	margin: 0.5em 0 3em;
+}
+.features h2 {font-weight:normal;}
+.features.demo h1 {font-size:28px;}
+.features.demo h2 {font-size:14px;}
+.features.demo p.intro {font-size:14px;}
+.features p {font-size:13px; color: #6B6B6B;}
+.navbar .navbar-inner {
+	color: black;
+	background: white;
+	padding-top: 5px;
+	text-shadow: none;
+	filter: none;
+	-webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	box-shadow:0 1px 10px rgba(0, 0, 0, 0.25),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-inner .nav > li > a {
+	text-shadow: none;
+	padding: 3px 15px;
+}
+.navbar .nav > li > a:hover {
+  background-color: transparent;
+  color: #222;
+  text-decoration: none;
+}
+.hero-unit {
+	text-align:left;
+	height: 304px;
+	padding: 105px 620px 0 0;
+	margin-right: -80px;
+	background: url('../img/main-hero.png') right bottom no-repeat;
+    padding-bottom: 0px;
+}
+.hero-unit h1 {
+	font-size: 55px;
+	margin-top: 0.2em;
+	line-height: 1.1;
+	font-weight: normal;
+}
+.hero-unit h2 {
+	font-weight:normal;
+}
+.hero-unit p {
+   margin: 1em 0;
+}
+.gravatar {
+    padding: 1px;
+    display: inline;
+}
+.dropdown.open .dropdown-toggle {
+	color: #222;
+}
+.navbar .navbar-text {
+color:#999
+}
+.navbar .brand {
+color: #5E5E5E;
+padding: 10px 20px 12px
+}
+.navbar .nav .dropdown-toggle .caret, .navbar .nav .open.dropdown .caret {
+border-top-color: black !important;
+border-bottom-color: black !important;
+}
+/** Responsive styles */
+@media (min-width:768px) and (max-width:980px) {
+    body { padding-top: 0 }
+    .hero-unit h1 { font-size: 24px }
+    .hero-unit h2 { font-size: 14px }
+	.hero-unit .btn {margin-bottom: 10px;}
+}
+@media (max-width:980px) {
+    .navbar-fixed-top .brand {
+        float: left;
+        margin-left: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+@media (max-width:480px) {
+    body { padding-top: 40px }
+    h2 { margin-top: 27px }
+	.hero-unit {
+		text-align:center;
+		padding: 40px 0 0 0;
+		background: 0;
+		height: 330px !important;
+		margin: 0;
+	}
+    .hero-unit h1 { font-size: 14px }
+    .hero-unit h2 { font-size: 14px }
+    h2 small {
+        display: block;
+        line-height: 18px;
+    }
+    h3 { margin-top: 18px }
+    .hero-unit h1,
+    .hero-unit p {
+        text-align: center;
+        margin-right: 0;
+    }
+    .hero-unit h1 {
+        font-size: 45px;
+        margin-right: 0;
+    }
+    .hero-unit p {
+        margin-right: 0;
+        margin-left: 0;
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .hero-unit .btn {
+        display: block;
+        font-size: 18px;
+        padding: 10px 14px;
+        margin: 0 auto 10px;
+    }
+    .hero-unit { padding-top: 0 }
+    table code {
+        white-space: normal;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+
+}
+@media (max-width:768px) {
+	.hero-unit {
+		text-align:center;
+		padding: 40px 0 0 0;
+		background: 0;
+		height: 130px;
+		margin: 0;
+	}
+    body { padding-top: 0 }
+    .hero-unit .btn { margin: 10px }
+}
+@media (min-width:480px) and (max-width:768px) {
+    .hero-unit h1 { font-size: 28px }
+    .hero-unit h2 { font-size: 14px }
+    .hero-unit p {
+        margin-right: 0;
+        margin-left: 0;
+    }
+	.hero-unit { margin-bottom: 100px }
+}
+.choiceLabel {
+    margin-left: 10px;
+}
+
+.choiceLabel > div {
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.choiceLabel label {
+    margin-left: 3px;
+}

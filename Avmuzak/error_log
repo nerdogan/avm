@@ -1,0 +1,38 @@
+[13-Jan-2013 17:47:19] PHP Fatal error:  Call to undefined function  _e() in /home/arge/public_html/avm/home.php on line 4
+[13-Jan-2013 17:47:37] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/arge/public_html/avm/header.php:1) in /home/arge/public_html/avm/classes/translate.class.php on line 28
+[13-Jan-2013 17:49:37] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/arge/public_html/avm/header.php:1) in /home/arge/public_html/avm/classes/translate.class.php on line 28
+[13-Jan-2013 17:51:24] PHP Fatal error:  Call to undefined function  _e() in /home/arge/public_html/avm/home.php on line 4
+[13-Jan-2013 17:51:48] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/arge/public_html/avm/header.php:1) in /home/arge/public_html/avm/header.php on line 3
+[13-Jan-2013 17:51:48] PHP Fatal error:  Call to undefined function  _e() in /home/arge/public_html/avm/header.php on line 43
+[13-Jan-2013 17:54:46] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/arge/public_html/avm/home.php:1) in /home/arge/public_html/avm/classes/translate.class.php on line 28
+[13-Jan-2013 18:00:02] PHP Warning:  session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at /home/arge/public_html/avm/home.php:1) in /home/arge/public_html/avm/classes/translate.class.php on line 28
+[14-Jan-2013 00:00:37] PHP Fatal error:  Call to undefined method Jigowatt_integration::retrieveInfo() in /home/arge/public_html/avm/classes/integration.class.php on line 69
+[14-Jan-2013 00:00:54] PHP Fatal error:  Call to undefined method Jigowatt_integration::retrieveInfo() in /home/arge/public_html/avm/classes/integration.class.php on line 69
+[14-Jan-2013 00:07:49] PHP Fatal error:  Call to undefined method Jigowatt_integration::retrieveInfo() in /home/arge/public_html/avm/classes/integration.class.php on line 69
+[14-Jan-2013 02:47:15] PHP Parse error:  syntax error, unexpected $end in /home/arge/public_html/avm/header.php on line 92
+[13-Jan-2013 20:47:41] PHP Fatal error:  Call to undefined function  protectthis() in /home/arge/public_html/avm/header.php on line 45
+[13-Jan-2013 20:47:43] PHP Fatal error:  Call to undefined function  protectthis() in /home/arge/public_html/avm/header.php on line 45
+[13-Jan-2013 20:47:46] PHP Fatal error:  Call to undefined function  protectthis() in /home/arge/public_html/avm/header.php on line 45
+[13-Jan-2013 20:48:16] PHP Fatal error:  Call to undefined function  protectthis() in /home/arge/public_html/avm/header.php on line 45
+[13-Jan-2013 20:48:33] PHP Fatal error:  Call to undefined function  protectthis() in /home/arge/public_html/avm/header.php on line 45
+[13-Jan-2013 20:48:34] PHP Fatal error:  Call to undefined function  protectthis() in /home/arge/public_html/avm/header.php on line 45
+[13-Jan-2013 20:48:47] PHP Parse error:  syntax error, unexpected $end in /home/arge/public_html/avm/header.php on line 91
+[13-Jan-2013 20:51:10] PHP Parse error:  syntax error, unexpected $end in /home/arge/public_html/avm/header.php on line 91
+[13-Jan-2013 20:51:39] PHP Parse error:  syntax error, unexpected $end in /home/arge/public_html/avm/header.php on line 91
+[13-Jan-2013 20:53:13] PHP Fatal error:  Call to undefined function  protectthis() in /home/arge/public_html/avm/header.php on line 44
+[13-Jan-2013 20:53:34] PHP Fatal error:  Call to undefined function  protectthis() in /home/arge/public_html/avm/header.php on line 45
+[13-Jan-2013 20:53:56] PHP Parse error:  syntax error, unexpected $end in /home/arge/public_html/avm/header.php on line 91
+[13-Jan-2013 20:54:06] PHP Parse error:  syntax error, unexpected $end in /home/arge/public_html/avm/header.php on line 90
+[13-Jan-2013 20:54:49] PHP Parse error:  syntax error, unexpected $end in /home/arge/public_html/avm/header.php on line 91
+[13-Jan-2013 20:54:50] PHP Parse error:  syntax error, unexpected $end in /home/arge/public_html/avm/header.php on line 91
+[13-Jan-2013 20:55:53] PHP Parse error:  syntax error, unexpected T_ENDIF in /home/arge/public_html/avm/header.php on line 80
+[13-Jan-2013 21:00:15] PHP Parse error:  syntax error, unexpected T_ELSE in /home/arge/public_html/avm/header.php on line 75
+[13-Jan-2013 21:03:46] PHP Parse error:  syntax error, unexpected T_ELSE in /home/arge/public_html/avm/home.php on line 7
+[14-Jan-2013 03:07:59] PHP Warning:  Missing argument 1 for protectThis(), called in /home/arge/public_html/avm/home.php on line 6 and defined in /home/arge/public_html/avm/classes/check.class.php on line 172
+[13-Jan-2013 21:10:05] PHP Parse error:  syntax error, unexpected T_ELSE in /home/arge/public_html/avm/home.php on line 6
+[14-Jan-2013 18:09:28] PHP Fatal error:  Call to undefined method Jigowatt_integration::retrieveInfo() in /home/arge/public_html/avm/classes/integration.class.php on line 69
+[14-Jan-2013 18:11:15] PHP Fatal error:  Call to undefined method Jigowatt_integration::retrieveInfo() in /home/arge/public_html/avm/classes/integration.class.php on line 69
+[14-Jan-2013 12:57:24] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/arge/public_html/avm/home.php on line 26
+[14-Jan-2013 12:57:24] PHP Parse error:  syntax error, unexpected T_STRING in /home/arge/public_html/avm/home.php on line 26
+[14-Jan-2013 13:00:58] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/arge/public_html/avm/home.php on line 26
+[14-Jan-2013 13:00:58] PHP Parse error:  syntax error, unexpected T_STRING in /home/arge/public_html/avm/home.php on line 26
