@@ -2,11 +2,11 @@
 <?php // include_once( 'generic.class.php' ); ?>
 <?php include_once('header.php');
 // yan menu başlangıç?>
- <div id="sidebar">
+ <div id="sidebar" class="sidebar">
 <ul class="nav">
 <li><a href="home.php"> <img src="assets/img/batmanpark.png"></a> </li>
 <?php if( protectThis(1) ) : ?>
-  <li><a href="magaza.php?do=ekle"><?php _e('Yeni Kayıt'); ?></a></li>
+<li><a href="magaza.php?do=ekle"><?php _e('Yeni Kayıt'); ?></a></li>
 <li><a href="magaza.php?do=duzenle"><?php _e('Düzenle'); ?></a></li>
 <li><a href="#"><?php _e('Sil'); ?></a></li>
 <li><a href="#"><?php _e('Tam Liste'); ?></a></li>
@@ -27,7 +27,7 @@ if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
         </label>
     <div id="cid_4" class="form-input">
           <input type="text" class="form-textbox validate[required]" id="input_444" name="aramai" size="20" onkeyup="submitform()" /><br>
-          
+          <div class="done"> </div>
           <table border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
               <h4> <tr><td>id</td><td>Mağaza Kodu</td><td>Mağaza Adı</td><td>Mağaza Resmi Adı</td><td></td></tr></h4>
 <?php
@@ -37,6 +37,7 @@ if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
 <SCRIPT language="JavaScript">
 function submitform()
 {
+   $( ".sidebar" ).load("menu.php");
   if  (document.arama.aramai.value.length > 1){ 
   document.arama.submit();
 }
@@ -71,7 +72,9 @@ foreach($generic->query('SELECT * FROM magaza ') as $row) {
   if (!$_POST['aramai']) : {
  }
   else : {
-      echo "<SCRIPT >  document.arama.aramai.value='",$_POST['aramai'],"' ; document.arama.aramai.focus(); </SCRIPT>";
+      echo "<SCRIPT >  document.arama.aramai.value='",$_POST['aramai'],"' ; document.arama.aramai.focus();
+          
+              </SCRIPT>";
       print $_POST['aramai'];
   
   
