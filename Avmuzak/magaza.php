@@ -2,6 +2,16 @@
 <?php // include_once( 'generic.class.php' ); ?>
 <?php include_once('header.php');
 // yan menu başlangıç?>
+ <script type="text/javascript">
+	function goster(id) {
+		document.getElementById(id).style.display = 'block';
+	}
+	function gizle(id) {
+		document.getElementById(id).style.display = 'none';
+	}
+
+
+</script>                   
  <div id="sidebar" class="sidebar">
 <ul class="nav">
 <li><a href="home.php"> <img src="assets/img/batmanpark.png"></a> </li>
@@ -112,13 +122,16 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
           Mağaza Adı:<span class="form-required">*</span>
         </label>
         <div id="cid_4" class="form-input">
-          <input type="text" class="form-textbox validate[required]" id="input_3" name="q4_magazaAdi" size="20" />
+          <input type="text" class="form-textbox validate[required]" id="input_3" name="q4_magazaAdi" onkeyup="hideStuff('cid_5')" size="20" />
         </div>
       </li></td>
 					<td>
+
+                            
 						 <li>
+                                                      <div id="cid_5" class="form-input">
           <label class="form-label-left" id="label_5" for="input_4">Ticari ve Hukuki Firma Adı: </label>
-        <div id="cid_5" class="form-input">
+       
           <input type="text" class="form-textbox" id="input_4" name="q5_ticariVe" size="20" />
         </div>
       </li></td>
