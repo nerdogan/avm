@@ -507,7 +507,7 @@ if(isset($_POST['q4_magazaAdi'])) :
                   <input type='text' name='Textbox' id='Textbox' size='20' class='sfm_textbox'/>
                </div>
                 <div id='label1_container' class='sfm_form_label'>
-                  <label id='label1'>Label</label>
+                  <label id='label1'>Lal</label>
                </div>
                <div id='Textbox1_container'>
                   <input type='text' name='Textbox1' id='Textbox1' size='20' class='sfm_textbox'/>
