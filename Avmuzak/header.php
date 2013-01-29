@@ -55,9 +55,10 @@
                                             <li><a href="home.php"> Anasayfa</a> </li>
                                             <?php if( protectThis(1) ) : ?>
 						
-						<li><a href="magaza.php"><?php _e('Cari'); ?></a></li>
+						<li><a href="cari.php"><?php _e('Cari'); ?></a></li>
                                                 <li><a href="fatura.php" ><?php _e('Fatura'); ?></a></li>
 						<li><a href="#"><?php _e('Hareketler'); ?></a></li>
+                                                <li><a href="magaza.php"><?php _e('Mağaza Kartı'); ?></a></li>
 						<li><a href="#"><?php _e('Listeler'); ?></a></li>
 						<li><a href="#"><?php _e('Teknik'); ?></a></li>
 						<li><a href="#"><?php _e('Tanımlar'); ?></a></li>
