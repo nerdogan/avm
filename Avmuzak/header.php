@@ -36,7 +36,8 @@
 <!-- Navigation
 ================================================== -->
 
-	<div class="navbar navbar-fixed-top">
+
+        <div class="navbar navbar-fixed-top">
 		<div class="navbar">
 			<div class="navbar-inner">
 				
@@ -53,8 +54,9 @@
 					<ul class="nav">
                                             <li><a href="home.php"> Anasayfa</a> </li>
                                             <?php if( protectThis(1) ) : ?>
-						<li><a href="#"><?php _e('Finans'); ?></a></li>
-						<li><a href="magaza.php"><?php _e('Mağaza Kartları'); ?></a></li>
+						
+						<li><a href="magaza.php"><?php _e('Cari'); ?></a></li>
+                                                <li><a href="fatura.php" ><?php _e('Fatura'); ?></a></li>
 						<li><a href="#"><?php _e('Hareketler'); ?></a></li>
 						<li><a href="#"><?php _e('Listeler'); ?></a></li>
 						<li><a href="#"><?php _e('Teknik'); ?></a></li>
@@ -82,7 +84,15 @@
 				</ul>
 			</li>
 		</ul>
-		<?php } else { ?>
+		<?php  
+               function toUpperCase( $input ){	
+return strtoupper( strtr( $input,'ğüşıiöç', 'ĞÜŞIİÖÇ') );
+}
+
+function toLowerCase( $input ){	
+return strtolower(strtr( $input,'ĞÜŞIİÖÇ','ğüşıiöç'));
+}}
+else { ?>
 		<ul class="nav pull-right">
 			<li><a href="login.php" class="signup-link"><em><?php _e('Hoşgeldiniz'); ?></em> <strong><?php _e('Giriş Yapın!'); ?></strong></a></li>
 		</ul>

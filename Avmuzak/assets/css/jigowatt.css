@@ -18,7 +18,7 @@ footer
 {
     
     margin-left: 10px;
-    position: static;
+   position: fixed;
     bottom: 10px;
 }
 ul#menu, ul#menu ul { 
@@ -159,6 +159,10 @@ p.signup { margin: 2em }
 .features.demo h2 {font-size:14px;}
 .features.demo p.intro {font-size:14px;}
 .features p {font-size:13px; color: #6B6B6B;}
+.nav {
+    font-variant: small-caps;
+}
+
 .navbar .navbar-inner {
 	color: black;
 	background: white;

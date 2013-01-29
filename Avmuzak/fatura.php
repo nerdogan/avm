@@ -1,6 +1,7 @@
 <?php include_once('classes/check.class.php'); ?>
 <?php include_once('header.php');
 // yan menu başlangıç?>
+<?php include_once('menu.php'); ?>
 
  <script type="text/javascript">
 	function goster(id) {
@@ -14,13 +15,13 @@
 </script>                   
  <div id="sidebar" class="sidebar">
 <ul class="nav">
-<li><a href="home.php"> <img src=""></a> </li>
+
 <?php if( protectThis(1) ) : ?>
-<li><a href="magaza.php?do=ekle"><?php _e('Yeni Kayıt'); ?></a></li>
-<li><a href="magaza.php?do=duzenle"><?php _e('Düzenle'); ?></a></li>
+<li><a href="fatura.php?do=ekle"><?php _e('Yeni Kayıt'); ?></a></li>
+<li><a href="fatura.php?do=duzenle"><?php _e('Düzenle'); ?></a></li>
 <li><a href="#"><?php _e('Sil'); ?></a></li>
 <li><a href="#"><?php _e('Tam Liste'); ?></a></li>
-<li><a href="magaza.php?do=arama"><?php _e('Arama'); ?></a></li>
+<li><a href="fatura.php?do=arama"><?php _e('Arama'); ?></a></li>
 <li><a href="#"><?php _e(''); ?></a></li>
 <li><a href="protected.php"><?php _e(''); ?></a></li>
 </ul>
@@ -31,7 +32,7 @@
 // Arama bölümü
 if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
 <br>
-<form class="" action="magaza.php?do=arama" method="post" name="arama" id="arama" accept-charset="utf-8">
+<form class="" action="fatura.php?do=arama" method="post" name="arama" id="arama" accept-charset="utf-8">
 <label class="form-label-left" id="label_444" for="input_444">
          Lütfen Mağaza adını girin yada aşağıdan seçiminizi yapın:<span class="form-required">*</span>
         </label>
@@ -47,7 +48,7 @@ if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
 <SCRIPT language="JavaScript">
 function submitform()
 {
- // $( "#content" ).load("home.php");
+  
   if  (document.arama.aramai.value.length > 1){ 
   document.arama.submit();
 }
@@ -62,7 +63,6 @@ function submitform()
     
  if ($_POST['aramai']) : {
      $elma="%".$_POST['aramai']."%";
-      $elma=toUpperCase($elma);
      print $elma;
      $number=0;
         $param=array (':ad'=> $elma ); 
@@ -100,7 +100,7 @@ endif;
 // Ekleme ve Düzenleme   
 if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 
-<form class="jotform-form" action="magaza.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
+<form class="jotform-form" action="fatura.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
   <input type="hidden" name="formID" value="30133819675356" />
   <div class="form-all">
     <ul class="form-section">
@@ -109,7 +109,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
       <li id="cid_1" class="form-input-wide">
         <div class="form-header-group">
           <h2 id="header_1" class="form-header">
-            Mağaza Kartı 
+           Fatura
           </h2>
         </div>
       </li>
@@ -493,25 +493,40 @@ if(isset($_POST['q4_magazaAdi'])) :
         
         ?>
         
+       
+<form id='fatura' class='sfm_form' method='post' action='fatura.php' accept-charset='UTF-8'>
+         <div id='fatura_errorloc' class='error_strings' style='width:300px;text-align:left'></div>
+         <div id='fatura_outer_div' class='form_outer_div' style='width:300px;height:400px'>
+            <div style='position:relative' id='fatura_inner_div'>
+               <input type='hidden' name='sfm_form_submitted' value='yes'/>
+              
+               <div id='label_container' class='sfm_form_label'>
+                  <label id='label'>Label</label>
+               </div>
+                <div id='Textbox_container'>
+                  <input type='text' name='Textbox' id='Textbox' size='20' class='sfm_textbox'/>
+               </div>
+                <div id='label1_container' class='sfm_form_label'>
+                  <label id='label1'>Label</label>
+               </div>
+               <div id='Textbox1_container'>
+                  <input type='text' name='Textbox1' id='Textbox1' size='20' class='sfm_textbox'/>
+               </div>
+                <div id='label2_container' class='sfm_form_label'>
+                  <label id='label2'>Label</label>
+               </div>
+               <div id='Textbox2_container'>
+                  <input type='text' name='Textbox2' id='Textbox2' size='20' class='sfm_textbox'/>
+               </div>
+               <input type="submit">
+            </div>
+         </div>
+ </form>
+
         
-          
-               
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <br><br><br><br><br><br><br><br><br>
+        
+        
+        
+        
+        <br><br><br><br><br><br><br><br><br>
     <?php include_once('footer.php'); ?>

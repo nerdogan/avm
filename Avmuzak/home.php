@@ -3,14 +3,14 @@
 <?php include_once('header.php'); ?>
 
 <div class="hero-unit">
-	<h1><?php _e('Batman Avm Mağaza Kontrol Sistemi'); ?></h1>
+	<h1><?php _e('AVM Erp'); ?></h1>
 	<p><?php if( protectThis(1) ) : ?>
 		<a href="#" target="_self" class="btn btn-info btn-large"><?php _e('Sistem Kontrol Paneli'); ?> &raquo;</a>
 	<?php else : ?>
 		<a href="http://onlinearge.com/avm/login.php" target="_self" class="btn btn-info btn-large"><?php _e('Sisteme Giriş Yapın'); ?> &raquo;</a>
 		<?php endif; ?>
 
-               <a data-toggle="modal" href="#hakk" class="btn btn-large"  id="forgotlink" tabindex=-1 > <?php _e('Batman Avm Hakkında'); ?></a>
+               <a data-toggle="modal" href="#hakk" class="btn btn-large btn-primary"  id="forgotlink" tabindex=-1 > <?php _e('AVM Erp Hakkında'); ?></a>
 	</p>
 	
 </div>
@@ -28,7 +28,7 @@
 Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis, nec posuere lacus velit eu nunc. Morbi dui libero, accumsan in consectetur mollis, porttitor vitae ligula. Mauris luctus, velit sit amet fringilla scelerisque, enim elit laoreet ante, at mattis velit massa id arcu. Proin dolor velit, commodo quis mattis a, porta lobortis nunc. Phasellus eleifend venenatis tempor. Nunc euismod lacus sagittis turpis ornare ac elementum sem molestie. Aliquam suscipit mattis sem quis mollis.'); ?></label>
 				
 			</div>
-			<input type="submit" class="hidden" name="forgotten">
+			
 		</form>
 	</div>
 	<div class="modal-footer">
@@ -40,7 +40,7 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
 
 <div class="features">
 	<div class="row">
-		<h1><?php _e('Batman Avm Mağaza Kontrol Sistemi'); ?></h1>
+		<h1><?php _e('AVM Erp Sistemi'); ?></h1>
 		<p class="intro"><?php _e('Mağazalarınızı Kolayca Yönetin.'); ?></p>
 		<div class="span6">
 			<h2><?php _e('Finans'); ?></h2>
@@ -48,7 +48,7 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
 		</div>
 
 		<div class="span6">
-			<h2><?php _e('Mağaza Kartları'); ?></h2>
+			<h2><?php _e('Cari'); ?></h2>
 			<p><?php _e('Her bir mağaza için oluşturulan bilgi kartlarınıza kolayca erişim sağlayın.'); ?></p>
 		</div>
 	</div>

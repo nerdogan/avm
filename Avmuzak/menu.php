@@ -3,19 +3,23 @@
 <?php
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Yan menu #sidebar ref deki değere göre otomatik
+ * oluşturacak fonksiyon ...           
  */
+
+class yanmenu
+{
+public $data=array();
+
+public function goster()
+{
+ 
+ $a='<li><a href="home.php"> <img src="assets/img/batmanpark.png"></a> </li>';
+ 
+return $a;
+}
+}
+
+$menu= new yanmenu;
+
 ?>
-<ul class="nav">
-<li><a href="home.php"> <img src="assets/img/batmanpark.png"></a> </li>
-<?php if( protectThis(1) ) : ?>
-<li><a href="magaza.php?do=ekle"><?php _e('Ekle kardeş'); ?></a></li>
-<li><a href="magaza.php?do=duzenle"><?php _e('Düzenle'); ?></a></li>
-<li><a href="#"><?php _e('Sil'); ?></a></li>
-<li><a href="#"><?php _e('Tam Liste'); ?></a></li>
-<li><a href="magaza.php?do=arama"><?php _e('Arama'); ?></a></li>
-<li><a href="#"><?php _e(''); ?></a></li>
-<li><a href="protected.php"><?php _e(''); ?></a></li>
-</ul>
-<?php endif; ?>
