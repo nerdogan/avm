@@ -64,15 +64,15 @@ function submitform()
      print $elma;
      $number=0;
         $param=array (':ad'=> $elma ); 
-foreach($generic->query('SELECT * FROM magaza WHERE ad LIKE :ad',$param) as $row) {
+foreach($generic->query('SELECT * FROM magaza WHERE ad LIKE :ad and mtur_id<>4',$param) as $row) {
     $number++;
-    echo "<tr background=",( ($number & 1) ? 'black' : 'white' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
+    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
 }        
         
         }
   else : {
         $number=0;    
-foreach($generic->query('SELECT * FROM magaza ') as $row) {
+foreach($generic->query('SELECT * FROM magaza WHERE mtur_id<>4') as $row) {
     $number++;
     echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
 }

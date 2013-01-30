@@ -68,7 +68,7 @@ function submitform()
         $param=array (':ad'=> $elma ); 
 foreach($generic->query('SELECT * FROM magaza WHERE ad LIKE :ad',$param) as $row) {
     $number++;
-    echo "<tr background=",( ($number & 1) ? 'black' : 'white' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
+    echo "<tr background=",( ($number & 1) ? 'black' : 'white' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='fatura.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
 }        
         
         }
@@ -76,7 +76,7 @@ foreach($generic->query('SELECT * FROM magaza WHERE ad LIKE :ad',$param) as $row
         $number=0;    
 foreach($generic->query('SELECT * FROM magaza ') as $row) {
     $number++;
-    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
+    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='fatura.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
 }
   }
   endif;

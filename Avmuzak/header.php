@@ -27,7 +27,14 @@
                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 <meta name="HandheldFriendly" content="true" />
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+ 
+  <style>
+  .ui-menu { width: 100px; }
+  </style>
                     
 	</head>
 
@@ -53,10 +60,11 @@
 				
 					<ul class="nav">
                                             <li><a href="home.php"> Anasayfa</a> </li>
+                                            
                                             <?php if( protectThis(1) ) : ?>
 						
 						<li><a href="cari.php"><?php _e('Cari'); ?></a></li>
-                                                <li><a href="fatura.php" ><?php _e('Fatura'); ?></a></li>
+                                                
 						<li><a href="#"><?php _e('Hareketler'); ?></a></li>
                                                 <li><a href="magaza.php"><?php _e('Mağaza Kartı'); ?></a></li>
 						<li><a href="#"><?php _e('Listeler'); ?></a></li>
