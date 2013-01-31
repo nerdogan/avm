@@ -3,6 +3,7 @@
 // yan menu başlangıç?>
 
  <script type="text/javascript">
+     document.title="Avm Mağaza Kontrol Sistemi 2013 - CARİ BÖLÜMÜ"
 	function goster(id) {
 		document.getElementById(id).style.display = 'block';
 	}
@@ -92,11 +93,12 @@ else : {
 echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'></a>" ,
 '<ul id="menu',$number,'">
   <li>
-    <a href="#">Göster</a>
+    <a href="#">seç</a>
     <ul>
-      <li><a href="#">Düzenle</a></li>
+    <li><a href="#">Göster</a></li>
+      <li><a href="magaza.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
       <li><a href="#">Sil</a></li>
-      <li><a href="#">Fatura</a></li>
+      <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
     </ul>
   </li>
   </ul>    

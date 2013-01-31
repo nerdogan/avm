@@ -12,93 +12,26 @@
 	}
 
 
-</script>                   
+</script>  
+ 
  <div id="sidebar" class="sidebar">
 <ul class="nav">
 
 <?php if( protectThis(1) ) : ?>
-<li><a href="fatura.php?do=ekle"><?php _e('Yeni Kayıt'); ?></a></li>
-<li><a href="fatura.php?do=duzenle"><?php _e('Düzenle'); ?></a></li>
-<li><a href="#"><?php _e('Sil'); ?></a></li>
+<li><a href="fatura.php?do=yeni"><?php _e('Yeni Kayıt'); ?></a></li>
+<li><a href="#"><?php _e('Sil İptal'); ?></a></li>
 <li><a href="#"><?php _e('Tam Liste'); ?></a></li>
 <li><a href="fatura.php?do=arama"><?php _e('Arama'); ?></a></li>
 <li><a href="#"><?php _e(''); ?></a></li>
-<li><a href="protected.php"><?php _e(''); ?></a></li>
 </ul>
 </div>
 <?php // Yan menü bitiş
  endif; ?>
 <?php 
-// Arama bölümü
-if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
-<br>
-<form class="" action="fatura.php?do=arama" method="post" name="arama" id="arama" accept-charset="utf-8">
-<label class="form-label-left" id="label_444" for="input_444">
-         Lütfen Mağaza adını girin yada aşağıdan seçiminizi yapın:<span class="form-required">*</span>
-        </label>
-    <div id="cid_4" class="form-input">
-          <input type="text" class="form-textbox validate[required]" id="input_444" name="aramai" size="20" onkeyup="submitform()" /><br>
-          <div class="done"> </div>
-          <table border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
-              <h4> <tr><td>id</td><td>Mağaza Kodu</td><td>Mağaza Adı</td><td>Mağaza Resmi Adı</td><td></td></tr></h4>
-<?php
-
-  ?>
- 
-<SCRIPT language="JavaScript">
-function submitform()
-{
-  
-  if  (document.arama.aramai.value.length > 1){ 
-  document.arama.submit();
-}
-  
-}
-</SCRIPT>
 
 
-        </div>
-</form>
-  <?php 
-    
- if ($_POST['aramai']) : {
-     $elma="%".$_POST['aramai']."%";
-     print $elma;
-     $number=0;
-        $param=array (':ad'=> $elma ); 
-foreach($generic->query('SELECT * FROM magaza WHERE ad LIKE :ad',$param) as $row) {
-    $number++;
-    echo "<tr background=",( ($number & 1) ? 'black' : 'white' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='fatura.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
-}        
-        
-        }
-  else : {
-        $number=0;    
-foreach($generic->query('SELECT * FROM magaza ') as $row) {
-    $number++;
-    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='fatura.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
-}
-  }
-  endif;
-  if (!$_POST['aramai']) : {
- }
-  else : {
-      echo "<SCRIPT >  document.arama.aramai.value='",$_POST['aramai'],"' ; document.arama.aramai.focus();
-          
-              </SCRIPT>";
-      print $_POST['aramai'];
-  
-  
-  }
-endif;
-  
-  endif;?>
-    
- </table>
-
-<?php 
 // Ekleme ve Düzenleme   
-if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
+if(($_GET['do'] === "yeni") && ($_GET['id']) ): ?>
 
 <form class="jotform-form" action="fatura.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
   <input type="hidden" name="formID" value="30133819675356" />
@@ -112,53 +45,70 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
            Fatura
           </h2>
         </div>
+   
       </li>
+         <?php 
+    
+     $elma=$_GET['id'];
+     $param=array (':ad'=> $elma ); 
+foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
+    echo $row['kod']," -  ",$row['ad'],"<br>  ",$row['unvan'];
+}
+    ?>   
         
-        <table border="0" cellpadding="0" cellspacing="1" style="width: 610px;">
-			<tbody>
-				<tr>
-					<td>
-						<li class="form-line" id="id_4">
-        <label class="form-label-left" id="label_4" for="input_3">
-          Mağaza Adı:<span class="form-required">*</span>
-        </label>
-        <div id="cid_4" class="form-input">
-          <input type="text" class="form-textbox validate[required]" id="input_3" name="q4_magazaAdi" onkeyup="hideStuff('cid_5')" size="20" />
-        </div>
-      </li></td>
-					<td>
-
-                            
-						 <li>
-                                                      <div id="cid_5" class="form-input">
-          <label class="form-label-left" id="label_5" for="input_4">Ticari ve Hukuki Firma Adı: </label>
-       
-          <input type="text" class="form-textbox" id="input_4" name="q5_ticariVe" size="20" />
-        </div>
-      </li></td>
-				</tr>
-				<tr>
-                                    
-                                    <li class="form-line" id="id_99">
-        <label class="form-label-left" id="label_99" for="input_2">
-          Mağaza Kod:<span class="form-required">*</span>
-        </label>
+   <table border="0" cellpadding="0" cellspacing="1" style="width: 610px;">
+<tbody>
+<tr>
+    <td></td><td></td>
+<td>     
+      
+   
+ 
         <div id="cid_99" class="form-input">
-          <input type="text" class="form-textbox validate[required]" id="input_2" name="magazakod"  size="20" />
+            <p> Tarih :   <input type="text"  id="datepicker"  name="tarih" /> </p>
         </div>
-      </li></td>
-					<td>
-						 <li class="form-line" id="id_6">
-        <label class="form-label-left" id="label_6" for="input_5"> Türü: </label>
+     
+    <li class="form-line" id="id_6">
+        
         <div id="cid_6" class="form-input">
           <select class="form-dropdown" style="width:150px" id="input_5" name="q6_turu">
-            <option>  </option>
-            <option value="1"> Mağaza </option>
-            <option value="2"> Depo </option>
-            <option value="3"> Stand </option>
+            <option> Fatura Tipi </option>
+            <option value="1">ALIŞ </option>
+            <option value="2">SATIŞ </option>
+            <option value="3">ALIŞ İADE</option>
+            <option value="3">SATIŞ İADE</option>
+            
           </select>
         </div>
       </li>
+   
+   </td>
+</tr>
+<tr>
+  
+   <td> 
+<li class="form-line" id="id_4">
+<label class="form-label-left" id="label_4" for="input_3"> Mağaza Adı:<span class="form-required">*</span> </label>
+<div id="cid_4" class="form-input">
+<input type="text" class="form-textbox validate[required]" id="input_3" name="q4_magazaAdi" onkeyup="hideStuff('cid_5')" size="20" />
+</div>
+</li>
+</td>
+
+<td>
+ <li>
+ <div id="cid_5" class="form-input">
+ <label class="form-label-left" id="label_5" for="input_4">Ticari ve Hukuki Firma Adı: </label>
+ <input type="text" class="form-textbox" id="input_4" name="q5_ticariVe" size="20" />
+ </div>
+ </li>
+</td>
+</tr>
+
+<tr>
+ 
+					<td>
+						
       <li class="form-line" id="id_7">
         <label class="form-label-left" id="label_7" for="input_6"> Mağaza Türü: </label>
         <div id="cid_7" class="form-input">

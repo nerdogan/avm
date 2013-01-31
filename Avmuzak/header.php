@@ -6,7 +6,7 @@
 <html lang="tr">
 	<head>
 		<meta charset="utf-8">
-		<title>Batman Avm Mağaza Kontrol Sistemi</title>
+		<title>Avm Mağaza Kontrol Sistemi 2013 </title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="Avm Mağaza Kontrol Sistemi">
@@ -30,8 +30,19 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
   <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
   <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+  <script src="assets/js/jquery.ui.datepicker-tr.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css" />
  
+  <script>
+  $(function() {
+    
+    $( "#datepicker" ).datepicker({
+        
+    });
+    
+    
+  });
+  </script>
   <style>
   .ui-menu { width: 100px; }
   </style>
