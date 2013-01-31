@@ -31,7 +31,7 @@
 
 
 // Ekleme ve Düzenleme   
-if(($_GET['do'] === "yeni") && ($_GET['id']) ): ?>
+if(($_GET['do'] === "yeni")  ): ?>
 
 <form class="jotform-form" action="fatura.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
   <input type="hidden" name="formID" value="30133819675356" />
@@ -47,13 +47,27 @@ if(($_GET['do'] === "yeni") && ($_GET['id']) ): ?>
         </div>
    
       </li>
-         <?php 
-    
+        
+    <?php 
+         
+      if ($_GET['id']) : {
      $elma=$_GET['id'];
      $param=array (':ad'=> $elma ); 
 foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
     echo $row['kod']," -  ",$row['ad'],"<br>  ",$row['unvan'];
 }
+      }
+else :{
+     echo "<select name=firma><option value='.'>Firma Seç</option>";
+     foreach($generic->query('SELECT * FROM magaza') as $row) {
+        echo "<option value='",$row['id'],"'";
+        echo ">", $row['kod']," -  "," ",$row['unvan'],"</option>\n";
+        }
+     echo "</select><p>";
+}
+endif;
+     
+     
     ?>   
         
    <table border="0" cellpadding="0" cellspacing="1" style="width: 610px;">
