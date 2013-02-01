@@ -72,11 +72,11 @@ a.signup-link em {
 #pbtns a.btn { margin: 6px }
 #sidebar {
 	float: left;
-	width: 200px;
+	width: 150px;
            
     
     position: fixed;
-    top: 50px;
+    top: 70px;
     left: 5px;
     font-family: Verdana,Arial,Helvetica,sans-serif;
     font-variant: small-caps;
@@ -92,10 +92,18 @@ a.signup-link em {
     background-color: #ccffcc;
 }
 #content {
-	margin-left: 200px;
+	margin-left: 150px;
 	padding: 0px;
     
 }
+select.select{
+    position:relative;
+    z-index:10;
+    width:420px !important;
+    height:26px !important;
+    line-height:26px;
+}
+
 #header_1{
     
     

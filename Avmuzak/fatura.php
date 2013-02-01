@@ -1,8 +1,6 @@
 <?php include_once('classes/check.class.php'); ?>
 <?php include_once('header.php');
 // yan menu başlangıç?>
-<?php include_once('menu.php'); ?>
-
  <script type="text/javascript">
 	function goster(id) {
 		document.getElementById(id).style.display = 'block';
@@ -10,7 +8,16 @@
 	function gizle(id) {
 		document.getElementById(id).style.display = 'none';
 	}
-
+        function hesapla(id1,id2,id3) {
+    document.getElementById(id3).value=((document.getElementById(id1).value)*(document.getElementById(id2).value));
+var urun = (eval(document.getElementById('input_12').value) + eval(document.getElementById('input_1103').value)+eval(document.getElementById('input_1107').value)+eval(document.getElementById('input_1111').value)+eval(document.getElementById('input_1115').value));
+    document.getElementById('top').innerHTML=urun;
+    document.getElementById('kdv').innerHTML=urun*18/100;
+    document.getElementById('gtop').innerHTML=urun+(urun*18/100);
+    document.getElementById('toptop').value=urun;
+    document.getElementById('kdvkdv').value=urun*18/100;
+    document.getElementById('gtopgtop').value=urun+(urun*18/100);
+}
 
 </script>  
  
@@ -20,15 +27,31 @@
 <?php if( protectThis(1) ) : ?>
 <li><a href="fatura.php?do=yeni"><?php _e('Yeni Kayıt'); ?></a></li>
 <li><a href="#"><?php _e('Sil İptal'); ?></a></li>
-<li><a href="#"><?php _e('Tam Liste'); ?></a></li>
+<li><a href="fatura.php?do=liste"><?php _e('Tam Liste'); ?></a></li>
 <li><a href="fatura.php?do=arama"><?php _e('Arama'); ?></a></li>
 <li><a href="#"><?php _e(''); ?></a></li>
 </ul>
 </div>
 <?php // Yan menü bitiş
  endif; ?>
+<table style='width:800px'>
 <?php 
 
+// tüm liste
+
+if(($_GET['do'] === "liste")  ): 
+
+ 
+     $number=0;    
+foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM fatura INNER JOIN magaza ON  fatura.musno =  magaza.id') as $row) {
+    $number++;
+    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4],"</td><td> ",$row[5],"</td><td>",$row[0],"</td><td>",$row[6],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
+}
+    
+    
+    
+endif; 
+// listeleme sonu
 
 // Ekleme ve Düzenleme   
 if(($_GET['do'] === "yeni")  ): ?>
@@ -36,56 +59,55 @@ if(($_GET['do'] === "yeni")  ): ?>
 <form class="jotform-form" action="fatura.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
   <input type="hidden" name="formID" value="30133819675356" />
   <div class="form-all">
-    <ul class="form-section">
-        
-        
-      <li id="cid_1" class="form-input-wide">
-        <div class="form-header-group">
-          <h2 id="header_1" class="form-header">
-           Fatura
-          </h2>
+   
+    <div class="form-header-group">
+          <h3 id="header_1" class="form-header">
+              Fatura &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="label label-info" onclick="document.getElementById('formekle').submit()"> Kaydet </span>
+          </h3>
         </div>
    
-      </li>
+    
         
-    <?php 
+    
+        
+<table border="0" cellpadding="0" cellspacing="1" style="width: 710px">
+<tbody>
+<tr>
+    <td style="width: 500px"><?php 
          
-      if ($_GET['id']) : {
-     $elma=$_GET['id'];
-     $param=array (':ad'=> $elma ); 
-foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
-    echo $row['kod']," -  ",$row['ad'],"<br>  ",$row['unvan'];
-}
-      }
-else :{
-     echo "<select name=firma><option value='.'>Firma Seç</option>";
+ //     if ($_GET['id']) : {
+//     $elma=$_GET['id'];
+//     $param=array (':ad'=> $elma ); 
+// foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
+ //   echo $row['kod']," -  ",$row['ad'],"<br>  ",$row['unvan'];
+// }
+  //    }
+//else :{
+     echo "<select class='select' name='firma'><option value='.'>Firma Seç</option>";
      foreach($generic->query('SELECT * FROM magaza') as $row) {
         echo "<option value='",$row['id'],"'";
         echo ">", $row['kod']," -  "," ",$row['unvan'],"</option>\n";
         }
      echo "</select><p>";
-}
-endif;
+//}
+//endif;
      
      
-    ?>   
-        
-   <table border="0" cellpadding="0" cellspacing="1" style="width: 610px;">
-<tbody>
-<tr>
-    <td></td><td></td>
-<td>     
+    ?>   </td> <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="width: 120px">     
       
-   
+    Tarih :
  
         <div id="cid_99" class="form-input">
-            <p> Tarih :   <input type="text"  id="datepicker"  name="tarih" /> </p>
+              <input type="text"  id="datepicker"  name="tarih" style="width: 90px" /> 
         </div>
      
-    <li class="form-line" id="id_6">
-        
+</tr><tr>
+    <td> </td> <td> </td>
+        <td>Fatura Tipi:
         <div id="cid_6" class="form-input">
-          <select class="form-dropdown" style="width:150px" id="input_5" name="q6_turu">
+          <select class="form-dropdown" style="width:100px" id="input_5" name="turu">
             <option> Fatura Tipi </option>
             <option value="1">ALIŞ </option>
             <option value="2">SATIŞ </option>
@@ -94,270 +116,193 @@ endif;
             
           </select>
         </div>
-      </li>
-   
+     
    </td>
 </tr>
 <tr>
-  
+  <td> </td> <td> </td> 
    <td> 
-<li class="form-line" id="id_4">
-<label class="form-label-left" id="label_4" for="input_3"> Mağaza Adı:<span class="form-required">*</span> </label>
+Fatura No:
 <div id="cid_4" class="form-input">
-<input type="text" class="form-textbox validate[required]" id="input_3" name="q4_magazaAdi" onkeyup="hideStuff('cid_5')" size="20" />
+<input type="text" class="" id="input_3" name="faturano"  style="width: 90px" />
 </div>
-</li>
-</td>
 
-<td>
- <li>
- <div id="cid_5" class="form-input">
- <label class="form-label-left" id="label_5" for="input_4">Ticari ve Hukuki Firma Adı: </label>
- <input type="text" class="form-textbox" id="input_4" name="q5_ticariVe" size="20" />
- </div>
- </li>
 </td>
 </tr>
 
+</tbody>
+</table><br><br>
+
+ <table border="0" cellpadding="0" cellspacing="1" style="width: 660px">
+<tbody>
+
+ <tr>
+ <td>   
+  <label class="form-label-left" id="label_5" for="input_4" style="width: 150px">Tanımlama</label>
+</td>
+ <td style="width: 60px"><label class="form-label-left" id="label_14" for="input_10">Miktar</label>
+ </td>
+ <td style="width: 60px"><label class="form-label-left" id="label_16" for="input_11">Fiyat</label>
+ </td>
+ <td style="width: 100px"><label class="form-label-left" id="label_15" for="input_12">Tutar</label>
+ </td>
+ <td style="width: 70px">&nbsp; </td>
+       </tr>     
+          
+          
+       
+   
+            
+      
+   </tbody>
+</table> 
+
+<table border="0" cellpadding="0" cellspacing="1" style="width: 660px">
+<tbody>
 <tr>
- 
-					<td>
-						
-      <li class="form-line" id="id_7">
-        <label class="form-label-left" id="label_7" for="input_6"> Mağaza Türü: </label>
-        <div id="cid_7" class="form-input">
-          <select class="form-dropdown" style="width:150px" id="input_6" name="q7_magazaTuru7">
-            <option>  </option>
-            <option value="1"> Gıda </option>
-            <option value="2"> Hazır Giyim </option>
-            <option value="3"> Hizmet </option>
-            <option value="4"> Deri Ayakkabı </option>
-            <option value="5"> Aksesuar </option>
-            <option value="6"> Market </option>
-          </select>
-        </div>
-      </li>
-      <li class="form-line" id="id_11">
-        <label class="form-label-left" id="label_11" for="input_7"> Depo Türü </label>
-        <div id="cid_11" class="form-input">
-          <select class="form-dropdown" style="width:150px" id="input_7" name="q11_depoTuru">
-            <option>  </option>
-            <option value="1"> Mağaza Deposu </option>
-            <option value="2"> Diğer </option>
-            <option value="3"> Seçenek 3 </option>
-          </select>
-        </div>
-      </li>
-      <li class="form-line" id="id_9">
-        <label class="form-label-left" id="label_9" for="input_8"> Stand Türü: </label>
-        <div id="cid_9" class="form-input">
-          <select class="form-dropdown" style="width:150px" id="input_8" name="q9_standTuru">
-            <option>  </option>
-            <option value="1">Sabit </option>
-            <option value="2"> Uzun Süreli </option>
-            <option value="3"> Diğer </option>
-          </select>
-        </div>
-      </li></td>
-					<td>
-						<li class="form-line" id="id_12">
-        <label class="form-label-left" id="label_12" for="input_9"> FiRMA TÜRÜ </label>
-        <div id="cid_12" class="form-input">
-          <select class="form-dropdown" style="width:150px" id="input_9" name="q12_firmaTuru">
-            <option>  </option>
-            <option value="1"> Bayi </option>
-            <option value="2"> Firma </option>
-            <option value="3"> Diğer </option>
-          </select>
-        </div>
-      </li>
-      <li class="form-line" id="id_14">
-        <label class="form-label-left" id="label_14" for="input_10"> SERMAYE </label>
-        <div id="cid_14" class="form-input">
-          <input type="text" class="form-textbox" id="input_10" name="q14_sermaye14" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_16">
-        <label class="form-label-left" id="label_16" for="input_11"> VERGİ DAİRESİ </label>
-        <div id="cid_16" class="form-input">
-          <input type="text" class="form-textbox" id="input_11" name="q16_vergiDairesi" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_15">
-        <label class="form-label-left" id="label_15" for="input_12"> VERGİ NO </label>
-        <div id="cid_15" class="form-input">
-          <input type="text" class="form-textbox" id="input_12" name="q15_vergiNo" size="20" />
-        </div>
-      </li></td>
-				</tr>
-				<tr>
-					<td>
-						<li class="form-line" id="id_17">
-        <label class="form-label-left" id="label_17" for="input_13"> MĞZ SAHİBİ </label>
-        <div id="cid_17" class="form-input">
-          <input type="text" class="form-textbox" id="input_13" name="q17_mgzSahibi17" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_18">
-        <label class="form-label-left" id="label_18" for="input_111"> MĞZ SAHİBİ TEL </label>
-        <div id="cid_18" class="form-input">
-          <input type="text" class="form-textbox" id="input_111" name="q18_mgzSahibi" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_19">
-        <label class="form-label-left" id="label_19" for="input_14"> MĞZ MÜDÜRÜ </label>
-        <div id="cid_19" class="form-input">
-          <input type="text" class="form-textbox" id="input_14" name="q19_mgzMuduru" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_20">
-        <label class="form-label-left" id="label_20" for="input_15"> MĞZ MÜDÜRÜ TEL </label>
-        <div id="cid_20" class="form-input">
-          <input type="text" class="form-textbox" id="input_15" name="q20_mgzMuduru20" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_21">
-        <label class="form-label-left" id="label_21" for="input_16"> MĞZ DAHİLİ TEL </label>
-        <div id="cid_21" class="form-input">
-          <input type="text" class="form-textbox" id="input_16" name="q21_mgzDahili21" size="20" />
-        </div>
-      </li></td>
-					<td>
-						<li class="form-line" id="id_22">
-        <label class="form-label-left" id="label_22" for="input_17"> MĞZ TEL </label>
-        <div id="cid_22" class="form-input">
-          <input type="text" class="form-textbox" id="input_17" name="q22_mgzTel" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_23">
-        <label class="form-label-left" id="label_23" for="input_18"> MĞZ FAX </label>
-        <div id="cid_23" class="form-input">
-          <input type="text" class="form-textbox" id="input_18" name="q23_mgzFax" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_24">
-        <label class="form-label-left" id="label_24" for="input_19"> MAĞAZA PERSONEL SAYISI </label>
-        <div id="cid_24" class="form-input">
-          <input type="text" class="form-textbox validate[Numeric]" id="input_19" name="q24_magazaPersonel24" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_25">
-        <label class="form-label-left" id="label_25" for="input_20"> BAYAN </label>
-        <div id="cid_25" class="form-input">
-          <input type="text" class="form-textbox validate[Numeric]" id="input_20" name="q25_bayan" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_26">
-        <label class="form-label-left" id="label_26" for="input_21"> ERKEK </label>
-        <div id="cid_26" class="form-input">
-          <input type="text" class="form-textbox validate[Numeric]" id="input_21" name="q26_erkek" size="20" />
-        </div>
-      </li></td>
-				</tr>
-				<tr>
-					<td>
-						  <li class="form-line" id="id_22">
-        <label class="form-label-left" id="label_28" for="input_28"> GENEL MERKEZ YETKİLİSİ </label>
-        <div id="cid_28" class="form-input">
-          <input type="text" class="form-textbox" id="input_22" name="q28_genelMerkez" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_29">
-        <label class="form-label-left" id="label_29" for="input_23"> GENEL MERKEZ TEL </label>
-        <div id="cid_29" class="form-input">
-          <input type="text" class="form-textbox" id="input_23" name="q29_genelMerkez29" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_30">
-        <label class="form-label-left" id="label_30" for="input_24"> GENEL MERKEZ FAX </label>
-        <div id="cid_30" class="form-input">
-          <input type="text" class="form-textbox" id="input_24" name="q30_genelMerkez30" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_31">
-        <label class="form-label-left" id="label_31" for="input_25"> GENEL MERKEZ ADRES </label>
-        <div id="cid_31" class="form-input">
-          <input type="text" class="form-textbox" id="input_25" name="q31_genelMerkez31" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_32">
-        <label class="form-label-left" id="label_32" for="input_26"> DİĞER MAĞAZA YERLERİ </label>
-        <div id="cid_32" class="form-input">
-          <input type="text" class="form-textbox" id="input_26" name="q32_digerMagaza" size="20" />
-        </div>
-      </li></td>
-					<td>
-						<li class="form-line" id="id_27">
-        <label class="form-label-left" id="label_27" for="input_27"> MAĞAZA ARAÇ SAYISI </label>
-        <div id="cid_27" class="form-input">
-          <input type="text" class="form-textbox" id="input_27" name="q27_magazaArac" size="20" />
-        </div>
-      </li>
+<td><input type="text" class="form-textbox" id="input_4" name="tanim1" style="width: 350px" /></td>
+<td style="width: 60px"><input type="text" class="form-textbox" id="input_10" name="miktar1" style="width: 50px" value="1" onkeyup="hesapla('input_10','input_11','input_12')"/>
+</td>
+<td style="width: 60px"><input type="text" class="form-textbox" id="input_11" name="fiyat1" style="width: 50px" onkeyup="hesapla('input_10','input_11','input_12')"/>
+</td>
+<td style="width: 100px"><input type="text" class="form-textbox" id="input_12" name="tutar1" style="width: 100px" value="0" />
+</td><td style="width:70px">&nbsp;&nbsp;&nbsp;<span id="ekle1" class="label label-info" onclick="goster('cid_116');gizle('ekle1')">EKLE</span>
+</td>
+</tr>
+</tbody>
+</table> 
+
+  <table id="cid_116" border="0" cellpadding="0" cellspacing="1" style="width: 660px;display: none">
+<tbody>
+
+ <tr>
+ <td>   
+ <input type="text" class="form-textbox" id="input_1100" name="tanim2" style="width: 350px"  />
+</td>
+ <td style="width: 60px">
+ <input type="text" class="form-textbox" id="input_1101" name="miktar2" style="width: 50px" value="1" onkeyup="hesapla('input_1101','input_1102','input_1103')"/>
+ </td>
+ <td style="width: 60px">
+ <input type="text" class="form-textbox" id="input_1102" name="fiyat2" style="width: 50px" onkeyup="hesapla('input_1101','input_1102','input_1103')"/>
+ </td>
+ <td style="width: 100px">
+<input type="text" class="form-textbox" id="input_1103" name="tutar2" style="width: 100px" value="0" />
+</td>
+<td style="width: 70px">&nbsp;&nbsp;&nbsp;<span id="ekle2" class="label label-info" onclick="goster('cid_117');gizle('ekle2')">EKLE</span></td>
+       </tr>     
+          
+          
+       
+   
+            
+      
+   </tbody>
+</table> 
+ <table id="cid_117" border="0" cellpadding="0" cellspacing="1" style="width: 660px;display: none">
+<tbody>
+
+ <tr>
+ <td>   
+ <input type="text" class="form-textbox" id="input_1104"  name="tanim3" style="width: 350px" />
+</td>
+ <td>
+ <input type="text" class="form-textbox" id="input_1105" name="miktar3" style="width: 50px" value="1" onkeyup="hesapla('input_1105','input_1106','input_1107')"/>
+ </td>
+ <td>
+ <input type="text" class="form-textbox" id="input_1106" name="fiyat3" style="width: 50px" onkeyup="hesapla('input_1105','input_1106','input_1107')"/>
+ </td>
+ <td>
+ <input type="text" class="form-textbox" id="input_1107" name="tutar3" style="width: 100px" value="0" />
+ </td>
+<td>&nbsp;&nbsp;&nbsp;<span id="ekle3" class="label label-info" onclick="goster('cid_118');gizle('ekle3')">EKLE</span></td>
+</tr>     
+</tbody>
+</table> 
+ <table id="cid_118" border="0" cellpadding="0" cellspacing="1" style="width: 660px;display: none">
+<tbody>
+
+ <tr>
+ <td>   
+ <input type="text" class="form-textbox" id="input_1108" name="tanim4" style="width: 350px" />
+</td>
+ <td>
+ <input type="text" class="form-textbox" id="input_1109" name="miktar4" style="width: 50px" value="1" onkeyup="hesapla('input_1109','input_1110','input_1111')"/>
+ </td>
+ <td>
+ <input type="text" class="form-textbox" id="input_1110" name="fiyat4" style="width: 50px" onkeyup="hesapla('input_1109','input_1110','input_1111')" />
+ </td>
+ <td>
+ <input type="text" class="form-textbox" id="input_1111" name="tutar4" style="width: 100px" value="0" />
+ </td>
+<td>&nbsp;&nbsp;&nbsp;<span id="ekle4" class="label label-info" onclick="goster('cid_119');gizle('ekle4')">EKLE</span></td>
+</tr>     
+</tbody>
+</table> 
+ <table id="cid_119" border="0" cellpadding="0" cellspacing="1" style="width: 660px;display: none">
+<tbody>
+
+ <tr>
+ <td>   
+ <input type="text" class="form-textbox" id="input_1112" name="tanim5" style="width: 350px" />
+</td>
+ <td>
+ <input type="text" class="form-textbox" id="input_1113" name="miktar5" style="width: 50px" value="1" onkeyup="hesapla('input_1113','input_1114','input_1115')" />
+ </td>
+ <td>
+ <input type="text" class="form-textbox" id="input_1114" name="fiyat5" style="width: 50px" onkeyup="hesapla('input_1113','input_1114','input_1115')" />
+ </td>
+ <td>
+ <input type="text" class="form-textbox" id="input_1115" name="tutar5" style="width: 100px" value="0" />
+ </td>
+<td>&nbsp;&nbsp;&nbsp;<span id="ekle5" class="label label-info" onclick="goster('cid_120');gizle('ekle5')"></span></td>
+</tr>     
+</tbody>
+</table> 
+
+<hr style="margin-bottom: 10px;margin-top: 10px;border-bottom-color: #2f96b4;width: 710px">
+
+ <table id="cid_119" border="0" cellpadding="0" cellspacing="1" style="width: 710px">
+<tbody>
+
+ <tr>
+ <td>   
+<TEXTAREA NAME="not" ROWS="3" COLS="65" style="width: 350px"></TEXTAREA>
+</td>
+<td>
+ <!-- fatura alt toplamını kdv işlemi -->
+    <table>
+ <tr>
+     <td> Toplam :</td><td><span id="top"> 0 </span>&nbsp; TL</td>
+      
+</tr>
+<tr>
+     <td> KDV :</td><td><span id="kdv"> 0 </span>&nbsp; TL</td>
+</tr><tr>
+    <td > Genel Toplam :</td><td><span id="gtop"> 0 </span>&nbsp; TL</td>
+</tr>
+</table>
+</tr>
+  
     
-      <li class="form-line" id="id_33">
-        <label class="form-label-left" id="label_33" for="input_28"> MAĞAZA M2 </label>
-        <div id="cid_33" class="form-input">
-          <input type="text" class="form-textbox" id="input_28" name="q33_magazaM2" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_34">
-        <label class="form-label-left" id="label_34" for="input_29"> DEPO M2 </label>
-        <div id="cid_34" class="form-input">
-          <input type="text" class="form-textbox" id="input_29" name="q34_depoM2" size="20" />
-        </div>
-      </li>
-      <li class="form-line" id="id_35">
-        <label class="form-label-left" id="label_35" for="input_30"> TOPLAM M2 </label>
-        <div id="cid_35" class="form-input">
-          <input type="text" class="form-textbox" id="input_30" name="q35_toplamM2" size="20" />
-        </div>
-      </li>
-           <li class="form-line" id="id_38">
-        <label class="form-label-left" id="label_38" for="input_31"> MAĞAZA </label>
-        <div id="cid_38" class="form-input">
-          <div class="form-single-column">
-              <input type="radio" class="form-radio" id="input_38_0" name="q38_magaza" checked="checked" value="TRUE" />
-              aktif &nbsp;&nbsp; 
-              <input type="radio" class="form-radio" id="input_38_1" name="q38_magaza" value="iptal" />
-               iptal 
-          </div>
-        </div>
-      </li></td>
-				</tr>
-				<tr>
-					<td>
-						&nbsp;</td>
-					<td>
-						<li class="form-line" id="id_37">
-        <div id="cid_37" class="form-input-wide">
-          <div style="margin-left:156px" class="form-buttons-wrapper">
+</tbody>
+</table> 
+<input type="hidden" name="toplam" id="toptop" >
+<input type="hidden" name="kdv" id="kdvkdv">
+<input type="hidden" name="gtop" id="gtopgtop">
+
+ <div id="cid_37" class="form-input-wide">
+          <div style="margin-left:0px" class="form-buttons-wrapper">
             <button id="input_37" type="submit" class="form-submit-button">
               Kaydet
             </button>
           </div>
         </div>
-      </li>
-      
-    </ul>
-  </div>
- 
-</form> </td>
-				</tr>
-				
-				<tr>
-					<td>
-						&nbsp;</td>
-					<td>
-						&nbsp;</td>
-				</tr>
-			</tbody>
-		</table>
-       
-        
-              
-      
-    
+</form> 
+
+
+
         <?php endif;  ?>
+    </table>
      
      <?php if($_GET['do'] === "duzenle"): ?>
       <?php 
@@ -404,47 +349,40 @@ endif;
 
 
 
-if(isset($_POST['q4_magazaAdi'])) :
-			
-			$kod = $generic->secure($_POST['magazakod']);
-                        $ad = $generic->secure($_POST['q4_magazaAdi']);
-                        $unvan = $generic->secure($_POST['q5_ticariVe']);
-                        $mtur_id = $generic->secure($_POST['q6_turu']);
-                        $mmtur_id = $generic->secure($_POST['q7_magazaTuru7']);
-                        $dtur_id = $generic->secure($_POST['q11_depoTuru']);
-                        $stur_id = $generic->secure($_POST['q9_standTuru']);
-                        $ftur_id = $generic->secure($_POST['q12_firmaTuru']);
-                        $miptal = $generic->secure($_POST['q38_magaza']);
-                        $sermaye = $generic->secure($_POST['q14_sermaye14']);
-                        $vd = $generic->secure($_POST['q16_vergiDairesi']);
-                        $vno = $generic->secure($_POST['q15_vergiNo']);
-                        $msah = $generic->secure($_POST['q17_mgzSahibi17']);
-                        $msahtel = $generic->secure($_POST['q18_mgzSahibi']);
-                        $mmud = $generic->secure($_POST['q19_mgzMuduru']);
-                        $mmudtel = $generic->secure($_POST['q20_mgzMuduru20']);
-                        $mdahtel = $generic->secure($_POST['q21_mgzDahili21']);
-                        $mtel = $generic->secure($_POST['q22_mgzTel']);
-                        $mfax = $generic->secure($_POST['q23_mgzFax']);
-                        $mper = $generic->secure($_POST['q24_magazaPersonel24']);
-                        $mpere = $generic->secure($_POST['q26_erkek']);
-                        $mperk = $generic->secure($_POST['q25_bayan']);
-                        $marac = $generic->secure($_POST['q27_magazaArac']);
-                        $gmyet = $generic->secure($_POST['q28_genelMerkez']);
-                        $gmtel = $generic->secure($_POST['q29_genelMerkez29']);
-                        $gmfax = $generic->secure($_POST['q30_genelMerkez30']);
-                        $gmadres = $generic->secure($_POST['q31_genelMerkez31']);
-                        $dmyer = $generic->secure($_POST['q32_digerMagaza']);
-                        $mmt = $generic->secure($_POST['q33_magazaM2']);
-                        $dmt = $generic->secure($_POST['q34_depoM2']);
-                        $tmt = $generic->secure($_POST['q35_toplamM2']);                        
-                        $not = $generic->secure($_POST['q4_magazaAdi']);
+ if(isset($_POST['faturano'])) :
+     
+     echo 'kaydediliyor.....';			
+			$musno = $generic->secure($_POST['firma']);
+                        $tarih = $generic->secure($_POST['tarih']);
+                        $turu = $generic->secure($_POST['turu']);
+                        $faturano = $generic->secure($_POST['faturano']);
+                        $nott = $generic->secure($_POST['not']);
+                        $top=$generic->secure($_POST['toplam']);
+                        $kdv=$generic->secure($_POST['kdv']);
+                        $gtop=$generic->secure($_POST['gtop']);
+                        
+                        
+                        $tanim1 = $generic->secure($_POST['tanim1']);
+                        $tanim2 = $generic->secure($_POST['tanim2']);
+                        $tanim3 = $generic->secure($_POST['tanim3']);
+                        $tanim4 = $generic->secure($_POST['tanim4']);
+                        $tanim5 = $generic->secure($_POST['tanim5']);
+                        $miktar1 = $generic->secure($_POST['miktar1']);
+                        $miktar2 = $generic->secure($_POST['miktar2']);
+                        $miktar3 = $generic->secure($_POST['miktar3']);
+                        $miktar4 = $generic->secure($_POST['miktar4']);
+                        $miktar5 = $generic->secure($_POST['miktar5']);
+                        $fiyat1 = $generic->secure($_POST['fiyat1']);
+                        $fiyat2 = $generic->secure($_POST['fiyat2']);
+                        $fiyat3 = $generic->secure($_POST['fiyat3']);
+                        $fiyat4 = $generic->secure($_POST['fiyat4']);
+                        $fiyat5 = $generic->secure($_POST['fiyat5']);
+                        
                         $idd="";
-                        $param=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
-                            ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
-                            ':stur_id'=>$stur_id,':ftur_id'=>$ftur_id,':sermaye'=>$sermaye,
-                            ':vd'=>$vd,':vno'=>$vno
-                        );
-                        $generic->query('INSERT INTO magaza (kod,ad,unvan,mtur_id,mmtur_id,dtur_id,stur_id,ftur_id,sermaye,vd,vno) VALUES ( :kod , :ad,:unvan,:mtur_id,:mmtur_id,:dtur_id,:stur_id,:ftur_id,:sermaye,:vd,:vno)',$param);
+                        $param=array (':firma'=>$musno,':tarih'=>$tarih,':turu'=>$turu,
+                            ':faturano' => $faturano,':nott'=>$nott,':top'=>$top,
+                            ':kdv'=>$kdv,':gtop'=>$gtop    );
+                        $generic->query('INSERT INTO fatura (musno,tarih,turu,faturano,top,kdv,gtop,nott) VALUES ( :firma , :tarih,:turu,:faturano,:top,:kdv,:gtop,:nott)',$param);
 		//	$this->token = !empty($_POST['token']) ? $_POST['token'] : '';
 		//	$this->process();
               
@@ -458,34 +396,6 @@ if(isset($_POST['q4_magazaAdi'])) :
         ?>
         
        
-<form id='fatura' class='sfm_form' method='post' action='fatura.php' accept-charset='UTF-8'>
-         <div id='fatura_errorloc' class='error_strings' style='width:300px;text-align:left'></div>
-         <div id='fatura_outer_div' class='form_outer_div' style='width:300px;height:400px'>
-            <div style='position:relative' id='fatura_inner_div'>
-               <input type='hidden' name='sfm_form_submitted' value='yes'/>
-              
-               <div id='label_container' class='sfm_form_label'>
-                  <label id='label'>Label</label>
-               </div>
-                <div id='Textbox_container'>
-                  <input type='text' name='Textbox' id='Textbox' size='20' class='sfm_textbox'/>
-               </div>
-                <div id='label1_container' class='sfm_form_label'>
-                  <label id='label1'>Lal</label>
-               </div>
-               <div id='Textbox1_container'>
-                  <input type='text' name='Textbox1' id='Textbox1' size='20' class='sfm_textbox'/>
-               </div>
-                <div id='label2_container' class='sfm_form_label'>
-                  <label id='label2'>Label</label>
-               </div>
-               <div id='Textbox2_container'>
-                  <input type='text' name='Textbox2' id='Textbox2' size='20' class='sfm_textbox'/>
-               </div>
-               <input type="submit">
-            </div>
-         </div>
- </form>
 
         
         
