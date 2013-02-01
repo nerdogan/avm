@@ -263,35 +263,19 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
                         </td>
         </tr>
         <tr>
-            <td>
-      <li class="form-line" id="id_31">
-        <label class="form-label-left" id="label_31" for="input_25"> GENEL MERKEZ ADRES </label>
-        <div id="cid_31" class="form-input">
-          <input type="text" class="form-textbox" id="input_25" name="q31_genelMerkez31" size="50" />
-        </div>
-      </li>
+           <td>
+						&nbsp;</td> <td>
+     
      </td>
-					
-      </li></td>
-				</tr>
+	</tr>
 				<tr>
+					
 					<td>
-						&nbsp;</td>
-					<td>
-						<li class="form-line" id="id_37">
-        <div id="cid_37" class="form-input-wide">
-          <div style="margin-left:156px" class="form-buttons-wrapper">
-            <button id="input_37" type="submit" class="form-submit-button">
-              Kaydet
-            </button>
-          </div>
-        </div>
-      </li>
       
     </ul>
   </div>
  
-</form> </td>
+ </td>
 				</tr>
 				
 				<tr>
@@ -302,9 +286,23 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 				</tr>
 			</tbody>
 		</table>
-       
+      <li class="form-line" id="id_31">
+        <label class="form-label-left" id="label_31" for="input_25"> GENEL MERKEZ ADRES </label>
+        <div id="cid_31" class="form-input">
+          <input type="text" class="form-textbox" id="input_25" name="q31_genelMerkez31" style="width: 500px" />
+        </div>
+      </li>  
   
- 
+						<li class="form-line" id="id_37">
+        <div id="cid_37" class="form-input-wide">
+          <div style="margin-left:156px" class="form-buttons-wrapper">
+            <button id="input_37" type="submit" class="form-submit-button">
+              Kaydet
+            </button>
+          </div>
+        </div>
+      </li>
+</form> 
 
       
     
