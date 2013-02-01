@@ -49,7 +49,7 @@ foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott
     echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4]," TL </td><td> ",$row[5],"</td><td>",$row[0],"</td><td>",$row[6],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
 }
     
-echo     
+    
     
 endif; 
  // listeleme sonu
