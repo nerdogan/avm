@@ -34,15 +34,15 @@ var urun = (eval(document.getElementById('input_12').value) + eval(document.getE
 </div>
 <?php // Yan menü bitiş
  endif; ?>
-<br><br>
-<table style='width:800px'>
+
+
 <?php 
 
 // tüm liste
 
 if(($_GET['do'] === "liste")  ): 
-
-    echo "<tr><td>Tarih</td><td>No</td><td>Firma Adı</td><td>Tutar</td><td>Not</td><td>Kod</td><td>...</td>";
+echo "<table class='table table-hover' >";
+    echo "<tr><td>Tarih</td><td>No</td><td>Firma Adı</td><td>Tutar</td><td>Not</td><td>Kod</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
      $number=0;    
 foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM fatura INNER JOIN magaza ON  fatura.musno =  magaza.id') as $row) {
     $number++;
@@ -57,15 +57,15 @@ endif;
 // Ekleme ve Düzenleme   
 if(($_GET['do'] === "yeni")  ): ?>
 
-<form class="jotform-form" action="fatura.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
+<form class="" action="fatura.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
   <input type="hidden" name="formID" value="30133819675356" />
   <div class="form-all">
    
     <div class="form-header-group">
           <h3 id="header_1" class="form-header">
               Fatura &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="label label-info" onclick="document.getElementById('formekle').submit()"> Kaydet </span>
-          </h3>
+              <a class="btn btn-success" href="#" onclick="document.getElementById('formekle').submit()"><i class="icon-ok icon-white"></i> KAYDET </a>
+               </h3>
         </div>
    
     
@@ -85,7 +85,7 @@ if(($_GET['do'] === "yeni")  ): ?>
 // }
   //    }
 //else :{
-     echo "<select class='select' name='firma'><option value='.'>Firma Seç</option>";
+     echo "<select style='width:500px' name='firma'><option value='.'>Firma Seç</option>";
      foreach($generic->query('SELECT * FROM magaza') as $row) {
         echo "<option value='",$row['id'],"'";
         echo ">", $row['kod']," -  "," ",$row['unvan'],"</option>\n";
@@ -99,7 +99,6 @@ if(($_GET['do'] === "yeni")  ): ?>
 <td style="width: 120px">     
       
     Tarih :
- 
         <div id="cid_99" class="form-input">
               <input type="text"  id="datepicker"  name="tarih" style="width: 90px" /> 
         </div>
@@ -109,7 +108,7 @@ if(($_GET['do'] === "yeni")  ): ?>
         <td>Fatura Tipi:
         <div id="cid_6" class="form-input">
           <select class="form-dropdown" style="width:100px" id="input_5" name="turu">
-            <option> Fatura Tipi </option>
+            <option>Seçiniz</option>
             <option value="1">ALIŞ </option>
             <option value="2">SATIŞ </option>
             <option value="3">ALIŞ İADE</option>
@@ -167,7 +166,7 @@ Fatura No:
 <td style="width: 60px"><input type="text" class="form-textbox" id="input_11" name="fiyat1" style="width: 50px" onkeyup="hesapla('input_10','input_11','input_12')"/>
 </td>
 <td style="width: 100px"><input type="text" class="form-textbox" id="input_12" name="tutar1" style="width: 100px" value="0" />
-</td><td style="width:70px">&nbsp;&nbsp;&nbsp;<span id="ekle1" class="label label-info" onclick="goster('cid_116');gizle('ekle1')">EKLE</span>
+</td><td>&nbsp;</td><td style="width:70px"><span id="ekle1" class="badge badge-info"  onclick="goster('cid_116');gizle('ekle1')">EKLE</span>
 </td>
 </tr>
 </tbody>
@@ -189,7 +188,7 @@ Fatura No:
  <td style="width: 100px">
 <input type="text" class="form-textbox" id="input_1103" name="tutar2" style="width: 100px" value="0" />
 </td>
-<td style="width: 70px">&nbsp;&nbsp;&nbsp;<span id="ekle2" class="label label-info" onclick="goster('cid_117');gizle('ekle2')">EKLE</span></td>
+<td style="width: 70px">&nbsp;<span id="ekle2" class="badge badge-info" onclick="goster('cid_117');gizle('ekle2')">EKLE</span></td>
        </tr>     
           
           
@@ -215,7 +214,7 @@ Fatura No:
  <td>
  <input type="text" class="form-textbox" id="input_1107" name="tutar3" style="width: 100px" value="0" />
  </td>
-<td>&nbsp;&nbsp;&nbsp;<span id="ekle3" class="label label-info" onclick="goster('cid_118');gizle('ekle3')">EKLE</span></td>
+<td>&nbsp;<span id="ekle3" class="badge badge-info" onclick="goster('cid_118');gizle('ekle3')">EKLE</span></td>
 </tr>     
 </tbody>
 </table> 
@@ -235,7 +234,7 @@ Fatura No:
  <td>
  <input type="text" class="form-textbox" id="input_1111" name="tutar4" style="width: 100px" value="0" />
  </td>
-<td>&nbsp;&nbsp;&nbsp;<span id="ekle4" class="label label-info" onclick="goster('cid_119');gizle('ekle4')">EKLE</span></td>
+<td>&nbsp;<span id="ekle4" class="badge badge-info" onclick="goster('cid_119');gizle('ekle4')">EKLE</span></td>
 </tr>     
 </tbody>
 </table> 
@@ -255,7 +254,7 @@ Fatura No:
  <td>
  <input type="text" class="form-textbox" id="input_1115" name="tutar5" style="width: 100px" value="0" />
  </td>
-<td>&nbsp;&nbsp;&nbsp;<span id="ekle5" class="label label-info" onclick="goster('cid_120');gizle('ekle5')"></span></td>
+<td>&nbsp;<span id="ekle5" class="badge badge-info" onclick="goster('cid_120');gizle('ekle5')"></span></td>
 </tr>     
 </tbody>
 </table> 
@@ -291,13 +290,7 @@ Fatura No:
 <input type="hidden" name="kdv" id="kdvkdv">
 <input type="hidden" name="gtop" id="gtopgtop">
 
- <div id="cid_37" class="form-input-wide">
-          <div style="margin-left:0px" class="form-buttons-wrapper">
-            <button id="input_37" type="submit" class="form-submit-button">
-              Kaydet
-            </button>
-          </div>
-        </div>
+ 
 </form> 
 
 

@@ -130,8 +130,8 @@ return strtolower(strtr( $input,'ĞÜŞIİÖÇ','ğüşıiöç'));
 	
 
 <!-- Main content
-================================================== -->
-<div id="content">
+================================================== 
+<div id="content">-->
 <div class="container" >
 			<div class="row">
 
