@@ -66,7 +66,16 @@
           <ul class="nav">
             <li class="active"><a href="home.php"> Anasayfa</a></li>
               <?php if( protectThis(1) ) : ?>
-            <li><a href="cari.php"><?php _e('Cari'); ?></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cari <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="cari.php?do=ekle">Yeni Kayıt</a></li>
+                <li><a href="cari.php">Liste</a></li>
+                <li class="divider"></li>
+                <li><a href="cari.php">Arama</a></li>
+              </ul>
+            </li>
+            
             <li><a href="fatura.php?do=liste"><?php _e('Fatura'); ?></a></li>
             <li><a href="magaza.php"><?php _e('Mağaza Kartı'); ?></a></li>
             <li><a href="#"><?php _e('Listeler'); ?></a></li>
@@ -75,16 +84,7 @@
             <li><a href="#">Link</a></li>
             <?php endif; ?>
             
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </li>
+            
           </ul>
           <form class="navbar-search pull-left" action="">
             <input type="text" class="search-query span2" placeholder="Search">

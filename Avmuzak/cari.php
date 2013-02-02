@@ -15,8 +15,8 @@
 </script>                   
  <div id="sidebar" class="sidebar">
 <ul class="nav">
-<img src="assets/img/logo1.png">	
-<li><a href="home.php"> <img src=""></a> </li>
+	
+<li><a href="home.php"> <img src="assets/img/logo1.png"></a> </li>
 <?php if( protectThis(1) ) : ?>
 <li><a href="cari.php?do=ekle"><?php _e('Yeni Kayıt'); ?></a></li>
 <li><a href="#"><?php _e('Tam Liste'); ?></a></li>

@@ -15,8 +15,9 @@
 
 		<!-- Le styles -->
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-		<!--<link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-		<link href="assets/css/jigowatt.css" rel="stylesheet">  -->
+		<!--<link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
+		<link href="assets/css/jigowatt.css" rel="stylesheet"> 
+<link href="assets/css/cus-icons.css" rel="stylesheet"> 
 
 		<link rel="shortcut icon" href="favicon.ico">
                     
@@ -28,7 +29,7 @@
   <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
   <script src="assets/js/jquery.ui.datepicker-tr.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css" />
- 
+  </head><body style="background-image: url(assets/img/bg.jpg);">
 <?php
 
 /*
@@ -296,7 +297,7 @@
         <td><a class="btn btn-primary btn-large" href="#">Primary</a></td>
         <td><a class="btn btn-primary btn-small" href="#">Primary</a></td>
         <td><a class="btn btn-primary disabled" href="#">Primary</a></td>
-        <td><a class="btn btn-primary" href="#"><i class="icon-shopping-cart icon-white"></i> Primary</a></td>
+        <td><a class="btn btn-primary" href="#"><i class="cus-disk"></i> Primary</a></td>
     <td>
           <div class="btn-group">
             <a class="btn btn-primary" href="#">Primary</a>
