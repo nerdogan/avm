@@ -15,6 +15,7 @@
 </script>                   
  <div id="sidebar" class="sidebar">
 <ul class="nav">
+<img src="assets/img/logo1.png">	
 <li><a href="home.php"> <img src=""></a> </li>
 <?php if( protectThis(1) ) : ?>
 <li><a href="cari.php?do=ekle"><?php _e('Yeni Kayıt'); ?></a></li>
@@ -26,6 +27,9 @@
 </div>
 <?php // Yan menü bitiş
  endif; ?>
+
+
+
 <?php 
 // Arama bölümü
 if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
@@ -37,7 +41,7 @@ if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
     <div id="cid_4" class="form-input">
           <input type="text" class="form-textbox validate[required]" id="input_444" name="aramai" size="20" onkeyup="submitform()" /><br>
           <div class="done"> </div>
-          <table border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
+          <table class="table table-hover" border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
               <h4> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
 <?php
 
@@ -138,7 +142,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 <form class="jotform-form" action="cari.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
   <input type="hidden" name="formID" value="30133819675356" />
   <div class="form-all">
-    <ul class="form-section">
+    <ul class="nav nav-list">
         
         
       <li id="cid_1" class="form-input-wide">

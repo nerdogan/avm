@@ -3,7 +3,7 @@
 <?php include_once('header.php'); ?>
 
 <div class="hero-unit">
-	<h1><?php _e('AVM Erp'); ?></h1>
+	
 	<p><?php if( protectThis(1) ) : ?>
 		<a href="#" target="_self" class="btn btn-info btn-large"><?php _e('Sistem Kontrol Paneli'); ?> &raquo;</a>
 	<?php else : ?>
@@ -37,32 +37,37 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
 	</div>
 </div>
 <hr>
-
+<h1><?php _e('AVM Erp Sistemi'); ?></h1>
+		<p class="intro"><?php _e('Mağazalarınızı Kolayca Yönetin.'); ?></p>
+                <br>
 <div class="features">
 	<div class="row">
-		<h1><?php _e('AVM Erp Sistemi'); ?></h1>
-		<p class="intro"><?php _e('Mağazalarınızı Kolayca Yönetin.'); ?></p>
-		<div class="span6">
+		
+                
+                <div  class="span6"><a href="#" class="btn btn-warning btn-large">
 			<h2><?php _e('Finans'); ?></h2>
-			<p><?php _e('Mağazalarınızın tüm finansal bilgilerini kontrol altında tutabilirsiniz.'); ?></p>
-		</div>
+		Mağazalarınızın tüm finansal bilgilerini kontrol altında tutabilirsiniz.
+		</a></div>
 
-		<div class="span6">
+                <div class="span6" ><a href="#" class="btn btn-danger btn-large">
 			<h2><?php _e('Cari'); ?></h2>
 			<p><?php _e('Her bir mağaza için oluşturulan bilgi kartlarınıza kolayca erişim sağlayın.'); ?></p>
-		</div>
+		</a></div>
 	</div>
 
 	<div class="row">
-		<div class="span6">
-			<h2><?php _e('Mağaza Hareketleri'); ?></h2>
+		<div class="span6" >
+		<a href="#" class="btn btn-success btn-large">	
+                    <h2><?php _e('Mağaza Hareketleri'); ?></h2>
 			<p><?php _e('Mağazaların banka hareketleri, faturalar, ödemeler vb. tüm hareketlerini kayıt altında tutmanızı sağlayan kolay yönetim sistemi.'); ?></p>
-		</div>
+                </a></div>
 
 		<div class="span6">
-			<h2><?php _e('Güvenlik'); ?></h2>
+                    <br>
+		<a href="#" class="btn btn-info btn-large">	
+                    <h2><?php _e('Güvenlik'); ?></h2>
 			<p><?php _e('Mağaza bilgileriniz 256 bit "Rapid SSL" güvenlik sistemi ile koruma altında.'); ?></p>
-		</div>
+                </a></div>
 	</div>
 </div>
 
