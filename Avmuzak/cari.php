@@ -4,6 +4,12 @@
 
  <script type="text/javascript">
      document.title="Avm Mağaza Kontrol Sistemi 2013 - CARİ BÖLÜMÜ"
+  //   document.getElementById('basarama').action='home.php';
+   //  function displayunicode(e){
+     //    var unicode=e.keyCode? e.keyCode : e.charCode
+//alert(unicode)
+//}
+
 	function goster(id) {
 		document.getElementById(id).style.display = 'block';
 	}
@@ -13,18 +19,23 @@
 
 
 </script>                   
- <div id="sidebar" class="sidebar">
+ <div id="sidebar1" class="sidebar1">
 <ul class="nav">
-	
-<li><a href="home.php"> <img src="assets/img/logo1.png"></a> </li>
+    <a class="btn btn-warning" href="#"><i class="cus-application"></i> Cari Bölümü</a>
+    <br><br>
+
 <?php if( protectThis(1) ) : ?>
-<li><a href="cari.php?do=ekle"><?php _e('Yeni Kayıt'); ?></a></li>
-<li><a href="#"><?php _e('Tam Liste'); ?></a></li>
-<li><a href="cari.php?do=arama"><?php _e('Arama'); ?></a></li>
+<li><a href="cari.php?do=ekle" class="btn btn-large btn-success"><?php _e('Yeni Kayıt'); ?></a></li><br>
+<li><a href="cari.php?do=liste" class="btn btn-large btn-info"><?php _e('Tam Liste'); ?></a></li><br>
+<li><a href="#"><?php _e(''); ?></a></li>
+<li><a href="cari.php?do=arama" class="btn btn-large btn-danger"><?php _e('Arama'); ?></a></li><br>
 <li><a href="#"><?php _e(''); ?></a></li>
 <li><a href="protected.php"><?php _e(''); ?></a></li>
 </ul>
 </div>
+</div>
+<div class="span10">
+     <br><br><br>
 <?php // Yan menü bitiş
  endif; ?>
 
@@ -34,15 +45,14 @@
 // Arama bölümü
 if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
 <br>
+
 <form class="" action="cari.php?do=arama" method="post" name="arama" id="arama" accept-charset="utf-8">
-<label class="form-label-left" id="label_444" for="input_444">
-         Lütfen firma adını girin yada aşağıdan seçiminizi yapın:<span class="form-required">*</span>
-        </label>
-    <div id="cid_4" class="form-input">
-          <input type="text" class="form-textbox validate[required]" id="input_444" name="aramai" size="20" onkeyup="submitform()" /><br>
-          <div class="done"> </div>
-          <table class="table table-hover" border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
-              <h4> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
+Firma kodu, adı veya resmi adından birkaç harf girin
+  
+ <input type="text" class="search-query " id="input_444" name="aramai"  onkeyup="submitform()" placeholder="Arama yap"/><br>
+ <br>  
+  <table class="table table-condensed" border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
+  <h4> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
 <?php
 
   ?>
@@ -51,7 +61,7 @@ if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
 function submitform()
 {
  // $( "#content" ).load("home.php");
-  if  (document.arama.aramai.value.length > 1){ 
+  if  (document.arama.aramai.value.length > 3){ 
   document.arama.submit();
 }
   
@@ -66,30 +76,12 @@ function submitform()
  if ($_POST['aramai']) : {
      $elma="%".$_POST['aramai']."%";
       $elma=toUpperCase($elma);
-     print $elma;
+     
      
      $number=0;
         $param=array (':ad'=> $elma ); 
-foreach($generic->query('SELECT * FROM magaza WHERE ad LIKE :ad',$param) as $row) {
-    $number++;
-if ($row['mtur_id']=4) :  {
-    echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='cari.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
-}
-else : {
-echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
-    
-}
-endif;
-
-}
-
-        
-        
-        }
-  else : {
-        $number=0;    
-foreach($generic->query('SELECT * FROM magaza ') as $row) {
-    $number++;
+foreach($generic->query('SELECT * FROM magaza WHERE ad LIKE :ad or unvan LIKE :ad',$param) as $row) {
+     $number++;
   if ($row['mtur_id']==="4") :  {
     echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='cari.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
 }
@@ -99,7 +91,7 @@ echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><t
   <li>
     <a href="#">seç</a>
     <ul>
-    <li><a href="#">Göster</a></li>
+    <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
       <li><a href="magaza.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
       <li><a href="#">Sil</a></li>
       <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
@@ -113,8 +105,14 @@ $( "#menu',$number,'" ).menu();
 }
 endif;
 }
-  }
+       
+        
+        }
+   
+    
   endif;
+  
+ 
  
   
   
@@ -125,7 +123,7 @@ endif;
       echo "<SCRIPT >  document.arama.aramai.value='",$_POST['aramai'],"' ; document.arama.aramai.focus();
           
               </SCRIPT>";
-      print $_POST['aramai'];
+     
   
   
   }
@@ -134,6 +132,46 @@ endif;
   endif;?>
     
  </table>
+ 
+ <?php // arama sonu
+ 
+ // listeleme başlangıcı
+   if(($_GET['do'] === "liste")|| !($_GET['do']) ): { ?>
+ 
+ <br>  
+  <table class="table  table-condensed " border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
+  <h4> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
+  <?php
+        $number=0;    
+foreach($generic->query('SELECT * FROM magaza ') as $row) {
+    $number++;
+  if ($row['mtur_id']==="4") :  {
+    echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='cari.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
+}
+else : {
+echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'></a>" ,
+'<ul id="menu',$number,'">
+  <li>
+    <a href="#">seç</a>
+    <ul>
+    <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
+      <li><a href="magaza.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
+      <li><a href="#">Sil</a></li>
+      <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
+    </ul>
+  </li>
+  </ul>    
+    <script>
+$( "#menu',$number,'" ).menu();
+</script>';             
+
+}
+endif;
+}}
+endif;
+
+ ?>
+  </table>
 
 <?php 
 // Ekleme ve Düzenleme   
@@ -332,16 +370,38 @@ $idd=$row[$counter-1];
      }
 
 endif;
+endif ; ?>    
+ 
+  <?php if($_GET['do'] === "goster"): ?>
+      <?php 
+     if ($_GET['id']) : {
+     $elma=$_GET['id'];
+     $param=array (':ad'=> $elma ); 
+foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
+   
+    echo '<table class="table-condensed">';   
+                
+           for ( $counter = 2; $counter <= 15; $counter += 1) {
+            $idd=$row[$counter-1];
+           if (strlen($idd)>2): {echo "<tr><td>",$counter,"</td><td>",$idd,"</td></tr>"; };
+endif;
+            }    
+    echo " </table>";
+}        
+     }
+
+endif;
+endif;
       
       
      ?>
-        
+          
         
      
      
      
       
-     <?php endif ; ?>
+    
         <?php 
      
 //$dsn = 'mysql:host=localhost;dbname=arge_avm';

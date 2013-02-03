@@ -20,18 +20,22 @@ var urun = (eval(document.getElementById('input_12').value) + eval(document.getE
 }
 
 </script>  
- 
- <div id="sidebar" class="sidebar">
-<ul class="nav">
 
+ <div id="sidebar1" class="">
+<ul class="nav">
+    <li><a class="btn btn-warning" href="#"><i class="cus-application"></i> Fatura Bölümü</a></li>
+    <br><br>
 <?php if( protectThis(1) ) : ?>
-<li><a href="fatura.php?do=yeni"><?php _e('Yeni Kayıt'); ?></a></li>
-<li><a href="#"><?php _e('Sil İptal'); ?></a></li>
-<li><a href="fatura.php?do=liste"><?php _e('Tam Liste'); ?></a></li>
-<li><a href="fatura.php?do=arama"><?php _e('Arama'); ?></a></li>
+<li><a class="btn btn-large btn-success" href="fatura.php?do=yeni"><?php _e('Yeni Kayıt'); ?></a></li><br>
+<li><a class="btn btn-large btn-danger" href="#"><?php _e('Sil İptal'); ?></a></li><br>
+<li><a class="btn btn-large btn-info" href="fatura.php?do=liste"><?php _e('Tam Liste'); ?></a></li><br>
+<li><a class="btn btn-large btn-inverse" href="fatura.php?do=arama"><?php _e('Arama'); ?></a></li><br>
 <li><a href="#"><?php _e(''); ?></a></li>
 </ul>
 </div>
+</div>
+<div class="span10">
+    <br><br><br>
 <?php // Yan menü bitiş
  endif; ?>
 

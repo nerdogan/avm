@@ -21,7 +21,7 @@
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 		<!--<link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet"> -->
 		<link href="assets/css/jigowatt.css" rel="stylesheet"> 
-
+<link href="assets/css/cus-icons.css" rel="stylesheet"> 
 		<link rel="shortcut icon" href="favicon.ico">
                     
                     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -53,7 +53,7 @@
 
 <!-- Navigation
 ================================================== -->
-<div class="navbar navbar-inverse">
+<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container" style="width: auto;">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -76,21 +76,38 @@
               </ul>
             </li>
             
-            <li><a href="fatura.php?do=liste"><?php _e('Fatura'); ?></a></li>
-            <li><a href="magaza.php"><?php _e('Mağaza Kartı'); ?></a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fatura <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="fatura.php?do=yeni">Yeni Kayıt</a></li>
+                <li><a href="fatura.php">Liste</a></li>
+                <li><a href="fatura.php">Sil İptal</a></li>
+                <li class="divider"></li>
+                <li><a href="fatura.php">Arama</a></li>
+              </ul>
+            </li>  
+              
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mağaza <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="magaza.php?do=ekle">Yeni Kayıt</a></li>
+                <li><a href="magaza.php?do=arama">Liste</a></li>
+                <li class="divider"></li>
+                <li><a href="magaza.php?do=arama">Arama</a></li>
+              </ul>
+            </li>
+            
             <li><a href="#"><?php _e('Listeler'); ?></a></li>
 	    <li><a href="#"><?php _e('Teknik'); ?></a></li>
 	    <li><a href="#"><?php _e('Tanımlar'); ?></a></li>
-            <li><a href="#">Link</a></li>
+          
             <?php endif; ?>
             
             
           </ul>
-          <form class="navbar-search pull-left" action="">
-            <input type="text" class="search-query span2" placeholder="Search">
-          </form>
+         
           <ul class="nav pull-right">
-            <li><a href="#">Link</a></li>
+            <li><a href="#">Yardım</a></li>
             <li class="divider-vertical"></li>
             <?php if(isset($_SESSION['jigowatt']['username'])) { ?>
            
@@ -132,9 +149,9 @@ return strtolower(strtr( $input,'ĞÜŞIİÖÇ','ğüşıiöç'));
 <!-- Main content
 ================================================== 
 <div id="content">-->
-<div class="container" >
+<div class="container" style="width: auto;" >
 			<div class="row">
 
-				<div class="span12">
+				<div class="span2">
 
-     
+ <br><br><br>     

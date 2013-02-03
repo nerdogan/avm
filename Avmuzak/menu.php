@@ -14,12 +14,12 @@ public $data=array();
 public function goster()
 {
  
- $a='<li><a href="home.php"> <img src="assets/img/batmanpark.png"></a> </li>';
+ $a='<li><a href="home.php"> <img src="assets/img/logo1.png"></a> </li>';
  
 return $a;
 }
 }
 
 $menu= new yanmenu;
-
+echo $menu->goster();
 ?>

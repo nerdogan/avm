@@ -14,15 +14,20 @@
 </script>                   
  <div id="sidebar" class="sidebar">
 <ul class="nav">
+     <li><a class="btn btn-warning" href="#"><i class="cus-application"></i> Mağaza Bölümü</a></li>
+    <br><br>
 <li><a href="home.php"> <img src=""></a> </li>
 <?php if( protectThis(1) ) : ?>
-<li><a href="magaza.php?do=ekle"><?php _e('Yeni Kayıt'); ?></a></li>
-<li><a href="#"><?php _e('Tam Liste'); ?></a></li>
-<li><a href="magaza.php?do=arama"><?php _e('Arama'); ?></a></li>
+<li><a href="magaza.php?do=ekle" class="btn btn-large btn-success"><?php _e('Yeni Kayıt'); ?></a></li><br>
+<li><a href="magaza.php?do=arama" class="btn btn-large btn-info"><?php _e('Tam Liste'); ?></a></li><br>
+<li><a href="magaza.php?do=arama" class="btn btn-large btn-danger"><?php _e('Arama'); ?></a></li><br>
 <li><a href="#"><?php _e(''); ?></a></li>
 <li><a href="protected.php"><?php _e(''); ?></a></li>
 </ul>
 </div>
+</div>
+<div class="span10">
+     <br><br><br>
 <?php // Yan menü bitiş
  endif; ?>
 <?php 
@@ -45,7 +50,7 @@ if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
 <SCRIPT language="JavaScript">
 function submitform()
 {
- // $( "#content" ).load("home.php");
+  //$( "#sidebar" ).load("menu.php");
   if  (document.arama.aramai.value.length > 1){ 
   document.arama.submit();
 }
@@ -61,7 +66,7 @@ function submitform()
  if ($_POST['aramai']) : {
      $elma="%".$_POST['aramai']."%";
       $elma=toUpperCase($elma);
-     print $elma;
+     
      $number=0;
         $param=array (':ad'=> $elma ); 
 foreach($generic->query('SELECT * FROM magaza WHERE ad LIKE :ad and mtur_id<>4',$param) as $row) {
@@ -84,7 +89,7 @@ foreach($generic->query('SELECT * FROM magaza WHERE mtur_id<>4') as $row) {
       echo "<SCRIPT >  document.arama.aramai.value='",$_POST['aramai'],"' ; document.arama.aramai.focus();
           
               </SCRIPT>";
-      print $_POST['aramai'];
+      
   
   
   }

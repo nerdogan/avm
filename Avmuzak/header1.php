@@ -29,7 +29,7 @@
   <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
   <script src="assets/js/jquery.ui.datepicker-tr.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css" />
-  </head><body style="background-image: url(assets/img/bg.jpg);">
+  </head><body style="background-image: url(assets/img/b.jpg);">
 <?php
 
 /*
