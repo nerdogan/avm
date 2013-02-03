@@ -1,7 +1,7 @@
 <?php include_once('classes/check.class.php'); ?>
 
 <?php include_once('header.php'); ?>
-
+<div span12>
 <div class="hero-unit">
 	
 	<p><?php if( protectThis(1) ) : ?>
