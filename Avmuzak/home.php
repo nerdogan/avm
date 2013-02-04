@@ -79,7 +79,7 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
 </div>
              
        
-               
+        <br><br>            
                
              
                     <a href="fatura.php?do=liste" >
@@ -146,30 +146,33 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
                     </div>
            
             
-            <div class="tile bg-color-darken icon">
-                        <div class="tile-content">
-                            <img src="./assets/images/YouTube128.png" alt="" />
-                        </div>
-                        <div class="brand">
-                            <span class="name">YouTube</span>
-                        </div>
-                    </div>
-
+           <div class="tile double bg-color-green">
+                                    <div class="tile-content">
+                                        <h2>mattberg@live.com</h2>
+                                        <h5>Re: Wedding Annoucement!</h5>
+                                        <p>
+                                            Congratulations! I'm really excited to celebrate with you all. Thanks for...
+                                        </p>
+                                    </div>
+                                    <div class="brand">
+                                        <div class="badge">12</div>
+                                        <img class="icon" src="./assets/images/Mail128.png"/>
+                                    </div>
+           </div>
         
-           <div class="tile double bg-color-yellow" data-role="tile-slider" data-param-period="3000">
+           <div class="tile double bg-color-yellow " data-role="tile-slider" data-param-period="3000">
                          
        <?php    $number=0;    
 foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM fatura INNER JOIN magaza ON  fatura.musno =  magaza.id') as $row) {
     $number++;
-    echo '<div class="tile-content">';
+    echo '<div class="tile-content fg-color-red">';
     echo "<h4>",$row[2],"</h4><h4>",$row[4],"TL</h4><p>",$row[1]," tarih ",$row[3]," nolu fatura <a href='fatura.php?do=liste'></a></p></div>" ;
 }
     
    ?>
         </div>
         
-        
-                    <div class="tile icon bg-color-red">
+           <div class="tile icon bg-color-red">
                         <div class="tile-content">
                             <img src="./assets/images/excel2013icon.png"/>
                         </div>
@@ -177,6 +180,7 @@ foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott
                             <span class="name">Excel 2013</span>
                         </div>
                     </div>
+                 
             
             
 
