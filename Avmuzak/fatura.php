@@ -20,6 +20,13 @@ var urun = (eval(document.getElementById('input_12').value) + eval(document.getE
 }
 
 </script>  
+<div class="page secondary">
+     
+     
+           
+
+<div class="page snapped">
+   
 
  <div id="sidebar1" class="">
 <ul class="nav">
@@ -34,26 +41,31 @@ var urun = (eval(document.getElementById('input_12').value) + eval(document.getE
 </ul>
 </div>
 </div>
+     
+
+<div class="page fill">
+
 <div class="span10">
-    <br><br><br>
+    
+    <span class="btn btn-large btn-warning">
+  
 <?php // Yan menü bitiş
  endif; ?>
-
 
 <?php 
 
 // tüm liste
 
 if(($_GET['do'] === "liste")  ): 
-echo "<table class='table table-hover' >";
+echo "<table class='hovered' >";
     echo "<tr><td>Tarih</td><td>No</td><td>Firma Adı</td><td>Tutar</td><td>Not</td><td>Kod</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
      $number=0;    
 foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM fatura INNER JOIN magaza ON  fatura.musno =  magaza.id') as $row) {
     $number++;
-    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4]," TL </td><td> ",$row[5],"</td><td>",$row[0],"</td><td>",$row[6],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
+    echo "<tr class='",( ($number & 1) ? 'success' : 'info' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4]," TL </td><td> ",$row[5],"</td><td>",$row[0],"</td><td>",$row[6],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
 }
     
-    
+echo '</table';  
     
 endif; 
  // listeleme sonu
@@ -98,8 +110,10 @@ if(($_GET['do'] === "yeni")  ): ?>
 //}
 //endif;
      
-     
-    ?>   </td> <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
+ ?>
+        
+        
+    </td> <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
 <td style="width: 120px">     
       
     Tarih :
@@ -296,11 +310,11 @@ Fatura No:
 
  
 </form> 
-
+</div>
 
 
         <?php endif;  ?>
-    </table>
+   
      
      <?php if($_GET['do'] === "duzenle"): ?>
       <?php 
@@ -397,8 +411,7 @@ endif;
 
         
         
-        
-        
-        
-        <br><br><br><br><br><br><br><br><br>
+    </span>  
+       </div></div>    
+  
     <?php include_once('footer.php'); ?>

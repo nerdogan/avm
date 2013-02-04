@@ -2679,16 +2679,16 @@ ol.unstyled,
   padding-left: 120px;
 }
 .page.snapped {
-  width: 33.33%;
+  width: 15%;
   height: 100%;
   float: left;
-  border-right: 1px #ccc solid;
+ 
 }
 .page.fill {
-  width: 66.66%;
+  width: 85%;
   height: 100%;
   float: right;
-  border-left: 1px #ccc solid;
+ 
 }
 .page.snapped .page .page-header .page-header-content h1,
 .page.snapped .page .page-header .page-header-content h2,

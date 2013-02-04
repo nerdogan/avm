@@ -1,11 +1,13 @@
 <?php include_once('classes/profile.class.php');?>
 <?php include_once('header.php');?>
-
+<div class="page">
+           
+            <div class="page-header-content">
+               
+                <div class="span9 text-center">
 <h1>
 
-	<a href="#" class="a-tooltip" data-rel="tooltip-bottom" title="<?php _e('Resminizi Değiştirin'); ?>">
-		<img class="gravatar thumbnail" src="<?php echo $profile->get_gravatar($profile->getField('email'), false, 54); ?>"/>
-	</a>
+	
 
 	<?php echo $profile->getField('username') . ' (' . $profile->getField('name') . ')'; ?>
 
@@ -130,5 +132,5 @@
 	</div>
 	</form>
 </div>
-
+                </div></div></div>
 <?php include ('footer.php'); ?>

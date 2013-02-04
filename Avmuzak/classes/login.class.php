@@ -228,6 +228,7 @@ class Login extends jigowatt_integration {
 
 		// And our magic happens here ! Let's sign them in
 		$_SESSION['jigowatt']['username'] = $this->result['username'];
+                $_SESSION['jigowatt']['name'] = $this->result['name'];
 
 		// User ID of the logging in user
 		$_SESSION['jigowatt']['user_id'] = $this->result['user_id'];

@@ -1,11 +1,11 @@
 body {
     background-color: #fff;
+    background-image: url(../img/bg.jpg);
 }
 .page {
-    width: 940px ;
+    width: 100% ;
     margin: auto;
-    background-color: #fff;
-}
+    }
 .browsers-icons img {
     float: left;
     margin-right: 20px;

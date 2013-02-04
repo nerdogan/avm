@@ -19,7 +19,7 @@
 
 
 </script>                   
- <div id="sidebar1" class="sidebar1">
+ <div id="" class="1">
 <ul class="nav">
     <a class="btn btn-warning" href="#"><i class="cus-application"></i> Cari Bölümü</a>
     <br><br>

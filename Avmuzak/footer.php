@@ -1,11 +1,10 @@
 <!-- Footer
 ================================================== -->
 
-	</div> <!-- /.span9 -->
-	</div></div></div></div> <!-- /.row -->
+	
 	<footer>
 		<hr>
-		<p>
+		<p class="navbar-fixed-bottom">
 			<a href="http://onlinearge.com" target="_TOP">&copy; Online Arge 2013</a>
 			
 		</p>

@@ -1,6 +1,10 @@
 <?php include_once('classes/login.class.php'); ?>
 <?php include_once('header.php'); ?>
-
+<div class="page">
+           
+            <div class="page-header-content">
+               
+                <div class="span12 text-center">
 <div id="forgot-form" class="modal hide fade">
 	<div class="modal-header">
 		<a class="close" data-dismiss="modal">&times;</a>
@@ -25,6 +29,7 @@
 </div>
 
 <div class="row">
+    <div class="btn btn-large btn-primary">
 	<div class="main login">
 		<form method="post" class="form normal-label" action="login.php">
 		<fieldset>
@@ -33,7 +38,7 @@
 			<label for="username" class="login-label"><?php _e('Kullanıcı Adı'); ?></label>
 				<div class="controls">
 					<input class="xlarge" id="username" name="username" maxlength="15" type="text"/>
-					<span class="forgot"><a data-toggle="modal" href="#forgot-form" id="forgotlink" tabindex=-1><?php _e('Parolanızı mı Unuttunuz'); ?></a>?</span>
+                                        <p>	<span class="forgot"><a data-toggle="modal" href="#forgot-form" id="forgotlink" tabindex=-1><?php _e('Parolanızı mı Unuttunuz'); ?></a>?</span></p>
 				</div>
 			</div>
 
@@ -67,5 +72,6 @@
 		</form>
 	</div>
 
-</div>
+</div></div></div></div></div>
+
 <?php include_once('footer.php'); ?>
