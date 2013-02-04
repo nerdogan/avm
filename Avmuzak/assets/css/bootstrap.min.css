@@ -32,7 +32,7 @@ a:hover{color:#0066cc;text-decoration:underline;}
 .row:after{clear:both;}
 [class*="span"]{float:left;min-height:1px;margin-left:20px;}
 .container,.navbar-static-top .container,.navbar-fixed-top .container,.navbar-fixed-bottom .container{width:940px;}
-.span12{width:940px;}
+.span12{width:1000px;}
 .span11{width:860px;}
 .span10{width:780px;}
 .span9{width:700px;}

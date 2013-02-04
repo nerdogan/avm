@@ -133,16 +133,7 @@ else { ?>
   </div><!-- /navbar -->
   
   				
-			
-		<?php  
-               function toUpperCase( $input ){	
-return strtoupper( strtr( $input,'ğüşıiöç', 'ĞÜŞIİÖÇ') );
-}
-
-function toLowerCase( $input ){	
-return strtolower(strtr( $input,'ĞÜŞIİÖÇ','ğüşıiöç'));
-}
-?>
+	
 		
 	
 

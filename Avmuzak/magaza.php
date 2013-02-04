@@ -11,7 +11,15 @@
 	}
 
 
-</script>                   
+</script>  
+
+<div class="page secondary">
+     
+     
+           
+
+    <div class="page snapped">
+        
  <div id="sidebar" class="sidebar">
 <ul class="nav">
      <li><a class="btn btn-warning" href="#"><i class="cus-application"></i> Mağaza Bölümü</a></li>
@@ -25,27 +33,31 @@
 <li><a href="protected.php"><?php _e(''); ?></a></li>
 </ul>
 </div>
-</div>
+</div> <div class="page fill">
+
 <div class="span10">
-     <br><br><br>
+    
+    <span class="btn btn-large btn-warning">
 <?php // Yan menü bitiş
  endif; ?>
 <?php 
 // Arama bölümü
 if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
-<br>
+
 <form class="" action="magaza.php?do=arama" method="post" name="arama" id="arama" accept-charset="utf-8">
-<label class="form-label-left" id="label_444" for="input_444">
-         Lütfen Mağaza adını girin yada aşağıdan seçiminizi yapın:<span class="form-required">*</span>
-        </label>
-    <div id="cid_4" class="form-input">
-          <input type="text" class="form-textbox validate[required]" id="input_444" name="aramai" size="20" onkeyup="submitform()" /><br>
-          <div class="done"> </div>
-          <table border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
-              <h4> <tr><td>id</td><td>Mağaza Kodu</td><td>Mağaza Adı</td><td>Mağaza Resmi Adı</td><td></td></tr></h4>
+
+ Lütfen Mağaza adını girin yada aşağıdan seçiminizi yapın:
+ <div id="cid_4" class="form-input">
+ 
+<input type="text" class="form-textbox validate[required]" id="input_444" name="aramai" size="20" onkeyup="submitform()" /><br>
+</div>
+<table border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
+<h4> <tr><td>id</td><td>Mağaza Kodu</td><td>Mağaza Adı</td><td>Mağaza Resmi Adı</td><td></td></tr></h4>
+      
+
 <?php
 
-  ?>
+ ?>
  
 <SCRIPT language="JavaScript">
 function submitform()
@@ -59,7 +71,6 @@ function submitform()
 </SCRIPT>
 
 
-        </div>
 </form>
   <?php 
     
@@ -106,13 +117,13 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 <form class="jotform-form" action="magaza.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
   <input type="hidden" name="formID" value="30133819675356" />
   <div class="form-all">
-    <ul class="form-section">
+    <ul class="form-section nav">
         
         
       <li id="cid_1" class="form-input-wide">
         <div class="form-header-group">
           <h2 id="header_1" class="form-header">
-            Mağaza Kartı 
+            MAĞAZA KARTI <?php echo strtoupper($_GET['do']); ?>
           </h2>
         </div>
       </li>

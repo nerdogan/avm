@@ -4,20 +4,52 @@
 
 <div class="page secondary">
      
-        <div class="page-header">
-            <div class="page-header-content">
-            ...
-            </div>
-        </div>
+        
  
         <div class="page-region">
             <div class="page-region-content">
       <div class="span12">      
-        <p><?php if( protectThis(1) ) : ?>
-		<a href="#" target="_self" class="btn btn-info btn-large"><?php _e('Sistem Kontrol Paneli'); ?> &raquo;</a>
+        <p><?php if( !protectThis(1) ) : ?>
+	<a href="http://onlinearge.com/avm/login.php" target="_self" class="btn btn-info btn-large"><?php _e('Sisteme Giriş Yapın'); ?> &raquo;<img src="./assets/img/ofis.png" class="place-right"></a>
+	 <a data-toggle="modal" href="#hakk" class="btn btn-large btn-primary " id="forgotlink" tabindex=-1 > <?php _e('AVM Erp Hakkında'); ?></a>
+        </p>		
+      </div>
+        <div class="features">
+	<div class="row">
+		
+                
+                <div  class="span6"><a href="#" class="btn btn-warning btn-large">
+			<h2><?php _e('Finans'); ?></h2>
+		Mağazalarınızın tüm finansal bilgilerini kontrol altında tutabilirsiniz.
+		</a></div>
+
+                <div class="span6" ><a href="#" class="btn btn-danger btn-large">
+			<h2><?php _e('Cari'); ?></h2>
+			<p><?php _e('Her bir mağaza için oluşturulan bilgi kartlarınıza kolayca erişim sağlayın.'); ?></p>
+		</a></div>
+	</div>
+
+	<div class="row">
+		<div class="span6" >
+		<a href="#" class="btn btn-success btn-large">	
+                    <h2><?php _e('Mağaza Hareketleri'); ?></h2>
+			<p><?php _e('Mağazaların banka hareketleri, faturalar, ödemeler vb. tüm hareketlerini kayıt altında tutmanızı sağlayan kolay yönetim sistemi.'); ?></p>
+                </a></div>
+
+		<div class="span6">
+                    <br>
+		<a href="#" class="btn btn-info btn-large">	
+                    <h2><?php _e('Güvenlik'); ?></h2>
+			<p><?php _e('Mağaza bilgileriniz 256 bit "Rapid SSL" güvenlik sistemi ile koruma altında.'); ?></p>
+                </a></div>
+	</div>
+</div>
+
 	<?php else : ?>
-		<a href="http://onlinearge.com/avm/login.php" target="_self" class="btn btn-info btn-large"><?php _e('Sisteme Giriş Yapın'); ?> &raquo;</a>
-		<?php endif; ?>
+		
+             
+            <a href="#" target="_self" class="btn btn-info btn-large "><?php _e('Sistem Kontrol Paneli'); ?><img src="./assets/img/ofis.png" class="place-right"> &raquo;</a>
+                 
 
                <a data-toggle="modal" href="#hakk" class="btn btn-large btn-primary " id="forgotlink" tabindex=-1 > <?php _e('AVM Erp Hakkında'); ?></a>
 	</p>
@@ -52,7 +84,7 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
              
                     <a href="fatura.php?do=liste" >
                         
-                          <div class="tile double bg-color-orange">
+                          <div class="tile double bg-color-orange outline-color-red">
                                     <div class="tile-content">
                                         <img src="./assets/img/fatura.jpg" class="place-right"/>
                                         <h3 style="margin-bottom: 5px;">FATURA</h3>
@@ -69,9 +101,9 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
                    
         <a href="cari.php?do=arama" >
                         
-                          <div class="tile double bg-color-purple">
+                          <div class="tile double bg-color-purple outline-color-orange">
                                     <div class="tile-content">
-                                        <img src="./assets/img/shop.png" class="place-right"/>
+                                        <img src="./assets/img/atm.png" class="place-right"/>
                                         <h3 style="margin-bottom: 5px;">CARİ</h3>
                                         <p>
                                           Cari işlemleri
@@ -80,53 +112,80 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
                                     </div>
                                     <div class="brand">
                                         <span class="name">Ödenmesi Gereken : 58.350</span>
-                                          <div class="badge bg-color-purple">TL</div>
+                                        
                                     </div>
-                                </div></a>      
- 
-                     
+                                </div></a>     
+        
+         <a href="magaza.php?do=arama" >
+                        
+                          <div class="tile double bg-color-pinkDark outline-color-blue">
+                                    <div class="tile-content">
+                                        <img src="./assets/img/shop.png" class="place-right"/>
+                                        <h3 style="margin-bottom: 5px;">Mağaza</h3>
+                                        <p>
+                                          Mağaza işlemleri
+                                        <h5></h5>
+                                        </p>
+                                    </div>
+                                    <div class="brand">
+                                        <span class="name">Talepte bulunan : 7 </span>
+                                        
+                                    </div>
+                                </div></a>     
+        
+      
+ <div class="tile bg-color-blue icon selected">
+                        <b class="check"></b>
+                        <div class="tile-content">
+                            <img src="./assets/images/Market128.png"/>
+                        </div>
+                        <div class="brand">
+                            <span class="name">Dolu İşyeri</span>
+                            <span class="badge bg-color-purple" >62</span>
+                        </div>
+                    </div>
+           
+            
+            <div class="tile bg-color-darken icon">
+                        <div class="tile-content">
+                            <img src="./assets/images/YouTube128.png" alt="" />
+                        </div>
+                        <div class="brand">
+                            <span class="name">YouTube</span>
+                        </div>
+                    </div>
 
-	     </div>       
-     
-       
+        
+           <div class="tile double bg-color-yellow" data-role="tile-slider" data-param-period="3000">
+                         
+       <?php    $number=0;    
+foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM fatura INNER JOIN magaza ON  fatura.musno =  magaza.id') as $row) {
+    $number++;
+    echo '<div class="tile-content">';
+    echo "<h4>",$row[2],"</h4><h4>",$row[4],"TL</h4><p>",$row[1]," tarih ",$row[3]," nolu fatura <a href='fatura.php?do=liste'></a></p></div>" ;
+}
     
-
-<div class="features">
-	<div class="row">
-		
-                
-                <div  class="span6"><a href="#" class="btn btn-warning btn-large">
-			<h2><?php _e('Finans'); ?></h2>
-		Mağazalarınızın tüm finansal bilgilerini kontrol altında tutabilirsiniz.
-		</a></div>
-
-                <div class="span6" ><a href="#" class="btn btn-danger btn-large">
-			<h2><?php _e('Cari'); ?></h2>
-			<p><?php _e('Her bir mağaza için oluşturulan bilgi kartlarınıza kolayca erişim sağlayın.'); ?></p>
-		</a></div>
-	</div>
-
-	<div class="row">
-		<div class="span6" >
-		<a href="#" class="btn btn-success btn-large">	
-                    <h2><?php _e('Mağaza Hareketleri'); ?></h2>
-			<p><?php _e('Mağazaların banka hareketleri, faturalar, ödemeler vb. tüm hareketlerini kayıt altında tutmanızı sağlayan kolay yönetim sistemi.'); ?></p>
-                </a></div>
-
-		<div class="span6">
-                    <br>
-		<a href="#" class="btn btn-info btn-large">	
-                    <h2><?php _e('Güvenlik'); ?></h2>
-			<p><?php _e('Mağaza bilgileriniz 256 bit "Rapid SSL" güvenlik sistemi ile koruma altında.'); ?></p>
-                </a></div>
-	</div>
-</div>
-
-   </div>    
-            </div>
+   ?>
         </div>
- 
-                <br><br><hr>
+        
+        
+                    <div class="tile icon bg-color-red">
+                        <div class="tile-content">
+                            <img src="./assets/images/excel2013icon.png"/>
+                        </div>
+                        <div class="brand">
+                            <span class="name">Excel 2013</span>
+                        </div>
+                    </div>
+            
+            
+
+</div>       
+</div>    
+</div>
+</div>
+<?php endif; ?>
+
 
 
 

@@ -3,8 +3,9 @@
 
 	
 	<footer>
-		<hr>
-		<p class="navbar-fixed-bottom">
+		
+		<p class="navbar-fixed-bottom fg-color-white">
+                   
 			<a href="http://onlinearge.com" target="_TOP">&copy; Online Arge 2013</a>
 			
 		</p>

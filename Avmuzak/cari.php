@@ -18,7 +18,15 @@
 	}
 
 
-</script>                   
+</script>  
+
+<div class="page secondary">
+     
+     
+           
+
+    <div class="page snapped">
+        
  <div id="" class="1">
 <ul class="nav">
     <a class="btn btn-warning" href="#"><i class="cus-application"></i> Cari Bölümü</a>
@@ -34,8 +42,11 @@
 </ul>
 </div>
 </div>
+ <div class="page fill">
+
 <div class="span10">
-     <br><br><br>
+    
+    <span class="btn btn-large btn-warning">
 <?php // Yan menü bitiş
  endif; ?>
 
@@ -49,7 +60,7 @@ if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
 <form class="" action="cari.php?do=arama" method="post" name="arama" id="arama" accept-charset="utf-8">
 Firma kodu, adı veya resmi adından birkaç harf girin
   
- <input type="text" class="search-query " id="input_444" name="aramai"  onkeyup="submitform()" placeholder="Arama yap"/><br>
+ <input type="text" class="" id="input_444" name="aramai"  onkeyup="submitform()" placeholder="Arama yap"/><br>
  <br>  
   <table class="table table-condensed" border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
   <h4> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
@@ -61,7 +72,7 @@ Firma kodu, adı veya resmi adından birkaç harf girin
 function submitform()
 {
  // $( "#content" ).load("home.php");
-  if  (document.arama.aramai.value.length > 3){ 
+  if  (document.arama.aramai.value.length > 1){ 
   document.arama.submit();
 }
   
@@ -109,10 +120,9 @@ endif;
         
         }
    
-    
+       
   endif;
   
- 
  
   
   
@@ -186,7 +196,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
       <li id="cid_1" class="form-input-wide">
         <div class="form-header-group">
           <h2 id="header_1" class="form-header">
-           Cari Kartı 
+              CARİ KARTI <?php echo strtoupper($_GET['do']); ?>
           </h2>
         </div>
       </li>
@@ -304,28 +314,14 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
       </li>
                         </td>
         </tr>
-        <tr>
-           <td>
-						&nbsp;</td> <td>
      
-     </td>
-	</tr>
-				<tr>
-					
-					<td>
+				
       
     </ul>
   </div>
  
- </td>
-				</tr>
-				
-				<tr>
-					<td>
-						&nbsp;</td>
-					<td>
-						&nbsp;</td>
-				</tr>
+
+		
 			</tbody>
 		</table>
       <li class="form-line" id="id_31">
@@ -472,7 +468,7 @@ if(isset($_POST['q4_magazaAdi'])) :
         
         
           
-               
+</div></div></div></div>          
     
     
     
@@ -490,5 +486,5 @@ if(isset($_POST['q4_magazaAdi'])) :
     
     
     
-    <br><br><br><br><br><br><br><br><br>
+   
     <?php include_once('footer.php'); ?>

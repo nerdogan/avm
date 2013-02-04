@@ -2676,7 +2676,7 @@ ol.unstyled,
   bottom: 0;
 }
 .page.secondary .page-region .page-region-content {
-  padding-left: 120px;
+  padding-left: 90px;
 }
 .page.snapped {
   width: 15%;
@@ -3719,7 +3719,7 @@ table.bordered tbody tr:last-child td {
   width: 860px;
 }
 .span12 {
-  width: 940px;
+  width: 1000px;
 }
 .offset1 {
   margin-left: 80px;

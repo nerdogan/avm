@@ -54,12 +54,12 @@
     <div class="page" >
         <div class="page-header " >
             
-      <div class="span5" > <h1 class="fg-color-white"><?php _e('AVM Manager'); ?></h1></div>
+            <div class="span5" > <a href="home.php"><h1 class="fg-color-white"><?php _e('AVM Manager'); ?></h1></a></div>
       <div class="span3 place-right" >            
                
   <?php if(isset($_SESSION['jigowatt']['username'])) { ?>
            
-               <a href="#" class="dropdown-toggle place-right" data-toggle="dropdown" ><?php echo $_SESSION['jigowatt']['name']; ?> <b class="caret"></b></a>
+               <a href="#" class="dropdown-toggle place-right fg-color-white" data-toggle="dropdown" ><?php echo $_SESSION['jigowatt']['name']; ?> <b class="caret"></b></a>
               <ul class="dropdown-menu place-right" >
                <li><a href="profile.php"><i class="icon-user"></i> <?php _e('Hesabım'); ?></a></li>
 		<li><a href="mailto:info@onlinearge.com"><i class="icon-info-sign"></i> <?php _e('Yardım'); ?></a></li>
@@ -75,3 +75,13 @@ else { ?>
 		<?php } ?>
             </div>
         </div></div> 
+<br><br>	
+		<?php  
+               function toUpperCase( $input ){	
+return strtoupper( strtr( $input,'ğüşıiöç', 'ĞÜŞIİÖÇ') );
+}
+
+function toLowerCase( $input ){	
+return strtolower(strtr( $input,'ĞÜŞIİÖÇ','ğüşıiöç'));
+}
+?>
