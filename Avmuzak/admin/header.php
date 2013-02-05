@@ -7,7 +7,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Batman Avm Mağaza Kontrol Sistemi | Admin Panel</title>
+		<title> Avm Mağaza Kontrol Sistemi | Admin Panel</title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="Batman Avm Mağaza Kontrol Sistemi">
@@ -19,6 +19,7 @@
 		<![endif]-->
 
 		<!-- Le styles -->
+                 <link href="assets/css/modern.css" rel="stylesheet">
 		<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 		<link href="../assets/css/bootstrap-responsive.min.css" rel="stylesheet">
 		<link href="../assets/css/jigowatt.css" rel="stylesheet">
@@ -49,7 +50,7 @@
 					<span class="icon-bar"></span>
 				</a>
 
-				<h3><a class="brand" href="home.php">Batman Avm</a></h3>
+				<h3><a class="brand" href="home.php">Avm MAnager</a></h3>
 				<div class="nav-collapse">
 					<ul class="nav" id="findme">
 						<li><a href="../home.php"><?php _e('Anasayfa'); ?></a></li>
@@ -81,10 +82,15 @@
 			</div><!-- /navbar-inner -->
 		</div><!-- /navbar -->
 	</div><!-- /navbar-wrapper -->
-
+                
 <!-- Main content
 ================================================== -->
-		<div class="container">
-			<div class="row">
-
+	<div class="page secondary">
+     
+        sdhsdhsdh<br><br><br><br><br>
+ 
+        <div class="page-region">
+            
+            <div class="page-region-content">	
+			sdfhsdh
 				<div class="span12">

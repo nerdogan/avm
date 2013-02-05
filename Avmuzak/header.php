@@ -67,10 +67,10 @@
 		<li><a href="logout.php"><?php _e('Çıkış'); ?></a></li>
               </ul>
           
-    <?php        }
+    <?php        } 
 else { ?>
 		<ul class="nav pull-right">
-		<li><a href="login.php" class="signup-link"><em><?php _e('Hoşgeldiniz'); ?></em> <strong><?php _e('Giriş Yapın!'); ?></strong></a></li>
+		<li><a href="login.php" class="signup-link"><em class="fg-color-orangeDark"><?php _e('Hoşgeldiniz'); ?></em> <strong class="fg-color-orangeDark"><?php _e('Giriş Yapın!'); ?></strong></a></li>
 		</ul>
 		<?php } ?>
             </div>

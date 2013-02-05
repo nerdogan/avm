@@ -372,12 +372,10 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
                iptal 
           </div>
         </div>
-      </li></td>
-				</tr>
-				<tr>
-					<td>
-						&nbsp;</td>
-					<td>
+      </li></td></tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>
 						<li class="form-line" id="id_37">
         <div id="cid_37" class="form-input-wide">
           <div style="margin-left:156px" class="form-buttons-wrapper">
@@ -389,36 +387,22 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
       </li>
       
     </ul>
-  </div>
  
 </form> </td>
-				</tr>
-				
-				<tr>
-					<td>
-						&nbsp;</td>
-					<td>
-						&nbsp;</td>
-				</tr>
-			</tbody>
-		</table>
-       
-        
-              
-      
-    
-        <?php endif;  ?>
-     
-     <?php if($_GET['do'] === "duzenle"): ?>
-      <?php 
+</tr>
+</tbody>
+</table>
+<?php endif;  ?>
+  
+<?php if($_GET['do'] === "duzenle"): ?>
+<?php 
      if ($_GET['id']) : {
      $elma=$_GET['id'];
      $param=array (':ad'=> $elma ); 
 foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
       
     for ( $counter = 2; $counter <= 15; $counter += 1) {
-        
-	
+
 $idd=$row[$counter-1];
          $elma="<script>   document.getElementById('input_";
           echo $elma,$counter,"').value='",$idd,"'</script>"; 
@@ -430,16 +414,10 @@ $idd=$row[$counter-1];
 
 endif;
       
-      
-     ?>
-        
-        
-     
-     
-     
-      
-     <?php endif ; ?>
-        <?php 
+?>
+<?php endif ; ?>
+
+<?php 
      
 //$dsn = 'mysql:host=localhost;dbname=arge_avm';
 //$user = 'arge_av';
@@ -450,9 +428,6 @@ endif;
 //} catch (PDOException $e) {
   //  echo 'Connection failed: ' . $e->getMessage();
 //}
-
-
-
 
 if(isset($_POST['q4_magazaAdi'])) :
 			
@@ -501,31 +476,7 @@ if(isset($_POST['q4_magazaAdi'])) :
 
 		endif;
                 ?>
-        
-        <?php
-      
-        
-        ?>
-        
-        
-          
-               
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <br><br><br><br><br><br><br><br><br>
-    <?php include_once('footer.php'); ?>
+<?php
+?>
+  </div></div></div></div>
+<?php include_once('footer.php'); ?>

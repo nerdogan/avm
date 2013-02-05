@@ -13,14 +13,15 @@
 	<a href="http://onlinearge.com/avm/login.php" target="_self" class="btn btn-info btn-large"><?php _e('Sisteme Giriş Yapın'); ?> &raquo;<img src="./assets/img/ofis.png" class="place-right"></a>
 	 <a data-toggle="modal" href="#hakk" class="btn btn-large btn-primary " id="forgotlink" tabindex=-1 > <?php _e('AVM Erp Hakkında'); ?></a>
         </p>		
-      </div>
+     
         <div class="features">
 	<div class="row">
 		
                 
                 <div  class="span6"><a href="#" class="btn btn-warning btn-large">
 			<h2><?php _e('Finans'); ?></h2>
-		Mağazalarınızın tüm finansal bilgilerini kontrol altında tutabilirsiniz.
+                        <p><?php _e('Mağazalarınızın tüm finansal bilgilerini kontrol altında tutabilirsiniz.'); ?></p>
+		
 		</a></div>
 
                 <div class="span6" ><a href="#" class="btn btn-danger btn-large">
@@ -37,10 +38,12 @@
                 </a></div>
 
 		<div class="span6">
-                    <br>
+                            
 		<a href="#" class="btn btn-info btn-large">	
                     <h2><?php _e('Güvenlik'); ?></h2>
-			<p><?php _e('Mağaza bilgileriniz 256 bit "Rapid SSL" güvenlik sistemi ile koruma altında.'); ?></p>
+			<p>Güçlü kullanıcı kontrol altyapısı ile sınırsız sayıda yetkilendirilmiş kullanıcı tanımlayabilirsiniz.
+                            <?php _e(' Avm bilgileriniz 256 bit "Rapid SSL" güvenlik sistemi ile koruma altında.'); ?>
+                        </p>
                 </a></div>
 	</div>
 </div>

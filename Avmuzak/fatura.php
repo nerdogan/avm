@@ -66,6 +66,7 @@ foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott
 }
     
 echo '</table';  
+
     
 endif; 
  // listeleme sonu
