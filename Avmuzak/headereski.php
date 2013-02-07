@@ -112,7 +112,7 @@
             <?php if(isset($_SESSION['jigowatt']['username'])) { ?>
            
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['jigowatt']['username']; ?> <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['jigowatt']['username']; ?><img src="./assets/images/user.png"> <b class="caret"></b></a>
               <ul class="dropdown-menu">
                <li><a href="profile.php"><i class="icon-user"></i> <?php _e('Hesabım'); ?></a></li>
 		<li><a href="mailto:info@onlinearge.com"><i class="icon-info-sign"></i> <?php _e('Yardım'); ?></a></li>

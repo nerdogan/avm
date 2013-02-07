@@ -29,7 +29,7 @@
     <script type="text/javascript" src="assets/js/modern/slider.js"></script>
     <script type="text/javascript" src="assets/js/modern/tile-slider.js"></script>
     <script type="text/javascript" src="assets/js/modern/tile-drag.js"></script>
-    <link rel="stylesheet" href="assets/css/jquery-ui-1.10.0.custom.min.css" />
+    <link rel="stylesheet" href="assets/css/jquery-ui.css" />
     <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
      <script src="assets/js/jquery.ui.datepicker-tr.js"></script>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
   });
   </script>    
 
-    <title>Avm Mağaza Kontrol Sistemi 2013</title>
+    <title>Avm Bilgi Sistemi 2013</title>
 </head>
 <body class="modern-ui" onload="prettyPrint()">
     
@@ -54,12 +54,42 @@
     <div class="page" >
         <div class="page-header " >
             
-            <div class="span5" > <a href="home.php"><h1 class="fg-color-white"><?php _e('AVM Manager'); ?></h1></a></div>
-      <div class="span3 place-right" >            
+            <div class="span3" style="margin-left: 50px" > <a href="home.php"><h1 class="fg-color-darken" ><?php _e('AVM  Bilgi <br>&nbsp;Sistemi'); ?></h1></a></div>
+           
+            <div class="clearFix"></div>
+                     
+	<div id="nav1_slim">
+		<ul>
+			<li><a  data-toggle="modal" href="#hakk1">Hakkımızda</a></li>
+			
+			<li><a href="#" id="active">Sistem Bilgi</a></li>
+		 	<li><a href="#">Avm Bilgi</a></li>
+		</ul>
+	</div>
+	
+<div id="hakk1" class="modal hide fade">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">&times;</a>
+		
+	</div>
+	<div class="modal-body">
+		<div id="message"><h2>Hakkında...</h2></div>
+		<?php _e('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur ornare scelerisque. Aliquam purus felis, molestie quis ullamcorper vel, accumsan a magna. Etiam venenatis ullamcorper tortor eget semper. Duis purus neque, fermentum eu porttitor nec, luctus pharetra nibh. Maecenas at ligula nulla, eget pellentesque eros. Donec quis enim et massa ultrices vehicula. Praesent porta blandit nibh ut scelerisque.
+
+Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis, nec posuere lacus velit eu nunc. Morbi dui libero, accumsan in consectetur mollis, porttitor vitae ligula. Mauris luctus, velit sit amet fringilla scelerisque, enim elit laoreet ante, at mattis velit massa id arcu. Proin dolor velit, commodo quis mattis a, porta lobortis nunc. Phasellus eleifend venenatis tempor. Nunc euismod lacus sagittis turpis ornare ac elementum sem molestie. Aliquam suscipit mattis sem quis mollis.'); ?></label>
+				
+			</div>
+   
+		</div>
+	
+
+<div class="clearFix"></div>
+            
+      <span class="place-right" style="margin-top: -10px">            
                
   <?php if(isset($_SESSION['jigowatt']['username'])) { ?>
            
-               <a href="#" class="dropdown-toggle place-right fg-color-white" data-toggle="dropdown" ><?php echo $_SESSION['jigowatt']['name']; ?> <b class="caret"></b></a>
+               <a href="#" class="dropdown-toggle place-right fg-color-grayDark" data-toggle="dropdown" ><?php echo $_SESSION['jigowatt']['name']; ?><img src="./assets/images/user.png"> <b class="caret"></b></a>
               <ul class="dropdown-menu place-right" >
                <li><a href="profile.php"><i class="icon-user"></i> <?php _e('Hesabım'); ?></a></li>
 		<li><a href="mailto:info@onlinearge.com"><i class="icon-info-sign"></i> <?php _e('Yardım'); ?></a></li>
@@ -73,7 +103,7 @@ else { ?>
 		<li><a href="login.php" class="signup-link"><em class="fg-color-orangeDark"><?php _e('Hoşgeldiniz'); ?></em> <strong class="fg-color-orangeDark"><?php _e('Giriş Yapın!'); ?></strong></a></li>
 		</ul>
 		<?php } ?>
-            </div>
+            </span>
         </div></div> 
 <br><br>	
 		<?php  

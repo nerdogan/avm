@@ -8,12 +8,12 @@
  
         <div class="page-region">
             <div class="page-region-content">
-      <div class="span12">      
+                <div class="row">
+      <div class="span12 text-center" >      
         <p><?php if( !protectThis(1) ) : ?>
 	<a href="http://onlinearge.com/avm/login.php" target="_self" class="btn btn-info btn-large"><?php _e('Sisteme Giriş Yapın'); ?> &raquo;<img src="./assets/img/ofis.png" class="place-right"></a>
-	 <a data-toggle="modal" href="#hakk" class="btn btn-large btn-primary " id="forgotlink" tabindex=-1 > <?php _e('AVM Erp Hakkında'); ?></a>
-        </p>		
-     
+	        </p>		
+     </div></div>
         <div class="features">
 	<div class="row">
 		
@@ -50,50 +50,24 @@
 
 	<?php else : ?>
 		
-             
-            <a href="#" target="_self" class="btn btn-info btn-large "><?php _e('Sistem Kontrol Paneli'); ?><img src="./assets/img/ofis.png" class="place-right"> &raquo;</a>
-                 
-
-               <a data-toggle="modal" href="#hakk" class="btn btn-large btn-primary " id="forgotlink" tabindex=-1 > <?php _e('AVM Erp Hakkında'); ?></a>
+      
 	</p>
 	
 
-<div id="hakk" class="modal hide fade">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal">&times;</a>
-		
-	</div>
-	<div class="modal-body">
-		<div id="message"><h2>Hakkında...</h2></div>
-		<form action="home.php" method="post" name="hakknda" id="forgotform" class="form-stacked forgotform normal-label">
-			<div class="controlgroup forgotcenter">
-			<label for="usernamemail"><?php _e('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consectetur ornare scelerisque. Aliquam purus felis, molestie quis ullamcorper vel, accumsan a magna. Etiam venenatis ullamcorper tortor eget semper. Duis purus neque, fermentum eu porttitor nec, luctus pharetra nibh. Maecenas at ligula nulla, eget pellentesque eros. Donec quis enim et massa ultrices vehicula. Praesent porta blandit nibh ut scelerisque.
-
-Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis, nec posuere lacus velit eu nunc. Morbi dui libero, accumsan in consectetur mollis, porttitor vitae ligula. Mauris luctus, velit sit amet fringilla scelerisque, enim elit laoreet ante, at mattis velit massa id arcu. Proin dolor velit, commodo quis mattis a, porta lobortis nunc. Phasellus eleifend venenatis tempor. Nunc euismod lacus sagittis turpis ornare ac elementum sem molestie. Aliquam suscipit mattis sem quis mollis.'); ?></label>
-				
-			</div>
-			
-		</form>
-	</div>
-	<div class="modal-footer">
-		
-		<p class="pull-left"><?php _e(''); ?></p>
-	</div>
-</div>
-             
+    
        
         <br><br>            
                
              
                     <a href="fatura.php?do=liste" >
                         
-                          <div class="tile double bg-color-orange outline-color-red">
+                          <div class="tile double bg-color-pinkDark outline-color-red">
                                     <div class="tile-content">
-                                        <img src="./assets/img/fatura.jpg" class="place-right"/>
-                                        <h3 style="margin-bottom: 5px;">FATURA</h3>
+                                        <img src="./assets/img/fatura.jpg" class="place-left"/>
+                                        <h3 style="margin-bottom: 5px;">FİNANS</h3>
                                         <p>
-                                           Fatura işlemleri
-                                        <h5>neen</h5>
+                                           Finansal  işlemler için 
+                                        <h5></h5>
                                         </p>
                                     </div>
                                     <div class="brand">
@@ -106,7 +80,7 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
                         
                           <div class="tile double bg-color-purple outline-color-orange">
                                     <div class="tile-content">
-                                        <img src="./assets/img/atm.png" class="place-right"/>
+                                        <img src="./assets/img/atm.png" class="place-left"/>
                                         <h3 style="margin-bottom: 5px;">CARİ</h3>
                                         <p>
                                           Cari işlemleri
@@ -119,11 +93,42 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
                                     </div>
                                 </div></a>     
         
+        <div class="tile bg-color-red icon selected">
+                        <div class="tile-content">
+                            <img src="./assets/images/Music128.png" alt="" />
+                        </div>
+                        <div class="brand">
+                            <span class="name">Duyurular</span>
+                        </div>
+                    </div>
+        
+         <div class="tile bg-color-blue icon selected">
+                        <b class="check"></b>
+                        <div class="tile-content">
+                            <img src="./assets/images/Market128.png"/>
+                        </div>
+                        <div class="brand">
+                            <span class="name">Dolu İşyeri</span>
+                            <span class="badge bg-color-purple" >62</span>
+                        </div>
+                    </div>
+        
+         <div class="tile double image">
+                        <div class="tile-content">
+                            <img src="./assets/images/4.jpg" alt="" />
+                        </div>
+                        
+                    </div>
+
+                    
+        
+        
+        
          <a href="magaza.php?do=arama" >
                         
-                          <div class="tile double bg-color-pinkDark outline-color-blue">
+                          <div class="tile double bg-color-greenLight outline-color-blue">
                                     <div class="tile-content">
-                                        <img src="./assets/img/shop.png" class="place-right"/>
+                                        <img src="./assets/img/shop.png" class="place-left"/>
                                         <h3 style="margin-bottom: 5px;">Mağaza</h3>
                                         <p>
                                           Mağaza işlemleri
@@ -137,16 +142,7 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
                                 </div></a>     
         
       
- <div class="tile bg-color-blue icon selected">
-                        <b class="check"></b>
-                        <div class="tile-content">
-                            <img src="./assets/images/Market128.png"/>
-                        </div>
-                        <div class="brand">
-                            <span class="name">Dolu İşyeri</span>
-                            <span class="badge bg-color-purple" >62</span>
-                        </div>
-                    </div>
+
            
             
            <div class="tile double bg-color-green">
@@ -175,7 +171,7 @@ foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott
    ?>
         </div>
         
-           <div class="tile icon bg-color-red">
+                    <div class="tile icon bg-color-red">
                         <div class="tile-content">
                             <img src="./assets/images/excel2013icon.png"/>
                         </div>
@@ -185,13 +181,33 @@ foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott
                     </div>
                  
             
+         <a href="magaza.php?do=arama" >
+                        
+                          <div class="tile double bg-color-pink outline-color-blue">
+                                    <div class="tile-content">
+                                        <img src="./assets/images/teknik.png" class="place-right"/>
+                                        <h3 style="margin-bottom: 5px;">TEKNİK</h3>
+                                        <p>
+                                         Demirbaş bilgileri,bakım zamanları işlemleri<br>
+                                         Mağazaların tamir ve tadilat talepleri
+                                        <h5></h5>
+                                        </p>
+                                    </div>
+                                    <div class="brand">
+                                        <span class="name">Talepte bulunan : 11 </span>
+                                        
+                                    </div>
+                                </div></a>   
+        
+        
+        
             
 
 </div>       
 </div>    
 </div>
 </div>
-<?php endif; ?>
+<?php  endif;  ?>
 
 
 

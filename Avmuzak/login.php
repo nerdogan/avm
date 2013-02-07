@@ -4,7 +4,7 @@
            
             <div class="page-header-content">
                
-                <div class="span12 text-center">
+                <div class="span12" style="position: fixed;top:250px;left: 50%;width:560px;margin-left:-150px;">
 <div id="forgot-form" class="modal hide fade">
 	<div class="modal-header">
 		<a class="close" data-dismiss="modal">&times;</a>

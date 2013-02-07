@@ -4,9 +4,9 @@
 	
 	<footer>
 		
-		<p class="navbar-fixed-bottom fg-color-white">
+		<p class="navbar-fixed-bottom fg-color-white" style="font-size: 50px">
                    
-			<a href="http://onlinearge.com" target="_TOP">&copy; Online Arge 2013</a>
+              <a href="http://onlinearge.com" target="_TOP" class="fg-color-darken"> &copy;Online Arge 2013 </a>
 			
 		</p>
 	</footer>

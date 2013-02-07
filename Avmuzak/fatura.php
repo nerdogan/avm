@@ -100,11 +100,11 @@ if(($_GET['do'] === "yeni")  ): ?>
 // foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
  //   echo $row['kod']," -  ",$row['ad'],"<br>  ",$row['unvan'];
 // }
-  //    }
+  //    } 
 //else :{
      echo "<select style='width:500px' name='firma'><option value='.'>Firma Seç</option>";
      foreach($generic->query('SELECT * FROM magaza') as $row) {
-        echo "<option value='",$row['id'],"'";
+        echo "<option value='",$row['id'],"'", ($_GET['id']==$row['id'])? "selected" : "";
         echo ">", $row['kod']," -  "," ",$row['unvan'],"</option>\n";
         }
      echo "</select><p>";
