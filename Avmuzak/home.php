@@ -113,10 +113,10 @@ echo "<h2 class='place-right'>",$site1[0],"&deg;</h2>";
                     </div>
         
          <div class="tile bg-color-blue ">
-                        <b class="check"></b>
-                        <div class="tile-content">
-                            <h4>   <?php  echo tarihcevir (date("d.m.Y")); ?></h4>
-                            <h3> <span id=saat ></span></h3>
+                      
+                        <div class="tile-content ">
+                            <h4 class="place-right">   <?php  echo tarihcevir (date("d.m.Y")); ?></h4>
+                            <h3 class="place-right"> <span id=saat  class="fg-color-darken" ></span><br><br>Takvim</h3>
 <SCRIPT language=JScript>
 saatigoster();
 window.setInterval("saatigoster();",60000);
@@ -124,8 +124,8 @@ window.setInterval("saatigoster();",60000);
 </FONT>
                         </div>
                         <div class="brand">
-                            <span class="name">Dolu İşyeri</span>
-                            <span class="badge bg-color-purple" >62</span>
+                            <span class="name"></span>
+                            <span class="badge" ></span>
                         </div>
                     </div>
         
