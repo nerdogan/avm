@@ -93,19 +93,35 @@
                                     </div>
                                 </div></a>     
         
-        <div class="tile bg-color-red icon selected">
-                        <div class="tile-content">
-                            <img src="./assets/images/Music128.png" alt="" />
+        <div class="tile bg-color-pink">
+                        <div class="tile-content ">
+                            <h2>İstanbul</h2><br>
+                            <?php
+$site="http://weather.yahooapis.com/forecastrss?w=29391294&u=c";
+$ssite=  file_get_contents($site);
+$site1=  explode('</pubDate>', $ssite);
+$site1= explode('temp="', $site1[1]);
+$site1= explode('"', $site1[1]);
+
+echo "<h2 class='place-right'>",$site1[0],"&deg;</h2>";
+?>
+                                            
                         </div>
                         <div class="brand">
-                            <span class="name">Duyurular</span>
+                            <span class="image"><img src="<?php echo $site1[4]; ?>" class='place-left'  > </span>
                         </div>
                     </div>
         
-         <div class="tile bg-color-blue icon selected">
+         <div class="tile bg-color-blue ">
                         <b class="check"></b>
                         <div class="tile-content">
-                            <img src="./assets/images/Market128.png"/>
+                            <h4>   <?php  echo tarihcevir (date("d.m.Y")); ?></h4>
+                            <h3> <span id=saat ></span></h3>
+<SCRIPT language=JScript>
+saatigoster();
+window.setInterval("saatigoster();",60000);
+</SCRIPT>
+</FONT>
                         </div>
                         <div class="brand">
                             <span class="name">Dolu İşyeri</span>

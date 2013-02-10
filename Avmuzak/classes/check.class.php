@@ -175,3 +175,33 @@ function protectThis($level) {
 	return $check->protectThis($level);
 
 }
+
+
+
+function tarihcevir($tarih){
+$tarih= date('d F Y D', strtotime($tarih));   
+$tarihdegistir =array(
+'Mon'=>'<br>Pazartesi',
+'Tue'=>'<br>Salı',
+'Wed'=>'<br>Çarşamba',
+'Thurs'=>'<br>Perşembe',
+'Fri'=>'<br>Cuma',
+'Sat'=>'<br>Cumartesi',
+'Sun' => '<br>Pazar',
+'January' => 'Ocak',
+'February' => 'Şubat',
+'March' => 'Mart',
+'April' => 'Nisan',
+'May' => 'Mayıs',
+'June' => 'Haziran',
+'July' => 'Temmuz',
+'August' => 'Ağustos',
+'September' => 'Eylül',
+'October' => 'Ekim',
+'November' => 'Kasım',
+'December' => 'Aralık');
+$yenitarih= strtr($tarih, $tarihdegistir); 
+return $yenitarih;
+}
+
+

@@ -34,7 +34,18 @@
      <script src="assets/js/jquery.ui.datepicker-tr.js"></script>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
         
-        
+   <SCRIPT language=JavaScript>
+function saatigoster()
+{
+var d, saat_,dakika_,saniye_,x1,x2,s;
+d = new Date();
+saat_ = d.getHours(); if (saat_.toString(10).length==1) { saat_="0"+saat_; }
+dakika_= d.getMinutes();if (dakika_.toString(10).length==1) { dakika_="0"+dakika_; }
+saniye_= d.getSeconds();if (saniye_.toString(10).length==1) { saniye_="0"+saniye_; }
+s = saat_ + ":" + dakika_ ;
+saat.innerText = s; 
+}
+</SCRIPT>     
     <script>
   $(function() {
     
@@ -54,7 +65,7 @@
     <div class="page" >
         <div class="page-header " >
             
-            <div class="span3" style="margin-left: 50px" > <a href="home.php"><h1 class="fg-color-darken" ><?php _e('AVM  Bilgi <br>&nbsp;Sistemi'); ?></h1></a></div>
+            <div class="span3" style="margin-left: 50px" > <a href="home.php"><h1 class="fg-color-darken" ><?php _e('Avm Bilgi <br>&nbsp;Sistemi'); ?></h1></a></div>
            
             <div class="clearFix"></div>
                      
