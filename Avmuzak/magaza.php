@@ -116,6 +116,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 
 <form class="jotform-form" action="magaza.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
   <input type="hidden" name="formID" value="<?php echo $_GET['do'] ?>" />
+  <input type="hidden" name="firmID" value="<?php echo $_GET['id'] ?>" />
   <div class="form-all">
     <ul class="form-section nav">
         
@@ -455,14 +456,17 @@ if(isset($_POST['q4_magazaAdi'])) :
                         $dmt = $generic->secure($_POST['q34_depoM2']);
                         $tmt = $generic->secure($_POST['q35_toplamM2']);                        
                         $not = $generic->secure($_POST['q4_magazaAdi']);
-                        $idd=$_GET['id'];
+                        $idd=$_POST['firmID'];
                         $param=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
                             ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
                             ':stur_id'=>$stur_id,':ftur_id'=>$ftur_id,':sermaye'=>$sermaye,
-                            ':vd'=>$vd,':vno'=>$vno,':idd'=>$idd
+                            ':vd'=>$vd,':vno'=>$vno
+                        );
+                        $param1=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
+                            ':mtur_id' => $mtur_id,':idd'=>$idd
                         );
                         if ($_POST['formID']=="duzenle"):
-                        {$generic->query("UPDATE magaza SET 'kod' = :kod , 'ad' = :ad, 'unvan' = :unvan, 'mtur_id' = :mtur_id where 'id' = :idd",$param);}
+                        {$generic->query("UPDATE magaza SET `kod` = :kod , `ad` = :ad, `unvan` = :unvan, `mtur_id` = :mtur_id WHERE `id` = :idd",$param1);}
                         else :{
                         $generic->query('INSERT INTO magaza (kod,ad,unvan,mtur_id,mmtur_id,dtur_id,stur_id,ftur_id,sermaye,vd,vno) VALUES ( :kod , :ad,:unvan,:mtur_id,:mmtur_id,:dtur_id,:stur_id,:ftur_id,:sermaye,:vd,:vno)',$param);
                         }

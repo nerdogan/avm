@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 <?php include_once('classes/translate.class.php'); ?>
-<?php include_once('classes/check.class.php');  ?><?php include_once('classes/avm.class.php');  ?>
+<?php include_once('classes/check.class.php');  ?>
 <?php if (!isset($_SESSION)) session_start(); error_reporting(E_ALL ^ E_NOTICE);
 ini_set('error_reporting', E_ALL ^ E_NOTICE); ?>
 <!DOCTYPE html>
