@@ -27,7 +27,7 @@
 <li><a href="home.php"> <img src=""></a> </li>
 <?php if( protectThis(1) ) : ?>
 <li><a href="magaza.php?do=ekle" class="btn btn-large btn-success"><?php _e('Yeni Kayıt'); ?></a></li><br>
-<li><a href="magaza.php?do=arama" class="btn btn-large btn-info"><?php _e('Tam Liste'); ?></a></li><br>
+<li><a href="magaza.php?do=liste" class="btn btn-large btn-info"><?php _e('Tam Liste'); ?></a></li><br>
 <li><a href="magaza.php?do=arama" class="btn btn-large btn-danger"><?php _e('Arama'); ?></a></li><br>
 <li><a href="#"><?php _e(''); ?></a></li>
 <li><a href="protected.php"><?php _e(''); ?></a></li>
@@ -37,7 +37,7 @@
 
 <div class="span10">
     
-    <span class="btn btn-large btn-warning">
+    <span class="btn btn-large btn-warning fg-color-darken" style="background-color:gainsboro  ;filter:alpha(opacity=70);opacity:.7;">
 <?php // Yan menü bitiş
  endif; ?>
 <?php 
@@ -109,6 +109,46 @@ endif;
   endif;?>
     
  </table>
+ 
+ 
+  <?php // arama sonu
+ 
+ // listeleme başlangıcı
+   if(($_GET['do'] === "liste")|| !($_GET['do']) ): { ?>
+ 
+ <br>  
+  <table class="table  table-condensed " border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
+  <h4> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
+  <?php
+        $number=0;    
+foreach($generic->query('SELECT * FROM magaza ') as $row) {
+    $number++;
+  
+echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
+        "</td><td><a href='", (($row['mtur_id']==="4") ? 'magaza' : 'cari') ,".php?do=duzenle&id=",$row['id'],"'></a>" ,
+'<ul id="menu',$number,'">
+  <li>
+    <a href="#">seç</a>
+    <ul>
+    <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
+      <li><a href=', (($row['mtur_id']==="4") ? 'magaza' : 'cari') ,'.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
+      <li><a href="#">Sil</a></li>
+      <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
+    </ul>
+  </li>
+  </ul>    
+    <script>
+$( "#menu',$number,'" ).menu();
+</script>';             
+
+
+}}
+endif;
+
+ ?>
+  </table>
+ 
+ 
 
 <?php 
 // Ekleme ve Düzenleme   
@@ -175,7 +215,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
         </div>
       </li>
       <li class="form-line" id="id_7">
-        <label class="form-label-left" id="label_7" for="input_6"> Mağaza Türü: </label>
+        <label class="form-label-left" id="label_7" for="input_6"> Mağaza Sektör: </label>
         <div id="cid_7" class="form-input">
           <select class="form-dropdown" style="width:150px" id="input_6" name="q7_magazaTuru7">
             <option>  </option>
@@ -244,64 +284,64 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 				<tr>
 					<td>
 						<li class="form-line" id="id_17">
-        <label class="form-label-left" id="label_17" for="input_13"> MĞZ SAHİBİ </label>
+        <label class="form-label-left" id="label_17" for="input_14"> MĞZ SAHİBİ </label>
         <div id="cid_17" class="form-input">
-          <input type="text" class="form-textbox" id="input_13" name="q17_mgzSahibi17" size="20" />
+          <input type="text" class="form-textbox" id="input_14" name="q17_mgzSahibi17" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_18">
         <label class="form-label-left" id="label_18" for="input_111"> MĞZ SAHİBİ TEL </label>
         <div id="cid_18" class="form-input">
-          <input type="text" class="form-textbox" id="input_111" name="q18_mgzSahibi" size="20" />
+          <input type="text" class="form-textbox" id="input_15" name="q18_mgzSahibi" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_19">
         <label class="form-label-left" id="label_19" for="input_14"> MĞZ MÜDÜRÜ </label>
         <div id="cid_19" class="form-input">
-          <input type="text" class="form-textbox" id="input_14" name="q19_mgzMuduru" size="20" />
+          <input type="text" class="form-textbox" id="input_16" name="q19_mgzMuduru" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_20">
         <label class="form-label-left" id="label_20" for="input_15"> MĞZ MÜDÜRÜ TEL </label>
         <div id="cid_20" class="form-input">
-          <input type="text" class="form-textbox" id="input_15" name="q20_mgzMuduru20" size="20" />
+          <input type="text" class="form-textbox" id="input_17" name="q20_mgzMuduru20" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_21">
         <label class="form-label-left" id="label_21" for="input_16"> MĞZ DAHİLİ TEL </label>
         <div id="cid_21" class="form-input">
-          <input type="text" class="form-textbox" id="input_16" name="q21_mgzDahili21" size="20" />
+          <input type="text" class="form-textbox" id="input_18" name="q21_mgzDahili21" size="20" />
         </div>
       </li></td>
 					<td>
 						<li class="form-line" id="id_22">
         <label class="form-label-left" id="label_22" for="input_17"> MĞZ TEL </label>
         <div id="cid_22" class="form-input">
-          <input type="text" class="form-textbox" id="input_17" name="q22_mgzTel" size="20" />
+          <input type="text" class="form-textbox" id="input_19" name="q22_mgzTel" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_23">
         <label class="form-label-left" id="label_23" for="input_18"> MĞZ FAX </label>
         <div id="cid_23" class="form-input">
-          <input type="text" class="form-textbox" id="input_18" name="q23_mgzFax" size="20" />
+          <input type="text" class="form-textbox" id="input_20" name="q23_mgzFax" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_24">
         <label class="form-label-left" id="label_24" for="input_19"> MAĞAZA PERSONEL SAYISI </label>
         <div id="cid_24" class="form-input">
-          <input type="text" class="form-textbox validate[Numeric]" id="input_19" name="q24_magazaPersonel24" size="20" />
+          <input type="text" class="form-textbox validate[Numeric]" id="input_21" name="q24_magazaPersonel24" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_25">
         <label class="form-label-left" id="label_25" for="input_20"> BAYAN </label>
         <div id="cid_25" class="form-input">
-          <input type="text" class="form-textbox validate[Numeric]" id="input_20" name="q25_bayan" size="20" />
+          <input type="text" class="form-textbox validate[Numeric]" id="input_23" name="q25_bayan" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_26">
         <label class="form-label-left" id="label_26" for="input_21"> ERKEK </label>
         <div id="cid_26" class="form-input">
-          <input type="text" class="form-textbox validate[Numeric]" id="input_21" name="q26_erkek" size="20" />
+          <input type="text" class="form-textbox validate[Numeric]" id="input_22" name="q26_erkek" size="20" />
         </div>
       </li></td>
 				</tr>
@@ -310,68 +350,68 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 						  <li class="form-line" id="id_22">
         <label class="form-label-left" id="label_28" for="input_28"> GENEL MERKEZ YETKİLİSİ </label>
         <div id="cid_28" class="form-input">
-          <input type="text" class="form-textbox" id="input_22" name="q28_genelMerkez" size="20" />
+          <input type="text" class="form-textbox" id="input_25" name="q28_genelMerkez" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_29">
         <label class="form-label-left" id="label_29" for="input_23"> GENEL MERKEZ TEL </label>
         <div id="cid_29" class="form-input">
-          <input type="text" class="form-textbox" id="input_23" name="q29_genelMerkez29" size="20" />
+          <input type="text" class="form-textbox" id="input_26" name="q29_genelMerkez29" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_30">
         <label class="form-label-left" id="label_30" for="input_24"> GENEL MERKEZ FAX </label>
         <div id="cid_30" class="form-input">
-          <input type="text" class="form-textbox" id="input_24" name="q30_genelMerkez30" size="20" />
+          <input type="text" class="form-textbox" id="input_27" name="q30_genelMerkez30" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_31">
         <label class="form-label-left" id="label_31" for="input_25"> GENEL MERKEZ ADRES </label>
         <div id="cid_31" class="form-input">
-          <input type="text" class="form-textbox" id="input_25" name="q31_genelMerkez31" size="20" />
+          <input type="text" class="form-textbox" id="input_28" name="q31_genelMerkez31" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_32">
-        <label class="form-label-left" id="label_32" for="input_26"> DİĞER MAĞAZA YERLERİ </label>
+        <label class="form-label-left" id="label_32" for="input_29"> DİĞER MAĞAZA YERLERİ </label>
         <div id="cid_32" class="form-input">
-          <input type="text" class="form-textbox" id="input_26" name="q32_digerMagaza" size="20" />
+          <input type="text" class="form-textbox" id="input_29" name="q32_digerMagaza" size="20" />
         </div>
       </li></td>
 					<td>
 						<li class="form-line" id="id_27">
         <label class="form-label-left" id="label_27" for="input_27"> MAĞAZA ARAÇ SAYISI </label>
         <div id="cid_27" class="form-input">
-          <input type="text" class="form-textbox" id="input_27" name="q27_magazaArac" size="20" />
+          <input type="text" class="form-textbox" id="input_24" name="q27_magazaArac" size="20" />
         </div>
       </li>
     
       <li class="form-line" id="id_33">
         <label class="form-label-left" id="label_33" for="input_28"> MAĞAZA M2 </label>
         <div id="cid_33" class="form-input">
-          <input type="text" class="form-textbox" id="input_28" name="q33_magazaM2" size="20" />
+          <input type="text" class="form-textbox" id="input_30" name="q33_magazaM2" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_34">
         <label class="form-label-left" id="label_34" for="input_29"> DEPO M2 </label>
         <div id="cid_34" class="form-input">
-          <input type="text" class="form-textbox" id="input_29" name="q34_depoM2" size="20" />
+          <input type="text" class="form-textbox" id="input_31" name="q34_depoM2" size="20" />
         </div>
       </li>
       <li class="form-line" id="id_35">
         <label class="form-label-left" id="label_35" for="input_30"> TOPLAM M2 </label>
         <div id="cid_35" class="form-input">
-          <input type="text" class="form-textbox" id="input_30" name="q35_toplamM2" size="20" />
+          <input type="text" class="form-textbox" id="input_32" name="q35_toplamM2" size="20" />
         </div>
       </li>
            <li class="form-line" id="id_38">
         <label class="form-label-left" id="label_38" for="input_31"> MAĞAZA </label>
         <div id="cid_38" class="form-input">
-          <div class="form-single-column">
-              <input type="radio" class="form-radio" id="input_38_0" name="q38_magaza" checked="checked" value="TRUE" />
-              aktif &nbsp;&nbsp; 
-              <input type="radio" class="form-radio" id="input_38_1" name="q38_magaza" value="iptal" />
-               iptal 
-          </div>
+          <select class="form-dropdown" style="width:150px" id="input_13" name="q38_magaza">
+            <option>  </option>
+            <option value="0">Aktif </option>
+            <option value="1">Pasif </option>
+          </select>
+                  
         </div>
       </li></td></tr>
 <tr>
@@ -402,7 +442,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
      $param=array (':ad'=> $elma ); 
 foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
       
-    for ( $counter = 2; $counter <= 15; $counter += 1) {
+    for ( $counter = 2; $counter <= 33; $counter += 1) {
 
 $idd=$row[$counter-1];
          $elma="<script>   document.getElementById('input_";
@@ -457,18 +497,34 @@ if(isset($_POST['q4_magazaAdi'])) :
                         $tmt = $generic->secure($_POST['q35_toplamM2']);                        
                         $not = $generic->secure($_POST['q4_magazaAdi']);
                         $idd=$_POST['firmID'];
+                        echo $miptal;
                         $param=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
                             ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
                             ':stur_id'=>$stur_id,':ftur_id'=>$ftur_id,':sermaye'=>$sermaye,
-                            ':vd'=>$vd,':vno'=>$vno
+                            ':vd'=>$vd,':vno'=>$vno,':miptal'=>$miptal,':msah'=>$msah,
+                            ':msahtel'=>$msahtel,':mmud'=>$mmud,':mmudtel'=>$mmudtel,
+                            ':mdahtel'=>$mdahtel,':mtel'=>$mtel,':mfax'=>$mfax,
+                            ':mper'=>$mper,':mpere'=>$mpere,':mperk'=>$mperk,
+                            ':marac'=>$marac,':gmyet'=>$gmyet,':gmtel'=>$gmtel,
+                            ':gmfax'=>$gmfax,':gmadres'=>$gmadres,':dmyer'=>$dmyer,
+                            ':mmt'=>$mmt,':dmt'=>$dmt,':tmt'=>$tmt,':notlar'=>$not
                         );
                         $param1=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
-                            ':mtur_id' => $mtur_id,':idd'=>$idd
+                            ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
+                            ':stur_id'=>$stur_id,':ftur_id'=>$ftur_id,':sermaye'=>$sermaye,
+                            ':vd'=>$vd,':vno'=>$vno,':miptal'=>$miptal,':msah'=>$msah,
+                            ':msahtel'=>$msahtel,':mmud'=>$mmud,':mmudtel'=>$mmudtel,
+                            ':mdahtel'=>$mdahtel,':mtel'=>$mtel,':mfax'=>$mfax,
+                            ':mper'=>$mper,':mpere'=>$mpere,':mperk'=>$mperk,
+                            ':marac'=>$marac,':gmyet'=>$gmyet,':gmtel'=>$gmtel,
+                            ':gmfax'=>$gmfax,':gmadres'=>$gmadres,':dmyer'=>$dmyer,
+                            ':mmt'=>$mmt,':dmt'=>$dmt,':tmt'=>$tmt,':notlar'=>$not,':idd'=>$idd
                         );
+                        
                         if ($_POST['formID']=="duzenle"):
-                        {$generic->query("UPDATE magaza SET `kod` = :kod , `ad` = :ad, `unvan` = :unvan, `mtur_id` = :mtur_id WHERE `id` = :idd",$param1);}
+                        {$generic->query("UPDATE magaza SET `kod` = :kod , `ad` = :ad, `unvan` = :unvan, `mtur_id` = :mtur_id,`mmtur_id`=:mmtur_id,`dtur_id`=:dtur_id ,`stur_id`=:stur_id ,`ftur_id`=:ftur_id ,`sermaye`=:sermaye ,`vd`=:vd ,`vno`=:vno ,`miptal`=:miptal ,`msah`=:msah ,`msahtel`=:msahtel ,`mmud`=:mmud ,`mmudtel`=:mmudtel ,`mdahtel`=:mdahtel ,`mtel`=:mtel ,`mfax`=:mfax ,`mper`=:mper ,`mpere`=:mpere ,`mperk`=:mperk ,`marac`=:marac ,`gmyet`=:gmyet ,`gmtel`=:gmtel ,`gmfax`=:gmfax ,`gmadres`=:gmadres ,`dmyer`=:dmyer ,`mmt`=:mmt ,`dmt`=:dmt ,`tmt`=:tmt ,`notlar`=:notlar WHERE `id` = :idd",$param1);}
                         else :{
-                        $generic->query('INSERT INTO magaza (kod,ad,unvan,mtur_id,mmtur_id,dtur_id,stur_id,ftur_id,sermaye,vd,vno) VALUES ( :kod , :ad,:unvan,:mtur_id,:mmtur_id,:dtur_id,:stur_id,:ftur_id,:sermaye,:vd,:vno)',$param);
+                        $generic->query('INSERT INTO magaza (kod,ad,unvan,mtur_id,mmtur_id,dtur_id,stur_id,ftur_id,sermaye,vd,vno,miptal,msah,msahtel,mmud,mmudtel,mdahtel,mtel,mfax,mper,mpere,mperk,marac,gmyet,gmtel,gmfax,gmadres,dmyer,mmt,dmt,tmt,notlar) VALUES ( :kod , :ad,:unvan,:mtur_id,:mmtur_id,:dtur_id,:stur_id,:ftur_id,:sermaye,:vd,:vno,:miptal,:msah,:msahtel,:mmud,:mmudtel,:mdahtel,:mtel,:mfax,:mper,:mpere,:mperk,:marac,:gmyet,:gmtel,:gmfax,:gmadres,:dmyer,:mmt,:dmt,:tmt,:notlar)',$param);
                         }
                     endif;
 		//	$this->token = !empty($_POST['token']) ? $_POST['token'] : '';

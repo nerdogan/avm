@@ -147,17 +147,15 @@ endif;
         $number=0;    
 foreach($generic->query('SELECT * FROM magaza ') as $row) {
     $number++;
-  if ($row['mtur_id']==="4") :  {
-    echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='cari.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
-}
-else : {
-echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'></a>" ,
+  
+echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
+        "</td><td><a href='", (($row['mtur_id']==="4") ? 'magaza' : 'cari') ,".php?do=duzenle&id=",$row['id'],"'></a>" ,
 '<ul id="menu',$number,'">
   <li>
     <a href="#">seç</a>
     <ul>
     <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
-      <li><a href="magaza.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
+      <li><a href=', (($row['mtur_id']==="4") ? 'magaza' : 'cari') ,'.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
       <li><a href="#">Sil</a></li>
       <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
     </ul>
@@ -167,8 +165,7 @@ echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><t
 $( "#menu',$number,'" ).menu();
 </script>';             
 
-}
-endif;
+
 }}
 endif;
 
@@ -241,9 +238,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
         <div id="cid_6" class="form-input">
           <select class="form-dropdown" style="width:150px" id="input_5" name="q6_turu">
             <option>  </option>
-            <option value="1"> Mağaza </option>
-            <option value="2"> Depo </option>
-            <option value="3"> Stand </option>
+           
             <option value="4" selected> Tedarik </option>
           </select>
         </div>
@@ -251,7 +246,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
      </td>
      <td>
       <li class="form-line" id="id_7">
-        <label class="form-label-left" id="label_7" for="input_6"> Mağaza Türü: </label>
+        <label class="form-label-left" id="label_7" for="input_6"> Sektör: </label>
         <div id="cid_7" class="form-input">
           <select class="form-dropdown" style="width:150px" id="input_6" name="q7_magazaTuru7">
             <option>  </option>
@@ -369,7 +364,7 @@ foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
    
     echo '<table class="table-condensed">';   
                 
-           for ( $counter = 2; $counter <= 15; $counter += 1) {
+           for ( $counter = 2; $counter <= 30; $counter += 1) {
             $idd=$row[$counter-1];
            if (strlen($idd)>2): {echo "<tr><td>",$counter,"</td><td>",$idd,"</td></tr>"; };
 endif;
@@ -406,7 +401,7 @@ endif;
 
 
 if(isset($_POST['q4_magazaAdi'])) :
-			
+    
 			$kod = $generic->secure($_POST['magazakod']);
                         $ad = $generic->secure($_POST['q4_magazaAdi']);
                         $unvan = $generic->secure($_POST['q5_ticariVe']);

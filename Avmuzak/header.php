@@ -56,7 +56,10 @@ saat.innerText = s;
     
     
   });
-  </script>    
+  </script>   
+ <style>
+  .ui-menu { width: 100px; }
+  </style>
 
     <title>Avm Bilgi Sistemi 2013</title>
 </head>
@@ -109,7 +112,7 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
 		<li><a href="logout.php"><?php _e('Çıkış'); ?></a></li>
               </ul>
           
-    <?php        } 
+    <?php       } 
 else { ?>
 		<ul class="nav pull-right">
 		<li><a href="login.php" class="signup-link"><em class="fg-color-orangeDark"><?php _e('Hoşgeldiniz'); ?></em> <strong class="fg-color-orangeDark"><?php _e('Giriş Yapın!'); ?></strong></a></li>

@@ -9,42 +9,27 @@
         <div class="page-region">
             <div class="page-region-content">
                 <div class="row">
-      <div class="span12 text-center" >      
+      <div class="span12 " >      
         <p><?php if( !protectThis(1) ) : ?>
-	<a href="http://onlinearge.com/avm/login.php" target="_self" class="btn btn-info btn-large"><?php _e('Sisteme Giriş Yapın'); ?> &raquo;<img src="./assets/img/ofis.png" class="place-right"></a>
+	<a href="http://onlinearge.com/avm/login.php" target="_self" class="btn btn-info btn-large" style="position: fixed;top:250px;left: 40%;width:560px;margin-left:-100px;"><?php _e('Sisteme Giriş Yapın'); ?> &raquo;<img src="./assets/img/ofis.png" class="place-right"></a>
 	        </p>		
      </div></div>
         <div class="features">
 	<div class="row">
 		
                 
-                <div  class="span6"><a href="#" class="btn btn-warning btn-large">
-			<h2><?php _e('Finans'); ?></h2>
-                        <p><?php _e('Mağazalarınızın tüm finansal bilgilerini kontrol altında tutabilirsiniz.'); ?></p>
-		
-		</a></div>
+                <div  class="span6"></div>
 
-                <div class="span6" ><a href="#" class="btn btn-danger btn-large">
-			<h2><?php _e('Cari'); ?></h2>
-			<p><?php _e('Her bir mağaza için oluşturulan bilgi kartlarınıza kolayca erişim sağlayın.'); ?></p>
-		</a></div>
+                <div class="span6" ></div>
 	</div>
 
 	<div class="row">
 		<div class="span6" >
-		<a href="#" class="btn btn-success btn-large">	
-                    <h2><?php _e('Mağaza Hareketleri'); ?></h2>
-			<p><?php _e('Mağazaların banka hareketleri, faturalar, ödemeler vb. tüm hareketlerini kayıt altında tutmanızı sağlayan kolay yönetim sistemi.'); ?></p>
-                </a></div>
+		</div>
 
 		<div class="span6">
                             
-		<a href="#" class="btn btn-info btn-large">	
-                    <h2><?php _e('Güvenlik'); ?></h2>
-			<p>Güçlü kullanıcı kontrol altyapısı ile sınırsız sayıda yetkilendirilmiş kullanıcı tanımlayabilirsiniz.
-                            <?php _e(' Avm bilgileriniz 256 bit "Rapid SSL" güvenlik sistemi ile koruma altında.'); ?>
-                        </p>
-                </a></div>
+		</div>
 	</div>
 </div>
 
