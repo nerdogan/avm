@@ -42,7 +42,7 @@
 </ul>
 </div>
 </div>
- <div class="page fill">
+ <div id="content" class="page fill">
 
 <div class="span10">
     
@@ -71,7 +71,7 @@ Firma kodu, adı veya resmi adından birkaç harf girin
 <SCRIPT language="JavaScript">
 function submitform()
 {
- // $( "#content" ).load("home.php");
+ // $( "#content" ).load("http://localhost/mate/Example1.php");
   if  (document.arama.aramai.value.length > 1){ 
   document.arama.submit();
 }
@@ -84,7 +84,7 @@ function submitform()
 </form>
   <?php 
     
- if ($_POST['aramai']) : {
+ if (isset($_POST['aramai'])) : {
      $elma="%".$_POST['aramai']."%";
       $elma=toUpperCase($elma);
      
@@ -117,7 +117,9 @@ $( "#menu',$number,'" ).menu();
 endif;
 }
        
-        
+ echo "<SCRIPT >  document.arama.aramai.value='",$_POST['aramai'],"' ; document.arama.aramai.focus();
+          
+              </SCRIPT>";        
         }
    
        
@@ -127,17 +129,7 @@ endif;
   
   
   
-  if (!$_POST['aramai']) : {
- }
-  else : {
-      echo "<SCRIPT >  document.arama.aramai.value='",$_POST['aramai'],"' ; document.arama.aramai.focus();
-          
-              </SCRIPT>";
-     
-  
-  
-  }
-endif;
+ 
   
   endif;?>
     

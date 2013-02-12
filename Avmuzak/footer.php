@@ -1,6 +1,27 @@
 <!-- Footer
 ================================================== -->
+<?php 
+/*
+$dsn = 'mysql:host=localhost;dbname=arge_avm';
+$user = 'arge_av';
+$password = 'nmk171717';
+ 
+try {
+   $magaza = new PDO($dsn, $user, $password);
+} catch (PDOException $e) {
+  echo 'Connection failed: ' . $e->getMessage();
+}  
+$statement="select * from magaza";
+$select=$generic->query($statement);
+$total_column = $select->columnCount();
+var_dump($total_column);
 
+for ($counter = 0; $counter <= $total_column; $counter ++) {
+    $meta = $select->getColumnMeta($counter);
+    $column[] = $meta['name'];
+}
+print_r($column);*/
+?>
 	
 	<footer>
 		

@@ -139,6 +139,9 @@ class Check extends Generic {
 		return true;
 
 	}
+        
+        
+    
 
 	/**
 	 * Message shown to users when access is denied.
@@ -204,4 +207,5 @@ $yenitarih= strtr($tarih, $tarihdegistir);
 return $yenitarih;
 }
 
+ 
 

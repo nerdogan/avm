@@ -115,7 +115,7 @@ endif;
 if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 
 <form class="jotform-form" action="magaza.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
-  <input type="hidden" name="formID" value="30133819675356" />
+  <input type="hidden" name="formID" value="<?php echo $_GET['do'] ?>" />
   <div class="form-all">
     <ul class="form-section nav">
         
@@ -419,15 +419,7 @@ endif;
 
 <?php 
      
-//$dsn = 'mysql:host=localhost;dbname=arge_avm';
-//$user = 'arge_av';
-//$password = 'nmk171717';
- 
-//try {
- //   $magaza = new PDO($dsn, $user, $password);
-//} catch (PDOException $e) {
-  //  echo 'Connection failed: ' . $e->getMessage();
-//}
+
 
 if(isset($_POST['q4_magazaAdi'])) :
 			
@@ -463,13 +455,18 @@ if(isset($_POST['q4_magazaAdi'])) :
                         $dmt = $generic->secure($_POST['q34_depoM2']);
                         $tmt = $generic->secure($_POST['q35_toplamM2']);                        
                         $not = $generic->secure($_POST['q4_magazaAdi']);
-                        $idd="";
+                        $idd=$_GET['id'];
                         $param=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
                             ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
                             ':stur_id'=>$stur_id,':ftur_id'=>$ftur_id,':sermaye'=>$sermaye,
-                            ':vd'=>$vd,':vno'=>$vno
+                            ':vd'=>$vd,':vno'=>$vno,':idd'=>$idd
                         );
+                        if ($_POST['formID']=="duzenle"):
+                        {$generic->query("UPDATE magaza SET 'kod' = :kod , 'ad' = :ad, 'unvan' = :unvan, 'mtur_id' = :mtur_id where 'id' = :idd",$param);}
+                        else :{
                         $generic->query('INSERT INTO magaza (kod,ad,unvan,mtur_id,mmtur_id,dtur_id,stur_id,ftur_id,sermaye,vd,vno) VALUES ( :kod , :ad,:unvan,:mtur_id,:mmtur_id,:dtur_id,:stur_id,:ftur_id,:sermaye,:vd,:vno)',$param);
+                        }
+                    endif;
 		//	$this->token = !empty($_POST['token']) ? $_POST['token'] : '';
 		//	$this->process();
               

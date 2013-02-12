@@ -37,15 +37,17 @@ var urun = (eval(document.getElementById('input_12').value) + eval(document.getE
 <li><a class="btn btn-large btn-danger" href="#"><?php _e('Sil İptal'); ?></a></li><br>
 <li><a class="btn btn-large btn-info" href="fatura.php?do=liste"><?php _e('Tam Liste'); ?></a></li><br>
 <li><a class="btn btn-large btn-inverse" href="fatura.php?do=arama"><?php _e('Arama'); ?></a></li><br>
-<li><a href="#"><?php _e(''); ?></a></li>
+<li><a href="#"><?php _e('');   ?></a></li>
 </ul>
 </div>
 </div>
      
 
 <div class="page fill">
-
+  
 <div class="span10">
+  
+   
     
     <span class="btn btn-large btn-warning">
   
@@ -59,8 +61,10 @@ var urun = (eval(document.getElementById('input_12').value) + eval(document.getE
 if(($_GET['do'] === "liste")  ): 
 echo "<table class='hovered' >";
     echo "<tr><td>Tarih</td><td>No</td><td>Firma Adı</td><td>Tutar</td><td>Not</td><td>Kod</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
-     $number=0;    
-foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM fatura INNER JOIN magaza ON  fatura.musno =  magaza.id') as $row) {
+     $number=0;  
+     $kackayit=$generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM fatura INNER JOIN magaza ON  fatura.musno =  magaza.id');
+     
+foreach($kackayit as $row) {
     $number++;
     echo "<tr class='",( ($number & 1) ? 'success' : 'info' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4]," TL </td><td> ",$row[5],"</td><td>",$row[0],"</td><td>",$row[6],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
 }
@@ -92,7 +96,8 @@ if(($_GET['do'] === "yeni")  ): ?>
 <table border="0" cellpadding="0" cellspacing="1" style="width: 710px">
 <tbody>
 <tr>
-    <td style="width: 500px"><?php 
+    <td style="width: 500px">
+<?php 
          
  //     if ($_GET['id']) : {
 //     $elma=$_GET['id'];
@@ -364,7 +369,7 @@ endif;
 
  if(isset($_POST['faturano'])) :
      
-     echo 'kaydediliyor.....';			
+    		
 			$musno = $generic->secure($_POST['firma']);
                         $tarih = $generic->secure($_POST['tarih']);
                         $turu = $generic->secure($_POST['turu']);
@@ -395,10 +400,10 @@ endif;
                         $param=array (':firma'=>$musno,':tarih'=>$tarih,':turu'=>$turu,
                             ':faturano' => $faturano,':nott'=>$nott,':top'=>$top,
                             ':kdv'=>$kdv,':gtop'=>$gtop    );
-                        $generic->query('INSERT INTO fatura (musno,tarih,turu,faturano,top,kdv,gtop,nott) VALUES ( :firma , :tarih,:turu,:faturano,:top,:kdv,:gtop,:nott)',$param);
+                       $okmu= $generic->query('INSERT INTO fatura (musno,tarih,turu,faturano,top,kdv,gtop,nott) VALUES ( :firma , :tarih,:turu,:faturano,:top,:kdv,:gtop,:nott)',$param);
 		//	$this->token = !empty($_POST['token']) ? $_POST['token'] : '';
 		//	$this->process();
-              
+              if ($okmu->rowCount()==1): echo"kaydedildi";  header( 'Location: fatura.php?do=liste' ) ; endif;
 
 		endif;
                 ?>
