@@ -132,4 +132,8 @@ return strtolower(strtr( $input,'ĞÜŞIİÖÇ','ğüşıiöç'));
 
 
 ?>
- 
+<?php
+//require('rapor/makefont/makefont.php');
+
+//MakeFont('tahoma.ttf','cp1254');
+?> 
