@@ -45,7 +45,7 @@ var urun = (eval(document.getElementById('input_12').value) + eval(document.getE
 
 <div class="page fill">
   
-<div class="span10">
+<div class="span12">
   
    
     
@@ -53,22 +53,23 @@ var urun = (eval(document.getElementById('input_12').value) + eval(document.getE
   
 <?php // Yan menü bitiş
  endif; ?>
-
+      
 <?php 
 
 // tüm liste
 
 if(($_GET['do'] === "liste")  ): 
-echo "<table class='hovered' >";
-    echo "<tr><td>Tarih</td><td>No</td><td>Firma Adı</td><td>Tutar</td><td>Not</td><td>Kod</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
+echo "<table>";
+    echo "<tr><td>Tarih</td><td>No</td><td>Firma Adı</td><td style='width:150px'>Tutar</td><td>Not</td><td>Kod&nbsp;&nbsp;&nbsp; </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
      $number=0;  
      $kackayit=$generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM fatura INNER JOIN magaza ON  fatura.musno =  magaza.id');
-     
+     $toplam=0.0;
 foreach($kackayit as $row) {
     $number++;
     echo "<tr class='",( ($number & 1) ? 'success' : 'info' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4]," TL </td><td> ",$row[5],"</td><td>",$row[0],"</td><td>",$row[6],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
-}
-    
+    $toplam+=$row[4];
+    }
+ echo "<tr class='",( ($number & 1) ? 'success' : 'info' ),"'><td> </td><td> </td><td>Toplam : </td><td> ",$toplam," TL </td><td> </td><td></td><td></td><td></td></tr>" ;    
 echo '</table';  
 
     

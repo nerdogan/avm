@@ -46,7 +46,7 @@ if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
 
 <form class="" action="magaza.php?do=arama" method="post" name="arama" id="arama" accept-charset="utf-8">
 
- Lütfen Mağaza adını girin yada aşağıdan seçiminizi yapın:
+ Lütfen Mağaza adını girin :
  <div id="cid_4" class="form-input">
  
 <input type="text" class="form-textbox validate[required]" id="input_444" name="aramai" size="20" onkeyup="submitform()" /><br>
@@ -82,29 +82,36 @@ function submitform()
         $param=array (':ad'=> $elma ); 
 foreach($generic->query('SELECT * FROM magaza WHERE ad LIKE :ad and mtur_id<>4',$param) as $row) {
     $number++;
-    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
+    echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
+        "</td><td><a href='", (($row['mtur_id']==="4") ? 'magaza' : 'cari') ,".php?do=duzenle&id=",$row['id'],"'></a>" ,
+'<ul id="menu',$number,'">
+  <li>
+    <a href="#">seç</a>
+    <ul>
+    <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
+      <li><a href=', (($row['mtur_id']==="4") ? 'magaza' : 'cari') ,'.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
+      <li><a href="#">Sil</a></li>
+      <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
+    </ul>
+  </li>
+  </ul>    
+    <script>
+$( "#menu',$number,'" ).menu();
+</script>';             
+
+    
 }        
-        
-        }
-  else : {
-        $number=0;    
-foreach($generic->query('SELECT * FROM magaza WHERE mtur_id<>4') as $row) {
-    $number++;
-    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
-}
-  }
-  endif;
-  if (!$_POST['aramai']) : {
- }
-  else : {
-      echo "<SCRIPT >  document.arama.aramai.value='",$_POST['aramai'],"' ; document.arama.aramai.focus();
+ 
+
+echo "<SCRIPT >  document.arama.aramai.value='",$_POST['aramai'],"' ; document.arama.aramai.focus();
           
               </SCRIPT>";
       
-  
-  
-  }
-endif;
+        }
+        
+        
+  endif;
+
   
   endif;?>
     
@@ -121,17 +128,17 @@ endif;
   <h4> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
   <?php
         $number=0;    
-foreach($generic->query('SELECT * FROM magaza ') as $row) {
+foreach($generic->query('SELECT * FROM magaza WHERE mtur_id<>4 ') as $row) {
     $number++;
   
 echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
-        "</td><td><a href='", (($row['mtur_id']==="4") ? 'magaza' : 'cari') ,".php?do=duzenle&id=",$row['id'],"'></a>" ,
+        "</td><td><a href='", (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,".php?do=duzenle&id=",$row['id'],"'></a>" ,
 '<ul id="menu',$number,'">
   <li>
     <a href="#">seç</a>
     <ul>
     <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
-      <li><a href=', (($row['mtur_id']==="4") ? 'magaza' : 'cari') ,'.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
+      <li><a href=', (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,'.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
       <li><a href="#">Sil</a></li>
       <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
     </ul>
@@ -314,7 +321,13 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
         </div>
       </li></td>
 					<td>
-						<li class="form-line" id="id_22">
+	<li class="form-line" id="id_22">
+        <label class="form-label-left" id="label_22" for="input_17"> MĞZ E-POSTA </label>
+        <div id="cid_22" class="form-input">
+          <input type="text" class="form-textbox" id="input_34" name="eposta" size="20" />
+        </div>
+      </li>
+                                        <li class="form-line" id="id_22">
         <label class="form-label-left" id="label_22" for="input_17"> MĞZ TEL </label>
         <div id="cid_22" class="form-input">
           <input type="text" class="form-textbox" id="input_19" name="q22_mgzTel" size="20" />
@@ -497,6 +510,7 @@ if(isset($_POST['q4_magazaAdi'])) :
                         $tmt = $generic->secure($_POST['q35_toplamM2']);                        
                         $not = $generic->secure($_POST['q4_magazaAdi']);
                         $idd=$_POST['firmID'];
+                        $eposta=$generic->secure($_POST['eposta']);
                         echo $miptal;
                         $param=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
                             ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
@@ -507,7 +521,7 @@ if(isset($_POST['q4_magazaAdi'])) :
                             ':mper'=>$mper,':mpere'=>$mpere,':mperk'=>$mperk,
                             ':marac'=>$marac,':gmyet'=>$gmyet,':gmtel'=>$gmtel,
                             ':gmfax'=>$gmfax,':gmadres'=>$gmadres,':dmyer'=>$dmyer,
-                            ':mmt'=>$mmt,':dmt'=>$dmt,':tmt'=>$tmt,':notlar'=>$not
+                            ':mmt'=>$mmt,':dmt'=>$dmt,':tmt'=>$tmt,':notlar'=>$not,':eposta'=>$eposta
                         );
                         $param1=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
                             ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
@@ -518,13 +532,13 @@ if(isset($_POST['q4_magazaAdi'])) :
                             ':mper'=>$mper,':mpere'=>$mpere,':mperk'=>$mperk,
                             ':marac'=>$marac,':gmyet'=>$gmyet,':gmtel'=>$gmtel,
                             ':gmfax'=>$gmfax,':gmadres'=>$gmadres,':dmyer'=>$dmyer,
-                            ':mmt'=>$mmt,':dmt'=>$dmt,':tmt'=>$tmt,':notlar'=>$not,':idd'=>$idd
+                            ':mmt'=>$mmt,':dmt'=>$dmt,':tmt'=>$tmt,':notlar'=>$not,':idd'=>$idd,':eposta'=>$eposta
                         );
                         
                         if ($_POST['formID']=="duzenle"):
-                        {$generic->query("UPDATE magaza SET `kod` = :kod , `ad` = :ad, `unvan` = :unvan, `mtur_id` = :mtur_id,`mmtur_id`=:mmtur_id,`dtur_id`=:dtur_id ,`stur_id`=:stur_id ,`ftur_id`=:ftur_id ,`sermaye`=:sermaye ,`vd`=:vd ,`vno`=:vno ,`miptal`=:miptal ,`msah`=:msah ,`msahtel`=:msahtel ,`mmud`=:mmud ,`mmudtel`=:mmudtel ,`mdahtel`=:mdahtel ,`mtel`=:mtel ,`mfax`=:mfax ,`mper`=:mper ,`mpere`=:mpere ,`mperk`=:mperk ,`marac`=:marac ,`gmyet`=:gmyet ,`gmtel`=:gmtel ,`gmfax`=:gmfax ,`gmadres`=:gmadres ,`dmyer`=:dmyer ,`mmt`=:mmt ,`dmt`=:dmt ,`tmt`=:tmt ,`notlar`=:notlar WHERE `id` = :idd",$param1);}
+                        {$generic->query("UPDATE magaza SET `kod` = :kod , `ad` = :ad, `unvan` = :unvan, `mtur_id` = :mtur_id,`mmtur_id`=:mmtur_id,`dtur_id`=:dtur_id ,`stur_id`=:stur_id ,`ftur_id`=:ftur_id ,`sermaye`=:sermaye ,`vd`=:vd ,`vno`=:vno ,`miptal`=:miptal ,`msah`=:msah ,`msahtel`=:msahtel ,`mmud`=:mmud ,`mmudtel`=:mmudtel ,`mdahtel`=:mdahtel ,`mtel`=:mtel ,`mfax`=:mfax ,`mper`=:mper ,`mpere`=:mpere ,`mperk`=:mperk ,`marac`=:marac ,`gmyet`=:gmyet ,`gmtel`=:gmtel ,`gmfax`=:gmfax ,`gmadres`=:gmadres ,`dmyer`=:dmyer ,`mmt`=:mmt ,`dmt`=:dmt ,`tmt`=:tmt ,`notlar`=:notlar,`eposta`=:eposta WHERE `id` = :idd",$param1);}
                         else :{
-                        $generic->query('INSERT INTO magaza (kod,ad,unvan,mtur_id,mmtur_id,dtur_id,stur_id,ftur_id,sermaye,vd,vno,miptal,msah,msahtel,mmud,mmudtel,mdahtel,mtel,mfax,mper,mpere,mperk,marac,gmyet,gmtel,gmfax,gmadres,dmyer,mmt,dmt,tmt,notlar) VALUES ( :kod , :ad,:unvan,:mtur_id,:mmtur_id,:dtur_id,:stur_id,:ftur_id,:sermaye,:vd,:vno,:miptal,:msah,:msahtel,:mmud,:mmudtel,:mdahtel,:mtel,:mfax,:mper,:mpere,:mperk,:marac,:gmyet,:gmtel,:gmfax,:gmadres,:dmyer,:mmt,:dmt,:tmt,:notlar)',$param);
+                        $generic->query('INSERT INTO magaza (kod,ad,unvan,mtur_id,mmtur_id,dtur_id,stur_id,ftur_id,sermaye,vd,vno,miptal,msah,msahtel,mmud,mmudtel,mdahtel,mtel,mfax,mper,mpere,mperk,marac,gmyet,gmtel,gmfax,gmadres,dmyer,mmt,dmt,tmt,notlar,eposta) VALUES ( :kod , :ad,:unvan,:mtur_id,:mmtur_id,:dtur_id,:stur_id,:ftur_id,:sermaye,:vd,:vno,:miptal,:msah,:msahtel,:mmud,:mmudtel,:mdahtel,:mtel,:mfax,:mper,:mpere,:mperk,:marac,:gmyet,:gmtel,:gmfax,:gmadres,:dmyer,:mmt,:dmt,:tmt,:notlar,:eposta)',$param);
                         }
                     endif;
 		//	$this->token = !empty($_POST['token']) ? $_POST['token'] : '';
