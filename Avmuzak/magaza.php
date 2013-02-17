@@ -455,7 +455,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
      $param=array (':ad'=> $elma ); 
 foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
       
-    for ( $counter = 2; $counter <= 33; $counter += 1) {
+    for ( $counter = 2; $counter <= 40; $counter += 1) {
 
 $idd=$row[$counter-1];
          $elma="<script>   document.getElementById('input_";

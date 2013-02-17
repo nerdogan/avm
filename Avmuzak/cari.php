@@ -387,7 +387,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
         </div>
       </li>
                         <li class="form-line" id="id_22">
-        <label class="form-label-left" id="label_22" for="input_17"> MĞZ E-POSTA </label>
+        <label class="form-label-left" id="label_22" for="input_17">  E-POSTA </label>
         <div id="cid_22" class="form-input">
           <input type="text" class="form-textbox" id="input_34" name="eposta" size="20" />
         </div>
@@ -434,7 +434,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
      $param=array (':ad'=> $elma ); 
 foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
       
-    for ( $counter = 2; $counter <= 33; $counter += 1) {
+    for ( $counter = 2; $counter <= 40; $counter += 1) {
         
 	
 $idd=$row[$counter-1];
@@ -458,7 +458,7 @@ foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
    
     echo '<table class="table-condensed">';   
                 
-           for ( $counter = 2; $counter <= 30; $counter += 1) {
+           for ( $counter = 2; $counter <= 40; $counter += 1) {
             $idd=$row[$counter-1];
            if (strlen($idd)>2): {echo "<tr><td>",$counter,"</td><td>",$idd,"</td></tr>"; };
 endif;
@@ -529,7 +529,7 @@ if(isset($_POST['q4_magazaAdi'])) :
                         $tmt = $generic->secure($_POST['q35_toplamM2']);                        
                         $not = $generic->secure($_POST['q4_magazaAdi']);
                         $idd=$_POST['firmID'];
-                       
+                        $eposta=$generic->secure($_POST['eposta']);
                         $param=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
                             ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
                             ':stur_id'=>$stur_id,':ftur_id'=>$ftur_id,':sermaye'=>$sermaye,
