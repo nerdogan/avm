@@ -19,6 +19,97 @@
 
 
 </script>  
+    <?php 
+     
+//$dsn = 'mysql:host=localhost;dbname=arge_avm';
+//$user = 'arge_av';
+//$password = 'nmk171717';
+ 
+//try {
+ //   $magaza = new PDO($dsn, $user, $password);
+//} catch (PDOException $e) {
+  //  echo 'Connection failed: ' . $e->getMessage();
+//}
+
+
+
+
+if(isset($_POST['q4_magazaAdi'])) :
+    
+		$kod = $generic->secure($_POST['magazakod']);
+                        $ad = $generic->secure($_POST['q4_magazaAdi']);
+                        $unvan = $generic->secure($_POST['q5_ticariVe']);
+                        $mtur_id = $generic->secure($_POST['q6_turu']);
+                        $mmtur_id = $generic->secure($_POST['q7_magazaTuru7']);
+                        $dtur_id = $generic->secure($_POST['q11_depoTuru']);
+                        $stur_id = $generic->secure($_POST['q9_standTuru']);
+                        $ftur_id = $generic->secure($_POST['q12_firmaTuru']);
+                        $miptal = $generic->secure($_POST['q38_magaza']);
+                        $sermaye = $generic->secure($_POST['q14_sermaye14']);
+                        $vd = $generic->secure($_POST['q16_vergiDairesi']);
+                        $vno = $generic->secure($_POST['q15_vergiNo']);
+                        $msah = $generic->secure($_POST['q17_mgzSahibi17']);
+                        $msahtel = $generic->secure($_POST['q18_mgzSahibi']);
+                        $mmud = $generic->secure($_POST['q19_mgzMuduru']);
+                        $mmudtel = $generic->secure($_POST['q20_mgzMuduru20']);
+                        $mdahtel = $generic->secure($_POST['q21_mgzDahili21']);
+                        $mtel = $generic->secure($_POST['q22_mgzTel']);
+                        $mfax = $generic->secure($_POST['q23_mgzFax']);
+                        $mper = $generic->secure($_POST['q24_magazaPersonel24']);
+                        $mpere = $generic->secure($_POST['q26_erkek']);
+                        $mperk = $generic->secure($_POST['q25_bayan']);
+                        $marac = $generic->secure($_POST['q27_magazaArac']);
+                        $gmyet = $generic->secure($_POST['q28_genelMerkez']);
+                        $gmtel = $generic->secure($_POST['q29_genelMerkez29']);
+                        $gmfax = $generic->secure($_POST['q30_genelMerkez30']);
+                        $gmadres = $generic->secure($_POST['q31_genelMerkez31']);
+                        $dmyer = $generic->secure($_POST['q32_digerMagaza']);
+                        $mmt = $generic->secure($_POST['q33_magazaM2']);
+                        $dmt = $generic->secure($_POST['q34_depoM2']);
+                        $tmt = $generic->secure($_POST['q35_toplamM2']);                        
+                        $not = $generic->secure($_POST['q4_magazaAdi']);
+                        $idd=$_POST['firmID'];
+                        $eposta=$generic->secure($_POST['eposta']);
+                        $param=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
+                            ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
+                            ':stur_id'=>$stur_id,':ftur_id'=>$ftur_id,':sermaye'=>$sermaye,
+                            ':vd'=>$vd,':vno'=>$vno,':miptal'=>$miptal,':msah'=>$msah,
+                            ':msahtel'=>$msahtel,':mmud'=>$mmud,':mmudtel'=>$mmudtel,
+                            ':mdahtel'=>$mdahtel,':mtel'=>$mtel,':mfax'=>$mfax,
+                            ':mper'=>$mper,':mpere'=>$mpere,':mperk'=>$mperk,
+                            ':marac'=>$marac,':gmyet'=>$gmyet,':gmtel'=>$gmtel,
+                            ':gmfax'=>$gmfax,':gmadres'=>$gmadres,':dmyer'=>$dmyer,
+                            ':mmt'=>$mmt,':dmt'=>$dmt,':tmt'=>$tmt,':notlar'=>$not,':eposta'=>$eposta
+                        );
+                        $param1=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
+                            ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
+                            ':stur_id'=>$stur_id,':ftur_id'=>$ftur_id,':sermaye'=>$sermaye,
+                            ':vd'=>$vd,':vno'=>$vno,':miptal'=>$miptal,':msah'=>$msah,
+                            ':msahtel'=>$msahtel,':mmud'=>$mmud,':mmudtel'=>$mmudtel,
+                            ':mdahtel'=>$mdahtel,':mtel'=>$mtel,':mfax'=>$mfax,
+                            ':mper'=>$mper,':mpere'=>$mpere,':mperk'=>$mperk,
+                            ':marac'=>$marac,':gmyet'=>$gmyet,':gmtel'=>$gmtel,
+                            ':gmfax'=>$gmfax,':gmadres'=>$gmadres,':dmyer'=>$dmyer,
+                            ':mmt'=>$mmt,':dmt'=>$dmt,':tmt'=>$tmt,':notlar'=>$not,':idd'=>$idd ,':eposta'=>$eposta
+                        );
+                        
+                        if ($_POST['formID']=="duzenle"):
+                        {
+                           
+                            $generic->query("UPDATE magaza SET `kod` = :kod , `ad` = :ad, `unvan` = :unvan, `mtur_id` = :mtur_id,`mmtur_id`=:mmtur_id,`dtur_id`=:dtur_id ,`stur_id`=:stur_id ,`ftur_id`=:ftur_id ,`sermaye`=:sermaye ,`vd`=:vd ,`vno`=:vno ,`miptal`=:miptal ,`msah`=:msah ,`msahtel`=:msahtel ,`mmud`=:mmud ,`mmudtel`=:mmudtel ,`mdahtel`=:mdahtel ,`mtel`=:mtel ,`mfax`=:mfax ,`mper`=:mper ,`mpere`=:mpere ,`mperk`=:mperk ,`marac`=:marac ,`gmyet`=:gmyet ,`gmtel`=:gmtel ,`gmfax`=:gmfax ,`gmadres`=:gmadres ,`dmyer`=:dmyer ,`mmt`=:mmt ,`dmt`=:dmt ,`tmt`=:tmt ,`notlar`=:notlar,`eposta`=:eposta WHERE `id` = :idd",$param1);
+                          $generic->displayMessage(sprintf('</div></div></div></div><div class="alert alert-success">' . _('Düzenleme başarıyla kaydedildi. (') . $unvan. ')</div>'),FALSE);   
+                            //  $generic->sendEmail("erdogannamik@gmail.com","Cari kayıtta düzenleme yapıldı.","Cari kayıtta düzenleme yapıldı.<a href='http://onlinearge.com/avm/carilist.pdf'>tıkla</a>","","");
+                        }
+                        else :{
+                        $generic->query('INSERT INTO magaza (kod,ad,unvan,mtur_id,mmtur_id,dtur_id,stur_id,ftur_id,sermaye,vd,vno,miptal,msah,msahtel,mmud,mmudtel,mdahtel,mtel,mfax,mper,mpere,mperk,marac,gmyet,gmtel,gmfax,gmadres,dmyer,mmt,dmt,tmt,notlar,eposta) VALUES ( :kod , :ad,:unvan,:mtur_id,:mmtur_id,:dtur_id,:stur_id,:ftur_id,:sermaye,:vd,:vno,:miptal,:msah,:msahtel,:mmud,:mmudtel,:mdahtel,:mtel,:mfax,:mper,:mpere,:mperk,:marac,:gmyet,:gmtel,:gmfax,:gmadres,:dmyer,:mmt,:dmt,:tmt,:notlar,:eposta)',$param);
+                        }
+                    endif;
+                    //	$this->token = !empty($_POST['token']) ? $_POST['token'] : '';
+		//	$this->process();
+              
+
+		endif;
+                ?>
 
 <div class="page secondary">
      
@@ -66,6 +157,7 @@ Firma kodu, adı veya resmi adından birkaç harf girin
   <h4> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
 <?php
 
+
   ?>
  
 <SCRIPT language="JavaScript">
@@ -83,7 +175,7 @@ function submitform()
         </div>
 </form>
   <?php 
-    
+
  if (isset($_POST['aramai'])) : {
      $elma="%".$_POST['aramai']."%";
       $elma=toUpperCase($elma);
@@ -134,7 +226,8 @@ endif;
   <table class="table  table-condensed " border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
   <h4> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
   <?php
-        $number=0;   
+        $number=0;  
+        
         $liste=$generic->query('SELECT * FROM magaza ');
 foreach( $liste as $row) {
     $number++;
@@ -479,106 +572,21 @@ endif;
      
       
     
-        <?php 
-     
-//$dsn = 'mysql:host=localhost;dbname=arge_avm';
-//$user = 'arge_av';
-//$password = 'nmk171717';
- 
-//try {
- //   $magaza = new PDO($dsn, $user, $password);
-//} catch (PDOException $e) {
-  //  echo 'Connection failed: ' . $e->getMessage();
-//}
-
-
-
-
-if(isset($_POST['q4_magazaAdi'])) :
     
-		$kod = $generic->secure($_POST['magazakod']);
-                        $ad = $generic->secure($_POST['q4_magazaAdi']);
-                        $unvan = $generic->secure($_POST['q5_ticariVe']);
-                        $mtur_id = $generic->secure($_POST['q6_turu']);
-                        $mmtur_id = $generic->secure($_POST['q7_magazaTuru7']);
-                        $dtur_id = $generic->secure($_POST['q11_depoTuru']);
-                        $stur_id = $generic->secure($_POST['q9_standTuru']);
-                        $ftur_id = $generic->secure($_POST['q12_firmaTuru']);
-                        $miptal = $generic->secure($_POST['q38_magaza']);
-                        $sermaye = $generic->secure($_POST['q14_sermaye14']);
-                        $vd = $generic->secure($_POST['q16_vergiDairesi']);
-                        $vno = $generic->secure($_POST['q15_vergiNo']);
-                        $msah = $generic->secure($_POST['q17_mgzSahibi17']);
-                        $msahtel = $generic->secure($_POST['q18_mgzSahibi']);
-                        $mmud = $generic->secure($_POST['q19_mgzMuduru']);
-                        $mmudtel = $generic->secure($_POST['q20_mgzMuduru20']);
-                        $mdahtel = $generic->secure($_POST['q21_mgzDahili21']);
-                        $mtel = $generic->secure($_POST['q22_mgzTel']);
-                        $mfax = $generic->secure($_POST['q23_mgzFax']);
-                        $mper = $generic->secure($_POST['q24_magazaPersonel24']);
-                        $mpere = $generic->secure($_POST['q26_erkek']);
-                        $mperk = $generic->secure($_POST['q25_bayan']);
-                        $marac = $generic->secure($_POST['q27_magazaArac']);
-                        $gmyet = $generic->secure($_POST['q28_genelMerkez']);
-                        $gmtel = $generic->secure($_POST['q29_genelMerkez29']);
-                        $gmfax = $generic->secure($_POST['q30_genelMerkez30']);
-                        $gmadres = $generic->secure($_POST['q31_genelMerkez31']);
-                        $dmyer = $generic->secure($_POST['q32_digerMagaza']);
-                        $mmt = $generic->secure($_POST['q33_magazaM2']);
-                        $dmt = $generic->secure($_POST['q34_depoM2']);
-                        $tmt = $generic->secure($_POST['q35_toplamM2']);                        
-                        $not = $generic->secure($_POST['q4_magazaAdi']);
-                        $idd=$_POST['firmID'];
-                        $eposta=$generic->secure($_POST['eposta']);
-                        $param=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
-                            ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
-                            ':stur_id'=>$stur_id,':ftur_id'=>$ftur_id,':sermaye'=>$sermaye,
-                            ':vd'=>$vd,':vno'=>$vno,':miptal'=>$miptal,':msah'=>$msah,
-                            ':msahtel'=>$msahtel,':mmud'=>$mmud,':mmudtel'=>$mmudtel,
-                            ':mdahtel'=>$mdahtel,':mtel'=>$mtel,':mfax'=>$mfax,
-                            ':mper'=>$mper,':mpere'=>$mpere,':mperk'=>$mperk,
-                            ':marac'=>$marac,':gmyet'=>$gmyet,':gmtel'=>$gmtel,
-                            ':gmfax'=>$gmfax,':gmadres'=>$gmadres,':dmyer'=>$dmyer,
-                            ':mmt'=>$mmt,':dmt'=>$dmt,':tmt'=>$tmt,':notlar'=>$not,':eposta'=>$eposta
-                        );
-                        $param1=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
-                            ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
-                            ':stur_id'=>$stur_id,':ftur_id'=>$ftur_id,':sermaye'=>$sermaye,
-                            ':vd'=>$vd,':vno'=>$vno,':miptal'=>$miptal,':msah'=>$msah,
-                            ':msahtel'=>$msahtel,':mmud'=>$mmud,':mmudtel'=>$mmudtel,
-                            ':mdahtel'=>$mdahtel,':mtel'=>$mtel,':mfax'=>$mfax,
-                            ':mper'=>$mper,':mpere'=>$mpere,':mperk'=>$mperk,
-                            ':marac'=>$marac,':gmyet'=>$gmyet,':gmtel'=>$gmtel,
-                            ':gmfax'=>$gmfax,':gmadres'=>$gmadres,':dmyer'=>$dmyer,
-                            ':mmt'=>$mmt,':dmt'=>$dmt,':tmt'=>$tmt,':notlar'=>$not,':idd'=>$idd ,':eposta'=>$eposta
-                        );
-                        
-                        if ($_POST['formID']=="duzenle"):
-                        {$generic->query("UPDATE magaza SET `kod` = :kod , `ad` = :ad, `unvan` = :unvan, `mtur_id` = :mtur_id,`mmtur_id`=:mmtur_id,`dtur_id`=:dtur_id ,`stur_id`=:stur_id ,`ftur_id`=:ftur_id ,`sermaye`=:sermaye ,`vd`=:vd ,`vno`=:vno ,`miptal`=:miptal ,`msah`=:msah ,`msahtel`=:msahtel ,`mmud`=:mmud ,`mmudtel`=:mmudtel ,`mdahtel`=:mdahtel ,`mtel`=:mtel ,`mfax`=:mfax ,`mper`=:mper ,`mpere`=:mpere ,`mperk`=:mperk ,`marac`=:marac ,`gmyet`=:gmyet ,`gmtel`=:gmtel ,`gmfax`=:gmfax ,`gmadres`=:gmadres ,`dmyer`=:dmyer ,`mmt`=:mmt ,`dmt`=:dmt ,`tmt`=:tmt ,`notlar`=:notlar,`eposta`=:eposta WHERE `id` = :idd",$param1);}
-                        else :{
-                        $generic->query('INSERT INTO magaza (kod,ad,unvan,mtur_id,mmtur_id,dtur_id,stur_id,ftur_id,sermaye,vd,vno,miptal,msah,msahtel,mmud,mmudtel,mdahtel,mtel,mfax,mper,mpere,mperk,marac,gmyet,gmtel,gmfax,gmadres,dmyer,mmt,dmt,tmt,notlar,eposta) VALUES ( :kod , :ad,:unvan,:mtur_id,:mmtur_id,:dtur_id,:stur_id,:ftur_id,:sermaye,:vd,:vno,:miptal,:msah,:msahtel,:mmud,:mmudtel,:mdahtel,:mtel,:mfax,:mper,:mpere,:mperk,:marac,:gmyet,:gmtel,:gmfax,:gmadres,:dmyer,:mmt,:dmt,:tmt,:notlar,:eposta)',$param);
-                        }
-                    endif;
-                    //	$this->token = !empty($_POST['token']) ? $_POST['token'] : '';
-		//	$this->process();
-              
-
-		endif;
-                ?>
         
-        <?php
       
-        
-        ?>
-        
         
           
 </div></div></div></div>          
     
+    <?php
+      
+        
+      
+          
     
     
-    
-    
+      ?>
     
     
     
