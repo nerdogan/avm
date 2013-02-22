@@ -163,7 +163,7 @@ window.setInterval("saatigoster();",60000);
            <div class="tile double bg-color-yellow " data-role="tile-slider" data-param-period="3000">
                          
        <?php    $number=0;    
-foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM fatura INNER JOIN magaza ON  fatura.musno =  magaza.id') as $row) {
+foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM hareket INNER JOIN magaza ON  hareket.musno =  magaza.id') as $row) {
     $number++;
     echo '<div class="tile-content fg-color-red">';
     echo "<h4>",$row[2],"</h4><h4>",$row[4],"TL</h4><p>",$row[1]," tarih ",$row[3]," nolu fatura <a href='fatura.php?do=liste'></a></p></div>" ;
@@ -208,7 +208,19 @@ foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott
 </div>    
 </div>
 </div>
-<?php  endif;  ?>
+<?php  endif; 
+//$date = new DateTime('2012-05-17');
+//echo  date("d-m-Y h:i:s", $date->getTimestamp());
+//$saatfarki = "2"; //server ile aradaki saat farkı
+//$tarih_arr = getdate((time()+3600*$saatfarki));
+
+//print_r($tarih_arr);
+
+
+
+
+
+?>
 
 
 

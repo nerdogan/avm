@@ -62,7 +62,7 @@ if(($_GET['do'] === "liste")  ):
 echo "<table>";
     echo "<tr><td>Tarih</td><td>No</td><td>Firma Adı</td><td style='width:150px'>Tutar</td><td>Not</td><td>Kod&nbsp;&nbsp;&nbsp; </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
      $number=0;  
-     $kackayit=$generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM fatura INNER JOIN magaza ON  fatura.musno =  magaza.id');
+     $kackayit=$generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM hareket INNER JOIN magaza ON  hareket.musno =  magaza.id');
      $toplam=0.0;
 foreach($kackayit as $row) {
     $number++;
@@ -401,7 +401,7 @@ endif;
                         $param=array (':firma'=>$musno,':tarih'=>$tarih,':turu'=>$turu,
                             ':faturano' => $faturano,':nott'=>$nott,':top'=>$top,
                             ':kdv'=>$kdv,':gtop'=>$gtop    );
-                       $okmu= $generic->query('INSERT INTO fatura (musno,tarih,turu,faturano,top,kdv,gtop,nott) VALUES ( :firma , :tarih,:turu,:faturano,:top,:kdv,:gtop,:nott)',$param);
+                       $okmu= $generic->query('INSERT INTO hareket (musno,tarih,turu,faturano,top,kdv,gtop,nott) VALUES ( :firma , :tarih,:turu,:faturano,:top,:kdv,:gtop,:nott)',$param);
 		//	$this->token = !empty($_POST['token']) ? $_POST['token'] : '';
 		//	$this->process();
               if ($okmu->rowCount()==1): echo"kaydedildi";  header( 'Location: fatura.php?do=liste' ) ; endif;
@@ -421,4 +421,4 @@ endif;
     </span>  
        </div></div>    
   
-    <?php include_once('footer.php'); ?>
+   <?php include_once('footer.php'); ?>

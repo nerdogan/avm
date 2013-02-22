@@ -31,20 +31,34 @@ ini_set('error_reporting', E_ALL ^ E_NOTICE); ?>
     <script type="text/javascript" src="assets/js/modern/tile-slider.js"></script>
     <script type="text/javascript" src="assets/js/modern/tile-drag.js"></script>
     <link rel="stylesheet" href="assets/css/jquery-ui.css" />
-    <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+    <script src="assets/js/jquery-ui.js"></script> 
      <script src="assets/js/jquery.ui.datepicker-tr.js"></script>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
         
    <SCRIPT language=JavaScript>
-function saatigoster()
-{
-var d, saat_,dakika_,saniye_,x1,x2,s;
-d = new Date();
-saat_ = d.getHours(); if (saat_.toString(10).length==1) { saat_="0"+saat_; }
-dakika_= d.getMinutes();if (dakika_.toString(10).length==1) { dakika_="0"+dakika_; }
-saniye_= d.getSeconds();if (saniye_.toString(10).length==1) { saniye_="0"+saniye_; }
-s = saat_ + ":" + dakika_ ;
-saat.innerText = s; 
+function saatigoster() {
+    var d,
+    saat_,
+    dakika_,
+    saniye_,
+    x1,
+    x2,
+    s;
+    d = new Date();
+    saat_ = d.getHours();
+    if (saat_.toString(10).length == 1) {
+        saat_ = "0" + saat_;
+    }
+    dakika_ = d.getMinutes();
+    if (dakika_.toString(10).length == 1) {
+        dakika_ = "0" + dakika_;
+    }
+    saniye_ = d.getSeconds();
+    if (saniye_.toString(10).length == 1) {
+        saniye_ = "0" + saniye_;
+    }
+    s = saat_ + ":" + dakika_;
+    saat.innerText = s;
 }
 </SCRIPT>     
     <script>
