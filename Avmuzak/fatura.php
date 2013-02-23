@@ -2,21 +2,21 @@
 <?php include_once('header.php');
 // yan menu başlangıç?>
  <script type="text/javascript">
-	function goster(id) {
-		document.getElementById(id).style.display = 'block';
-	}
-	function gizle(id) {
-		document.getElementById(id).style.display = 'none';
-	}
-        function hesapla(id1,id2,id3) {
-    document.getElementById(id3).value=((document.getElementById(id1).value)*(document.getElementById(id2).value));
-var urun = (eval(document.getElementById('input_12').value) + eval(document.getElementById('input_1103').value)+eval(document.getElementById('input_1107').value)+eval(document.getElementById('input_1111').value)+eval(document.getElementById('input_1115').value));
-    document.getElementById('top').innerHTML=urun;
-    document.getElementById('kdv').innerHTML=urun*18/100;
-    document.getElementById('gtop').innerHTML=urun+(urun*18/100);
-    document.getElementById('toptop').value=urun;
-    document.getElementById('kdvkdv').value=urun*18/100;
-    document.getElementById('gtopgtop').value=urun+(urun*18/100);
+function goster(id) {
+    document.getElementById(id).style.display = 'block';
+}
+function gizle(id) {
+    document.getElementById(id).style.display = 'none';
+}
+function hesapla(id1, id2, id3) {
+    document.getElementById(id3).value = ((document.getElementById(id1).value) * (document.getElementById(id2).value));
+    var urun = (eval(document.getElementById('input_12').value) + eval(document.getElementById('input_1103').value) + eval(document.getElementById('input_1107').value) + eval(document.getElementById('input_1111').value) + eval(document.getElementById('input_1115').value));
+    document.getElementById('top').innerHTML = urun;
+    document.getElementById('kdv').innerHTML = urun * 18 / 100;
+    document.getElementById('gtop').innerHTML = urun + (urun * 18 / 100);
+    document.getElementById('toptop').value = urun;
+    document.getElementById('kdvkdv').value = urun * 18 / 100;
+    document.getElementById('gtopgtop').value = urun + (urun * 18 / 100);
 }
 
 </script>  

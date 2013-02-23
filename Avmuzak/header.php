@@ -62,14 +62,12 @@ function saatigoster() {
 }
 </SCRIPT>     
     <script>
-  $(function() {
-    
-    $( "#datepicker" ).datepicker({
-        
-    });
-    
-    
-  });
+ $(function() {
+
+    $("#datepicker").datepicker({
+});
+
+});
   </script>   
  <style>
   .ui-menu { width: 100px; }
