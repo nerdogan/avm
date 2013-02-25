@@ -22,7 +22,7 @@ for ($counter = 0; $counter <= $total_column; $counter ++) {
 }
 print_r($column);*/
 ?>
-	
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>	
 	<footer>
 		
 		<p class="navbar-fixed-bottom fg-color-white" style="font-size: 50px">

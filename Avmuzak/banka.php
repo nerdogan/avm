@@ -1,149 +1,77 @@
-<?php ob_start(); ?>
-<?php include_once('classes/translate.class.php'); ?>
 <?php include_once('classes/check.class.php'); ?>
-<?php if (!isset($_SESSION)) session_start(); ?>
-<!DOCTYPE html>
-<html lang="tr">    
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="description" content="Avm Mağaza Kontrol Sistemi 2013">
-    <meta name="author" content="Namık ERDOĞAN">
-    <meta name="keywords" content="Avm, Mağaza, Kontrol,yönetim, Sistemi, 2013">
-
-    <link href="assets/css/modern.css" rel="stylesheet">
-    <link href="assets/css/modern-responsive.css" rel="stylesheet">
-    <link href="assets/css/site.css" rel="stylesheet" type="text/css">
-    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
-
-    <script type="text/javascript" src="assets/js/assets/jquery-1.9.0.min.js"></script>
-    <script type="text/javascript" src="assets/js/assets/jquery.mousewheel.min.js"></script>
-
-    <script type="text/javascript" src="assets/js/modern/dropdown.js"></script>
-    <script type="text/javascript" src="assets/js/modern/accordion.js"></script>
-    <script type="text/javascript" src="assets/js/modern/buttonset.js"></script>
-    <script type="text/javascript" src="assets/js/modern/carousel.js"></script>
-    <script type="text/javascript" src="assets/js/modern/input-control.js"></script>
-    <script type="text/javascript" src="assets/js/modern/pagecontrol.js"></script>
-    <script type="text/javascript" src="assets/js/modern/rating.js"></script>
-    <script type="text/javascript" src="assets/js/modern/slider.js"></script>
-    <script type="text/javascript" src="assets/js/modern/tile-slider.js"></script>
-    <script type="text/javascript" src="assets/js/modern/tile-drag.js"></script>
-    <link rel="stylesheet" href="assets/css/jquery-ui-1.10.0.custom.min.css" />
-    <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
-     <script src="assets/js/jquery.ui.datepicker-tr.js"></script>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-        
-        
-    <script>
-  $(function() {
-    
-    $( "#datepicker" ).datepicker({
-        
-    });
-    
-    
-  });
-  </script>    
-
-    <title>Avm Mağaza Kontrol Sistemi 2013</title>
-</head>
-<body class="modern-ui" onload="prettyPrint()">
-    
-    
-    <div class="page" >
-        <div class="page-header " >
-            
-      <div class="span5" > <h1 class="fg-color-white"><?php _e('AVM Manager'); ?></h1></div>
-      <div class="span3 place-right" >            
-               
-  <?php if(isset($_SESSION['jigowatt']['username'])) { ?>
-           
-               <a href="#" class="dropdown-toggle place-right" data-toggle="dropdown" ><?php echo $_SESSION['jigowatt']['name']; ?> <b class="caret"></b></a>
-              <ul class="dropdown-menu place-right" >
-               <li><a href="profile.php"><i class="icon-user"></i> <?php _e('Hesabım'); ?></a></li>
-		<li><a href="mailto:info@onlinearge.com"><i class="icon-info-sign"></i> <?php _e('Yardım'); ?></a></li>
-		<li class="divider"></li>
-		<li><a href="logout.php"><?php _e('Çıkış'); ?></a></li>
-              </ul>
-          
-    <?php        }
-else { ?>
-		<ul class="nav pull-right">
-		<li><a href="login.php" class="signup-link"><em><?php _e('Hoşgeldiniz'); ?></em> <strong><?php _e('Giriş Yapın!'); ?></strong></a></li>
-		</ul>
-		<?php } ?>
-            </div>
-        </div></div> 
-
-
-<div class="page snapped">
-        ...
-    </div>
-    <div class="page fill">
-        ...
-    </div>
+<?php include_once('header.php');
+// yan menu başlangıç?>
  <script type="text/javascript">
-	function goster(id) {
-		document.getElementById(id).style.display = 'block';
-	}
-	function gizle(id) {
-		document.getElementById(id).style.display = 'none';
-	}
-        function hesapla(id1,id2,id3) {
-    document.getElementById(id3).value=((document.getElementById(id1).value)*(document.getElementById(id2).value));
-var urun = (eval(document.getElementById('input_12').value) + eval(document.getElementById('input_1103').value)+eval(document.getElementById('input_1107').value)+eval(document.getElementById('input_1111').value)+eval(document.getElementById('input_1115').value));
-    document.getElementById('top').innerHTML=urun;
-    document.getElementById('kdv').innerHTML=urun*18/100;
-    document.getElementById('gtop').innerHTML=urun+(urun*18/100);
-    document.getElementById('toptop').value=urun;
-    document.getElementById('kdvkdv').value=urun*18/100;
-    document.getElementById('gtopgtop').value=urun+(urun*18/100);
+function goster(id) {
+    document.getElementById(id).style.display = 'block';
+}
+function gizle(id) {
+    document.getElementById(id).style.display = 'none';
+}
+function hesapla(id1, id2, id3) {
+    document.getElementById(id3).value = ((document.getElementById(id1).value) * (document.getElementById(id2).value));
+    var urun = (eval(document.getElementById('input_12').value) + eval(document.getElementById('input_1103').value) + eval(document.getElementById('input_1107').value) + eval(document.getElementById('input_1111').value) + eval(document.getElementById('input_1115').value));
+    document.getElementById('top').innerHTML = urun;
+    document.getElementById('kdv').innerHTML = urun * 18 / 100;
+    document.getElementById('gtop').innerHTML = urun + (urun * 18 / 100);
+    document.getElementById('toptop').value = urun;
+    document.getElementById('kdvkdv').value = urun * 18 / 100;
+    document.getElementById('gtopgtop').value = urun + (urun * 18 / 100);
 }
 
 </script>  
+<div class="page secondary">
+     
+     
+           
 
 <div class="page snapped">
    
 
  <div id="sidebar1" class="">
 <ul class="nav">
-    <li><a class="btn btn-warning" href="#"><i class="cus-application"></i> Fatura Bölümü</a></li>
+    <li><a class="btn btn-warning" href="#"><i class="cus-application"></i> Banka Bölümü</a></li>
     <br><br>
 <?php if( protectThis(1) ) : ?>
-<li><a class="btn  btn-success" href="fatura.php?do=yeni"><?php _e('Yeni Kayıt'); ?></a></li><br>
+<li><a class="btn btn-large btn-success" href="fatura.php?do=yeni"><?php _e('Yeni Kayıt'); ?></a></li><br>
 <li><a class="btn btn-large btn-danger" href="#"><?php _e('Sil İptal'); ?></a></li><br>
 <li><a class="btn btn-large btn-info" href="fatura.php?do=liste"><?php _e('Tam Liste'); ?></a></li><br>
 <li><a class="btn btn-large btn-inverse" href="fatura.php?do=arama"><?php _e('Arama'); ?></a></li><br>
-<li><a href="#"><?php _e(''); ?></a></li>
+<li><a href="#"><?php _e('');   ?></a></li>
 </ul>
 </div>
 </div>
      
 
 <div class="page fill">
-
-<div class="span10">
+  
+<div class="span12">
+  
+   
+    
+    <span class="btn btn-large btn-warning">
   
 <?php // Yan menü bitiş
  endif; ?>
-
-    
-    <span class="btn btn-large btn-warning">
+      
 <?php 
 
 // tüm liste
 
 if(($_GET['do'] === "liste")  ): 
-echo "<table class='hovered' >";
-    echo "<tr><td>Tarih</td><td>No</td><td>Firma Adı</td><td>Tutar</td><td>Not</td><td>Kod</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
-     $number=0;    
-foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM fatura INNER JOIN magaza ON  fatura.musno =  magaza.id') as $row) {
+echo "<table>";
+    echo "<tr><td>Tarih</td><td>No</td><td>Firma Adı</td><td style='width:150px'>Tutar</td><td>Not</td><td>Kod&nbsp;&nbsp;&nbsp; </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
+     $number=0;  
+     $kackayit=$generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM hareket INNER JOIN magaza ON  hareket.musno =  magaza.id');
+     $toplam=0.0;
+foreach($kackayit as $row) {
     $number++;
     echo "<tr class='",( ($number & 1) ? 'success' : 'info' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4]," TL </td><td> ",$row[5],"</td><td>",$row[0],"</td><td>",$row[6],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
-}
-    
-    
+    $toplam+=$row[4];
+    }
+ echo "<tr class='",( ($number & 1) ? 'success' : 'info' ),"'><td> </td><td> </td><td>Toplam : </td><td> ",$toplam," TL </td><td> </td><td></td><td></td><td></td></tr>" ;    
+echo '</table';  
+
     
 endif; 
  // listeleme sonu
@@ -169,7 +97,8 @@ if(($_GET['do'] === "yeni")  ): ?>
 <table border="0" cellpadding="0" cellspacing="1" style="width: 710px">
 <tbody>
 <tr>
-    <td style="width: 500px"><?php 
+    <td style="width: 500px">
+<?php 
          
  //     if ($_GET['id']) : {
 //     $elma=$_GET['id'];
@@ -177,19 +106,21 @@ if(($_GET['do'] === "yeni")  ): ?>
 // foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
  //   echo $row['kod']," -  ",$row['ad'],"<br>  ",$row['unvan'];
 // }
-  //    }
+  //    } 
 //else :{
      echo "<select style='width:500px' name='firma'><option value='.'>Firma Seç</option>";
      foreach($generic->query('SELECT * FROM magaza') as $row) {
-        echo "<option value='",$row['id'],"'";
+        echo "<option value='",$row['id'],"'", ($_GET['id']==$row['id'])? "selected" : "";
         echo ">", $row['kod']," -  "," ",$row['unvan'],"</option>\n";
         }
      echo "</select><p>";
 //}
 //endif;
      
-     
-    ?>   </td> <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
+ ?>
+        
+        
+    </td> <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
 <td style="width: 120px">     
       
     Tarih :
@@ -386,11 +317,11 @@ Fatura No:
 
  
 </form> 
-
+</div>
 
 
         <?php endif;  ?>
-    </table>
+   
      
      <?php if($_GET['do'] === "duzenle"): ?>
       <?php 
@@ -439,7 +370,7 @@ endif;
 
  if(isset($_POST['faturano'])) :
      
-     echo 'kaydediliyor.....';			
+    		
 			$musno = $generic->secure($_POST['firma']);
                         $tarih = $generic->secure($_POST['tarih']);
                         $turu = $generic->secure($_POST['turu']);
@@ -470,10 +401,10 @@ endif;
                         $param=array (':firma'=>$musno,':tarih'=>$tarih,':turu'=>$turu,
                             ':faturano' => $faturano,':nott'=>$nott,':top'=>$top,
                             ':kdv'=>$kdv,':gtop'=>$gtop    );
-                        $generic->query('INSERT INTO fatura (musno,tarih,turu,faturano,top,kdv,gtop,nott) VALUES ( :firma , :tarih,:turu,:faturano,:top,:kdv,:gtop,:nott)',$param);
+                       $okmu= $generic->query('INSERT INTO hareket (musno,tarih,turu,faturano,top,kdv,gtop,nott) VALUES ( :firma , :tarih,:turu,:faturano,:top,:kdv,:gtop,:nott)',$param);
 		//	$this->token = !empty($_POST['token']) ? $_POST['token'] : '';
 		//	$this->process();
-              
+              if ($okmu->rowCount()==1): echo"kaydedildi";  header( 'Location: fatura.php?do=liste' ) ; endif;
 
 		endif;
                 ?>
@@ -488,10 +419,14 @@ endif;
         
         
     </span>  
-       </div>     
+       </div></div>    
+  
+  
+
+
   <div class="charms">
        nen
     </div>
         
-        <br><br><br><br><br><br><br><br><br>
+      
     <?php include_once('footer.php'); ?>
