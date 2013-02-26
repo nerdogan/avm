@@ -105,7 +105,7 @@ endif;
 // Ekleme ve Düzenleme   
 if(($_GET['do'] === "yeni")  ): ?>
 
-<form class="" action="banka.php" method="post" name="formbanka" id="formekle" accept-charset="utf-8">
+<form class="" action="banka1.php" method="post" name="formbanka" id="formekle" accept-charset="utf-8">
   <input type="hidden" name="formID" value="30133819675356" />
   <div class="form-all">
    
@@ -126,100 +126,80 @@ if(($_GET['do'] === "yeni")  ): ?>
 
 <TR>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<B>&nbsp;bankaadi</B>
+<B>&nbsp;banka_id</B>
 </span></div></TD>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<input type ='text' name = 'bankaadi' size = '60' maxlength = '75' value = "<? echo $bankaadi; ?>">
-</span></div></TD>
-</TR>
-<TR>
-<TD class='row4'> <div align='left'><span class='postdetails'>
-<B>&nbsp;hesapsahibi</B>
-</span></div></TD>
-<TD class='row4'> <div align='left'><span class='postdetails'>
-<input type ='text' name = 'hesapsahibi' size = '60' maxlength = '255' value = "<? echo $hesapsahibi; ?>">
+<input type = 'text' name = 'banka_id' size = '16+5' maxlength = '11' value = "<? echo $banka_id; ?>">
 </span></div></TD>
 </TR>
 <TR>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<B>&nbsp;subeadi</B>
+<B>&nbsp;tarih</B>
 </span></div></TD>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<input type ='text' name = 'subeadi' size = '60' maxlength = '75' value = "<? echo $subeadi; ?>">
-</span></div></TD>
-</TR>
-<TR>
-<TD class='row4'> <div align='left'><span class='postdetails'>
-<B>&nbsp;hesapno</B>
-</span></div></TD>
-<TD class='row4'> <div align='left'><span class='postdetails'>
-<input type ='text' name = 'hesapno' size = '55' maxlength = '50' value = "<? echo $hesapno; ?>">
+<input type= 'text' name = 'tarih' size = '5' maxlength = '10' value = "<? echo $tarih; ?>">
 </span></div></TD>
 </TR>
 <TR>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<B>&nbsp;parabirimi</B>
+<B>&nbsp;dekontno</B>
 </span></div></TD>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<input type ='text' name = 'parabirimi' size = '15' maxlength = '10' value = "<? echo $parabirimi; ?>">
-</span></div></TD>
-</TR>
-<TR>
-<TD class='row4'> <div align='left'><span class='postdetails'>
-<B>&nbsp;telefon1</B>
-</span></div></TD>
-<TD class='row4'> <div align='left'><span class='postdetails'>
-<input type ='text' name = 'telefon1' size = '55' maxlength = '50' value = "<? echo $telefon1; ?>">
+<input type ='text' name = 'dekontno' size = '30' maxlength = '25' value = "<? echo $dekontno; ?>">
 </span></div></TD>
 </TR>
 <TR>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<B>&nbsp;telefon2</B>
+<B>&nbsp;tutar</B>
 </span></div></TD>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<input type ='text' name = 'telefon2' size = '55' maxlength = '50' value = "<? echo $telefon2; ?>">
-</span></div></TD>
-</TR>
-<TR>
-<TD class='row4'> <div align='left'><span class='postdetails'>
-<B>&nbsp;faks</B>
-</span></div></TD>
-<TD class='row4'> <div align='left'><span class='postdetails'>
-<input type ='text' name = 'faks' size = '55' maxlength = '50' value = "<? echo $faks; ?>">
 </span></div></TD>
 </TR>
 <TR>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<B>&nbsp;notlar</B>
+<B>&nbsp;aciklama</B>
 </span></div></TD>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<input type ='text' name = 'notlar' size = '60' maxlength = '254' value = "<? echo $notlar; ?>">
-</span></div></TD>
-</TR>
-
-<TR>
-<TD class='row4'> <div align='left'><span class='postdetails'>
-<B>&nbsp;iban</B>
-</span></div></TD>
-<TD class='row4'> <div align='left'><span class='postdetails'>
-<input type ='text' name = 'iban' size = '55' maxlength = '50' value = "<? echo $iban; ?>">
 </span></div></TD>
 </TR>
 <TR>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<B>&nbsp;email</B>
+<B>&nbsp;harekettipi</B>
 </span></div></TD>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<input type ='text' name = 'email' size = '55' maxlength = '50' value = "<? echo $email; ?>">
+<input type ='text' name = 'harekettipi' size = '55' maxlength = '50' value = "<? echo $harekettipi; ?>">
+</span></div></TD>
+</TR>
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;op</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type= 'checkbox' name = 'op' value = 'true'> Set 
+</span></div></TD>
+</TR>
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;kullanici_no_ekleyen</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type = 'text' name = 'kullanici_no_ekleyen' size = '16+5' maxlength = '11' value = "<? echo $kullanici_no_ekleyen; ?>">
+</span></div></TD>
+</TR>
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;kullanici_no_duzenleyen</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type = 'text' name = 'kullanici_no_duzenleyen' size = '16+5' maxlength = '11' value = "<? echo $kullanici_no_duzenleyen; ?>">
 </span></div></TD>
 </TR>
 <TR>
 <TD class=''> <div align='left'><span class='postdetails'>
 <B>&nbsp;</B>
 </span></div></TD>
-<TD class='darkrow3'> <div align='left'><span class='postdetails'><input type = 'submit' value = ' Kaydet '></span></div></TD>
-
-</TR>   
+<TD class='darkrow3'> <div align='left'><span class='postdetails'><input type = 'submit' value = 'Kaydet'></span></div></TD>
+  
 
 </tbody>
 </table> 
