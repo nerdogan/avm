@@ -129,7 +129,14 @@ if(($_GET['do'] === "yeni")  ): ?>
 <B>&nbsp;banka_id</B>
 </span></div></TD>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<input type = 'text' name = 'banka_id' size = '16+5' maxlength = '11' value = "<? echo $banka_id; ?>">
+  <?php
+ echo "<select style='width:300px' name='banka_id'><option value='.'>Banka Seç</option>";
+     foreach($generic->query('SELECT * FROM bankakart') as $row) {
+        echo "<option value='",$row['id'],"'", ($_GET['id']==$row['id'])? "selected" : "";
+        echo ">", $row[1]," - "," ",$row[3]," ",$row[5]," ",$row[4]," ","</option>\n";
+        }
+     echo "</select><p>";
+         ?>
 </span></div></TD>
 </TR>
 <TR>
@@ -137,7 +144,7 @@ if(($_GET['do'] === "yeni")  ): ?>
 <B>&nbsp;tarih</B>
 </span></div></TD>
 <TD class='row4'> <div align='left'><span class='postdetails'>
-<input type= 'text' name = 'tarih' size = '5' maxlength = '10' value = "<? echo $tarih; ?>">
+<input type= 'text' name = 'tarih' id='datepicker'  value = "<? echo $tarih; ?>">
 </span></div></TD>
 </TR>
 <TR>
@@ -153,6 +160,7 @@ if(($_GET['do'] === "yeni")  ): ?>
 <B>&nbsp;tutar</B>
 </span></div></TD>
 <TD class='row4'> <div align='left'><span class='postdetails'>
+<input type = 'text' name = 'tutar' size = '5+5' maxlength = '' value = "<? echo $tutar; ?>">
 </span></div></TD>
 </TR>
 <TR>
@@ -160,6 +168,7 @@ if(($_GET['do'] === "yeni")  ): ?>
 <B>&nbsp;aciklama</B>
 </span></div></TD>
 <TD class='row4'> <div align='left'><span class='postdetails'>
+<input type ='text' name = 'aciklama' size = '60' maxlength = '250' value = "<? echo $aciklama; ?>">
 </span></div></TD>
 </TR>
 <TR>
@@ -198,8 +207,8 @@ if(($_GET['do'] === "yeni")  ): ?>
 <TD class=''> <div align='left'><span class='postdetails'>
 <B>&nbsp;</B>
 </span></div></TD>
-<TD class='darkrow3'> <div align='left'><span class='postdetails'><input type = 'submit' value = 'Kaydet'></span></div></TD>
-  
+<TD class='darkrow3'> <div align='left'><span class='postdetails'><input type = 'submit' value = 'submit data'></span></div></TD>
+
 
 </tbody>
 </table> 
