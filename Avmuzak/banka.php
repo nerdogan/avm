@@ -33,10 +33,9 @@ function hesapla(id1, id2, id3) {
     <li><a class="btn btn-warning" href="#"><i class="cus-application"></i> Banka Bölümü</a></li>
     <br><br>
 <?php if( protectThis(1) ) : ?>
-<li><a class="btn btn-large btn-success" href="fatura.php?do=yeni"><?php _e('Yeni Kayıt'); ?></a></li><br>
+<li><a class="btn btn-large btn-success" href="banka.php?do=yeni"><?php _e('Yeni Kayıt'); ?></a></li><br>
 <li><a class="btn btn-large btn-danger" href="#"><?php _e('Sil İptal'); ?></a></li><br>
-<li><a class="btn btn-large btn-info" href="fatura.php?do=liste"><?php _e('Tam Liste'); ?></a></li><br>
-<li><a class="btn btn-large btn-inverse" href="fatura.php?do=arama"><?php _e('Arama'); ?></a></li><br>
+<li><a class="btn btn-large btn-info" href="banka.php?do=liste"><?php _e('Tam Liste'); ?></a></li><br>
 <li><a href="#"><?php _e('');   ?></a></li>
 </ul>
 </div>
@@ -52,9 +51,36 @@ function hesapla(id1, id2, id3) {
     <span class="btn btn-large btn-warning">
   
 <?php // Yan menü bitiş
- endif; ?>
+ endif;
+ if(($_GET['msg'] === "1")): $generic->displayMessage(sprintf('<div class="alert alert-success">' . _('Başarıyla kaydedildi. ('). ')</div>'),FALSE);
+ endif;
+ ?>
       
 <?php 
+
+$id = $_POST['id'];
+$bankaadi = $_POST['bankaadi'];
+$hesapsahibi = $_POST['hesapsahibi'];
+$subeadi = $_POST['subeadi'];
+$hesapno = $_POST['hesapno'];
+$parabirimi = $_POST['parabirimi'];
+$telefon1 = $_POST['telefon1'];
+$telefon2 = $_POST['telefon2'];
+$faks = $_POST['faks'];
+$notlar = $_POST['notlar'];
+$hesapbakiye = $_POST['hesapbakiye'];
+$iban = $_POST['iban'];
+$email = $_POST['email'];
+$param = array (':id'=>$id,':bankaadi'=>$bankaadi,':hesapsahibi'=>$hesapsahibi,':subeadi'=>$subeadi,':hesapno'=>$hesapno,':parabirimi'=>$parabirimi,':telefon1'=>$telefon1,':telefon2'=>$telefon2,':faks'=>$faks,':notlar'=>$notlar,':hesapbakiye'=>$hesapbakiye,':iban'=>$iban,':email'=>$email);
+if (!empty($bankaadi)){
+$query11 = "INSERT INTO bankakart (id,bankaadi,hesapsahibi,subeadi,hesapno,parabirimi,telefon1,telefon2,faks,notlar,hesapbakiye,iban,email) VALUES ( :id,:bankaadi,:hesapsahibi,:subeadi,:hesapno,:parabirimi,:telefon1,:telefon2,:faks,:notlar,:hesapbakiye,:iban,:email )";
+$result = $generic->query($query11, $param);
+ if ($result->rowCount()==1): echo"kaydedildi";  header( 'Location: banka.php?do=liste&msg=1' ) ; endif;
+}
+
+ 
+ 
+ 
 
 // tüm liste
 
@@ -62,7 +88,7 @@ if(($_GET['do'] === "liste")  ):
 echo "<table>";
     echo "<tr><td>Tarih</td><td>No</td><td>Firma Adı</td><td style='width:150px'>Tutar</td><td>Not</td><td>Kod&nbsp;&nbsp;&nbsp; </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
      $number=0;  
-     $kackayit=$generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM hareket INNER JOIN magaza ON  hareket.musno =  magaza.id');
+     $kackayit=$generic->query('SELECT *  FROM bankakart ');
      $toplam=0.0;
 foreach($kackayit as $row) {
     $number++;
@@ -79,13 +105,13 @@ endif;
 // Ekleme ve Düzenleme   
 if(($_GET['do'] === "yeni")  ): ?>
 
-<form class="" action="fatura.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
+<form class="" action="banka.php" method="post" name="formbanka" id="formekle" accept-charset="utf-8">
   <input type="hidden" name="formID" value="30133819675356" />
   <div class="form-all">
    
     <div class="form-header-group">
           <h3 id="header_1" class="form-header">
-              Fatura &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Banka &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <a class="btn btn-success" href="#" onclick="document.getElementById('formekle').submit()"><i class="icon-ok icon-white"></i> KAYDET </a>
                </h3>
         </div>
@@ -96,224 +122,107 @@ if(($_GET['do'] === "yeni")  ): ?>
         
 <table border="0" cellpadding="0" cellspacing="1" style="width: 710px">
 <tbody>
-<tr>
-    <td style="width: 500px">
-<?php 
-         
- //     if ($_GET['id']) : {
-//     $elma=$_GET['id'];
-//     $param=array (':ad'=> $elma ); 
-// foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {
- //   echo $row['kod']," -  ",$row['ad'],"<br>  ",$row['unvan'];
-// }
-  //    } 
-//else :{
-     echo "<select style='width:500px' name='firma'><option value='.'>Firma Seç</option>";
-     foreach($generic->query('SELECT * FROM magaza') as $row) {
-        echo "<option value='",$row['id'],"'", ($_GET['id']==$row['id'])? "selected" : "";
-        echo ">", $row['kod']," -  "," ",$row['unvan'],"</option>\n";
-        }
-     echo "</select><p>";
-//}
-//endif;
-     
- ?>
-        
-        
-    </td> <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td style="width: 120px">     
-      
-    Tarih :
-        <div id="cid_99" class="form-input">
-              <input type="text"  id="datepicker"  name="tarih" style="width: 90px" /> 
-        </div>
-     
-</tr><tr>
-    <td> </td> <td> </td>
-        <td>Fatura Tipi:
-        <div id="cid_6" class="form-input">
-          <select class="form-dropdown" style="width:100px" id="input_5" name="turu">
-            <option>Seçiniz</option>
-            <option value="1">ALIŞ </option>
-            <option value="2">SATIŞ </option>
-            <option value="3">ALIŞ İADE</option>
-            <option value="3">SATIŞ İADE</option>
-            
-          </select>
-        </div>
-     
-   </td>
-</tr>
-<tr>
-  <td> </td> <td> </td> 
-   <td> 
-Fatura No:
-<div id="cid_4" class="form-input">
-<input type="text" class="" id="input_3" name="faturano"  style="width: 90px" />
-</div>
 
-</td>
-</tr>
+
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;bankaadi</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type ='text' name = 'bankaadi' size = '60' maxlength = '75' value = "<? echo $bankaadi; ?>">
+</span></div></TD>
+</TR>
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;hesapsahibi</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type ='text' name = 'hesapsahibi' size = '60' maxlength = '255' value = "<? echo $hesapsahibi; ?>">
+</span></div></TD>
+</TR>
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;subeadi</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type ='text' name = 'subeadi' size = '60' maxlength = '75' value = "<? echo $subeadi; ?>">
+</span></div></TD>
+</TR>
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;hesapno</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type ='text' name = 'hesapno' size = '55' maxlength = '50' value = "<? echo $hesapno; ?>">
+</span></div></TD>
+</TR>
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;parabirimi</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type ='text' name = 'parabirimi' size = '15' maxlength = '10' value = "<? echo $parabirimi; ?>">
+</span></div></TD>
+</TR>
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;telefon1</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type ='text' name = 'telefon1' size = '55' maxlength = '50' value = "<? echo $telefon1; ?>">
+</span></div></TD>
+</TR>
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;telefon2</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type ='text' name = 'telefon2' size = '55' maxlength = '50' value = "<? echo $telefon2; ?>">
+</span></div></TD>
+</TR>
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;faks</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type ='text' name = 'faks' size = '55' maxlength = '50' value = "<? echo $faks; ?>">
+</span></div></TD>
+</TR>
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;notlar</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type ='text' name = 'notlar' size = '60' maxlength = '254' value = "<? echo $notlar; ?>">
+</span></div></TD>
+</TR>
+
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;iban</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type ='text' name = 'iban' size = '55' maxlength = '50' value = "<? echo $iban; ?>">
+</span></div></TD>
+</TR>
+<TR>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<B>&nbsp;email</B>
+</span></div></TD>
+<TD class='row4'> <div align='left'><span class='postdetails'>
+<input type ='text' name = 'email' size = '55' maxlength = '50' value = "<? echo $email; ?>">
+</span></div></TD>
+</TR>
+<TR>
+<TD class=''> <div align='left'><span class='postdetails'>
+<B>&nbsp;</B>
+</span></div></TD>
+<TD class='darkrow3'> <div align='left'><span class='postdetails'><input type = 'submit' value = ' Kaydet '></span></div></TD>
+
+</TR>   
 
 </tbody>
-</table><br><br>
-
- <table border="0" cellpadding="0" cellspacing="1" style="width: 660px">
-<tbody>
-
- <tr>
- <td>   
-  <label class="form-label-left" id="label_5" for="input_4" style="width: 150px">Tanımlama</label>
-</td>
- <td style="width: 60px"><label class="form-label-left" id="label_14" for="input_10">Miktar</label>
- </td>
- <td style="width: 60px"><label class="form-label-left" id="label_16" for="input_11">Fiyat</label>
- </td>
- <td style="width: 100px"><label class="form-label-left" id="label_15" for="input_12">Tutar</label>
- </td>
- <td style="width: 70px">&nbsp; </td>
-       </tr>     
-          
-          
-       
-   
-            
-      
-   </tbody>
 </table> 
-
-<table border="0" cellpadding="0" cellspacing="1" style="width: 660px">
-<tbody>
-<tr>
-<td><input type="text" class="form-textbox" id="input_4" name="tanim1" style="width: 350px" /></td>
-<td style="width: 60px"><input type="text" class="form-textbox" id="input_10" name="miktar1" style="width: 50px" value="1" onkeyup="hesapla('input_10','input_11','input_12')"/>
-</td>
-<td style="width: 60px"><input type="text" class="form-textbox" id="input_11" name="fiyat1" style="width: 50px" onkeyup="hesapla('input_10','input_11','input_12')"/>
-</td>
-<td style="width: 100px"><input type="text" class="form-textbox" id="input_12" name="tutar1" style="width: 100px" value="0" />
-</td><td>&nbsp;</td><td style="width:70px"><span id="ekle1" class="badge badge-info"  onclick="goster('cid_116');gizle('ekle1')">EKLE</span>
-</td>
-</tr>
-</tbody>
-</table> 
-
-  <table id="cid_116" border="0" cellpadding="0" cellspacing="1" style="width: 660px;display: none">
-<tbody>
-
- <tr>
- <td>   
- <input type="text" class="form-textbox" id="input_1100" name="tanim2" style="width: 350px"  />
-</td>
- <td style="width: 60px">
- <input type="text" class="form-textbox" id="input_1101" name="miktar2" style="width: 50px" value="1" onkeyup="hesapla('input_1101','input_1102','input_1103')"/>
- </td>
- <td style="width: 60px">
- <input type="text" class="form-textbox" id="input_1102" name="fiyat2" style="width: 50px" onkeyup="hesapla('input_1101','input_1102','input_1103')"/>
- </td>
- <td style="width: 100px">
-<input type="text" class="form-textbox" id="input_1103" name="tutar2" style="width: 100px" value="0" />
-</td>
-<td style="width: 70px">&nbsp;<span id="ekle2" class="badge badge-info" onclick="goster('cid_117');gizle('ekle2')">EKLE</span></td>
-       </tr>     
-          
-          
-       
-   
-            
-      
-   </tbody>
-</table> 
- <table id="cid_117" border="0" cellpadding="0" cellspacing="1" style="width: 660px;display: none">
-<tbody>
-
- <tr>
- <td>   
- <input type="text" class="form-textbox" id="input_1104"  name="tanim3" style="width: 350px" />
-</td>
- <td>
- <input type="text" class="form-textbox" id="input_1105" name="miktar3" style="width: 50px" value="1" onkeyup="hesapla('input_1105','input_1106','input_1107')"/>
- </td>
- <td>
- <input type="text" class="form-textbox" id="input_1106" name="fiyat3" style="width: 50px" onkeyup="hesapla('input_1105','input_1106','input_1107')"/>
- </td>
- <td>
- <input type="text" class="form-textbox" id="input_1107" name="tutar3" style="width: 100px" value="0" />
- </td>
-<td>&nbsp;<span id="ekle3" class="badge badge-info" onclick="goster('cid_118');gizle('ekle3')">EKLE</span></td>
-</tr>     
-</tbody>
-</table> 
- <table id="cid_118" border="0" cellpadding="0" cellspacing="1" style="width: 660px;display: none">
-<tbody>
-
- <tr>
- <td>   
- <input type="text" class="form-textbox" id="input_1108" name="tanim4" style="width: 350px" />
-</td>
- <td>
- <input type="text" class="form-textbox" id="input_1109" name="miktar4" style="width: 50px" value="1" onkeyup="hesapla('input_1109','input_1110','input_1111')"/>
- </td>
- <td>
- <input type="text" class="form-textbox" id="input_1110" name="fiyat4" style="width: 50px" onkeyup="hesapla('input_1109','input_1110','input_1111')" />
- </td>
- <td>
- <input type="text" class="form-textbox" id="input_1111" name="tutar4" style="width: 100px" value="0" />
- </td>
-<td>&nbsp;<span id="ekle4" class="badge badge-info" onclick="goster('cid_119');gizle('ekle4')">EKLE</span></td>
-</tr>     
-</tbody>
-</table> 
- <table id="cid_119" border="0" cellpadding="0" cellspacing="1" style="width: 660px;display: none">
-<tbody>
-
- <tr>
- <td>   
- <input type="text" class="form-textbox" id="input_1112" name="tanim5" style="width: 350px" />
-</td>
- <td>
- <input type="text" class="form-textbox" id="input_1113" name="miktar5" style="width: 50px" value="1" onkeyup="hesapla('input_1113','input_1114','input_1115')" />
- </td>
- <td>
- <input type="text" class="form-textbox" id="input_1114" name="fiyat5" style="width: 50px" onkeyup="hesapla('input_1113','input_1114','input_1115')" />
- </td>
- <td>
- <input type="text" class="form-textbox" id="input_1115" name="tutar5" style="width: 100px" value="0" />
- </td>
-<td>&nbsp;<span id="ekle5" class="badge badge-info" onclick="goster('cid_120');gizle('ekle5')"></span></td>
-</tr>     
-</tbody>
-</table> 
-
-<hr style="margin-bottom: 10px;margin-top: 10px;border-bottom-color: #2f96b4;width: 710px">
-
- <table id="cid_119" border="0" cellpadding="0" cellspacing="1" style="width: 710px">
-<tbody>
-
- <tr>
- <td>   
-<TEXTAREA NAME="not" ROWS="3" COLS="65" style="width: 350px"></TEXTAREA>
-</td>
-<td>
- <!-- fatura alt toplamını kdv işlemi -->
-    <table>
- <tr>
-     <td> Toplam :</td><td><span id="top"> 0 </span>&nbsp; TL</td>
-      
-</tr>
-<tr>
-     <td> KDV :</td><td><span id="kdv"> 0 </span>&nbsp; TL</td>
-</tr><tr>
-    <td > Genel Toplam :</td><td><span id="gtop"> 0 </span>&nbsp; TL</td>
-</tr>
-</table>
-</tr>
-  
-    
-</tbody>
-</table> 
-<input type="hidden" name="toplam" id="toptop" >
-<input type="hidden" name="kdv" id="kdvkdv">
-<input type="hidden" name="gtop" id="gtopgtop">
 
  
 </form> 
