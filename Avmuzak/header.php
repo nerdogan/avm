@@ -68,6 +68,8 @@ function saatigoster() {
 });
 
 });
+
+
   </script>   
  <style>
   .ui-menu { width: 100px; }
@@ -110,11 +112,9 @@ function saatigoster() {
 		 	<li><a href="#">Avm Menü</a>
                     <ul>
 					<li><a href="magaza.php">Mağaza</a></li>
-					<li><a href="cari.php">Cari</a></li>
-					<li><a href="fatura.php">Fatura</a></li>
-                                        <li><a href="banka.php">Banka</a></li>
-                                        <li><a href="banka1.php">Ödeme</a></li>
-                                        <li><a href="login.php">Tahsilat</a></li>
+					<li><a href="cari.php">Hareket</a></li>
+					<li><a href="fatura.php">Liste</a></li>
+                                     
 			   </ul>
                     </li>
                     
@@ -162,7 +162,7 @@ else { ?>
 		<?php } ?>
             </span>
         </div></div> 
-<br><br>	
+	
 		<?php  
                function toUpperCase( $input ){	
 return strtoupper( strtr( $input,'ğüşıiöç', 'ĞÜŞIİÖÇ') );

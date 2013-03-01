@@ -73,7 +73,7 @@ endif; ?>
                                        
                                          <img src="./assets/images/teknik.png" style="width: 96px;height: 96px;margin-top: 40px" class="place-left"/>
                                       
-                                         <h1 style="margin-bottom: 25px;margin-top: 20px" class="place-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEKNİK</h1>
+                                         <h1 style="margin-bottom: 25px;margin-top: 20px" class="place-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEKNİK</h1>
                                         <p>
                                          Demirbaş bilgileri,bakım zamanları işlemleri
                                          Mağazaların tamir ve tadilat talepleri
@@ -134,14 +134,11 @@ window.setInterval("saatigoster();",60000);
                         
               <div class="tile triple bg-color-torq outline-color-blue">
                                     <div class="tile-content">
-                                      <img src="./assets/images/hesap.png" class="place-left" style="height: 126px;width: 116px;margin-top: 10px"/>
-                                        <h1 style="margin-top: 20px;margin-bottom: 25px" >HAREKETLER</h1>
-                                       
-                                        
-                                        <p >
-                                           
-                                          Cari fatura, banka, ödeme, tahsilat ile ilgili tüm işlemleri buradan yapabilirsiniz. 
-                                     </p> 
+                                      <img src="./assets/images/hesap.png" class="place-left" style="height: 136px;width: 96px;margin-top: 20px"/>
+                                        <h1 style="margin-top: 20px;margin-bottom: 25px" class="place-right">HAREKETLER</h1>
+                                        <p>
+                                            Cari fatura, banka, ödeme, tahsilat ile ilgili tüm işlemleri buradan yapabilirsiniz. 
+                                       </p> 
                                      
                                     </div>
                                     <div class="brand">
@@ -193,50 +190,32 @@ window.setInterval("saatigoster();",60000);
                                     <div class="tile-content">
                                         <h2></h2>
                                         <h5></h5>
-                                        <h3 class="fg-color-darken" > <?php echo $_SESSION['jigowatt']['username']; ?>:</h3>
+                                        <h4 class="fg-color-darken" > <?php echo $_SESSION['jigowatt']['username']; ?>:</h4>
                                         <p>
                                          Lorem ipsum.. Lorem ipsum..  Lorem ipsum..  
                                         </p>
                                     </div>
                                     <div class="brand">
-                                        <div class="badge">12</div>
-                                        <img class="icon" src="./assets/images/Mail128.png"/>
-                                    </div>
+                                        <div class="badge"></div>
+                                        <img class="icon" src="./assets/images/Mail128.png"/> <div class="fg-color-blueDark place-right">Tüm Mesajlar&nbsp;&nbsp;</div>                                    </div>
            </div>
         
   
-        <div class="tile double image">
-                        <div class="tile-content">
-                            <img src="./assets/images/4.jpg" alt="" />
-                        </div>
-                        
-                    </div>
-
-                           
+                               
         
-        
-        
+        <!---        
            <div class="tile double bg-color-yellow " data-role="tile-slider" data-param-period="3000">
                          
        <?php    $number=0;    
-foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM hareket INNER JOIN magaza ON  hareket.musno =  magaza.id') as $row) {
-    $number++;
-    echo '<div class="tile-content fg-color-red">';
-    echo "<h4>",$row[2],"</h4><h4>",$row[4],"TL</h4><p>",$row[1]," tarih ",$row[3]," nolu fatura <a href='fatura.php?do=liste'></a></p></div>" ;
-}
-    
-   ?>
+  //  foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM hareket INNER JOIN magaza ON  hareket.musno =  magaza.id') as $row) {
+  //  $number++;
+  //  echo '<div class="tile-content fg-color-red">';
+   // echo "<h4>",$row[2],"</h4><h4>",$row[4],"TL</h4><p>",$row[1]," tarih ",$row[3]," nolu fatura <a href='fatura.php?do=liste'></a></p></div>" ;
+// }
+       ?>
         </div>
-        
-                    <div class="tile icon bg-color-red">
-                        <div class="tile-content">
-                            <img src="./assets/images/excel2013icon.png"/>
-                        </div>
-                        <div class="brand">
-                            <span class="name">Excel 2013</span>
-                        </div>
-                    </div>
-                 
+        --->
+              
             
        
         

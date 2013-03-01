@@ -1,9 +1,9 @@
 <?php include_once('classes/login.class.php'); ?>
 <?php include_once('header.php'); ?>
-<div class="page">
+<div class="page" >
            
             <div class="page-header-content">
-               
+              
                
 <div id="forgot-form" class="modal hide fade">
 	<div class="modal-header">

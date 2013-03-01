@@ -3,6 +3,7 @@
 // yan menu başlangıç?>
 <?php if( !protectThis("*") ) :header( 'Location: login.php' );
 endif; ?>
+
  <script type="text/javascript">
 function goster(id) {
     document.getElementById(id).style.display = 'block';

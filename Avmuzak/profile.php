@@ -8,7 +8,6 @@
 <h1>
 
 	
-
 	<?php echo $profile->getField('username') . ' (' . $profile->getField('name') . ')'; ?>
 
 </h1>

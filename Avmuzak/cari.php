@@ -3,7 +3,7 @@
 // yan menu başlangıç?>
 <?php if( !protectThis("*") ) :header( 'Location: login.php' );
 endif; ?>
-
+ 
  <script type="text/javascript">
      document.title="Avm Mağaza Kontrol Sistemi 2013 - CARİ BÖLÜMÜ"
   //   document.getElementById('basarama').action='home.php';

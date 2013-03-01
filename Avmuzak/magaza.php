@@ -2,7 +2,7 @@
 <?php include_once('header.php');
 // yan menu başlangıç?>
 <?php if( !protectThis("*") ) :header( 'Location: login.php' );
-endif; ?>
+endif; ?> 
 
  <script type="text/javascript">
 	function goster(id) {

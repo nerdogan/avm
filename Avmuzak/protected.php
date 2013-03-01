@@ -2,7 +2,7 @@
 <?php include_once('header.php'); ?>
 
 <div class="row">
-
+ 
 	<div class="span6">
 	<?php if( protectThis(1) ) : ?>
 		<h1 class="page-header"><?php _e('Admin only text <small>User level: 1</small>'); ?></h1>
