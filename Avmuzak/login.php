@@ -4,7 +4,7 @@
            
             <div class="page-header-content">
                
-                <div class="span12" style="position: fixed;top:250px;left: 50%;width:560px;margin-left:-150px;">
+               
 <div id="forgot-form" class="modal hide fade">
 	<div class="modal-header">
 		<a class="close" data-dismiss="modal">&times;</a>
@@ -27,35 +27,31 @@
 		<p class="pull-left"><?php _e('Lütfen email adresinizi kontrol ediniz.'); ?></p>
 	</div>
 </div>
-
+ <div class="span4" style="position: fixed;top:250px;left: 50%;width:500px;margin-left:-250px;">
 <div class="row">
-    <div class="btn btn-large btn-primary">
-	<div class="main login">
+   
+	
 		<form method="post" class="form normal-label" action="login.php">
 		<fieldset>
-		<h4><?php _e('Sisteme Giriş Yapın'); ?></h4>
-			<div class="control-group">
-			<label for="username" class="login-label"><?php _e('Kullanıcı Adı'); ?></label>
-				<div class="controls">
-					<input class="xlarge" id="username" name="username" maxlength="15" type="text"/>
-                                        <p>	<span class="forgot"><a data-toggle="modal" href="#forgot-form" id="forgotlink" tabindex=-1><?php _e('Parolanızı mı Unuttunuz'); ?></a>?</span></p>
-				</div>
-			</div>
-
-			<div class="control-group">
-			<label for="password" class="login-label"><?php _e('Parolanız'); ?></label>
-				<div class="controls">
-					<input class="xlarge" id="password" name="password" size="30" type="password"/>
-				</div>
-			</div>
+<p><span class="forgot place-right">
+        <a data-toggle="modal" href="#forgot-form" id="forgotlink" tabindex=-1><?php _e('Parolamı Unuttum'); ?></a>?
+    </span></p>
+    
+    <img class="place-left" src="assets/images/powerlock.png">
+		<input  class="place-right" id="username" name="username" maxlength="15" type="text" style="height: 46px; -webkit-border-radius: 7px;width: 300px" placeholder="Kullanıcı adı"/><br><br>
+               <input class="place-right" id="password" name="password" size="30" type="password"  style="height: 46px; -webkit-border-radius: 7px;width: 300px" placeholder="Parola"/>
+				
 		</fieldset>
 
 		<input type="hidden" name="token" value="<?php echo $_SESSION['jigowatt']['token']; ?>"/>
-		<input type="submit" value="<?php _e('Giriş Yap'); ?>" class="btn login-submit" id="login-submit" name="login"/>
-
-		<label class="remember" for="remember">
-			<input type="checkbox" id="remember" name="remember"/><span><?php _e('Beni Hatırla !'); ?></span>
+                <div class="span4">
+                <label class="remember  place-right" for="remember">
+			<input type="checkbox" id="remember" name="remember"/><span ><?php _e(' Beni Hatırla !'); ?></span>
 		</label>
+                </div>
+		<input type="submit" value="<?php _e(' Giriş '); ?>" class=" btn login-submit place-right" id="login-submit" name="login"/>
+               
+		
 
 		<p class="signup"><a href="sign_up.php"><?php _e(''); ?></a></p>
 
@@ -71,7 +67,10 @@
 
 		</form>
 	</div>
+     
 
-</div></div></div></div></div>
+</div></div></div></div>
+
+ 
 
 <?php include_once('footer.php'); ?>

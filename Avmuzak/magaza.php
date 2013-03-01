@@ -1,6 +1,8 @@
 <?php include_once('classes/check.class.php'); ?>
 <?php include_once('header.php');
 // yan menu başlangıç?>
+<?php if( !protectThis("*") ) :header( 'Location: login.php' );
+endif; ?>
 
  <script type="text/javascript">
 	function goster(id) {
@@ -37,7 +39,7 @@
 
 <div class="span10">
     
-    <span class="btn btn-large btn-warning fg-color-darken" style="background-color:gainsboro  ;filter:alpha(opacity=70);opacity:.7;">
+    <span class="btn btn-large btn-warning fg-color-darken " style="background-color:ghostwhite  ;filter:alpha(opacity=70);opacity:.7;">
 <?php // Yan menü bitiş
  endif; ?>
 <?php 

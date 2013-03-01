@@ -1,6 +1,8 @@
 <?php include_once('classes/check.class.php'); ?>
 <?php include_once('header.php');
 // yan menu başlangıç?>
+<?php if( !protectThis("*") ) :header( 'Location: login.php' );
+endif; ?>
 
  <script type="text/javascript">
      document.title="Avm Mağaza Kontrol Sistemi 2013 - CARİ BÖLÜMÜ"
@@ -137,7 +139,7 @@ if(isset($_POST['q4_magazaAdi'])) :
 
 <div class="span10">
     
-    <span class="btn btn-large btn-warning">
+    <span class="btn btn-large ">
 <?php // Yan menü bitiş
  endif; ?>
 

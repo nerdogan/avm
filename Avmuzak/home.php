@@ -1,6 +1,7 @@
 <?php include_once('classes/check.class.php'); ?>
 <?php include_once('header.php'); ?>
-
+<?php if( !protectThis("*") ) :header( 'Location: login.php' );
+endif; ?>
 
 <div class="page secondary">
      
@@ -9,11 +10,11 @@
         <div class="page-region">
             <div class="page-region-content">
                 <div class="row">
-      <div class="span12 " >      
+     
         <p><?php if( !protectThis(1) ) : ?>
 	<a href="http://onlinearge.com/avm/login.php" target="_self" class="btn btn-info btn-large" style="position: fixed;top:250px;left: 40%;width:560px;margin-left:-100px;"><?php _e('Sisteme Giriş Yapın'); ?> &raquo;<img src="./assets/img/ofis.png" class="place-right"></a>
 	        </p>		
-     </div></div>
+    </div>
         <div class="features">
 	<div class="row">
 		
@@ -43,40 +44,52 @@
        
         <br><br>            
                
-             
-                    <a href="fatura.php?do=liste" >
+             <a href="magaza.php?do=arama" >
                         
-                          <div class="tile double bg-color-pinkDark outline-color-red">
+                          <div class="tile triple bg-color-red outline-color-blue">
                                     <div class="tile-content">
-                                        <img src="./assets/img/fatura.jpg" class="place-left"/>
-                                        <h3 style="margin-bottom: 5px;">FİNANS</h3>
-                                        <p>
-                                           Finansal  işlemler için 
-                                        <h5></h5>
-                                        </p>
+                                      <img src="./assets/images/market.png" class="place-left" style="height: 96px;width: 96px;margin-top: 40px"/>
+                                        <h1 style="margin-top: 20px;margin-bottom: 25px" >MAĞAZALAR</h1>
+                                       
+                                        
+                                        <p >
+                                           
+                                          Mağaza ile ilgili tüm işlemleri buradan yapabilirsiniz. 
+                                     </p> 
+                                     
                                     </div>
                                     <div class="brand">
-                                        <span class="name">Vadesi Gelen :</span>
-                                          <div class="badge bg-color-orange">12</div>
-                                    </div>
-                                </div></a>
-                   
-        <a href="cari.php?do=arama" >
-                        
-                          <div class="tile double bg-color-purple outline-color-orange">
-                                    <div class="tile-content">
-                                        <img src="./assets/img/atm.png" class="place-left"/>
-                                        <h3 style="margin-bottom: 5px;">CARİ</h3>
-                                        <p>
-                                          Cari işlemleri
-                                        <h5></h5>
-                                        </p>
-                                    </div>
-                                    <div class="brand">
-                                        <span class="name">Ödenmesi Gereken : 58.350</span>
+                                        <span class="name"></span>
                                         
                                     </div>
                                 </div></a>     
+        
+        
+        
+          <a href="magaza.php?do=arama" >
+                        
+                          <div class="tile triple bg-color-purple outline-color-blue">
+                                    <div class="tile-content">
+                                       
+                                         <img src="./assets/images/teknik.png" style="width: 96px;height: 96px;margin-top: 40px" class="place-left"/>
+                                      
+                                         <h1 style="margin-bottom: 25px;margin-top: 20px" class="place-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEKNİK</h1>
+                                        <p>
+                                         Demirbaş bilgileri,bakım zamanları işlemleri
+                                         Mağazaların tamir ve tadilat talepleri
+                                        <h5></h5>
+                                        </p>
+                                    </div>
+                                    <div class="brand">
+                                        <span class="name"> </span>
+                                        
+                                    </div>
+                                </div></a>   
+        
+        
+        
+         
+                   
         
         <div class="tile bg-color-pink">
                         <div class="tile-content ">
@@ -97,11 +110,11 @@ echo "<h2 class='place-right'>",$site1[0],"&deg;</h2>";
                         </div>
                     </div>
         
-         <div class="tile bg-color-blue ">
+         <div class="tile bg-color-green ">
                       
                         <div class="tile-content ">
-                            <h4 class="place-right">   <?php  echo tarihcevir (date("d.m.Y")); ?></h4>
-                            <h3 class="place-right"> <span id=saat  class="fg-color-darken" ></span><br><br>Takvim</h3>
+                            <h4 class="place-right">   <?php  echo tarihcevir (date("d.m.Y")); ?></h4><br><br><br><br>
+                            <h3 class="place-right"> <span id=saat  class="fg-color-darken place-right" ></span><br><br>Takvim</h3>
 <SCRIPT language=JScript>
 saatigoster();
 window.setInterval("saatigoster();",60000);
@@ -109,49 +122,80 @@ window.setInterval("saatigoster();",60000);
 </FONT>
                         </div>
                         <div class="brand">
+                            <img class="icon" src="./assets/images/saat.png" style="width: 46px;height: 46px;"/>
                             <span class="name"></span>
                             <span class="badge" ></span>
                         </div>
                     </div>
         
-         <div class="tile double image">
-                        <div class="tile-content">
-                            <img src="./assets/images/4.jpg" alt="" />
-                        </div>
+   
+        
+         <a href="fatura.php?do=liste" >
                         
-                    </div>
-
-                    
-        
-        
-        
-         <a href="magaza.php?do=arama" >
-                        
-                          <div class="tile double bg-color-greenLight outline-color-blue">
+              <div class="tile triple bg-color-torq outline-color-blue">
                                     <div class="tile-content">
-                                        <img src="./assets/img/shop.png" class="place-left"/>
-                                        <h3 style="margin-bottom: 5px;">Mağaza</h3>
-                                        <p>
-                                          Mağaza işlemleri
-                                        <h5></h5>
-                                        </p>
+                                      <img src="./assets/images/hesap.png" class="place-left" style="height: 126px;width: 116px;margin-top: 10px"/>
+                                        <h1 style="margin-top: 20px;margin-bottom: 25px" >HAREKETLER</h1>
+                                       
+                                        
+                                        <p >
+                                           
+                                          Cari fatura, banka, ödeme, tahsilat ile ilgili tüm işlemleri buradan yapabilirsiniz. 
+                                     </p> 
+                                     
                                     </div>
                                     <div class="brand">
-                                        <span class="name">Talepte bulunan : 7 </span>
+                                        <span class="name"></span>
                                         
                                     </div>
-                                </div></a>     
+                                </div>            
+         
+         </a>
+        
+        
+        
+                   
+        <a href="cari.php?do=arama" >
+                        
+                           <div class="tile triple bg-color-orangeDark outline-color-blue">
+                                    <div class="tile-content">
+                                      <img src="./assets/images/liste.png" class="place-left" style="height: 166px;width: 136px;margin-top:-13px"/>
+                                        <h1 style="margin-top: 20px;margin-bottom: 25px" >LİSTELER</h1>
+                                       
+                                        
+                                        <p >
+                                           
+                                          Cari fatura, banka, ödeme, tahsilat ile ilgili tüm raporlama işlemlerini buradan yapabilirsiniz. 
+                                     </p> 
+                                     
+                                    </div>
+                                    <div class="brand">
+                                        <span class="name"></span>
+                                        
+                                    </div>
+                                </div>      
+        </a>     
+        
+        
+        
+        
+        
+       
+        
+        
+        
         
       
 
            
             
-           <div class="tile double bg-color-green">
+           <div class="tile double bg-color-orange">
                                     <div class="tile-content">
-                                        <h2>mattberg@live.com</h2>
-                                        <h5>Re: Wedding Annoucement!</h5>
+                                        <h2></h2>
+                                        <h5></h5>
+                                        <h3 class="fg-color-darken" > <?php echo $_SESSION['jigowatt']['username']; ?>:</h3>
                                         <p>
-                                            Congratulations! I'm really excited to celebrate with you all. Thanks for...
+                                         Lorem ipsum.. Lorem ipsum..  Lorem ipsum..  
                                         </p>
                                     </div>
                                     <div class="brand">
@@ -159,6 +203,18 @@ window.setInterval("saatigoster();",60000);
                                         <img class="icon" src="./assets/images/Mail128.png"/>
                                     </div>
            </div>
+        
+  
+        <div class="tile double image">
+                        <div class="tile-content">
+                            <img src="./assets/images/4.jpg" alt="" />
+                        </div>
+                        
+                    </div>
+
+                           
+        
+        
         
            <div class="tile double bg-color-yellow " data-role="tile-slider" data-param-period="3000">
                          
@@ -182,24 +238,7 @@ foreach($generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott
                     </div>
                  
             
-         <a href="magaza.php?do=arama" >
-                        
-                          <div class="tile double bg-color-pink outline-color-blue">
-                                    <div class="tile-content">
-                                        <img src="./assets/images/teknik.png" class="place-right"/>
-                                        <h3 style="margin-bottom: 5px;">TEKNİK</h3>
-                                        <p>
-                                         Demirbaş bilgileri,bakım zamanları işlemleri<br>
-                                         Mağazaların tamir ve tadilat talepleri
-                                        <h5></h5>
-                                        </p>
-                                    </div>
-                                    <div class="brand">
-                                        <span class="name">Talepte bulunan : 11 </span>
-                                        
-                                    </div>
-                                </div></a>   
-        
+       
         
         
             

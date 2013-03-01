@@ -1850,6 +1850,9 @@ li .icon-large:before {
 .bg-color-grayDark {
   background-color: #525252 !important;
 }
+.bg-color-torq {
+    background-color: #009999 !important;
+}
 [class*=border-color] {
   border: 2px solid;
 }
@@ -2732,7 +2735,8 @@ ol.unstyled,
   left: 0;
   right: 0;
   min-height: 100px;
-  background-color: #1d1d1d !important;
+  background-color: #cccccc !important;
+  
 }
 .charms {
   position: fixed;
@@ -4736,8 +4740,8 @@ th[class*="span"] {
   display: block;
   float: left;
   background-color: #525252;
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   cursor: pointer;
   box-shadow: inset 0px 0px 1px #FFFFCC;
   text-decoration: none;
@@ -4766,7 +4770,7 @@ th[class*="span"] {
   overflow: hidden;
   text-overflow: ellipsis;
   position: relative;
-  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-family:  Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 9pt;
   font-smooth: always;
@@ -4806,12 +4810,12 @@ th[class*="span"] {
 .tile .tile-content p {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: 9pt;
+  font-size: 12pt;
   font-smooth: always;
   color: #000000;
   color: #ffffff;
   line-height: 16px;
-  overflow: hidden;
+  
   text-overflow: ellipsis;
 }
 .tile .tile-content p:hover {
@@ -4866,7 +4870,7 @@ th[class*="span"] {
   height: 100%;
 }
 .tile.double {
-  width: 310px;
+  width: 400px;
 }
 .tile.triple {
   width: 470px;

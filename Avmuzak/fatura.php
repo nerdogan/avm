@@ -1,6 +1,8 @@
 <?php include_once('classes/check.class.php'); ?>
 <?php include_once('header.php');
 // yan menu başlangıç?>
+<?php if( !protectThis("*") ) :header( 'Location: login.php' );
+endif; ?>
  <script type="text/javascript">
 function goster(id) {
     document.getElementById(id).style.display = 'block';

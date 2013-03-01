@@ -72,6 +72,24 @@ function saatigoster() {
  <style>
   .ui-menu { width: 100px; }
   </style>
+  <script>
+  $(function() {
+    $( "#tabs" ).tabs({
+      beforeLoad: function( event, ui ) {
+        ui.jqXHR.error(function() {
+          ui.panel.html(
+            "Couldn't load this tab. We'll try to fix this as soon as possible. " +
+            "If this ." );
+        });
+      }
+    });
+  });
+  </script>
+ <script>
+  $(function() {
+    $( document ).tooltip();
+  });
+  </script> 
 
     <title>Avm Bilgi Sistemi 2013</title>
 </head>
@@ -87,10 +105,23 @@ function saatigoster() {
                      
 	<div id="nav1_slim">
 		<ul>
-			<li><a  data-toggle="modal" href="#hakk1">Hakkımızda</a></li>
 			
-			<li><a href="#" id="active">Sistem Bilgi</a></li>
-		 	<li><a href="#">Avm Bilgi</a></li>
+                   
+		 	<li><a href="#">Avm Menü</a>
+                    <ul>
+					<li><a href="magaza.php">Mağaza</a></li>
+					<li><a href="cari.php">Cari</a></li>
+					<li><a href="fatura.php">Fatura</a></li>
+                                        <li><a href="banka.php">Banka</a></li>
+                                        <li><a href="banka1.php">Ödeme</a></li>
+                                        <li><a href="login.php">Tahsilat</a></li>
+			   </ul>
+                    </li>
+                    
+                    <li><a href="#" id="active">Sistem Bilgi</a></li> 
+                    <li><a  data-toggle="modal" href="#hakk1">Hakkımızda</a></li>
+			
+			
 		</ul>
 	</div>
 	
