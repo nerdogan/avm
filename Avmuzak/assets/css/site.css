@@ -255,9 +255,13 @@ hr {
 
 table tbody tr.odd 
 {
-    background-color: #ccffff !important;
+     background: rgb(191, 188, 195); /* Fall-back for browsers that don't
+                                    support rgba */
+    background: rgba(191, 188, 195, .5);  
 }
 table tbody tr.even
 {
-    background-color: #ccffcc !important;
+   background: rgb(161, 57, 34); /* Fall-back for browsers that don't
+                                    support rgba */
+    background: rgba(161, 57, 34, .5);  
 }

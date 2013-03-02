@@ -516,7 +516,7 @@
   content: "\e08a";
   color: #fff;
   right: 4px;
-  font-family: iconFont;
+  font-family: Arial;
   z-index: 1002;
 }
 .border {
@@ -768,13 +768,13 @@
     text-align: right;
   }
   .page.fixed-header .page-header .page-header-content .user-login .name .first-name {
-    font-family: "Segoe UI Light", "Open Sans", sans-serif, sans;
+    font-family: "Arial", "Times New Roman", sans-serif, sans;
     font-size: 14pt;
     display: block;
     margin: 0;
   }
   .page.fixed-header .page-header .page-header-content .user-login .name .last-name {
-    font-family: "Open Sans", sans-serif, sans;
+    font-family: "Arial", sans-serif, sans;
     font-size: 8pt;
     display: block;
     margin: 0;

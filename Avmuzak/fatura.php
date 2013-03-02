@@ -54,11 +54,11 @@ goster('anasayfa1');
   
 <div class="span12">
   
-   
+    <br><br>
     
-    <span class="btn btn-large btn-warning fg-color-darken" style="background-color: transparent  ;filter:alpha(opacity=100);opacity:1;">
+   
   
-<?php // Yan menü bitiş
+<?php // Yan menü bitiş  <span class="btn btn-large btn-warning fg-color-darken" style="background-color: transparent  ;filter:alpha(opacity=100);opacity:1;">
  endif; ?>
       
 <?php 
@@ -73,7 +73,7 @@ echo "<table>";
      $toplam=0.0;
 foreach($kackayit as $row) {
     $number++;
-    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4]," TL </td><td> ",$row[5],"</td><td>",$row[0],"</td><td>",$row[6],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
+    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4]," TL </td><td> ",$row[5],"</td><td>",$row[0],"</td><td>",$row[6],"</td><td><a class='fg-color-darken' href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
     $toplam+=$row[4];
     }
  echo "<tr class='",( ($number & 1) ? 'even' : 'odd' ),"'><td> </td><td> </td><td>Toplam : </td><td> ",$toplam," TL </td><td> </td><td></td><td></td><td></td></tr>" ;    
