@@ -2,7 +2,8 @@
 <?php include_once('classes/translate.class.php'); ?>
 <?php include_once('classes/check.class.php');  ?>
 <?php if (!isset($_SESSION)) session_start(); error_reporting(E_ALL ^ E_NOTICE);
-ini_set('error_reporting', E_ALL ^ E_NOTICE); ?>
+ini_set('error_reporting', E_ALL ^ E_NOTICE); 
+date_default_timezone_set('Europe/Istanbul'); ?>
 <!DOCTYPE html>
 <html lang="tr">    
 <head>
@@ -89,7 +90,7 @@ function saatigoster() {
   </script>
  <script>
   $(function() {
-    $( document ).tooltip();
+    $( document.body ).tooltip();
   });
   </script> 
 
@@ -100,10 +101,14 @@ function saatigoster() {
     
     <div class="page" >
         <div class="page-header " >
-            
-            <div class="span3" style="margin-left: 50px" > <a href="home.php"><h1 class="fg-color-darken" ><?php _e('Avm Bilgi <br>&nbsp;Sistemi'); ?></h1></a></div>
+            <a href="home.php" >    <h4 id="anasayfa1" class="place-left hide" style="margin-left: 50px">Avm Bilgi Sistemi</h4></a>
+            <div class="span3" style="margin-left: 50px" > <a href="home.php"><h1 class="fg-color-darken mennu" ><?php _e('Avm Bilgi <br>&nbsp;Sistemi'); ?></h1></a></div>
            
             <div class="clearFix"></div>
+            
+           
+                
+         
                      
 	<div id="nav1_slim">
 		<ul>
@@ -142,7 +147,7 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
 
 <div class="clearFix"></div>
             
-      <span class="place-right" style="margin-top: -10px">            
+      <span class="place-right" style="margin-top: -10px;margin-right: 25px">            
                
   <?php if(isset($_SESSION['jigowatt']['username'])) { ?>
            
@@ -157,7 +162,7 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
     <?php       } 
 else { ?>
 		<ul class="nav pull-right">
-		<li><a href="login.php" class="signup-link"><em class="fg-color-orangeDark"><?php _e('Hoşgeldiniz'); ?></em> <strong class="fg-color-orangeDark"><?php _e('Giriş Yapın!'); ?></strong></a></li>
+		<li><a href="login.php" class="signup-link"><em class="fg-color-orangeDark"></em> <strong class="fg-color-orangeDark"></strong></a></li>
 		</ul>
 		<?php } ?>
             </span>

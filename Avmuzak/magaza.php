@@ -11,35 +11,40 @@ endif; ?>
 	function gizle(id) {
 		document.getElementById(id).style.display = 'none';
 	}
-
+$(".mennu").text("");
+goster('anasayfa1');
+$('.modern-ui').css('backgroundImage','url(../images/bg.jpg)');
 
 </script>  
-
+<img src="./assets/images/marketmavi.png" style="height: 50px;width: 50px" class="place-left"> <h2>Mağaza Bölümü</h2>
+    
+    
 <div class="page secondary">
      
-     
-           
-
-    <div class="page snapped">
+  
+     <div class="page snapped">
         
  <div id="sidebar" class="sidebar">
-<ul class="nav">
-     <li><a class="btn btn-warning" href="#"><i class="cus-application"></i> Mağaza Bölümü</a></li>
-    <br><br>
-<li><a href="home.php"> <img src=""></a> </li>
+     <ul class="nav">
+<br><br><br>
 <?php if( protectThis(1) ) : ?>
-<li><a href="magaza.php?do=ekle" class="btn btn-large btn-success"><?php _e('Yeni Kayıt'); ?></a></li><br>
-<li><a href="magaza.php?do=liste" class="btn btn-large btn-info"><?php _e('Tam Liste'); ?></a></li><br>
-<li><a href="magaza.php?do=arama" class="btn btn-large btn-danger"><?php _e('Arama'); ?></a></li><br>
+ <div class="button123" style="  "><a href="magaza.php?do=ekle">Products & Resources</a></div><br><br>
+ <div class="button124" style=" "><a href="magaza.php?do=duzenle">Products & sources</a></div><br><br>
+ <div class="button125" style=" "><a href="magaza.php?do=arama">Products & sources</a></div><br><br>
+ <div class="button126" style=" "><a href="magaza.php?do=liste">Products & sources</a></div><br><br>
+ 
+ 
 <li><a href="#"><?php _e(''); ?></a></li>
-<li><a href="protected.php"><?php _e(''); ?></a></li>
+<li><a href="protected.php"><?php _e(''); ?></a>    </li>
 </ul>
 </div>
-</div> <div class="page fill">
+</div>
+    <div class="page fill">
+     
 
-<div class="span10">
+<div class="span12">
     
-    <span class="btn btn-large btn-warning fg-color-darken " style="background-color:ghostwhite  ;filter:alpha(opacity=70);opacity:.7;">
+    <span class="btn btn-large btn-warning fg-color-darken " style="background-color: transparent  ;filter:alpha(opacity=100);opacity:1;">
 <?php // Yan menü bitiş
  endif; ?>
 <?php 
@@ -48,10 +53,10 @@ if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
 
 <form class="" action="magaza.php?do=arama" method="post" name="arama" id="arama" accept-charset="utf-8">
 
- Lütfen Mağaza adını girin :
+ <br><br>
  <div id="cid_4" class="form-input">
  
-<input type="text" class="form-textbox validate[required]" id="input_444" name="aramai" size="20" onkeyup="submitform()" /><br>
+<input type="text" class="span7" id="input_444" name="aramai" size="20" onkeyup="submitform()" placeholder="Lütfen Mağaza adı veya kodu birkaç harf girin."/><br>
 </div>
 <table border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
 <h4> <tr><td>id</td><td>Mağaza Kodu</td><td>Mağaza Adı</td><td>Mağaza Resmi Adı</td><td></td></tr></h4>
@@ -77,12 +82,14 @@ function submitform()
   <?php 
     
  if ($_POST['aramai']) : {
-     $elma="%".$_POST['aramai']."%";
-      $elma=toUpperCase($elma);
      
+     $elma="%".$_POST['aramai']."%";
+     
+      $elma=toUpperCase($elma);
+    
      $number=0;
         $param=array (':ad'=> $elma ); 
-foreach($generic->query('SELECT * FROM magaza WHERE ad LIKE :ad and mtur_id<>4',$param) as $row) {
+foreach($generic->query('SELECT * FROM magaza WHERE (ad LIKE :ad or kod LIKE :ad ) and mtur_id<>4',$param) as $row) {
     $number++;
     echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
         "</td><td><a href='", (($row['mtur_id']==="4") ? 'magaza' : 'cari') ,".php?do=duzenle&id=",$row['id'],"'></a>" ,
@@ -126,13 +133,13 @@ echo "<SCRIPT >  document.arama.aramai.value='",$_POST['aramai'],"' ; document.a
    if(($_GET['do'] === "liste")|| !($_GET['do']) ): { ?>
  
  <br>  
-  <table class="table  table-condensed " border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
-  <h4> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
+  <table class="table  table-condensed " border="0" cellpadding="5" cellspacing="1" style="width: 910px;" >
+  <h3> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td><a href='magazalist.pdf'>PDF</a></td></tr></h3>
   <?php
         $number=0;    
 foreach($generic->query('SELECT * FROM magaza WHERE mtur_id<>4 ') as $row) {
     $number++;
-  
+  $data[]=$row ;
 echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
         "</td><td><a href='", (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,".php?do=duzenle&id=",$row['id'],"'></a>" ,
 '<ul id="menu',$number,'">
@@ -152,6 +159,99 @@ $( "#menu',$number,'" ).menu();
 
 
 }}
+
+require('rapor/tfpdf.php');
+
+class PDF extends tFPDF
+{
+// Load data
+function LoadData($file)
+{
+    // Read file lines
+  
+    $data = array();
+    foreach($file as $line)
+        $data[] = $line;
+    return $data;
+}
+
+// Simple table
+
+
+// Better table
+function ImprovedTable($header, $data)
+{
+    // Column widths
+    $w = array(10,35,90,120);
+    // Header
+    for($i=0;$i<count($header);$i++)
+        $this->Cell($w[$i],7,$header[$i],1,0,'C');
+    $this->Ln();
+    // Data
+    foreach($data as $row)
+    {
+        $this->Cell($w[0],6,$row[0],'LR');
+        $this->Cell($w[1],6,$row[1],'LR');
+        $this->Cell($w[2],6,$row[2],'LR');
+        $this->Cell($w[3],6,$row[3],'LR');
+        $this->Ln();
+        }
+    // Closing line
+    $this->Cell(array_sum($w),0,'','T');
+}
+
+// Colored table
+function FancyTable($header, $data)
+{
+    // Colors, line width and bold font
+    $this->SetFillColor(255,0,0);
+    $this->SetTextColor(255);
+    $this->SetDrawColor(128,0,0);
+    $this->SetLineWidth(.3);
+    //$this->SetFont('','B');
+    // Header
+    $w = array(10, 25, 90, 150);
+    for($i=0;$i<count($header);$i++)
+        $this->Cell($w[$i],7,$header[$i],1,0,'C',true);
+    $this->Ln();
+    // Color and font restoration
+    $this->SetFillColor(224,235,255);
+    $this->SetTextColor(0);
+   // $this->SetFont('');
+    // Data
+    $fill = false;
+    foreach($data as $row)
+    {
+        $this->Cell($w[0],6,$row[0],'LR',0,'L',$fill);
+        $this->Cell($w[1],6,$row[1],'LR',0,'L',$fill);
+        $this->Cell($w[2],6,$row[2],'LR',0,'L',$fill);
+        $this->Cell($w[3],6,$row[3],'LR',0,'L',$fill);
+        // $this->Cell($w[3],6,number_format($row[3]),'LR',0,'R',$fill);
+        $this->Ln();
+        $fill = !$fill;
+    }
+    // Closing line
+    $this->Cell(array_sum($w),0,'','T');
+}
+}
+
+
+// Column headings
+$header = array('id', 'kod', 'Firma Ad', 'Resmi Ad');
+// Data loading
+//$data = $pdf->LoadData('countries.txt');
+
+$pdf = new PDF('L','mm','A4');
+$pdf->AddFont('tahoma','','tahoma.ttf',true);
+$pdf->SetFont('tahoma','',12);
+$pdf->AddPage();
+$pdf->FancyTable($header,$data);
+$pdf->Text(260,200,'Onlinearge.com');
+$pdf->Text(10,200,'Avm Bilgi Sistemi');
+$pdf->Text(240,7, date("d-m-Y H:i:s"));
+$pdf->Output("magazalist.pdf","F");
+echo "";
+// rapor sonu
 endif;
 
  ?>
@@ -170,11 +270,11 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
     <ul class="form-section nav">
         
         
-      <li id="cid_1" class="form-input-wide">
+      <li id="cid_1" class="form-input-wide ">
         <div class="form-header-group">
-          <h2 id="header_1" class="form-header">
+          <h3 id="header_1" class="form-header">
             MAĞAZA KARTI <?php echo strtoupper($_GET['do']); ?>
-          </h2>
+          </h3>
         </div>
       </li>
         
@@ -182,22 +282,22 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 			<tbody>
 				<tr>
 					<td>
-						<li class="form-line" id="id_4">
+						<li class="form-line" id="id_4" >
         <label class="form-label-left" id="label_4" for="input_3">
-          Mağaza Adı:<span class="form-required">*</span>
+        <span class="form-required"></span>
         </label>
         <div id="cid_4" class="form-input">
-          <input type="text" class="form-textbox validate[required]" id="input_3" name="q4_magazaAdi" onkeyup="hideStuff('cid_5')" size="20" />
+          <input type="text" class="form-required" id="input_3" name="q4_magazaAdi"  size="20" placeholder=" Mağaza Adı" />
         </div>
       </li></td>
 					<td>
 
                             
-						 <li>
+						 <li >
                                                       <div id="cid_5" class="form-input">
-          <label class="form-label-left" id="label_5" for="input_4">Ticari ve Hukuki Firma Adı: </label>
+          <label class="form-label-left" id="label_5" for="input_4"> </label>
        
-          <input type="text" class="form-textbox" id="input_4" name="q5_ticariVe" size="20" />
+          <input type="text" class="form-textbox" id="input_4" name="q5_ticariVe" size="20" placeholder="Ticari ve Hukuki Firma Adı"/>
         </div>
       </li></td>
 				</tr>
@@ -205,29 +305,29 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
                                     
                                     <li class="form-line" id="id_99">
         <label class="form-label-left" id="label_99" for="input_2">
-          Mağaza Kod:<span class="form-required">*</span>
+          
         </label>
         <div id="cid_99" class="form-input">
-          <input type="text" class="form-textbox validate[required]" id="input_2" name="magazakod"  size="20" />
+          <input type="text" class="form-textbox validate[required]" id="input_2" name="magazakod"  size="20" placeholder="Mağaza Kod" />
         </div>
       </li></td>
 					<td>
 						 <li class="form-line" id="id_6">
-        <label class="form-label-left" id="label_6" for="input_5"> Türü: </label>
+        <label class="form-label-left" id="label_6" for="input_5">  </label>
         <div id="cid_6" class="form-input">
-          <select class="form-dropdown" style="width:150px" id="input_5" name="q6_turu">
-            <option>  </option>
+          <select class="form-dropdown" style="width:150px" id="input_5" name="q6_turu" placeholder="">
+            <option> Türü </option>
             <option value="1"> Mağaza </option>
             <option value="2"> Depo </option>
             <option value="3"> Stand </option>
           </select>
-        </div>
+        </div> 
       </li>
       <li class="form-line" id="id_7">
-        <label class="form-label-left" id="label_7" for="input_6"> Mağaza Sektör: </label>
+        <label class="form-label-left" id="label_7" for="input_6">  </label>
         <div id="cid_7" class="form-input">
           <select class="form-dropdown" style="width:150px" id="input_6" name="q7_magazaTuru7">
-            <option>  </option>
+            <option>  Mağaza Sektör</option>
             <option value="1"> Gıda </option>
             <option value="2"> Hazır Giyim </option>
             <option value="3"> Hizmet </option>
@@ -238,10 +338,10 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
         </div>
       </li>
       <li class="form-line" id="id_11">
-        <label class="form-label-left" id="label_11" for="input_7"> Depo Türü </label>
+        <label class="form-label-left" id="label_11" for="input_7">  </label>
         <div id="cid_11" class="form-input">
           <select class="form-dropdown" style="width:150px" id="input_7" name="q11_depoTuru">
-            <option>  </option>
+            <option> Depo Türü </option>
             <option value="1"> Mağaza Deposu </option>
             <option value="2"> Diğer </option>
             <option value="3"> Seçenek 3 </option>
@@ -249,10 +349,10 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
         </div>
       </li>
       <li class="form-line" id="id_9">
-        <label class="form-label-left" id="label_9" for="input_8"> Stand Türü: </label>
+        <label class="form-label-left" id="label_9" for="input_8">  </label>
         <div id="cid_9" class="form-input">
           <select class="form-dropdown" style="width:150px" id="input_8" name="q9_standTuru">
-            <option>  </option>
+            <option>  Stand Türü</option>
             <option value="1">Sabit </option>
             <option value="2"> Uzun Süreli </option>
             <option value="3"> Diğer </option>
@@ -261,10 +361,10 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
       </li></td>
 					<td>
 						<li class="form-line" id="id_12">
-        <label class="form-label-left" id="label_12" for="input_9"> FiRMA TÜRÜ </label>
+        <label class="form-label-left" id="label_12" for="input_9">  </label>
         <div id="cid_12" class="form-input">
           <select class="form-dropdown" style="width:150px" id="input_9" name="q12_firmaTuru">
-            <option>  </option>
+            <option> Firma Türü</option>
             <option value="1"> Bayi </option>
             <option value="2"> Firma </option>
             <option value="3"> Diğer </option>
@@ -272,157 +372,158 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
         </div>
       </li>
       <li class="form-line" id="id_14">
-        <label class="form-label-left" id="label_14" for="input_10"> SERMAYE </label>
+        <label class="form-label-left" id="label_14" for="input_10">  </label>
         <div id="cid_14" class="form-input">
-          <input type="text" class="form-textbox" id="input_10" name="q14_sermaye14" size="20" />
+          <input type="text" class="form-textbox" id="input_10" name="q14_sermaye14" size="20" placeholder=" Sermaye " />
         </div>
       </li>
       <li class="form-line" id="id_16">
-        <label class="form-label-left" id="label_16" for="input_11"> VERGİ DAİRESİ </label>
+        <label class="form-label-left" id="label_16" for="input_11">  </label>
         <div id="cid_16" class="form-input">
-          <input type="text" class="form-textbox" id="input_11" name="q16_vergiDairesi" size="20" />
+          <input type="text" class="form-textbox" id="input_11" name="q16_vergiDairesi" size="20" placeholder="Vergi Dairesi " />
         </div>
       </li>
       <li class="form-line" id="id_15">
-        <label class="form-label-left" id="label_15" for="input_12"> VERGİ NO </label>
+        <label class="form-label-left" id="label_15" for="input_12">  </label>
         <div id="cid_15" class="form-input">
-          <input type="text" class="form-textbox" id="input_12" name="q15_vergiNo" size="20" />
+          <input type="text" class="form-textbox" id="input_12" name="q15_vergiNo" size="20" placeholder="Vergi No  " />
         </div>
       </li></td>
 				</tr>
 				<tr>
 					<td>
 						<li class="form-line" id="id_17">
-        <label class="form-label-left" id="label_17" for="input_14"> MĞZ SAHİBİ </label>
+        <label class="form-label-left" id="label_17" for="input_14">  </label>
         <div id="cid_17" class="form-input">
-          <input type="text" class="form-textbox" id="input_14" name="q17_mgzSahibi17" size="20" />
+          <input type="text" class="form-textbox" id="input_14" name="q17_mgzSahibi17" size="20" placeholder="Mağaza Sahibi" />
         </div>
       </li>
       <li class="form-line" id="id_18">
-        <label class="form-label-left" id="label_18" for="input_111"> MĞZ SAHİBİ TEL </label>
+        <label class="form-label-left" id="label_18" for="input_111"> </label>
         <div id="cid_18" class="form-input">
-          <input type="text" class="form-textbox" id="input_15" name="q18_mgzSahibi" size="20" />
+          <input type="text" class="form-textbox" id="input_15" name="q18_mgzSahibi" size="20" placeholder="Mağaza Sahibi Tel" />
         </div>
       </li>
       <li class="form-line" id="id_19">
-        <label class="form-label-left" id="label_19" for="input_14"> MĞZ MÜDÜRÜ </label>
+        <label class="form-label-left" id="label_19" for="input_14">  </label>
         <div id="cid_19" class="form-input">
-          <input type="text" class="form-textbox" id="input_16" name="q19_mgzMuduru" size="20" />
+          <input type="text" class="form-textbox" id="input_16" name="q19_mgzMuduru" size="20" placeholder="Mağaza Müdürü"/>
         </div>
       </li>
       <li class="form-line" id="id_20">
-        <label class="form-label-left" id="label_20" for="input_15"> MĞZ MÜDÜRÜ TEL </label>
+        <label class="form-label-left" id="label_20" for="input_15">  </label>
         <div id="cid_20" class="form-input">
-          <input type="text" class="form-textbox" id="input_17" name="q20_mgzMuduru20" size="20" />
+          <input type="tel" class="form-textbox" id="input_17" name="q20_mgzMuduru20" size="20" placeholder="Mağaza Müdürü Tel" />
         </div>
       </li>
       <li class="form-line" id="id_21">
-        <label class="form-label-left" id="label_21" for="input_16"> MĞZ DAHİLİ TEL </label>
+        <label class="form-label-left" id="label_21" for="input_16">  </label>
         <div id="cid_21" class="form-input">
-          <input type="text" class="form-textbox" id="input_18" name="q21_mgzDahili21" size="20" />
+          <input type="text" class="form-textbox" id="input_18" name="q21_mgzDahili21" size="20" placeholder="Mağaza Dahili Tel" />
         </div>
       </li></td>
 					<td>
 	<li class="form-line" id="id_22">
-        <label class="form-label-left" id="label_22" for="input_17"> MĞZ E-POSTA </label>
+        <label class="form-label-left" id="label_22" for="input_17">  </label>
         <div id="cid_22" class="form-input">
-          <input type="text" class="form-textbox" id="input_34" name="eposta" size="20" />
-        </div>
+          <input type="email" class="form-textbox" id="input_34" name="eposta" size="20" placeholder="mağaza e-posta" />
+            </div>
+          
       </li>
                                         <li class="form-line" id="id_22">
-        <label class="form-label-left" id="label_22" for="input_17"> MĞZ TEL </label>
+        <label class="form-label-left" id="label_22" for="input_17">  </label>
         <div id="cid_22" class="form-input">
-          <input type="text" class="form-textbox" id="input_19" name="q22_mgzTel" size="20" />
+          <input type="text" class="form-textbox" id="input_19" name="q22_mgzTel" size="20" placeholder="Mağaza Tel" />
         </div>
       </li>
       <li class="form-line" id="id_23">
-        <label class="form-label-left" id="label_23" for="input_18"> MĞZ FAX </label>
+        <label class="form-label-left" id="label_23" for="input_18"> </label>
         <div id="cid_23" class="form-input">
-          <input type="text" class="form-textbox" id="input_20" name="q23_mgzFax" size="20" />
+          <input type="text" class="form-textbox" id="input_20" name="q23_mgzFax" size="20" placeholder="Mağaza Fax"/>
         </div>
       </li>
       <li class="form-line" id="id_24">
-        <label class="form-label-left" id="label_24" for="input_19"> MAĞAZA PERSONEL SAYISI </label>
+        <label class="form-label-left" id="label_24" for="input_19">  </label>
         <div id="cid_24" class="form-input">
-          <input type="text" class="form-textbox validate[Numeric]" id="input_21" name="q24_magazaPersonel24" size="20" />
+          <input type="text" class="form-textbox validate[Numeric]" id="input_21" name="q24_magazaPersonel24" size="20" placeholder="Personel Sayısı" />
         </div>
       </li>
       <li class="form-line" id="id_25">
-        <label class="form-label-left" id="label_25" for="input_20"> BAYAN </label>
+        <label class="form-label-left" id="label_25" for="input_20">  </label>
         <div id="cid_25" class="form-input">
-          <input type="text" class="form-textbox validate[Numeric]" id="input_23" name="q25_bayan" size="20" />
+          <input type="text" class="form-textbox validate[Numeric]" id="input_23" name="q25_bayan" size="20" placeholder="Kadın Personel" />
         </div>
       </li>
       <li class="form-line" id="id_26">
-        <label class="form-label-left" id="label_26" for="input_21"> ERKEK </label>
+        <label class="form-label-left" id="label_26" for="input_21">  </label>
         <div id="cid_26" class="form-input">
-          <input type="text" class="form-textbox validate[Numeric]" id="input_22" name="q26_erkek" size="20" />
+          <input type="text" class="form-textbox validate[Numeric]" id="input_22" name="q26_erkek" size="20" placeholder="Erkek Personel" />
         </div>
       </li></td>
 				</tr>
 				<tr>
 					<td>
 						  <li class="form-line" id="id_22">
-        <label class="form-label-left" id="label_28" for="input_28"> GENEL MERKEZ YETKİLİSİ </label>
+        <label class="form-label-left" id="label_28" for="input_28">  </label>
         <div id="cid_28" class="form-input">
-          <input type="text" class="form-textbox" id="input_25" name="q28_genelMerkez" size="20" />
+          <input type="text" class="form-textbox" id="input_25" name="q28_genelMerkez" size="20" placeholder="Genel Merkez Yetkilisi" />
         </div>
       </li>
       <li class="form-line" id="id_29">
-        <label class="form-label-left" id="label_29" for="input_23"> GENEL MERKEZ TEL </label>
+        <label class="form-label-left" id="label_29" for="input_23">  </label>
         <div id="cid_29" class="form-input">
-          <input type="text" class="form-textbox" id="input_26" name="q29_genelMerkez29" size="20" />
+          <input type="text" class="form-textbox" id="input_26" name="q29_genelMerkez29" size="20" placeholder="Genel Merkez Tel" />
         </div>
       </li>
       <li class="form-line" id="id_30">
-        <label class="form-label-left" id="label_30" for="input_24"> GENEL MERKEZ FAX </label>
+        <label class="form-label-left" id="label_30" for="input_24">  </label>
         <div id="cid_30" class="form-input">
-          <input type="text" class="form-textbox" id="input_27" name="q30_genelMerkez30" size="20" />
+          <input type="text" class="form-textbox" id="input_27" name="q30_genelMerkez30" size="20" placeholder="Genel Merkez Fax" />
         </div>
       </li>
       <li class="form-line" id="id_31">
-        <label class="form-label-left" id="label_31" for="input_25"> GENEL MERKEZ ADRES </label>
+        <label class="form-label-left" id="label_31" for="input_25">  </label>
         <div id="cid_31" class="form-input">
-          <input type="text" class="form-textbox" id="input_28" name="q31_genelMerkez31" size="20" />
+          <input type="text" class="form-textbox" id="input_28" name="q31_genelMerkez31" size="20" placeholder="Genel Merkez Adres" />
         </div>
       </li>
       <li class="form-line" id="id_32">
-        <label class="form-label-left" id="label_32" for="input_29"> DİĞER MAĞAZA YERLERİ </label>
+        <label class="form-label-left" id="label_32" for="input_29">  </label>
         <div id="cid_32" class="form-input">
-          <input type="text" class="form-textbox" id="input_29" name="q32_digerMagaza" size="20" />
+          <input type="text" class="form-textbox" id="input_29" name="q32_digerMagaza" size="20" placeholder="Diğer Mağaza Yerleri" />
         </div>
       </li></td>
 					<td>
 						<li class="form-line" id="id_27">
-        <label class="form-label-left" id="label_27" for="input_27"> MAĞAZA ARAÇ SAYISI </label>
+        <label class="form-label-left" id="label_27" for="input_27">  </label>
         <div id="cid_27" class="form-input">
-          <input type="text" class="form-textbox" id="input_24" name="q27_magazaArac" size="20" />
+          <input type="text" class="form-textbox" id="input_24" name="q27_magazaArac" size="20" placeholder="Mağaza Araç Sayısı" />
         </div>
       </li>
     
       <li class="form-line" id="id_33">
-        <label class="form-label-left" id="label_33" for="input_28"> MAĞAZA M2 </label>
+        <label class="form-label-left" id="label_33" for="input_28"> </label>
         <div id="cid_33" class="form-input">
-          <input type="text" class="form-textbox" id="input_30" name="q33_magazaM2" size="20" />
+          <input type="text" class="form-textbox" id="input_30" name="q33_magazaM2" size="20" placeholder="Mağaza m2" />
         </div>
       </li>
       <li class="form-line" id="id_34">
-        <label class="form-label-left" id="label_34" for="input_29"> DEPO M2 </label>
+        <label class="form-label-left" id="label_34" for="input_29">  </label>
         <div id="cid_34" class="form-input">
-          <input type="text" class="form-textbox" id="input_31" name="q34_depoM2" size="20" />
+          <input type="text" class="form-textbox" id="input_31" name="q34_depoM2" size="20" placeholder="Depo m2" />
         </div>
       </li>
       <li class="form-line" id="id_35">
-        <label class="form-label-left" id="label_35" for="input_30"> TOPLAM M2 </label>
+        <label class="form-label-left" id="label_35" for="input_30">  </label>
         <div id="cid_35" class="form-input">
-          <input type="text" class="form-textbox" id="input_32" name="q35_toplamM2" size="20" />
+          <input type="text" class="form-textbox" id="input_32" name="q35_toplamM2" size="20" placeholder="Toplam m2" />
         </div>
       </li>
            <li class="form-line" id="id_38">
-        <label class="form-label-left" id="label_38" for="input_31"> MAĞAZA </label>
+        <label class="form-label-left" id="label_38" for="input_31">  </label>
         <div id="cid_38" class="form-input">
           <select class="form-dropdown" style="width:150px" id="input_13" name="q38_magaza">
-            <option>  </option>
+            <option>Aktif mi ?  </option>
             <option value="0">Aktif </option>
             <option value="1">Pasif </option>
           </select>
@@ -435,9 +536,8 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 						<li class="form-line" id="id_37">
         <div id="cid_37" class="form-input-wide">
           <div style="margin-left:156px" class="form-buttons-wrapper">
-            <button id="input_37" type="submit" class="form-submit-button">
-              Kaydet
-            </button>
+            <input id="input_37" type="submit" class="" value="Kaydet"> 
+              
           </div>
         </div>
       </li>

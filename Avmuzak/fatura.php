@@ -93,8 +93,7 @@ if(($_GET['do'] === "yeni")  ): ?>
                </h3>
         </div>
    
-    
-        
+            
     
         
 <table border="0" cellpadding="0" cellspacing="1" style="width: 710px">

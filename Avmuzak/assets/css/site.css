@@ -202,3 +202,52 @@ hr {
 #nav1_slim li ul li{
 	padding:0px ;
 }
+
+.button123 a {     
+    background: url(../images/yeni.png) no-repeat 0 0;    
+    display: block;     
+    height: 100px;    
+    text-indent: -9999px;        
+    width: 110px;  
+} 
+
+.button123 a:hover, 
+.button123 a:focus  { 
+    background-position: 0 -100px;  
+}
+.button124 a {     
+    background: url(../images/duzenle.png) no-repeat 0 0;    
+    display: block;     
+    height: 100px;    
+    text-indent: -9999px;        
+    width: 110px;  
+} 
+
+.button124 a:hover, 
+.button124 a:focus  { 
+    background-position: 0 -100px;  
+}
+.button125 a {     
+    background: url(../images/arama.png) no-repeat 0 0;    
+    display: block;     
+    height: 100px;    
+    text-indent: -9999px;        
+    width: 110px;  
+} 
+
+.button125 a:hover, 
+.button125 a:focus  { 
+    background-position: 0 -100px;  
+}
+.button126 a {     
+    background: url(../images/listele.png) no-repeat 0 0;    
+    display: block;     
+    height: 100px;    
+    text-indent: -9999px;        
+    width: 110px;  
+} 
+
+.button126 a:hover, 
+.button126 a:focus  { 
+    background-position: 0 -100px;  
+}

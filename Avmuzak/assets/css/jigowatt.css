@@ -17,7 +17,7 @@ footer
 }
 #sidebar {
 	float: left;
-	width: 120px;
+	width: auto;
            
     
     position: fixed;
@@ -27,7 +27,7 @@ footer
     color: #333333;
     bottom: 10px;
     right: 10px;
-    top: 60px;
+    top: 60px; 
 }
  
 .odd 

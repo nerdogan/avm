@@ -2683,13 +2683,14 @@ ol.unstyled,
   padding-left: 90px;
 }
 .page.snapped {
-  width: 15%;
+  width: 130px;
   height: 100%;
   float: left;
+  
  
 }
 .page.fill {
-  width: 85%;
+  width: 90%;
   height: 100%;
   float: right;
  
@@ -3569,7 +3570,7 @@ table tbody tr {
   border: 1px #fff solid;
 }
 table tbody tr td {
-  font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-family:  Verdana, Arial;
   font-weight: 300;
   font-size: 11pt;
   letter-spacing: 0.02em;
@@ -3725,6 +3726,9 @@ table.bordered tbody tr:last-child td {
 }
 .span12 {
   width: 1200px;
+}
+.span13 {
+  width: 1400px;
 }
 .offset1 {
   margin-left: 80px;
@@ -5433,7 +5437,7 @@ input[type=reset],
 input[type=submit] {
   font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: 9pt;
+  font-size: 14pt;
   font-smooth: always;
   min-width: 90px;
   min-height: 32px;
@@ -5443,14 +5447,14 @@ input[type=submit] {
   color: #353535;
   margin-right: 10px;
   margin-bottom: 10px;
-  border-raduis: 0;
+  border-radius: 4px;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
   padding: 4px 10px;
   position: relative;
-  border-radius: 0;
+  
 }
 input[type=button].mini,
 input[type=reset].mini,

@@ -1,5 +1,13 @@
 <?php include_once('classes/login.class.php'); ?>
 <?php include_once('header.php'); ?>
+<script>
+//if (window.location.href.indexOf('login') != -1) {
+    //Change background to some div
+   $('.modern-ui').css('backgroundImage','url(../images/bg.jpg)');
+    //Change background to page body
+   // $("document.body").css('background-image','url(http://localhost/assets/images/bg.jpg)');
+//}
+</script> 
 <div class="page" >
            
             <div class="page-header-content">

@@ -1,7 +1,9 @@
 <?php include_once('classes/check.class.php'); ?>
 <?php include_once('header.php'); ?>
 <?php if( !protectThis("*") ) :header( 'Location: login.php' );
-endif; ?>
+endif; 
+
+?>
 
 <div class="page secondary">
      
@@ -44,6 +46,8 @@ endif; ?>
        
         <br><br>            
                
+        <div class="row">
+        
              <a href="magaza.php?do=arama" >
                         
                           <div class="tile triple bg-color-red outline-color-blue">
@@ -64,8 +68,7 @@ endif; ?>
                                     </div>
                                 </div></a>     
         
-        
-        
+       
           <a href="magaza.php?do=arama" >
                         
                           <div class="tile triple bg-color-purple outline-color-blue">
@@ -87,7 +90,7 @@ endif; ?>
                                 </div></a>   
         
         
-        
+       
          
                    
         
@@ -128,8 +131,9 @@ window.setInterval("saatigoster();",60000);
                         </div>
                     </div>
         
-   
+    </div>
         
+        <div class="row">
          <a href="fatura.php?do=liste" >
                         
               <div class="tile triple bg-color-torq outline-color-blue">
@@ -200,7 +204,70 @@ window.setInterval("saatigoster();",60000);
                                         <img class="icon" src="./assets/images/Mail128.png"/> <div class="fg-color-blueDark place-right">Tüm Mesajlar&nbsp;&nbsp;</div>                                    </div>
            </div>
         
-  
+  </div>
+        <div class="row">
+          <div class="tile bg-color-blueDark ">
+                      
+                        <div class="tile-content ">
+                            
+                            
+                           <img src="./assets/images/ev.png" class="place-left" style="height: 166px;width: 166px;margin-top:10px"/>  
+                            
+                           
+                     </div>
+                        <div class="brand">
+                           
+                            <span class="name"></span>
+                            <span class="badge" ></span>
+                        </div>
+                    </div>
+    <div class="tile bg-color-blue ">
+                      
+                        <div class="tile-content ">
+                            
+                            
+                           <img src="./assets/images/pdf.png" class="place-left" style="height: 166px;width: 166px;margin-top:10px"/>  
+                            
+                            
+                     </div>
+                        <div class="brand">
+                           
+                            <span class="name"></span>
+                            <span class="badge" ></span>
+                        </div>
+                    </div>
+    <div class="tile bg-color-blueDark ">
+                      
+                        <div class="tile-content ">
+                            
+                            
+                           <img src="./assets/images/okey.png" class="place-left" style="height: 166px;width: 166px;margin-top:10px"/>  
+                            
+                           
+                     </div>
+                        <div class="brand">
+                           
+                            <span class="name"></span>
+                            <span class="badge" ></span>
+                        </div>
+                    </div>
+        
+        <div class="tile bg-color-blue ">
+                      
+                        <div class="tile-content ">
+                            
+                            
+                           <img src="./assets/images/live.png" class="place-left" style="height: 166px;width: 166px;margin-top:10px"/>  
+                            
+                           
+                     </div>
+                        <div class="brand">
+                           
+                            <span class="name"></span>
+                            <span class="badge" ></span>
+                        </div>
+                    </div>
+    </div>
                                
         
         <!---        

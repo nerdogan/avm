@@ -3,7 +3,7 @@
 // yan menu başlangıç?>
 <?php if( !protectThis("*") ) :header( 'Location: login.php' );
 endif; ?>
- 
+  
  <script type="text/javascript">
      document.title="Avm Mağaza Kontrol Sistemi 2013 - CARİ BÖLÜMÜ"
   //   document.getElementById('basarama').action='home.php';
@@ -18,9 +18,13 @@ endif; ?>
 	function gizle(id) {
 		document.getElementById(id).style.display = 'none';
 	}
+$(".mennu").text("");
+goster('anasayfa1');
+$('.modern-ui').css('backgroundImage','url(../images/bg.jpg)');
 
 
 </script>  
+
     <?php 
      
 //$dsn = 'mysql:host=localhost;dbname=arge_avm';
@@ -112,7 +116,7 @@ if(isset($_POST['q4_magazaAdi'])) :
 
 		endif;
                 ?>
-
+<img src="./assets/images/hesap.png" style="height: 50px;width: 50px" class="place-left"> <h2>Cari Bölümü</h2>
 <div class="page secondary">
      
      
@@ -122,14 +126,16 @@ if(isset($_POST['q4_magazaAdi'])) :
         
  <div id="" class="1">
 <ul class="nav">
-    <a class="btn btn-warning" href="#"><i class="cus-application"></i> Cari Bölümü</a>
-    <br><br>
+   
+    <br><br><br>
 
 <?php if( protectThis(1) ) : ?>
-<li><a href="cari.php?do=ekle" class="btn btn-large btn-success"><?php _e('Yeni Kayıt'); ?></a></li><br>
-<li><a href="cari.php?do=liste" class="btn btn-large btn-info"><?php _e('Tam Liste'); ?></a></li><br>
-<li><a href="#"><?php _e(''); ?></a></li>
-<li><a href="cari.php?do=arama" class="btn btn-large btn-danger"><?php _e('Arama'); ?></a></li><br>
+    <div class="button123" style="  "><a href="cari.php?do=ekle">Products & Resources</a></div><br><br>
+ <div class="button124" style=" "><a href="cari.php?do=duzenle">Products & sources</a></div><br><br>
+ <div class="button125" style=" "><a href="cari.php?do=arama">Products & sources</a></div><br><br>
+ <div class="button126" style=" "><a href="cari.php?do=liste">Products & sources</a></div><br><br>
+ 
+
 <li><a href="#"><?php _e(''); ?></a></li>
 <li><a href="protected.php"><?php _e(''); ?></a></li>
 </ul>
@@ -139,7 +145,7 @@ if(isset($_POST['q4_magazaAdi'])) :
 
 <div class="span10">
     
-    <span class="btn btn-large ">
+    <span class="btn btn-large " style="background-color: transparent  ;filter:alpha(opacity=100);opacity:1;">
 <?php // Yan menü bitiş
  endif; ?>
 
@@ -151,7 +157,7 @@ if(($_GET['do'] === "arama") ): ?>
 <br>
 
 <form class="" action="cari.php?do=arama" method="post" name="arama" id="arama" accept-charset="utf-8">
-Firma kodu, adı veya resmi adından birkaç harf girin
+Firma kodu, adı veya resmi adından birkaç harf girin <br><br>
   
  <input type="text" class="" id="input_444" name="aramai"  onkeyup="submitform()" placeholder="Arama yap"/><br>
  <br>  
@@ -509,10 +515,8 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
   
 						<li class="form-line" id="id_37">
         <div id="cid_37" class="form-input-wide">
-          <div style="margin-left:156px" class="form-buttons-wrapper">
-            <button id="input_37" type="submit" class="form-submit-button">
-              Kaydet
-            </button>
+          <div style="margin-left:96px" class="form-buttons-wrapper">
+            <input id="input_37" type="submit" class="form-submit-button" value="Kaydet">
           </div>
         </div>
       </li>
