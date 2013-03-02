@@ -56,8 +56,10 @@ class Connect {
 		include(dirname(__FILE__) . '/config.php');
 
 		try {
-			self::$dbh = new PDO("mysql:host={$host};dbname={$dbName}", $dbUser, $dbPass);
+			self::$dbh = new PDO("mysql:host={$host};dbname={$dbName}", $dbUser, $dbPass,array(PDO::MYSQL_ATTR_INIT_COMMAND=>'set names utf8',));
 			self::$dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+                        self::$dbh->query("SET CHARACTER SET utf8");
+                        self::$dbh->query("SET COLLATION_CONNECTION = 'utf8_turkish_ci'");
 		} catch (PDOException $e) {
 			return '<div class="alert alert-error">'._('Database error: '). $e->getMessage() . '</div>';
 		}
@@ -67,5 +69,5 @@ class Connect {
 
 }
 
-// Instantiate the Connect class
+// Instantiate the Connect class PDO::MYSQL_ATTR_INIT_COMMAND=set names utf8
 $connect = new Connect();

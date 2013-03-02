@@ -3,7 +3,7 @@
 <script>
 //if (window.location.href.indexOf('login') != -1) {
     //Change background to some div
-   $('.modern-ui').css('backgroundImage','url(../images/bg.jpg)');
+  // $('.modern-ui').css('backgroundImage','url(../images/bg.jpg)');
     //Change background to page body
    // $("document.body").css('background-image','url(http://localhost/assets/images/bg.jpg)');
 //}

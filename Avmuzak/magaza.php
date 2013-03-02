@@ -13,7 +13,7 @@ endif; ?>
 	}
 $(".mennu").text("");
 goster('anasayfa1');
-$('.modern-ui').css('backgroundImage','url(../images/bg.jpg)');
+//$('.modern-ui').css('backgroundImage','url(../images/bg.jpg)');
 
 </script>  
 <img src="./assets/images/marketmavi.png" style="height: 50px;width: 50px" class="place-left"> <h2>Mağaza Bölümü</h2>
@@ -59,7 +59,7 @@ if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
 <input type="text" class="span7" id="input_444" name="aramai" size="20" onkeyup="submitform()" placeholder="Lütfen Mağaza adı veya kodu birkaç harf girin."/><br>
 </div>
 <table border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
-<h4> <tr><td>id</td><td>Mağaza Kodu</td><td>Mağaza Adı</td><td>Mağaza Resmi Adı</td><td></td></tr></h4>
+<h4> <tr><td>No</td><td>Mağaza Kodu</td><td>Mağaza Adı</td><td>Mağaza Resmi Adı</td><td></td></tr></h4>
       
 
 <?php
@@ -85,20 +85,20 @@ function submitform()
      
      $elma="%".$_POST['aramai']."%";
      
-      $elma=toUpperCase($elma);
+      //$elma=toUpperCase($elma);
     
      $number=0;
         $param=array (':ad'=> $elma ); 
-foreach($generic->query('SELECT * FROM magaza WHERE (ad LIKE :ad or kod LIKE :ad ) and mtur_id<>4',$param) as $row) {
+foreach($generic->query('SELECT * FROM magaza WHERE (ad LIKE :ad or unvan LIKE :ad or kod LIKE :ad) and mtur_id<>4',$param) as $row) {
     $number++;
     echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
-        "</td><td><a href='", (($row['mtur_id']==="4") ? 'magaza' : 'cari') ,".php?do=duzenle&id=",$row['id'],"'></a>" ,
+        "</td><td><a href='", (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,".php?do=duzenle&id=",$row['id'],"'></a>" ,
 '<ul id="menu',$number,'">
   <li>
     <a href="#">seç</a>
     <ul>
     <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
-      <li><a href=', (($row['mtur_id']==="4") ? 'magaza' : 'cari') ,'.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
+      <li><a href=', (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,'.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
       <li><a href="#">Sil</a></li>
       <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
     </ul>
@@ -134,13 +134,13 @@ echo "<SCRIPT >  document.arama.aramai.value='",$_POST['aramai'],"' ; document.a
  
  <br>  
   <table class="table  table-condensed " border="0" cellpadding="5" cellspacing="1" style="width: 910px;" >
-  <h3> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td><a href='magazalist.pdf'>PDF</a></td></tr></h3>
+  <h3> <tr><td>No</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td><a href='magazalist.pdf'>PDF</a></td></tr></h3>
   <?php
         $number=0;    
 foreach($generic->query('SELECT * FROM magaza WHERE mtur_id<>4 ') as $row) {
     $number++;
   $data[]=$row ;
-echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
+echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
         "</td><td><a href='", (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,".php?do=duzenle&id=",$row['id'],"'></a>" ,
 '<ul id="menu',$number,'">
   <li>
@@ -237,7 +237,7 @@ function FancyTable($header, $data)
 
 
 // Column headings
-$header = array('id', 'kod', 'Firma Ad', 'Resmi Ad');
+$header = array('No', 'kod', 'Firma Ad', 'Resmi Ad');
 // Data loading
 //$data = $pdf->LoadData('countries.txt');
 
@@ -536,7 +536,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 						<li class="form-line" id="id_37">
         <div id="cid_37" class="form-input-wide">
           <div style="margin-left:156px" class="form-buttons-wrapper">
-            <input id="input_37" type="submit" class="" value="Kaydet"> 
+            <input id="" type="submit" class="" value="Kaydet"> 
               
           </div>
         </div>
@@ -613,7 +613,7 @@ if(isset($_POST['q4_magazaAdi'])) :
                         $not = $generic->secure($_POST['q4_magazaAdi']);
                         $idd=$_POST['firmID'];
                         $eposta=$generic->secure($_POST['eposta']);
-                        echo $miptal;
+                        
                         $param=array (':kod'=>$kod,':ad'=>$ad,':unvan'=>$unvan,
                             ':mtur_id' => $mtur_id,':mmtur_id'=>$mmtur_id,':dtur_id'=>$dtur_id,
                             ':stur_id'=>$stur_id,':ftur_id'=>$ftur_id,':sermaye'=>$sermaye,

@@ -30,13 +30,13 @@ footer
     top: 60px; 
 }
  
-.odd 
+table tbody tr.odd 
 {
-    background-color: #ccffff;
+    background-color: #ccffff !important;
 }
-.even
+table tbody tr.even
 {
-    background-color: #ccffcc;
+    background-color: #ccffcc !important;
 }
   
 

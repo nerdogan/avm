@@ -251,3 +251,13 @@ hr {
 .button126 a:focus  { 
     background-position: 0 -100px;  
 }
+
+
+table tbody tr.odd 
+{
+    background-color: #ccffff !important;
+}
+table tbody tr.even
+{
+    background-color: #ccffcc !important;
+}

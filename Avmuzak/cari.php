@@ -20,7 +20,7 @@ endif; ?>
 	}
 $(".mennu").text("");
 goster('anasayfa1');
-$('.modern-ui').css('backgroundImage','url(../images/bg.jpg)');
+//$('.modern-ui').css('backgroundImage','url(../images/bg.jpg)');
 
 
 </script>  
@@ -124,7 +124,7 @@ if(isset($_POST['q4_magazaAdi'])) :
 
     <div class="page snapped">
         
- <div id="" class="1">
+
 <ul class="nav">
    
     <br><br><br>
@@ -140,12 +140,11 @@ if(isset($_POST['q4_magazaAdi'])) :
 <li><a href="protected.php"><?php _e(''); ?></a></li>
 </ul>
 </div>
-</div>
- <div id="content" class="page fill">
 
-<div class="span10">
-    
-    <span class="btn btn-large " style="background-color: transparent  ;filter:alpha(opacity=100);opacity:1;">
+ <div  class="page fill">
+
+<div class="span12">
+<span class="btn btn-large fg-color-darken"  style="background-color: transparent  ;filter:alpha(opacity=100);opacity:1;">
 <?php // Yan menü bitiş
  endif; ?>
 
@@ -161,8 +160,8 @@ Firma kodu, adı veya resmi adından birkaç harf girin <br><br>
   
  <input type="text" class="" id="input_444" name="aramai"  onkeyup="submitform()" placeholder="Arama yap"/><br>
  <br>  
-  <table class="table table-condensed" border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
-  <h4> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
+  <table class="" border="0" cellpadding="5" cellspacing="1" style="width: 910px;" >
+  <h4> <tr><td>No</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
 <?php
 
 
@@ -186,7 +185,7 @@ function submitform()
 
  if (isset($_POST['aramai'])) : {
      $elma="%".$_POST['aramai']."%";
-      $elma=toUpperCase($elma);
+      //$elma=toUpperCase($elma);
      
      
      $number=0;
@@ -194,7 +193,7 @@ function submitform()
 foreach($generic->query('SELECT * FROM magaza WHERE ad LIKE :ad or unvan LIKE :ad',$param) as $row) {
      $number++;
    $data[]=$row ;
-echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
+echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
         "</td><td><a href='", (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,".php?do=duzenle&id=",$row['id'],"'></a>" ,
 '<ul id="menu',$number,'">
   <li>
@@ -231,8 +230,8 @@ endif;
    if(($_GET['do'] === "liste")|| !($_GET['do']) ): { ?>
  
  <br>  
-  <table class="table  table-condensed " border="0" cellpadding="5" cellspacing="1" style="width: 810px;" >
-  <h4> <tr><td>id</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td></td></tr></h4>
+  <table class="" border="0" cellpadding="5" cellspacing="1" style="width: 910px;" >
+  <h4> <tr><td>No</td><td> Kodu</td><td>Firma Adı</td><td>Firma Resmi Adı</td><td><a href='carilist.pdf'>PDF</a></td></tr></h4>
   <?php
         $number=0;  
         
@@ -240,7 +239,7 @@ endif;
 foreach( $liste as $row) {
     $number++;
   $data[]=$row ;
-echo "<tr class=",( ($number & 1) ? 'odd' : 'even' ),"><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
+echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td><td>",$row['kod'],"</td><td>",$row['ad'],"</td><td>",$row['unvan'],
         "</td><td><a href='", (($row['mtur_id']==="4") ? 'magaza' : 'cari') ,".php?do=duzenle&id=",$row['id'],"'></a>" ,
 '<ul id="menu',$number,'">
   <li>
@@ -341,7 +340,7 @@ function FancyTable($header, $data)
 
 $pdf = new PDF('L','mm','A4');
 // Column headings
-$header = array('id', 'kod', 'Firma Ad', 'Resmi Ad');
+$header = array('No', 'kod', 'Firma Ad', 'Resmi Ad');
 // Data loading
 //$data = $pdf->LoadData('countries.txt');
 $pdf->AddFont('tahoma','','tahoma.ttf',true);
@@ -349,7 +348,7 @@ $pdf->SetFont('tahoma','',12);
 $pdf->AddPage();
 $pdf->FancyTable($header,$data);
 $pdf->Output("carilist.pdf","F");
-echo "<a href='carilist.pdf'>====</a>";
+
 // rapor sonu
 
 
@@ -516,7 +515,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 						<li class="form-line" id="id_37">
         <div id="cid_37" class="form-input-wide">
           <div style="margin-left:96px" class="form-buttons-wrapper">
-            <input id="input_37" type="submit" class="form-submit-button" value="Kaydet">
+            <input id="" type="submit" class="form-submit-button" value="Kaydet">
           </div>
         </div>
       </li>

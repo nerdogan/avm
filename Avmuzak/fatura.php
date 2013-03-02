@@ -21,8 +21,12 @@ function hesapla(id1, id2, id3) {
     document.getElementById('kdvkdv').value = urun * 18 / 100;
     document.getElementById('gtopgtop').value = urun + (urun * 18 / 100);
 }
+$(".mennu").text("");
+goster('anasayfa1');
 
 </script>  
+
+<img src="./assets/images/hesap.png" style="height: 50px;width: 50px" class="place-left"> <h2>Fatura Bölümü</h2>
 <div class="page secondary">
      
      
@@ -52,7 +56,7 @@ function hesapla(id1, id2, id3) {
   
    
     
-    <span class="btn btn-large btn-warning">
+    <span class="btn btn-large btn-warning fg-color-darken" style="background-color: transparent  ;filter:alpha(opacity=100);opacity:1;">
   
 <?php // Yan menü bitiş
  endif; ?>
@@ -63,16 +67,16 @@ function hesapla(id1, id2, id3) {
 
 if(($_GET['do'] === "liste")  ): 
 echo "<table>";
-    echo "<tr><td>Tarih</td><td>No</td><td>Firma Adı</td><td style='width:150px'>Tutar</td><td>Not</td><td>Kod&nbsp;&nbsp;&nbsp; </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
+    echo "<tr><td>Tarih</td><td>No</td><td style='width:350px>Firma Adı</td><td style='width:150px'>Tutar</td><td>Not</td><td>Kod&nbsp;&nbsp;&nbsp; </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
      $number=0;  
      $kackayit=$generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM hareket INNER JOIN magaza ON  hareket.musno =  magaza.id');
      $toplam=0.0;
 foreach($kackayit as $row) {
     $number++;
-    echo "<tr class='",( ($number & 1) ? 'success' : 'info' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4]," TL </td><td> ",$row[5],"</td><td>",$row[0],"</td><td>",$row[6],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
+    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4]," TL </td><td> ",$row[5],"</td><td>",$row[0],"</td><td>",$row[6],"</td><td><a href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
     $toplam+=$row[4];
     }
- echo "<tr class='",( ($number & 1) ? 'success' : 'info' ),"'><td> </td><td> </td><td>Toplam : </td><td> ",$toplam," TL </td><td> </td><td></td><td></td><td></td></tr>" ;    
+ echo "<tr class='",( ($number & 1) ? 'even' : 'odd' ),"'><td> </td><td> </td><td>Toplam : </td><td> ",$toplam," TL </td><td> </td><td></td><td></td><td></td></tr>" ;    
 echo '</table';  
 
     

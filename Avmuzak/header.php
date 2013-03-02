@@ -170,7 +170,7 @@ else { ?>
 	
 		<?php  
                function toUpperCase( $input ){	
-return strtoupper( strtr( $input,'ğüşıiöç', 'ĞÜŞIİÖÇ') );
+return strtoupper( strtr( $input,'ğüşıiöç','ĞÜŞIİÖÇ') );
 }
 
 function toLowerCase( $input ){	
