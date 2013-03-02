@@ -22,12 +22,12 @@ for ($counter = 0; $counter <= $total_column; $counter ++) {
 }
 print_r($column);*/
 ?>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>	
+
 	<footer>
 		
-		<p class="navbar-fixed-bottom fg-color-white" style="font-size: 50px">
+		<p class="navbar-fixed-bottom fg-color-white" style="font-size: 30px">
                    
-              <a href="http://onlinearge.com" target="_TOP" class="fg-color-darken"> &copy;Online Arge 2013 </a>
+              <a href="http://onlinearge.com" target="_TOP" class="fg-color-darken"> &copy; Online Arge 2013 | v.1.0.0 </a>
 			
 		</p>
 	</footer>

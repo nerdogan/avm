@@ -2555,6 +2555,7 @@ ol.unstyled,
   column-gap: 20px;
 }
 .page {
+  
   position: relative;
   height: 100%;
   min-height: 100%;
@@ -2573,6 +2574,7 @@ ol.unstyled,
   width: 100%;
   position: relative;
   display: block;
+ 
 }
 .page .page-header .page-header-content {
   height: 100px;
@@ -2703,6 +2705,7 @@ ol.unstyled,
   top: 0;
   left: 0;
   right: 0;
+  background-image: url(../images/bg.jpg);
 }
 .page.fixed-header .page-region {
   padding-top: 140px;
@@ -2730,6 +2733,17 @@ ol.unstyled,
   right: 0;
   min-height: 100px;
   background-color: #cccccc !important;
+  
+}
+.app-bar1 {
+  position: relative;
+  top:  0;
+  left: 0;
+  right: 0;
+  min-height: 50px;
+  background-color: #cccccc !important;
+  border-bottom: 2px;
+  border-bottom-color: black;
   
 }
 .charms {

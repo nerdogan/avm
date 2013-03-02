@@ -101,34 +101,22 @@ function saatigoster() {
     
     <div class="page" >
         <div class="page-header " >
-            <a href="home.php" >    <h4 id="anasayfa1" class="place-left hide" style="margin-left: 50px">Avm Bilgi Sistemi</h4></a>
-            <div class="span3" style="margin-left: 50px" > <a href="home.php"><h1 class="fg-color-darken mennu" ><?php _e('Avm Bilgi <br>&nbsp;Sistemi'); ?></h1></a></div>
-           
-            <div class="clearFix"></div>
-            
-           
-                
-         
-                     
-	<div id="nav1_slim">
-		<ul>
-			
-                   
-		 	<li><a href="#">Avm Menü</a>
-                    <ul>
-					<li><a href="magaza.php">Mağaza</a></li>
-					<li><a href="cari.php">Hareket</a></li>
-					<li><a href="fatura.php">Liste</a></li>
-                                     
-			   </ul>
-                    </li>
+            <div class="app-bar1">
+              
+                <a href="home.php" >  <img class="place-left" style="height:35px;width: 165px;"   src="./assets/images/logo.PNG"></a>
+                <img class="place-left" style="margin-top:5px;height: 35px;" src="./assets/images/Home2.png">                    
+                <img class="place-left" style="margin-top:5px;height: 35px" src="./assets/images/Globe.png"> 
+                <img class="place-left" style="margin-top:5px;height: 35px" src="./assets/images/Mail.png">    
                     
-                    <li><a href="#" id="active">Sistem Bilgi</a></li> 
-                    <li><a  data-toggle="modal" href="#hakk1">Hakkımızda</a></li>
-			
-			
-		</ul>
-	</div>
+                    <div class="input-control text span2 place-right">
+        <input type="text" class="with-helper" />
+        <button class="btn-search"></button>
+    </div>
+                   
+             </div>
+            
+             
+           
 	
 <div id="hakk1" class="modal hide fade">
 	<div class="modal-header">
