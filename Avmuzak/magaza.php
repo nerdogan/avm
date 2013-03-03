@@ -16,10 +16,12 @@ goster('anasayfa1');
 //$('.modern-ui').css('backgroundImage','url(../images/bg.jpg)');
 
 </script>  
-<img src="./assets/images/marketmavi.png" style="height: 50px;width: 50px" class="place-left"> <h2>Mağaza Bölümü</h2>
+
     
     
 <div class="page secondary">
+    
+    <img src="./assets/images/marketmavi.png" style="height: 50px;width: 50px" class="place-left"> <h2>Mağaza Bölümü</h2>
      
   
      <div class="page snapped">
@@ -549,7 +551,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 </tbody>
 </table>
         
-        
+        </div>        
         
         
 <?php endif;  ?>
@@ -655,5 +657,7 @@ if(isset($_POST['q4_magazaAdi'])) :
                 ?>
 <?php
 ?>
-  </div></div></div></div>
+  </div>
+        </div>
+   
 <?php include_once('footer.php'); ?>

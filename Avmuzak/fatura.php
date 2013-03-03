@@ -26,9 +26,9 @@ goster('anasayfa1');
 
 </script>  
 
-<img src="./assets/images/hesap.png" style="height: 50px;width: 50px" class="place-left"> <h2>Fatura Bölümü</h2>
+
 <div class="page secondary">
-     
+<img src="./assets/images/hesap.png" style="height: 50px;width: 50px" class="place-left"> <h2>Fatura Bölümü</h2>     
      
            
 
@@ -67,13 +67,13 @@ goster('anasayfa1');
 
 if(($_GET['do'] === "liste")  ): 
 echo "<table>";
-    echo "<tr><td>Tarih</td><td>No</td><td style='width:350px>Firma Adı</td><td style='width:150px'>Tutar</td><td>Not</td><td>Kod&nbsp;&nbsp;&nbsp; </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
+    echo "<tr><td>Tarih</td><td>No</td><td style='width:300px'>Firma Adı</td><td style='width:120px'>Tutar</td><td>Not</td><td>Kod&nbsp;&nbsp;&nbsp; </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
      $number=0;  
      $kackayit=$generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM hareket INNER JOIN magaza ON  hareket.musno =  magaza.id');
      $toplam=0.0;
 foreach($kackayit as $row) {
     $number++;
-    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4]," TL </td><td> ",$row[5],"</td><td>",$row[0],"</td><td>",$row[6],"</td><td><a class='fg-color-darken' href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
+    echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td> ",$row[1],"</td><td> ",$row[3],"</td><td> ",$row[2],"</td><td> ",$row[4]," TL </td><td> ",$row[5],"</td><td>",$row[0],"</td><td><a class='fg-color-darken' href='magaza.php?do=duzenle&id=",$row['id'],"'>Düzenle</a></td></tr>" ;
     $toplam+=$row[4];
     }
  echo "<tr class='",( ($number & 1) ? 'even' : 'odd' ),"'><td> </td><td> </td><td>Toplam : </td><td> ",$toplam," TL </td><td> </td><td></td><td></td><td></td></tr>" ;    

@@ -76,7 +76,7 @@ endif;
                                        
                                          <img src="./assets/images/teknik.png" style="width: 96px;height: 96px;margin-top: 40px" class="place-left"/>
                                       
-                                         <h1 style="margin-bottom: 25px;margin-top: 20px" class="place-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEKNİK</h1>
+                                         <h1 style="margin-bottom: 25px;margin-top: 20px" class="place-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEKNİK</h1>
                                         <p>
                                          Demirbaş bilgileri,bakım zamanları işlemleri
                                          Mağazaların tamir ve tadilat talepleri
@@ -291,8 +291,7 @@ window.setInterval("saatigoster();",60000);
 
 </div>       
 </div>    
-</div>
-</div>
+
 <?php  endif; 
 //$date = new DateTime('2012-05-17');
 //echo  date("d-m-Y h:i:s", $date->getTimestamp());

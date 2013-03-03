@@ -22,7 +22,35 @@ for ($counter = 0; $counter <= $total_column; $counter ++) {
 }
 print_r($column);*/
 ?>
+<?php if( protectThis("*") ) : ?>
 
+<div class="charms">
+    
+    <img src="./assets/images/duyuru.PNG">
+     <table class="" border="0" cellpadding="5" cellspacing="1" style="" >
+  
+  <?php
+
+  $number=0;  
+  $liste=$generic->query('SELECT * FROM duyuru ');
+  foreach( $liste as $row) {
+      $number++;
+      echo "<tr><td style='width:90px;'><img style='width:90px;height:60px;' src='",$row[3],"'></td><td><h4>",$row[1],"</h4><p>",$row[2],"</p></td></tr>\n";
+  }
+
+
+?>
+     </table>
+        <br>  
+           <img src="./assets/images/reklam.PNG"> <br>
+           <img src="./assets/images/reklamtest.jpg">
+</div> 
+<?php endif; ?>
+
+<div class="app-bar2">
+    
+    
+</div>
 	<footer>
 		
 		<p class="navbar-fixed-bottom fg-color-white" style="font-size: 30px">
@@ -31,8 +59,7 @@ print_r($column);*/
 			
 		</p>
 	</footer>
-
-</div> <!-- /.container -->
+ <!-- /.container -->
 
 	<!-- Le javascript -->
 	<!-- Le javascript -->

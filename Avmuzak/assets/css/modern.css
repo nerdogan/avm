@@ -2726,14 +2726,14 @@ ol.unstyled,
 .page.with-sidebar .page-region:after {
   clear: both;
 }
-.app-bar {
-  position: fixed;
-  bottom: 0;
+.app-bar2 {
+ position: fixed;
+  bottom:  0;
   left: 0;
   right: 0;
-  min-height: 100px;
+  min-height: 25px;
   background-color: #cccccc !important;
-  
+  border-top: 2px  #000 solid;
 }
 .app-bar1 {
   position: relative;
@@ -2742,8 +2742,7 @@ ol.unstyled,
   right: 0;
   min-height: 50px;
   background-color: #cccccc !important;
-  border-bottom: 2px;
-  border-bottom-color: black;
+  border-bottom: 2px  #000 solid;
   
 }
 .charms {
@@ -2752,12 +2751,22 @@ ol.unstyled,
   top: 0;
   bottom: 0;
   height: 100%;
-  min-width: 200px;
-  width: auto;
+  min-width: 350px;
+  width: 20%;
 }
 .charms.place-left {
   left: 0;
   right: auto;
+}
+.charms .duyuru {
+    position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  min-width: 100px;
+  width: auto;
+    
 }
 .message-dialog {
   position: fixed;
@@ -5261,7 +5270,7 @@ th[class*="span"] {
   padding: 4px 32px 6px 5px;
   background-color: #fff;
   outline: 0;
-  margin-right: 32px;
+  margin-right: 5px;
   min-height: 32px;
   position: relative;
 }
@@ -5403,11 +5412,10 @@ th[class*="span"] {
   top: 3px;
 }
 .input-control.text .btn-search:before {
-  font-family: iconFont;
-  font-size: 12px;
-  content: "\e041";
+  
   left: 7px;
   top: 3px;
+  
 }
 label {
   font-family: 'Segoe UI', 'Arial', Verdana, Helvetica, sans-serif;

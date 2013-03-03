@@ -116,9 +116,9 @@ if(isset($_POST['q4_magazaAdi'])) :
 
 		endif;
                 ?>
-<img src="./assets/images/hesap.png" style="height: 50px;width: 50px" class="place-left"> <h2>Cari Bölümü</h2>
+
 <div class="page secondary">
-     
+<img src="./assets/images/hesap.png" style="height: 50px;width: 50px" class="place-left"> <h2>Cari Bölümü</h2>     
      
            
 
@@ -144,8 +144,8 @@ if(isset($_POST['q4_magazaAdi'])) :
  <div  class="page fill">
 
 <div class="span12">
-<span class="btn btn-large fg-color-darken"  style="background-color: transparent  ;filter:alpha(opacity=100);opacity:1;">
-<?php // Yan menü bitiş
+
+<?php // Yan menü bitiş <span class="btn btn-large fg-color-darken"  style="background-color: transparent  ;filter:alpha(opacity=100);opacity:1;">
  endif; ?>
 
 
@@ -582,7 +582,7 @@ endif;
       
         
           
-</div></div></div></div>          
+</div></div>         
     
     <?php
       
