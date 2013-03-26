@@ -100,7 +100,7 @@ foreach($generic->query('SELECT * FROM magaza WHERE (ad LIKE :ad or unvan LIKE :
     <a href="#">seç</a>
     <ul>
     <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
-      <li><a href=', (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,'.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
+      <li><a href=', (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,'.php?do=duzenle&id=',$row['id'],'>Düzenle</a></li>
       <li><a href="#">Sil</a></li>
       <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
     </ul>
@@ -149,7 +149,7 @@ echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td>
     <a href="#">seç</a>
     <ul>
     <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
-      <li><a href=', (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,'.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
+      <li><a href=', (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,'.php?do=duzenle&id=',$row['id'],'>Düzenle</a></li>
       <li><a href="#">Sil</a></li>
       <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
     </ul>
@@ -248,7 +248,8 @@ $pdf->AddFont('tahoma','','tahoma.ttf',true);
 $pdf->SetFont('tahoma','',12);
 $pdf->AddPage();
 $pdf->FancyTable($header,$data);
-$pdf->Text(260,200,'Onlinearge.com');
+$pdf->Text(100,7,'MAĞAZA LİSTE');
+$pdf->Text(260,200,'Crexist.com');
 $pdf->Text(10,200,'Avm Bilgi Sistemi');
 $pdf->Text(240,7, date("d-m-Y H:i:s"));
 $pdf->Output("magazalist.pdf","F");
@@ -266,7 +267,7 @@ endif;
 if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 
 <form class="jotform-form" action="magaza.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
-	<input type="hidden" name="formID" value="<?php echo $_get['do'] ?>" /> <input type="hidden" name="firmID" value="<?php echo $_get['id'] ?>" />
+	<input type="hidden" name="formID" value="<?php echo $_GET['do'] ?>" /> <input type="hidden" name="firmID" value="<?php echo $_GET['id'] ?>" />
 	<div class="form-all">
 		<ul class="form-section nav">
 			<li id="cid_1" class="form-input-wide ">

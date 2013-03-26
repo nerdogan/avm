@@ -3,7 +3,7 @@
 <?php include_once('classes/check.class.php');  ?>
 <?php if (!isset($_SESSION)) session_start(); error_reporting(E_ALL ^ E_NOTICE);
 ini_set('error_reporting', E_ALL ^ E_NOTICE); 
-date_default_timezone_set('Europe/Istanbul'); ?>
+date_default_timezone_set('Europe/Istanbul');  ?>
 <!DOCTYPE html>
 <html lang="tr">    
 <head>
@@ -103,8 +103,74 @@ function saatigoster() {
         <div class="page-header " >
             <div class="app-bar1">
               
-               <img class="place-left" style="height:40px;width: 230px;margin-top: 5px"   src="./assets/images/logo.PNG">
-              <a href="home.php" > 
+               
+                   
+      <!--      menü                                          -->   
+      <div class="nav-bar bg-color-gray fg-color-darken">
+        <div class="nav-bar-inner">
+ 
+           <img class="place-left" style="height:40px; width:230px;margin-top: 5px"   src="./assets/images/logo.PNG">
+            <span class="element"></span>
+ 
+            <span class="divider"></span>
+ 
+            <ul class="menu" style="margin-top:10px">
+                <li data-role="dropdown">
+                    <a href="#">Avm Bilgi</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="magaza.php">Mağaza</a></li>
+                        <li><a href="cari.php">Cari</a></li>
+                        <li><a href="fatura.php">Fatura</a></li>
+                        <li><a href="banka.php">Banka</a></li>
+                    </ul>
+                    </li>
+                    <li data-role="dropdown"> 
+                     <a href="#">Hareket</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="fatura.php">Fatura</a></li>
+                        <li><a href="#">Ödeme</a></li>
+                        <li><a href="#">Tahsilat</a></li>
+                        <li><a href="#">Gelir-Gider Eşleme</a></li>
+                        <li><a href="banka1.php">Banka</a></li>
+                    </ul>
+                </li>
+                
+                 <li data-role="dropdown"> 
+                     <a href="#">Liste</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="fatura.php?do=liste">Fatura</a></li>
+                        <li><a href="cari.php">Cari Hesap</a></li>
+                        <li><a href="banka.php">Banka</a></li>
+                        <li><a href="#">Teminat Mektubu</a></li>
+                    </ul>
+                </li>
+                
+                 <li data-role="dropdown"> 
+                     <a href="#">Tanımlar</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Döviz Kuru</a></li>
+                        <li><a href="#">Tefe/Tüfe Oranı</a></li>
+                        <li><a href="#">Ciro Takip</a></li>
+                        <li><a href="#"></a></li>
+                    </ul>
+                </li>
+                
+                 <li data-role="dropdown"> 
+                     <a href="#">Teknik</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Cihaz Kartları</a></li>
+                        <li><a href="#">Bakım Çizelgesi</a></li>
+                        <li><a href="#">Otomatik Uyarı ayarları</a></li>
+                        <li><a href="#"></a></li>
+                    </ul>
+                </li>
+                <li><a /></li>
+                <li class="divider"></li>
+                <li><a /></li>
+            </ul>
+            
+            
+           <a href="home.php" > 
                <img class="place-left" style="margin-top:5px;height: 35px;" src="./assets/images/Home2.png">  </a>
 <a href="http://onlinearge.com" target="_blank" >  <img class="place-left" style="margin-top:5px;height: 35px" src="./assets/images/Globe.png"> </a>
 <a href="mailto:info@onlinearge.com" > <img class="place-left" style="margin-top:5px;height: 35px" src="./assets/images/Mail.png">    </a>
@@ -134,17 +200,23 @@ else { ?>
 		<li><a href="login.php" class="signup-link"><em class="fg-color-orangeDark"></em> <strong class="fg-color-orangeDark"></strong></a></li>
 		</ul>
 		<?php } ?>
-            </span>    
-             </div>
+            </span>      
             
-             
-           
-	
+            
+            
+        </div>
+    </div>
+    <!--      menü   bitiş                         -->                   
+                   
+                   
+            
+            
+            </div>
+ 
 <div id="hakk1" class="modal hide fade">
 	<div class="modal-header">
             <a class="close" data-dismiss="modal">&times;</a>
         </div>
-    
 	<div class="modal-body">
             <div id="message"><h2>Hakkında...</h2></div>
             <label>
@@ -153,24 +225,9 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
             </label>
  	</div>
  </div>
+<div class="clearFix"></div>        </div></div> 
 	
 
-<div class="clearFix"></div>
-            
-     
-        </div></div> 
-	
-		<?php  
-               function toUpperCase( $input ){	
-return strtoupper( strtr( $input,'ğüşıiöç','ĞÜŞIİÖÇ') );
-}
-
-function toLowerCase( $input ){	
-return strtolower(strtr( $input,'ĞÜŞIİÖÇ','ğüşıiöç'));
-}
-
-
-?>
 <?php
 //require('rapor/makefont/makefont.php');
 

@@ -24,27 +24,7 @@ print_r($column);*/
 ?>
 <?php if( protectThis("*") ) : ?>
 
-<div class="charms">
-    
-    <img src="./assets/images/duyuru.PNG">
-     <table class="" border="0" cellpadding="5" cellspacing="1" style="" >
-  
-  <?php
-
-  $number=0;  
-  $liste=$generic->query('SELECT * FROM duyuru ');
-  foreach( $liste as $row) {
-      $number++;
-      echo "<tr><td style='width:90px;'><img style='width:90px;height:60px;' src='",$row[3],"'></td><td><h4>",$row[1],"</h4><p>",$row[2],"</p></td></tr>\n";
-  }
-
-
-?>
-     </table>
-        <br>  
-           <img src="./assets/images/reklam.PNG"> <br>
-           <img src="./assets/images/reklamtest.jpg">
-</div> 
+ 
 <?php endif; ?>
 
 <div class="app-bar2">
@@ -55,7 +35,7 @@ print_r($column);*/
 		
 		<p class="navbar-fixed-bottom fg-color-white" style="font-size: 30px">
                    
-              <a href="http://onlinearge.com" target="_TOP" class="fg-color-darken"> &copy; Online Arge 2013 | v.1.0.0 </a>
+              <a href="http://onlinearge.com" target="_TOP" class="fg-color-darken"> &copy; 2013 Crexist Inc.   info@crexist.com  2013 | v.1.2.0 </a>
 			
 		</p>
 	</footer>

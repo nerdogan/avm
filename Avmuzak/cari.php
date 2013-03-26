@@ -246,7 +246,7 @@ echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td>
     <a href="#">seç</a>
     <ul>
     <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
-      <li><a href=', (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,'.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
+      <li><a href=', (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,'.php?do=duzenle&id=',$row['id'],'>Düzenle</a></li>
       <li><a href="#">Sil</a></li>
       <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
     </ul>
@@ -337,20 +337,18 @@ function FancyTable($header, $data)
     $this->Cell(array_sum($w),0,'','T');
 }
 }
-
-$pdf = new PDF('L','mm','A4');
-// Column headings
 $header = array('No', 'kod', 'Firma Ad', 'Resmi Ad');
-// Data loading
-//$data = $pdf->LoadData('countries.txt');
+$pdf = new PDF('L','mm','A4');
 $pdf->AddFont('tahoma','','tahoma.ttf',true);
 $pdf->SetFont('tahoma','',12);
 $pdf->AddPage();
 $pdf->FancyTable($header,$data);
+$pdf->Text(100,7,'CARİ LİSTE');
+$pdf->Text(260,200,'Crexist.com');
+$pdf->Text(10,200,'Avm Bilgi Sistemi');
+$pdf->Text(240,7, date("d-m-Y H:i:s"));
 $pdf->Output("carilist.pdf","F");
-
-// rapor sonu
-
+echo "";
 
 endif;
 

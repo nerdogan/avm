@@ -230,10 +230,10 @@
  * responsive.less
  */
 /* Large desktop */
-@media (min-width: 1200px) {
+@media (min-width: 1024px) {
   
 }
-@media (min-width: 980px) {
+@media (min-width: 768px) {
   .nav-bar .nav-bar-inner .pull-menu {
     display: none;
   }
@@ -783,7 +783,7 @@
     left: 0;
   }
   .page.fixed-header .page-region {
-    padding-top: 20px;
+    padding-top: 10px;
   }
   .horizontal-menu {
     height: auto;
