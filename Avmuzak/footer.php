@@ -35,7 +35,7 @@ print_r($column);*/
 		
 		<p class="navbar-fixed-bottom fg-color-white" style="font-size: 30px">
                    
-              <a href="http://onlinearge.com" target="_TOP" class="fg-color-darken"> &copy; 2013 Crexist Inc.   info@crexist.com  2013 | v.1.2.0 </a>
+              <a href="http://onlinearge.com" target="_TOP" class="fg-color-darken"> &copy; 2013 Crexist Inc.   info@crexist.com  2013 | v.1.2.0  </a>
 			
 		</p>
 	</footer>

@@ -653,7 +653,7 @@ class Generic extends Connect {
 		$url .= md5( strtolower( trim( $email ) ) );
 		$url .= "?s=$s&d=$d&r=$r";
 		if ( $img ) {
-			$url = '<img class="gravatar thumbnail" src="' . $url . '"';
+			$url = '<img  src="' . $url . '"'; // class="gravatar thumbnail"
 			foreach ( $atts as $key => $val )
 				$url .= ' ' . $key . '="' . $val . '"';
 			$url .= ' />';

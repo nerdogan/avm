@@ -175,19 +175,22 @@ function saatigoster() {
 <a href="http://onlinearge.com" target="_blank" >  <img class="place-left" style="margin-top:5px;height: 35px" src="./assets/images/Globe.png"> </a>
 <a href="mailto:info@onlinearge.com" > <img class="place-left" style="margin-top:5px;height: 35px" src="./assets/images/Mail.png">    </a>
                     
-                    <div class="input-control text span3 place-right" style="margin:5px;height: 45px;">
+<!--        <div class="input-control text span3 place-right" style="margin:5px;height: 45px;">
         <input type="text" class="with-helper" />
         <button class="btn-search"></button>
-    </div>
-                <span class="place-right" style="margin-top: 0px;margin-right: 25px">            
+        </div>
+-->
+                <span class="place-right" style="margin-top: 0px;margin-right: 25px">   
+                    
                
   <?php if(isset($_SESSION['jigowatt']['username'])) { ?>
            
          <a href="#" class="dropdown-toggle place-right fg-color-darken" data-toggle="dropdown"  style="margin:5px 2px 0px 0px;">
-         <img src="./assets/images/user.png" style="margin:0px 2px 0px 0px;height: 35px">
+        
+             <?php echo $_SESSION['jigowatt']['gravatar']; ?>
           <?php echo "  ",$_SESSION['jigowatt']['name'],"  "; ?>
           <img src="./assets/images/down.png" style="margin:5px 0px 0px 2px;"> </a>
-         <ul class="dropdown-menu place-right" style="margin-top: 0px;margin-right: 255px">
+         <ul class="dropdown-menu place-right" style="margin-top: 0px;margin-right: 25px">
          <li><a href="profile.php"><i class="icon-user"></i> <?php _e('Hesabım'); ?></a></li>
 	<li><a href="mailto:info@onlinearge.com"><i class="icon-info-sign"></i> <?php _e('Yardım'); ?></a></li>
 	<li class="divider"></li>

@@ -20,15 +20,18 @@
   <div id="tabs-1">
       <?php echo $_POST['id']; ?>
       <form action="ana.php" name="formmm" method="post">
-   </div>
+ <script type="text/javascript" src="http://www.ohloh.net/p/633115/widgets/project_languages.js"></script>
+  </div>
     
     <div id="tabs-2">
-        <input type="text" name="id"></input>
-   </div>
+        <input type="text" name="id">
+    </div>
     <div id="tabs-3">
-        <input type="text" name="idd"></input>
+        <input type="text" name="idd">
        
    </div>
     </form>
 </div>
  <input type="submit">
+     
+    
