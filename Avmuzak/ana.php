@@ -28,6 +28,45 @@
     </div>
     <div id="tabs-3">
         <input type="text" name="idd">
+<? 
+
+// http://www.tcmb.gov.tr/kurlar/201303/27032013.xml
+$content = file_get_contents("http://www.tcmb.gov.tr/kurlar/today.xml"); 
+
+$dolar_bul = explode('<Currency Kod="USD" CurrencyCode="USD">' ,$content); 
+
+$dolar_bul = explode('</ForexBuying>',$dolar_bul[1]); 
+
+$dolar_alis = explode('<ForexBuying>',$dolar_bul[0]); 
+
+$dolar_bul = explode('</ForexSelling>',$dolar_bul[1]); 
+
+$dolar_satis = explode('<ForexSelling>',$dolar_bul[0]); 
+
+$dolar_alis = $dolar_alis[1]; 
+
+$dolar_satis = $dolar_satis[1]; 
+
+
+
+$euro_bul = explode('<Currency Kod="EUR" CurrencyCode="EUR">' ,$content); 
+
+$euro_bul = explode('</ForexBuying>',$euro_bul[1]); 
+
+$euro_alis = explode('<ForexBuying>',$euro_bul[0]); 
+
+$euro_bul = explode('</ForexSelling>',$euro_bul[1]); 
+
+$euro_satis = explode('<ForexSelling>',$euro_bul[0]); 
+
+$euro_alis = $euro_alis[1]; 
+
+$euro_satis = $euro_satis[1]; 
+
+echo $dolar_alis,$dolar_satis;
+echo $euro_alis,$euro_satis;
+
+?>
        
    </div>
     </form>

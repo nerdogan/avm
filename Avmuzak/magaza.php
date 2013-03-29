@@ -18,7 +18,20 @@ goster('anasayfa1');
 </script>  
 
     
-    
+<?php
+ if(($_GET['do'] === "sil")): {
+      
+      $elma=$_GET['id'];
+     $param=array (':ad'=> $elma ); 
+      
+  foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param) as $row) {    }
+  $generic->query('DELETE FROM magaza WHERE id=:ad',$param);
+  $generic->displayMessage(sprintf('</div></div></div></div><div class="alert alert-success">' . _('Kayıt başarıyla silindi. (') .$row['id']." ".$row['kod']." ".$row['ad']." ".$row['unvan']." ". ')</div>'),FALSE);
+      
+  }
+  
+  endif;
+?>    
 <div class="page secondary">
     
     <img src="./assets/images/marketmavi.png" style="height: 50px;width: 50px" class="place-left"> <h2>Mağaza Bölümü</h2>
@@ -50,6 +63,7 @@ goster('anasayfa1');
 <?php // Yan menü bitiş <span class="btn btn-large btn-warning fg-color-darken " style="background-color: transparent  ;filter:alpha(opacity=100);opacity:1;">
  endif; ?>
 <?php 
+
 // Arama bölümü
 if(($_GET['do'] === "arama")|| !($_GET['do']) ): ?>
 
@@ -101,7 +115,7 @@ foreach($generic->query('SELECT * FROM magaza WHERE (ad LIKE :ad or unvan LIKE :
     <ul>
     <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
       <li><a href=', (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,'.php?do=duzenle&id=',$row['id'],'>Düzenle</a></li>
-      <li><a href="#">Sil</a></li>
+       <li><a href="magaza.php?do=sil&id=',$row['id'],'">Sil</a></li>
       <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
     </ul>
   </li>
@@ -130,7 +144,10 @@ echo "<SCRIPT >  document.arama.aramai.value='",$_POST['aramai'],"' ; document.a
  
  
   <?php // arama sonu
+  
  
+
+
  // listeleme başlangıcı
    if(($_GET['do'] === "liste")|| !($_GET['do']) ): { ?>
  
@@ -150,7 +167,7 @@ echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td>
     <ul>
     <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
       <li><a href=', (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,'.php?do=duzenle&id=',$row['id'],'>Düzenle</a></li>
-      <li><a href="#">Sil</a></li>
+      <li><a href="magaza.php?do=sil&id=',$row['id'],'">Sil</a></li>
       <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
     </ul>
   </li>

@@ -128,8 +128,8 @@ function saatigoster() {
                      <a href="#">Hareket</a>
                     <ul class="dropdown-menu">
                         <li><a href="fatura.php">Fatura</a></li>
-                        <li><a href="#">Ödeme</a></li>
-                        <li><a href="#">Tahsilat</a></li>
+                        <li><a href="hareket.php?ne=odeme&do=yeni">Ödeme</a></li>
+                        <li><a href="hareket.php?ne=tahsilat&do=yeni">Tahsilat</a></li>
                         <li><a href="#">Gelir-Gider Eşleme</a></li>
                         <li><a href="banka1.php">Banka</a></li>
                     </ul>

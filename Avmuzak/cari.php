@@ -37,7 +37,18 @@ goster('anasayfa1');
   //  echo 'Connection failed: ' . $e->getMessage();
 //}
 
-
+if(($_GET['do'] === "sil")): {
+      
+      $elma1=$_GET['id'];
+     $param3=array (':ad'=> $elma1 ); 
+      
+  foreach($generic->query('SELECT * FROM magaza WHERE id=:ad',$param3) as $row) {    }
+  $generic->query('DELETE FROM magaza WHERE id=:ad',$param3);
+  $generic->displayMessage(sprintf('</div></div></div></div><div class="alert alert-success">' . _('Kayıt başarıyla silindi. (') .$row['id']." ".$row['kod']." ".$row['ad']." ".$row['unvan']." ". ')</div>'),FALSE);
+      
+  }
+  
+  endif;
 
 
 if(isset($_POST['q4_magazaAdi'])) :
@@ -201,7 +212,7 @@ echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td>
     <ul>
     <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
       <li><a href=', (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,'.php?do=duzenle&id=',$row['id'],'">Düzenle</a></li>
-      <li><a href="#">Sil</a></li>
+      <li><a href="cari.php?do=sil&id=',$row['id'],'">Sil</a></li>
       <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
     </ul>
   </li>
@@ -247,7 +258,7 @@ echo "<tr class='",( ($number & 1) ? 'odd' : 'even' ),"'><td>",$row['id'],"</td>
     <ul>
     <li><a href="cari.php?do=goster&id=',$row['id'],'">Göster</a></li>
       <li><a href=', (($row['mtur_id']==="4") ? 'cari' : 'magaza') ,'.php?do=duzenle&id=',$row['id'],'>Düzenle</a></li>
-      <li><a href="#">Sil</a></li>
+       <li><a href="cari.php?do=sil&id=',$row['id'],'">Sil</a></li>
       <li><a href="fatura.php?do=yeni&id=',$row['id'],'">Fatura</a></li>
     </ul>
   </li>

@@ -143,7 +143,7 @@ if(($_GET['do'] === "yeni")  ): ?>
             <option value="1">ALIŞ </option>
             <option value="2">SATIŞ </option>
             <option value="3">ALIŞ İADE</option>
-            <option value="3">SATIŞ İADE</option>
+            <option value="4">SATIŞ İADE</option>
             
           </select>
         </div>
@@ -385,7 +385,25 @@ endif;
                         $top=$generic->secure($_POST['toplam']);
                         $kdv=$generic->secure($_POST['kdv']);
                         $gtop=$generic->secure($_POST['gtop']);
-                        
+                        switch ($turu) {
+    case "1":
+        $alacak=$gtop;
+        $borc="0";
+        break;
+    
+    case "2":
+        $alacak="0";
+        $borc=$gtop;
+        break;
+    case "3":
+        $alacak="0";
+        $borc=$gtop;
+        break;
+    case "4":
+        $alacak=$gtop;
+        $borc="0";
+        break;
+                        }            
                         
                         $tanim1 = $generic->secure($_POST['tanim1']);
                         $tanim2 = $generic->secure($_POST['tanim2']);
@@ -406,8 +424,8 @@ endif;
                         $idd="";
                         $param=array (':firma'=>$musno,':tarih'=>$tarih,':turu'=>$turu,
                             ':faturano' => $faturano,':nott'=>$nott,':top'=>$top,
-                            ':kdv'=>$kdv,':gtop'=>$gtop    );
-                       $okmu= $generic->query('INSERT INTO hareket (musno,tarih,turu,faturano,top,kdv,gtop,nott) VALUES ( :firma , :tarih,:turu,:faturano,:top,:kdv,:gtop,:nott)',$param);
+                            ':kdv'=>$kdv,':gtop'=>$gtop ,':borc'=>$borc,':alacak'=>$alacak   );
+                       $okmu= $generic->query('INSERT INTO hareket (musno,tarih,turu,faturano,top,kdv,gtop,nott,borc,alacak) VALUES ( :firma , :tarih,:turu,:faturano,:top,:kdv,:gtop,:nott,:borc,:alacak)',$param);
 		//	$this->token = !empty($_POST['token']) ? $_POST['token'] : '';
 		//	$this->process();
               if ($okmu->rowCount()==1): echo"kaydedildi";  header( 'Location: fatura.php?do=liste' ) ; endif;
