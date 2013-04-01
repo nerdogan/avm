@@ -269,8 +269,25 @@ endif;
                        $okmu= $generic->query('INSERT INTO hareket (musno,tarih,turu,faturano,odemesekli,kdv,gtop,nott,borc,alacak) VALUES ( :firma , :tarih,:turu,:faturano,:top,:kdv,:gtop,:nott,:borc,:alacak)',$param);
 		//	$this->token = !empty($_POST['token']) ? $_POST['token'] : '';
 		//	$this->process();
-              if ($okmu->rowCount()==1): echo"kaydedildi"; 
-// header( 'Location: hareket.php?do=liste' ) ;
+              if ($okmu->rowCount()==1): {
+                  echo"kaydedildi"; 
+
+ //     $temp = array("a"=>1, "b"=>2);
+// $postdata = http_build_query($temp);
+
+$ch = curl_init();
+//curl_setopt($ch, CURLOPT_POST, true); //POST Metodu kullanarak verileri gönder
+curl_setopt($ch, CURLOPT_HEADER, false); //Serverdan gelen Header bilgilerini önemseme.
+curl_setopt($ch, CURLOPT_URL, "http://api.clickatell.com/http/sendmsg?user=nerdoga&password=NGbXDJUZdbYTQM&api_id=3418940&to=905533155775&text=Kayıt Girildi"); //Bağlanacağı URL
+//curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata); //POST verilerinin querystring hali. Gönderime hazır!
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //Transfer sonuçlarını return et. Onları kullanacağım!
+curl_setopt($ch, CURLOPT_TIMEOUT, 20); //20 saniyede işini bitiremezsen timeout ol.
+$data = curl_exec($ch);
+curl_close($ch);
+
+echo $data;
+              }
+// header( 'Location: hareket.php?do=liste' ) ; http://api.clickatell.com/http/sendmsg?user=nerdogan&password=PASSWORD&api_id=3418940&to=905533155794&text=Message
  endif;
 
 		endif;

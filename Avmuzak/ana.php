@@ -25,6 +25,22 @@
     
     <div id="tabs-2">
         <input type="text" name="id">
+<?php
+       //     $temp = array("a"=>1, "b"=>2);
+// $postdata = http_build_query($temp);
+
+$ch = curl_init();
+//curl_setopt($ch, CURLOPT_POST, true); //POST Metodu kullanarak verileri gönder
+curl_setopt($ch, CURLOPT_HEADER, false); //Serverdan gelen Header bilgilerini önemseme.
+curl_setopt($ch, CURLOPT_URL, "http://www.google.com.tr"); //Bağlanacağı URL
+//curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata); //POST verilerinin querystring hali. Gönderime hazır!
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //Transfer sonuçlarını return et. Onları kullanacağım!
+curl_setopt($ch, CURLOPT_TIMEOUT, 20); //20 saniyede işini bitiremezsen timeout ol.
+$data = curl_exec($ch);
+curl_close($ch);
+
+echo $data;
+?>
     </div>
     <div id="tabs-3">
         <input type="text" name="idd">

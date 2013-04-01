@@ -5,36 +5,34 @@
 ini_set('error_reporting', E_ALL ^ E_NOTICE); 
 date_default_timezone_set('Europe/Istanbul');  ?>
 <!DOCTYPE html>
-<html lang="tr">    
+<html class="sidebar_default  no-js" lang="tr">
+ 
 <head>
+  <title>Avm Bilgi Sistemi 2013</title>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta name="description" content="Avm Mağaza Kontrol Sistemi 2013">
     <meta name="author" content="Namık ERDOĞAN">
     <meta name="keywords" content="Avm, Mağaza, Kontrol,yönetim, Sistemi, 2013">
 
-    <link href="assets/css/modern.css" rel="stylesheet">
-    <link href="assets/css/modern-responsive.css" rel="stylesheet">
-    <link href="assets/css/site.css" rel="stylesheet" type="text/css">
-    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
-
-    <script type="text/javascript" src="assets/js/assets/jquery-1.9.0.min.js"></script>
-    <script type="text/javascript" src="assets/js/assets/jquery.mousewheel.min.js"></script>
-
-    <script type="text/javascript" src="assets/js/modern/dropdown.js"></script>
-    <script type="text/javascript" src="assets/js/modern/accordion.js"></script>
-    <script type="text/javascript" src="assets/js/modern/buttonset.js"></script>
-    <script type="text/javascript" src="assets/js/modern/carousel.js"></script>
-    <script type="text/javascript" src="assets/js/modern/input-control.js"></script>
-    <script type="text/javascript" src="assets/js/modern/pagecontrol.js"></script>
-    <script type="text/javascript" src="assets/js/modern/rating.js"></script>
-    <script type="text/javascript" src="assets/js/modern/slider.js"></script>
-    <script type="text/javascript" src="assets/js/modern/tile-slider.js"></script>
-    <script type="text/javascript" src="assets/js/modern/tile-drag.js"></script>
-    <link rel="stylesheet" href="assets/css/jquery-ui.css" />
-    <script src="assets/js/jquery-ui.js"></script> 
+  
      <script src="assets/js/jquery.ui.datepicker-tr.js"></script>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+ 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="shortcut icon" href="css/images/favicon.png">
+<!-- Le styles -->
+<link href="css/twitter/bootstrap.css" rel="stylesheet">
+<link href="css/base.css" rel="stylesheet">
+<link href="css/twitter/responsive.css" rel="stylesheet">
+<link href="css/jquery-ui-1.8.23.custom.css" rel="stylesheet">
+<script src="js/plugins/modernizr.custom.32549.js"></script>
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+
         
    <SCRIPT language=JavaScript>
 function saatigoster() {
@@ -94,26 +92,9 @@ function saatigoster() {
   });
   </script> 
 
-    <title>Avm Bilgi Sistemi 2013</title>
 </head>
-<body class="modern-ui" onload="prettyPrint()">
-    
-    
-    <div class="page" >
-        <div class="page-header " >
-            <div class="app-bar1">
-              
-               
-                   
-      <!--      menü                                          -->   
-      <div class="nav-bar bg-color-gray fg-color-darken">
-        <div class="nav-bar-inner">
- 
-           <img class="place-left" style="height:40px; width:230px;margin-top: 5px"   src="./assets/images/logo.PNG">
-            <span class="element"></span>
- 
-            <span class="divider"></span>
- 
+
+  <!-- 
             <ul class="menu" style="margin-top:10px">
                 <li data-role="dropdown">
                     <a href="#">Avm Bilgi</a>
@@ -179,8 +160,7 @@ function saatigoster() {
         <input type="text" class="with-helper" />
         <button class="btn-search"></button>
         </div>
--->
-                <span class="place-right" style="margin-top: 0px;margin-right: 25px">   
+<span class="place-right" style="margin-top: 0px;margin-right: 25px">   
                     
                
   <?php if(isset($_SESSION['jigowatt']['username'])) { ?>
@@ -209,7 +189,7 @@ else { ?>
             
         </div>
     </div>
-    <!--      menü   bitiş                         -->                   
+    <!--      menü   bitiş                                      
                    
                    
             
@@ -236,3 +216,4 @@ Pellentesque condimentum, arcu eget posuere tristique, leo urna malesuada felis,
 
 //MakeFont('tahoma.ttf','cp1254');
 ?> 
+-->

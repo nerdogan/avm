@@ -1,84 +1,152 @@
 <?php include_once('classes/login.class.php'); ?>
 <?php include_once('header.php'); ?>
-<script>
-//if (window.location.href.indexOf('login') != -1) {
-    //Change background to some div
-  // $('.modern-ui').css('backgroundImage','url(../images/bg.jpg)');
-    //Change background to page body
-   // $("document.body").css('background-image','url(http://localhost/assets/images/bg.jpg)');
-//}
-</script> 
-<div class="page" >
-           
-            <div class="page-header-content">
-              
-               
-<div id="forgot-form" class="modal hide fade">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal">&times;</a>
-		<h3><?php _e('Parolamı Unuttum !'); ?></h3>
-	</div>
-	<div class="modal-body">
-		<div id="message"></div>
-		<form action="forgot.php" method="post" name="forgotform" id="forgotform" class="form-stacked forgotform normal-label">
-			<div class="controlgroup forgotcenter">
-			<label for="usernamemail"><?php _e('Kullanıcı Adı ya da Email Adresi'); ?></label>
-				<div class="control">
-					<input id="usernamemail" name="usernamemail" type="text"/>
-				</div>
-			</div>
-			<input type="submit" class="hidden" name="forgotten">
-		</form>
-	</div>
-	<div class="modal-footer">
-		<button data-complete-text="<?php _e('Tamam'); ?>" class="btn btn-primary pull-right" id="forgotsubmit"><?php _e('Gönder'); ?></button>
-		<p class="pull-left"><?php _e('Lütfen email adresinizi kontrol ediniz.'); ?></p>
-	</div>
-</div>
- <div class="span4" style="position: fixed;top:250px;left: 50%;width:500px;margin-left:-250px;">
-<div class="row">
-   
+
+  <body>
+<div id="login_page"> 
+  <!-- Login page -->
+  <div id="login">
+    <div class="row-fluid fluid">
+      <div class="span5">  </div>
+      <div class="span7">
+        <div class="title">
+          <span class="name"></span>
+          <span class="subtitle"></span>
+        </div>
+        <form class="form-search row-fluid "  action="login.php" method="post" >
+          <div class="input-append row-fluid fluid">
+            <input  class="place-right" id="username" name="username" maxlength="15" type="text"  placeholder="Kullanıcı adı"/><br><br>
+           <input class="place-right" id="password" name="password" size="30" type="password" placeholder="Parola"/><br><br>
+
+           <input type="hidden" name="token" value="<?php echo $_SESSION['jigowatt']['token']; ?>"/>
+                
+			<input type="checkbox" id="remember" name="remember"/><span ><?php _e(' Beni Hatırla !'); ?></span><br><br>
 	
-		<form method="post" class="form normal-label" action="login.php">
-		<fieldset>
-<p><span class="forgot place-right">
-        <a data-toggle="modal" href="#forgot-form" id="forgotlink" tabindex=-1><?php _e('Parolamı Unuttum'); ?></a>?
-    </span></p>
-    
-    <img class="place-left" src="assets/images/powerlock.png">
-		<input  class="place-right" id="username" name="username" maxlength="15" type="text" style="height: 46px; -webkit-border-radius: 7px;width: 300px" placeholder="Kullanıcı adı"/><br><br>
-               <input class="place-right" id="password" name="password" size="30" type="password"  style="height: 46px; -webkit-border-radius: 7px;width: 300px" placeholder="Parola"/>
-				
-		</fieldset>
+		<input type="submit" value="<?php _e(' Giriş '); ?>" class=" btn " id="login-submit" name="login"/>
+                 
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- End #login --> 
+  <!-- <img src="img/ajax-loader.gif"> --> 
+</div>
+<!-- End #loading --> 
 
-		<input type="hidden" name="token" value="<?php echo $_SESSION['jigowatt']['token']; ?>"/>
-                <div class="span4">
-                <label class="remember  place-right" for="remember">
-			<input type="checkbox" id="remember" name="remember"/><span ><?php _e(' Beni Hatırla !'); ?></span>
-		</label>
-                </div>
-		<input type="submit" value="<?php _e(' Giriş '); ?>" class=" btn login-submit place-right" id="login-submit" name="login"/>
-               
-		
+<!-- Le javascript
+    ================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
 
-		<p class="signup"><a href="sign_up.php"><?php _e(''); ?></a></p>
+<!-- Flip effect on login screen --> 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> 
+<script type="text/javascript" src="js/plugins/jquerypp.custom.js"></script> 
+<script type="text/javascript" src="js/plugins/jquery.bookblock.js"></script> 
+<script language="javascript" type="text/javascript" src="js/plugins/jquery.uniform.min.js"></script> 
+<script type="text/javascript">
+      $(function() {
+        var Page = (function() {
 
-		<?php if ( !empty($jigowatt_integration->enabledMethods) ) : ?>
+          var config = {
+              $bookBlock: $( '#bb-bookblock' ),
+              $navNext  : $( '#bb-nav-next' ),
+              $navPrev  : $( '#bb-nav-prev' ),
+              $navJump  : $( '#bb-nav-jump' ),
+              bb        : $( '#bb-bookblock' ).bookblock( {
+                speed       : 800,
+                shadowSides : 0.8,
+                shadowFlip  : 0.7
+              } )
+            },
+            init = function() {
 
-		<div class="">
-			<?php foreach ($jigowatt_integration->enabledMethods as $key ) : ?>
-				<p><a href="login.php?login=<?php echo $key; ?>"><img src="assets/img/<?php echo $key; ?>_signin.png" alt="<?php echo $key; ?>"></a></p>
-			<?php endforeach; ?>
-		</div>
+              initEvents();
+              
+            },
+            initEvents = function() {
 
-		<?php endif; ?>
+              var $slides = config.$bookBlock.children(),
+                  totalSlides = $slides.length;
 
-		</form>
-	</div>
-     
+              // add navigation events
+              config.$navNext.on( 'click', function() {
+              $("#arrow_register").fadeOut();
+              $(".not-member").slideUp();
+              $(".already-member").slideDown();
+                config.bb.next();
+                return false;
 
-</div></div></div></div>
+              } );
 
+              config.$navPrev.on( 'click', function() {
+
+                 $(".not-member").slideDown();
+                $(".already-member").slideUp();
+                config.bb.prev();
+                return false;
+
+              } );
+
+              config.$navJump.on( 'click', function() {
+                
+                config.bb.jump( totalSlides );
+                return false;
+
+              } );
+              
+              // add swipe events
+              $slides.on( {
+
+                'swipeleft'   : function( event ) {
+                
+                  config.bb.next();
+                  return false;
+
+                },
+                'swiperight'  : function( event ) {
+                
+                  config.bb.prev();
+                  return false;
+                  
+                }
+
+              } );
+
+            };
+
+            return { init : init };
+
+        })();
+
+        Page.init();
+
+      });
+    </script> 
+<script type='text/javascript'>
  
+    $(window).load(function() {
+     $('#loading1').fadeOut();
+    });
+      $(document).ready(function() {
+           $("input:checkbox, input:radio, input:file").uniform();
 
-<?php include_once('footer.php'); ?>
+
+      $('[rel=tooltip]').tooltip();
+      $('body').css('display', 'none');
+      $('body').fadeIn(500);
+
+      $("#logo a, #sidebar_menu a:not(.accordion-toggle), a.ajx").click(function() {
+        event.preventDefault();
+        newLocation = this.href;
+        $('body').fadeOut(500, newpage);
+        });
+        function newpage() {
+        window.location = newLocation;
+        }
+      });
+      
+    
+
+    </script>
+</body>
+</html>
+            

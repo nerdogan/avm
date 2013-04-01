@@ -198,7 +198,7 @@ class Login extends jigowatt_integration {
 
 		$_SESSION['jigowatt']['email'] = $this->result['email'];
 
-		$_SESSION['jigowatt']['gravatar'] = parent::get_gravatar($this->result['email'], true, 26);
+		$_SESSION['jigowatt']['gravatar'] = parent::get_gravatar($this->result['email'], true, 75);
 
 		/** Check whether the user's level is disabled. */
 		$params = array( ':level' => $user_level[0] );
