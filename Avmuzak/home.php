@@ -272,7 +272,7 @@ $euro_satis = $euro_satis[1];
               <div id="placeholder3" style="width:100%;height:65px;margin-top:7px"></div>
             </div>
             <div class="span2 average_ctr">
-              <h1 class="value"><span class="percent">%</span></h1>
+              <h4 class="value"><span class="percent"><?php  echo tarihcevir (date("d.m.Y")); ?></span></h4>
               <div class="description mt15" >A</div>
             </div>
             <div class="span3 shown_left">
@@ -329,7 +329,7 @@ $euro_satis = $euro_satis[1];
               <div id="placeholder4" style="width:100%;height:65px;margin-top:7px"></div>
             </div>
             <div class="span2 average_ctr">
-              <h1 class="value"><span class="percent">%</span></h1>
+              <h4 class="value"><span class="percent"><?php  echo tarihcevir (date("d.m.Y")); ?></span></h4>
               <div class="description mt15" >A</div>
             </div>
             <div class="span3 shown_left">

@@ -445,7 +445,7 @@ endif;
 // Ekleme ve Düzenleme   
 if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 <div class="row-fluid">
-        <div class="span12">
+        <div class="span8">
           <div class="box paint color_7">
             <div class="title">
               <h4> <i class="icon-book"></i><span>MAĞAZA KARTI <?php echo strtoupper($_GET['do']); ?></span> </h4>
@@ -472,7 +472,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 				<label class="form-label-left" id="label_99" for="input_2">
 				</label>
 				<div id="cid_99" class="form-input">
-					<input type="text" class="form-textbox validate[required]" id="input_2" name="magazakod" size="20" placeholder="Mağaza Kod"/>
+					<input type="text" class="" id="input_2" name="magazakod" size="20" placeholder="Mağaza Kod"/>
 				</div>
 				</li>
                             </td>
@@ -577,8 +577,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 				</div>
 				</li>
 			</td>
-		</tr>
-		<tr>
+		
 			<td>
 				<li class="form-line" id="id_17">
 				<label class="form-label-left" id="label_17" for="input_14"></label>
@@ -611,6 +610,9 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 				</div>
 				</li>
 			</td> 
+                       </tr>
+		<tr> 
+                        
 			<td>
 				<li class="form-line" id="id_22">
 				<label class="form-label-left" id="label_22" for="input_17"></label>
@@ -649,8 +651,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 				</div>
 				</li>
 			</td>
-		</tr>
-		<tr>
+		
 			<td>
 				<li class="form-line" id="id_22">
 				<label class="form-label-left" id="label_28" for="input_28"></label>
@@ -723,13 +724,15 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 		<tr>
 			<td>
 				&nbsp;
+			</td><td>
+				&nbsp;
 			</td>
 			<td>
 				<li class="form-line" id="id_37">
 				<div id="cid_37" class="form-input-wide">
-					<div style="margin-left:156px" class="form-buttons-wrapper">
-						<input id="" type="submit" class="" value="Kaydet">
-					</div>
+					<div class="controls span9">
+                    <button type="submit" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;Kaydet&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                  </div>
 				</div>
 				</li>
 			</ul>
