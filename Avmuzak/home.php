@@ -38,7 +38,19 @@ endif;
       <ul id="sidebar_menu" class="navbar nav nav-list container full">
         <li class="accordion-group active color_4"> <a class="dashboard " href="home.php"><img src="img/menu_icons/dashboard.png"><span>Başlangıç</span></a> </li>
         
-        <li class="color_24"> <a class="widgets"data-parent="#sidebar_menu" href="magaza.php"> <img src="img/menu_icons/grid.png"><span>Mağaza</span></a> </li>
+        
+           
+        <li class="accordion-group color_3"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse1">
+                <img src="img/menu_icons/grid.png"><span>Mağaza</span></a>
+          <ul id="collapse1" class="accordion-body collapse">
+              <li><a href="magaza.php?do=ekle">Yeni Ekle</a></li>
+              <li><a href="magaza.php?do=arama">Ara</a></li>
+              <li><a href="magaza.php?do=sil">Sil</a></li>
+              <li><a href="magaza.php?do=liste">Tam Liste</a></li>
+              
+          </ul>
+        </li>
+        
         <li class="color_8"> <a class="widgets"data-parent="#sidebar_menu" href="cari.php"> <img src="img/menu_icons/calendar.png"><span>Cari</span></a> </li>
         <li class="color_24"> <a class="widgets"data-parent="#sidebar_menu" href="fatura.php"> <img src="img/menu_icons/statistics.png"><span>Fatura</span></a> </li>
         <li class="color_8"> <a class="widgets"data-parent="#sidebar_menu" href="banka.php"> <img src="img/menu_icons/gallery.png"><span>Banka</span></a> </li>
@@ -129,9 +141,8 @@ endif;
             
           </div>
           <!-- End .title -->
-          <div class="content"  style="padding-top:35px;">
-            <div id="placeholder" style="width:100%;height:240px;"> </div>
-          </div>
+         
+          
           </div>
         </div>
         <!-- End .box .span6-->
@@ -140,10 +151,18 @@ endif;
             <div class="span6">
               <div class=" box color_2 height_medium paint_hover">
                 <div class="content numbers">
-                  <h3 class="value">219.103</h3>
-                  <div class="description mb5">Audience Reach</div>
-                  <h1 class="value">3.28<span class="percent">%</span></h1>
-                  <div class="description">Average CTR</div>
+                  <h3 class="value">İSTANBUL</h3>
+                  <div class="description mb5">Hava Durumu</div>
+                  <h1 class="value"> <?php
+$site="http://weather.yahooapis.com/forecastrss?w=29391294&u=c";
+$ssite=  file_get_contents($site);
+$site1=  explode('</pubDate>', $ssite);
+$site1= explode('temp="', $site1[1]);
+$site1= explode('"', $site1[1]);
+
+echo " ",$site1[0],"&deg;";
+?>
+                  <div class="description pull-right"><img src="<?php echo $site1[4]; ?>" class='pull-left'  ></div>
                 </div>
               </div>
             </div>
@@ -151,10 +170,16 @@ endif;
             <div class="span6">
               <div class="box color_25 height_medium paint_hover">
                 <div class="content numbers">
-                  <h3 class="value">7.147</h3>
-                  <div class="description mb5">Total Clicks</div>
-                  <h1 class="value">718.862</h1>
-                  <div class="description">Total Impressions</div>
+                  <h4 class="value"> <?php  echo tarihcevir (date("d.m.Y")); ?></h4>
+                  <div class="description mb5">Takvim</div>
+                  <h1 class="value">
+                        <span id=saat  class="fg-color-darken place-right" ></span>
+<SCRIPT language=JScript>
+saatigoster();
+window.setInterval("saatigoster();",60000);
+</SCRIPT>
+</h1>
+                  <div class="description"></div>
                 </div>
               </div>
             </div>
@@ -200,7 +225,157 @@ endif;
       </div>
       <!-- End .row-fluid -->
       
+
+      <?php 
+
+// http://www.tcmb.gov.tr/kurlar/201303/27032013.xml
+$content = file_get_contents("http://www.tcmb.gov.tr/kurlar/today.xml"); 
+
+$dolar_bul = explode('<Currency Kod="USD" CurrencyCode="USD">' ,$content); 
+
+$dolar_bul = explode('</ForexBuying>',$dolar_bul[1]); 
+
+$dolar_alis = explode('<ForexBuying>',$dolar_bul[0]); 
+
+$dolar_bul = explode('</ForexSelling>',$dolar_bul[1]); 
+
+$dolar_satis = explode('<ForexSelling>',$dolar_bul[0]); 
+
+$dolar_alis = $dolar_alis[1]; 
+
+$dolar_satis = $dolar_satis[1]; 
+
+
+
+$euro_bul = explode('<Currency Kod="EUR" CurrencyCode="EUR">' ,$content); 
+
+$euro_bul = explode('</ForexBuying>',$euro_bul[1]); 
+
+$euro_alis = explode('<ForexBuying>',$euro_bul[0]); 
+
+$euro_bul = explode('</ForexSelling>',$euro_bul[1]); 
+
+$euro_satis = explode('<ForexSelling>',$euro_bul[0]); 
+
+$euro_alis = $euro_alis[1]; 
+
+$euro_satis = $euro_satis[1]; 
+?>
       <div class="row-fluid">
+        <div class="row-fluid box color_2 title_medium height_medium2 bar_stats paint_hover ">
+          <div class="title hidden-phone">
+            <h5><span>USD</span></h5>
+          </div>
+          <!-- End .title -->
+          <div class="content row-fluid fluid numbers">
+            <div class="span3 stats hidden-phone">
+              <div id="placeholder3" style="width:100%;height:65px;margin-top:7px"></div>
+            </div>
+            <div class="span2 average_ctr">
+              <h1 class="value"><span class="percent">%</span></h1>
+              <div class="description mt15" >A</div>
+            </div>
+            <div class="span3 shown_left">
+              <div class="row-fluid fluid">
+                <div class="span6">
+                  <div class="description">Alış</div>
+                  <h2 class="value"><?php echo $dolar_alis; ?></h2>
+                  <div class="progress small">
+                    <div class="bar white" style="width: 100%;"></div>
+                  </div>
+                  <div class="description" >S</div>
+                </div>
+                <div class="span6 full">
+                  <div class="description text_color_dark">Satış</div>
+                  <h2 class="value text_color_dark"><?php echo $dolar_satis; ?></h2>
+                  <div class="progress small">
+                    <div class="bar " style="width: 0%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="span3 total_days">
+              <div class="row-fluid">
+                <div class="span6 total_clicks">
+                  <h1 class="value"></h1>
+                  <div class="description mt15" ></div>
+                </div>
+                <div class="span6 days_left">
+                  <h1 class="value text_color_dark"></h1>
+                  <div class="description mt15" ></div>
+                </div>
+              </div>
+            </div>
+            <div class="span1 stick top right result height_medium2"> <img src="img/arrows_up.png">
+              <div class="description mt15" ></div>
+            </div>
+          </div>
+          <!-- End .row-fluid --> 
+          <!-- End .content --> 
+        </div>
+        <!-- End .box --> 
+        
+      </div>
+      <!-- End .row-fluid -->
+      
+      <div class="row-fluid">
+        <div class="row-fluid box color_27 title_medium height_medium2 bar_stats paint_hover">
+          <div class="title hidden-phone">
+            <h5><span>Euro</span></h5>
+          </div>
+          <!-- End .title -->
+          <div class="content row-fluid fluid numbers">
+            <div class="span3 stats hidden-phone">
+              <div id="placeholder4" style="width:100%;height:65px;margin-top:7px"></div>
+            </div>
+            <div class="span2 average_ctr">
+              <h1 class="value"><span class="percent">%</span></h1>
+              <div class="description mt15" >A</div>
+            </div>
+            <div class="span3 shown_left">
+              <div class="row-fluid fluid">
+                <div class="span6">
+                  <div class="description">Alış</div>
+                  <h2 class="value"><?php echo $euro_alis; ?></h2>
+                  <div class="progress small"  >
+                    <div class="bar white " style="width: 100%;"></div>
+                  </div>
+                  <div class="description" >S</div>
+                </div>
+                <div class="span6 full">
+                  <div class="description text_color_dark">Satış</div>
+                  <h2 class="value text_color_dark"><?php echo $euro_satis; ?></h2>
+                  <div class="progress small">
+                    <div class="bar" style="width: 0%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="span3 total_days">
+              <div class="row-fluid">
+                <div class="span6 total_clicks">
+                  <h1 class="value"></h1>
+                  <div class="description mt15" >S</div>
+                </div>
+                <div class="span6 days_left">
+                  <h1 class="value text_color_dark"></h1>
+                  <div class="description mt15" ></div>
+                </div>
+              </div>
+            </div>
+            <div class="span1 stick top right result height_medium2"> <img src="img/arrows_down.png">
+              <div class="description mt15" > </div>
+            </div>
+          </div>
+          <!-- End .row-fluid --> 
+          <!-- End .content --> 
+        </div>
+        <!-- End .box --> 
+        
+      </div>
+      <!-- End .row-fluid -->
+      
+            <div class="row-fluid">
         <div class="span8">
           <div class="box height_big paint">
             <div class="title">
@@ -295,120 +470,6 @@ endif;
           <!-- End .box --> 
         </div>
         <!-- End .span4 --> 
-      </div>
-      <!-- End .row-fluid -->
-      
-      <div class="row-fluid">
-        <div class="row-fluid box color_2 title_medium height_medium2 bar_stats paint_hover ">
-          <div class="title hidden-phone">
-            <h5><span>Envato</span></h5>
-          </div>
-          <!-- End .title -->
-          <div class="content row-fluid fluid numbers">
-            <div class="span3 stats hidden-phone">
-              <div id="placeholder3" style="width:100%;height:65px;margin-top:7px"></div>
-            </div>
-            <div class="span2 average_ctr">
-              <h1 class="value">0.72<span class="percent">%</span></h1>
-              <div class="description mt15" >AVERAGE CTR</div>
-            </div>
-            <div class="span3 shown_left">
-              <div class="row-fluid fluid">
-                <div class="span6">
-                  <div class="description">SHOWN</div>
-                  <h2 class="value">3.240</h2>
-                  <div class="progress small">
-                    <div class="bar white" style="width: 100%;"></div>
-                  </div>
-                  <div class="description" >IMPRESSIONS STATS</div>
-                </div>
-                <div class="span6 full">
-                  <div class="description text_color_dark">LEFT</div>
-                  <h2 class="value text_color_dark">16.760</h2>
-                  <div class="progress small">
-                    <div class="bar " style="width: 0%;"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="span3 total_days">
-              <div class="row-fluid">
-                <div class="span6 total_clicks">
-                  <h1 class="value">103</h1>
-                  <div class="description mt15" >TOTAL CLICKS</div>
-                </div>
-                <div class="span6 days_left">
-                  <h1 class="value text_color_dark">28</h1>
-                  <div class="description mt15" >DAYS LEFT</div>
-                </div>
-              </div>
-            </div>
-            <div class="span1 stick top right result height_medium2"> <img src="img/arrows_up.png">
-              <div class="description mt15" >Good</div>
-            </div>
-          </div>
-          <!-- End .row-fluid --> 
-          <!-- End .content --> 
-        </div>
-        <!-- End .box --> 
-        
-      </div>
-      <!-- End .row-fluid -->
-      
-      <div class="row-fluid">
-        <div class="row-fluid box color_27 title_medium height_medium2 bar_stats paint_hover">
-          <div class="title hidden-phone">
-            <h5><span>Facebook</span></h5>
-          </div>
-          <!-- End .title -->
-          <div class="content row-fluid fluid numbers">
-            <div class="span3 stats hidden-phone">
-              <div id="placeholder4" style="width:100%;height:65px;margin-top:7px"></div>
-            </div>
-            <div class="span2 average_ctr">
-              <h1 class="value">1.37<span class="percent">%</span></h1>
-              <div class="description mt15" >AVERAGE CTR</div>
-            </div>
-            <div class="span3 shown_left">
-              <div class="row-fluid fluid">
-                <div class="span6">
-                  <div class="description">SHOWN</div>
-                  <h2 class="value">1.220</h2>
-                  <div class="progress small"  >
-                    <div class="bar white " style="width: 100%;"></div>
-                  </div>
-                  <div class="description" >IMPRESSIONS STATS</div>
-                </div>
-                <div class="span6 full">
-                  <div class="description text_color_dark">LEFT</div>
-                  <h2 class="value text_color_dark">12.420</h2>
-                  <div class="progress small">
-                    <div class="bar" style="width: 0%;"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="span3 total_days">
-              <div class="row-fluid">
-                <div class="span6 total_clicks">
-                  <h1 class="value">67</h1>
-                  <div class="description mt15" >TOTAL CLICKS</div>
-                </div>
-                <div class="span6 days_left">
-                  <h1 class="value text_color_dark">30</h1>
-                  <div class="description mt15" >DAYS LEFT</div>
-                </div>
-              </div>
-            </div>
-            <div class="span1 stick top right result height_medium2"> <img src="img/arrows_down.png">
-              <div class="description mt15" > &nbsp;&nbsp;Bad</div>
-            </div>
-          </div>
-          <!-- End .row-fluid --> 
-          <!-- End .content --> 
-        </div>
-        <!-- End .box --> 
-        
       </div>
       <!-- End .row-fluid -->
       

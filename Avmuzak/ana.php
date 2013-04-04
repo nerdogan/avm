@@ -44,7 +44,7 @@ echo $data;
     </div>
     <div id="tabs-3">
         <input type="text" name="idd">
-<? 
+<?php 
 
 // http://www.tcmb.gov.tr/kurlar/201303/27032013.xml
 $content = file_get_contents("http://www.tcmb.gov.tr/kurlar/today.xml"); 
