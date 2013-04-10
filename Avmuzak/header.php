@@ -3,7 +3,8 @@
 <?php include_once('classes/check.class.php');  ?>
 <?php if (!isset($_SESSION)) session_start(); error_reporting(E_ALL ^ E_NOTICE);
 ini_set('error_reporting', E_ALL ^ E_NOTICE); 
-date_default_timezone_set('Europe/Istanbul');  ?>
+date_default_timezone_set('Europe/Istanbul'); 
+$generic->generateToken(); ?>
 <!DOCTYPE html>
 <html class="sidebar_default  no-js" lang="tr">
  

@@ -43,7 +43,7 @@ goster('anasayfa1');
   </div>
   <div class="viewport ">
     <div class="overview collapse">
-      <div class="search row-fluid container">
+<!--      <div class="search row-fluid container"> 
         <h2>Arama</h2>
         <form class="form-search">
           <div class="input-append">
@@ -51,25 +51,36 @@ goster('anasayfa1');
             <button class="btn_search color_4">Arama</button>
           </div>
         </form>
-      </div>
+      </div>    -->
       <ul id="sidebar_menu" class="navbar nav nav-list container full">
-        <li class="accordion-group active color_4"> <a class="dashboard " href="home.php"><img src="img/menu_icons/dashboard.png"><span>Başlangıç</span></a> </li>
+        <li class="accordion-group  color_4"> <a class="dashboard " href="home.php"><img src="img/menu_icons/dashboard.png"><span>Başlangıç</span></a> </li>
         
             
-        <li class="accordion-group color_3"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse1">
+        <li class="accordion-group color_3 active"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse1">
                 <img src="img/menu_icons/grid.png"><span>Mağaza</span></a>
           <ul id="collapse1" class="accordion-body collapse in">
               <li 
                   <?php if ($_GET['do']=="ekle"):echo "class='active'" ;endif; ?>
                       ><a href="magaza.php?do=ekle">Yeni Ekle</a></li>
-              <li><a href="magaza.php?do=arama">Ara</a></li>
-              <li><a href="magaza.php?do=sil">Sil</a></li>
-              <li><a href="magaza.php?do=liste">Tam Liste</a></li>
+              <li  <?php if ($_GET['do']=="arama"):echo "class='active'" ;endif; ?>><a href="magaza.php?do=arama">Ara</a></li>
+              <li  <?php if ($_GET['do']=="sil"):echo "class='active'" ;endif; ?>><a href="magaza.php?do=sil">Sil</a></li>
+              <li  <?php if ($_GET['do']=="liste"):echo "class='active'" ;endif; ?>><a href="magaza.php?do=liste">Tam Liste</a></li>
               
           </ul>
         </li>
         
-        <li class="color_8"> <a class="widgets"data-parent="#sidebar_menu" href="cari.php"> <img src="img/menu_icons/calendar.png"><span>Cari</span></a> </li>
+        <li class="accordion-group color_8 "> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse2">
+                <img src="img/menu_icons/calendar.png"><span>Cari</span></a>
+          <ul id="collapse2" class="accordion-body collapse ">
+              <li 
+                  <?php if ($_GET['do']=="ekle"):echo "class='active'" ;endif; ?>
+                      ><a href="cari.php?do=ekle">Yeni Ekle</a></li>
+              <li  <?php if ($_GET['do']=="arama"):echo "class='active'" ;endif; ?>><a href="cari.php?do=arama">Ara</a></li>
+              <li  <?php if ($_GET['do']=="sil"):echo "class='active'" ;endif; ?>><a href="cari.php?do=sil">Sil</a></li>
+              <li  <?php if ($_GET['do']=="liste"):echo "class='active'" ;endif; ?>><a href="cari.php?do=liste">Tam Liste</a></li>
+              
+          </ul>
+        </li>
         <li class="color_24"> <a class="widgets"data-parent="#sidebar_menu" href="fatura.php"> <img src="img/menu_icons/statistics.png"><span>Fatura</span></a> </li>
         <li class="color_8"> <a class="widgets"data-parent="#sidebar_menu" href="banka.php"> <img src="img/menu_icons/gallery.png"><span>Banka</span></a> </li>
         
@@ -149,8 +160,9 @@ goster('anasayfa1');
        
       <div class="row-fluid">
           <div class="span12"> 
-          <img src="./assets/images/marketmavi.png" style="height: 50px;width: 50px" class="pull-left"> <h2>Mağaza Bölümü</h2> 
-          </div>   
+              <div class="box paint color_7"><div class="content">
+          <img src="./assets/images/market.png" style="height: 50px;width: 50px" class="pull-left"> <h2>Mağaza Bölümü</h2> 
+          </div>   </div></div>
       </div>
   <?php
  
@@ -445,7 +457,7 @@ endif;
 // Ekleme ve Düzenleme   
 if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 <div class="row-fluid">
-        <div class="span8">
+        <div class="span12">
           <div class="box paint color_7">
             <div class="title">
               <h4> <i class="icon-book"></i><span>MAĞAZA KARTI <?php echo strtoupper($_GET['do']); ?></span> </h4>
@@ -453,7 +465,7 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
               <div class="content">
                   
              
-<form class="jotform-form" action="magaza.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
+<form class="form-horizontal row-fluid" action="magaza.php" method="post" name="formekle" id="formekle" accept-charset="utf-8">
 	<input type="hidden" name="formID" value="<?php echo $_GET['do'] ?>" /> <input type="hidden" name="firmID" value="<?php echo $_GET['id'] ?>" />
 	<div class="form-all">
 		<ul class="form-section nav">
@@ -464,10 +476,11 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 				</h3>
 			</div>
 			</li>
-			<table border="0" cellpadding="0" cellspacing="1" style="">
+			<table class="table" border="0" cellpadding="0" cellspacing="1" style="">
 			<tbody>
 			<tr>
                             <td>
+                        <div class="form-row control-group row-fluid">
                                 <li class="form-line" id="id_99">
 				<label class="form-label-left" id="label_99" for="input_2">
 				</label>
@@ -475,8 +488,10 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 					<input type="text" class="" id="input_2" name="magazakod" size="20" placeholder="Mağaza Kod"/>
 				</div>
 				</li>
+                            </div>
                             </td>
 				<td>
+                                    <div class="form-row control-group row-fluid">
 					<li class="form-line" id="id_4">
 					<label class="form-label-left" id="label_4" for="input_3">
 					<span class="form-required"></span>
@@ -485,14 +500,17 @@ if(($_GET['do'] === "ekle")||($_GET['do'] === "duzenle") ): ?>
 						<input type="text" class="form-required" id="input_3" name="q4_magazaAdi" size="20" placeholder=" Mağaza Adı"/>
 					</div>
 					</li>
+                                        </div>
 				</td>
 				<td>
+                                <div class="form-row control-group row-fluid">
 					<li>
 					<div id="cid_5" class="form-input">
 						<label class="form-label-left" id="label_5" for="input_4"></label>
 						<input type="text" class="form-textbox" id="input_4" name="q5_ticariVe" size="20" placeholder="Ticari ve Hukuki Firma Adı"/>
 					</div>
 					</li>
+                                    </div>
 				</td>
 			</tr>
 			<tr>

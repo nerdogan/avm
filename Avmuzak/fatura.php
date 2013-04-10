@@ -27,46 +27,165 @@ goster('anasayfa1');
 </script>  
 
 
-<div class="page secondary">
-<img src="./assets/images/hesap.png" style="height: 50px;width: 50px" class="place-left"> <h2>Fatura Bölümü</h2>     
-     
-           
-
-<div class="page snapped">
-   
-
- <div id="sidebar1" class="">
-<ul class="nav">
-    <li><a class="btn btn-warning" href="#"><i class="cus-application"></i> Fatura Bölümü</a></li>
-    <br><br>
-<?php if( protectThis(1) ) : ?>
-<li><a class="btn btn-large btn-success" href="fatura.php?do=yeni"><?php _e('Yeni Kayıt'); ?></a></li><br>
-<li><a class="btn btn-large btn-danger" href="#"><?php _e('Sil İptal'); ?></a></li><br>
-<li><a class="btn btn-large btn-info" href="fatura.php?do=liste"><?php _e('Tam Liste'); ?></a></li><br>
-<li><a class="btn btn-large btn-inverse" href="fatura.php?do=arama"><?php _e('Arama'); ?></a></li><br>
-<li><a href="#"><?php _e('');   ?></a></li>
-</ul>
+<body>
+<div id="loading"><img src="img/ajax-loader.gif"></div>
+<div id="responsive_part">
+  <div class="logo"> <a href="home.php"><span>Start</span><span class="icon"></span></a> </div>
+  <ul class="nav responsive">
+    <li>
+      <button class="btn responsive_menu icon_item" data-toggle="collapse" data-target=".overview"> <i class="icon-reorder"></i> </button>
+    </li>
+  </ul>
 </div>
-</div>
-     
+<!-- Responsive part -->
 
-<div class="page fill">
-  
-<div class="span12">
-  
-    <br><br>
+<div id="sidebar" class="">
+  <div class="scrollbar">
+    <div class="track">
+      <div class="thumb">
+        <div class="end"></div>
+      </div>
+    </div>
+  </div>
+  <div class="viewport ">
+    <div class="overview collapse">
+<!--      <div class="search row-fluid container"> 
+        <h2>Arama</h2>
+        <form class="form-search">
+          <div class="input-append">
+             <input type="text" class=" search-query" placeholder="">
+            <button class="btn_search color_4">Arama</button>
+          </div>
+        </form>
+      </div>    -->
+      <ul id="sidebar_menu" class="navbar nav nav-list container full">
+        <li class="accordion-group  color_4"> <a class="dashboard " href="home.php"><img src="img/menu_icons/dashboard.png"><span>Başlangıç</span></a> </li>
+        
+            
+        <li class="accordion-group color_3 "> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse1">
+                <img src="img/menu_icons/grid.png"><span>Mağaza</span></a>
+          <ul id="collapse1" class="accordion-body collapse ">
+              <li 
+                  <?php if ($_GET['do']=="ekle"):echo "class='active'" ;endif; ?>
+                      ><a href="magaza.php?do=ekle">Yeni Ekle</a></li>
+              <li  <?php if ($_GET['do']=="arama"):echo "class='active'" ;endif; ?>><a href="magaza.php?do=arama">Ara</a></li>
+              <li  <?php if ($_GET['do']=="sil"):echo "class='active'" ;endif; ?>><a href="magaza.php?do=sil">Sil</a></li>
+              <li  <?php if ($_GET['do']=="liste"):echo "class='active'" ;endif; ?>><a href="magaza.php?do=liste">Tam Liste</a></li>
+              
+          </ul>
+        </li>
+        
+        <li class="accordion-group color_8 active"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse2">
+                <img src="img/menu_icons/calendar.png"><span>Cari</span></a>
+          <ul id="collapse2" class="accordion-body collapse in ">
+              <li 
+                  <?php if ($_GET['do']=="ekle"):echo "class='active'" ;endif; ?>
+                      ><a href="cari.php?do=ekle">Yeni Ekle</a></li>
+              <li  <?php if ($_GET['do']=="arama"):echo "class='active'" ;endif; ?>><a href="cari.php?do=arama">Ara</a></li>
+              <li  <?php if ($_GET['do']=="sil"):echo "class='active'" ;endif; ?>><a href="cari.php?do=sil">Sil</a></li>
+              <li  <?php if ($_GET['do']=="liste"):echo "class='active'" ;endif; ?>><a href="cari.php?do=liste">Tam Liste</a></li>
+              
+          </ul>
+        </li>
+        <li class="color_24"> <a class="widgets"data-parent="#sidebar_menu" href="fatura.php"> <img src="img/menu_icons/statistics.png"><span>Fatura</span></a> </li>
+        <li class="color_8"> <a class="widgets"data-parent="#sidebar_menu" href="banka.php"> <img src="img/menu_icons/gallery.png"><span>Banka</span></a> </li>
+        
+      
+        <li class="accordion-group color_3"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse2"> <img src="img/menu_icons/widgets.png"><span>Hareketler</span></a>
+          <ul id="collapse2" class="accordion-body collapse">
+<li><a href="fatura.php">Fatura</a></li>
+                        <li><a href="hareket.php?ne=odeme&do=yeni">Ödeme</a></li>
+                        <li><a href="hareket.php?ne=tahsilat&do=yeni">Tahsilat</a></li>
+                        <li><a href="#">Gelir-Gider Eşleme</a></li>
+                        <li><a href="banka1.php">Banka</a></li>
+              
+          </ul>
+        </li>
+        
+       
+        <li class="accordion-group color_25"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse5">
+                <img src="img/menu_icons/others.png"><span>Listeler</span></a>
+          <ul id="collapse5" class="accordion-body collapse">
+           <li><a href="fatura.php?do=liste">Fatura</a></li>
+                        <li><a href="cari.php">Cari Hesap</a></li>
+                        <li><a href="banka.php">Banka</a></li>
+                        <li><a href="#">Teminat Mektubu</a></li>
+            </ul>
+        </li>
+        
+         <li class="accordion-group color_12"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse3">
+                 <img src="img/menu_icons/tables.png"><span>Tanımlar</span></a>
+          <ul id="collapse3" class="accordion-body collapse">
+             <li><a href="#">Döviz Kuru</a></li>
+                        <li><a href="#">Tefe/Tüfe Oranı</a></li>
+                        <li><a href="#">Ciro Takip</a></li>
+                        <li><a href="#"></a></li>
+          </ul>
+        </li>
+        
+         <li class="color_4"> <a class="widgets"data-parent="#sidebar_menu" href="#"> <img src="img/menu_icons/explorer.png"><span>Teknik</span> <!--  --></a> </li>
+        
+      </ul>
+      <div class="menu_states row-fluid container ">
+        <h2 class="pull-left">Menu Ayarları</h2>
+        <div class="options pull-right">
+          <button id="menu_state_1" class="color_4" rel="tooltip" data-state ="sidebar_icons" data-placement="top" data-original-title="Icon Menu">1</button>
+          <button id="menu_state_2" class="color_4 active" rel="tooltip" data-state ="sidebar_default" data-placement="top" data-original-title="Fixed Menu">2</button>
+          <button id="menu_state_3" class="color_4" rel="tooltip" data-placement="top" data-state ="sidebar_hover" data-original-title="Floating on Hover Menu">3</button>
+        </div>
+      </div>
+      <!-- End sidebar_box --> 
+      
+    </div>
+  </div>
+</div>
+
+<div id="main">
+  <div class="container">
+    <div class="header row-fluid">
+      <div class="logo"> <a href="home.php"><span>Başlangıç</span><span class="icon"></span></a> </div>
+      <div class="top_right">
+        <ul class="nav nav_menu">
+          <li class="dropdown"> <a class="dropdown-toggle administrator" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
+            <div class="title"><span class="name">          <?php echo "  ",$_SESSION['jigowatt']['name'],"  "; ?></span>
+                <span class="subtitle">          <?php echo "  ",$_SESSION['jigowatt']['username'],"  "; ?> </span></div>
+            <span class="icon"><?php echo $_SESSION['jigowatt']['gravatar']; ?></span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li><a href="profile.php"><i class=" icon-user"></i> Hesabım</a></li>
+               <li><a href="mailto:namikerdogan@crexist.com"><i class=" icon-flag"></i>Yardım</a></li>
+              <li><a href="logout.php"><i class=" icon-unlock"></i>Çıkış</a></li>
+             
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- End top-right --> 
+    </div>
+    <div id="main_container">
+        
+       
+      <div class="row-fluid">
+          
+          <div class="span12"> 
+              <div class="box paint color_7"><div class="content">
+          <img src="./assets/images/hesap.png" style="height: 50px;width: 50px" class="pull-left"> <h2>Fatura Bölümü</h2>     
+          </div>   
+      </div></div></div>
+
+
+ 
     
    
   
 <?php // Yan menü bitiş  <span class="btn btn-large btn-warning fg-color-darken" style="background-color: transparent  ;filter:alpha(opacity=100);opacity:1;">
- endif; ?>
+  ?>
       
 <?php 
 
 // tüm liste
 
 if(($_GET['do'] === "liste")  ): 
-echo "<table>";
+echo "<table class='responsive table>";
     echo "<tr><td>Tarih</td><td>No</td><td style='width:300px'>Firma Adı</td><td style='width:120px'>Tutar</td><td>Not</td><td>Kod&nbsp;&nbsp;&nbsp; </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
      $number=0;  
      $kackayit=$generic->query('SELECT magaza.kod,tarih,magaza.unvan,faturano,gtop,nott  FROM hareket INNER JOIN magaza ON  hareket.musno =  magaza.id');
@@ -445,4 +564,100 @@ endif;
     </span>  
        </div></div>    
   
-   <?php include_once('footer.php'); ?>
+    <div id="footer" style="position: fixed;bottom: 0px">
+    <p> &copy; 2013 Crexist Inc.   info@crexist.com  2013 | v.1.2.0 </p>
+    <span class="company_logo"><a href="http://www.crexist.com"></a></span> </div>
+</div>
+<div class="background_changer dropdown">
+  <div class="dropdown" id="colors_pallete"> <a data-toggle="dropdown" data-target="drop4" class="change_color"></a>
+    <ul  class="dropdown-menu pull-left" role="menu" aria-labelledby="drop4">
+      <li><a data-color="color_0" class="color_0" tabindex="-1">1</a></li>
+      <li><a data-color="color_1" class="color_1" tabindex="-1">1</a></li>
+      <li><a data-color="color_2" class="color_2" tabindex="-1">2</a></li>
+      <li><a data-color="color_3" class="color_3" tabindex="-1">3</a></li>
+      <li><a data-color="color_4" class="color_4" tabindex="-1">4</a></li>
+      <li><a data-color="color_5" class="color_5" tabindex="-1">5</a></li>
+      <li><a data-color="color_6" class="color_6" tabindex="-1">6</a></li>
+      <li><a data-color="color_7" class="color_7" tabindex="-1">7</a></li>
+      <li><a data-color="color_8" class="color_8" tabindex="-1">8</a></li>
+      <li><a data-color="color_9" class="color_9" tabindex="-1">9</a></li>
+      <li><a data-color="color_10" class="color_10" tabindex="-1">10</a></li>
+      <li><a data-color="color_11" class="color_11" tabindex="-1">10</a></li>
+      <li><a data-color="color_12" class="color_12" tabindex="-1">12</a></li>
+      <li><a data-color="color_13" class="color_13" tabindex="-1">13</a></li>
+      <li><a data-color="color_14" class="color_14" tabindex="-1">14</a></li>
+      <li><a data-color="color_15" class="color_15" tabindex="-1">15</a></li>
+      <li><a data-color="color_16" class="color_16" tabindex="-1">16</a></li>
+      <li><a data-color="color_17" class="color_17" tabindex="-1">17</a></li>
+      <li><a data-color="color_18" class="color_18" tabindex="-1">18</a></li>
+      <li><a data-color="color_19" class="color_19" tabindex="-1">19</a></li>
+      <li><a data-color="color_20" class="color_20" tabindex="-1">20</a></li>
+      <li><a data-color="color_21" class="color_21" tabindex="-1">21</a></li>
+      <li><a data-color="color_22" class="color_22" tabindex="-1">22</a></li>
+      <li><a data-color="color_23" class="color_23" tabindex="-1">23</a></li>
+      <li><a data-color="color_24" class="color_24" tabindex="-1">24</a></li>
+      <li><a data-color="color_25" class="color_25" tabindex="-1">25</a></li>
+    </ul>
+  </div>
+</div>
+<!-- End .background_changer -->
+</div>
+<!-- /container --> 
+
+<!-- Le javascript
+    ================================================== --> 
+<!-- General scripts --> 
+<script src="js/jquery.js" type="text/javascript"> </script> 
+<!--[if !IE]> -->
+<!--[if !IE]> -->
+<script src="js/plugins/enquire.min.js" type="text/javascript"></script> 
+<!-- <![endif]-->
+<!-- <![endif]-->
+<!--[if lt IE 7]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE7.js"></script>
+<![endif]-->
+<script language="javascript" type="text/javascript" src="js/plugins/jquery.sparkline.min.js"></script> 
+<script src="js/plugins/excanvas.compiled.js"></script>
+<script src="js/bootstrap-transition.js" type="text/javascript"></script> 
+<script src="js/bootstrap-alert.js" type="text/javascript"></script> 
+<script src="js/bootstrap-modal.js" type="text/javascript"></script> 
+<script src="js/bootstrap-dropdown.js" type="text/javascript"></script> 
+<script src="js/bootstrap-scrollspy.js" type="text/javascript"></script> 
+<script src="js/bootstrap-tab.js" type="text/javascript"></script> 
+<script src="js/bootstrap-tooltip.js" type="text/javascript"></script> 
+<script src="js/bootstrap-popover.js" type="text/javascript"></script> 
+<script src="js/bootstrap-button.js" type="text/javascript"></script> 
+<script src="js/bootstrap-collapse.js" type="text/javascript"></script> 
+<script src="js/bootstrap-carousel.js" type="text/javascript"></script> 
+<script src="js/bootstrap-typeahead.js" type="text/javascript"></script> 
+<script src="js/bootstrap-affix.js" type="text/javascript"></script> 
+<script src="js/fileinput.jquery.js" type="text/javascript"></script> 
+<script src="js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script> 
+<script src="js/jquery.touchdown.js" type="text/javascript"></script> 
+<script language="javascript" type="text/javascript" src="js/plugins/jquery.uniform.min.js"></script> 
+<script language="javascript" type="text/javascript" src="js/plugins/jquery.tinyscrollbar.min.js"></script> 
+<script language="javascript" type="text/javascript" src="js/jnavigate.jquery.min.js"></script> 
+<script language="javascript" type="text/javascript" src="js/jquery.touchSwipe.min.js"></script> 
+<script language="javascript" type="text/javascript" src="js/plugins/jquery.peity.min.js"></script> 
+
+<!-- Flot charts --> 
+<script language="javascript" type="text/javascript" src="js/plugins/flot/jquery.flot.js"></script> 
+<script language="javascript" type="text/javascript" src="js/plugins/flot/jquery.flot.resize.js"></script> 
+
+<!-- Data tables --> 
+<script type="text/javascript" language="javascript" src="js/plugins/datatables/js/jquery.dataTables.js"></script> 
+
+<!-- Task plugin --> 
+<script language="javascript" type="text/javascript" src="js/plugins/knockout-2.0.0.js"></script> 
+
+<!-- Custom made scripts for this template --> 
+<script src="js/scripts.js" type="text/javascript"></script> 
+
+</body>
+</html>
+    
+    
+    
+    
+ <?php ob_flush(); ?>   
+   
